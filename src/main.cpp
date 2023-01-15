@@ -37,19 +37,19 @@ tao::Drivetrain drivetrain(
 		.lookahead_distance = 8.5,
 		.track_width = 13.75,
 		.wheel_radius = 2.0202411586464617389578904181119,
-		.external_gear_ratio = ((double)84/60),
+		.external_gear_ratio = ((double)84 / 60),
 	}
 );
 
 int main() {
-    Brain.Screen.printAt( 10, 50, "Hello V5" );
+	Brain.Screen.printAt(10, 50, "Hello V5");
 
 	drivetrain.setup_tracking(tao::Vector2(0, 0), 90);
 	drivetrain.move_to(tao::Vector2(25, 25));
-   
-    while (true) {
-        
-        // Allow other tasks to run
-        vex::this_thread::sleep_for(10);
-    }
+
+	while (true) {
+
+		// Allow other tasks to run
+		vex::this_thread::sleep_for(10);
+	}
 }

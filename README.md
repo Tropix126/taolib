@@ -30,7 +30,7 @@ These will link you to the latest builds found in the [releases](https://github.
 
 ```
 .
-└──include
+└──taolib
     ├──taolib.h         // The entry point of the library, which includes all of the important files necessary for the library's usage.
     ├──drivetrain.h     // The base tao::Drivetrain class. This class abstracts various position tracking and motion control algorithms to provide various functions for controlling a physical drivetrain. Given an IMU, left motor, right motor, and a model (called a "profile") for tuning certain physical aspects unique to each robot, the tao::Drivetrain class can perform various actions such as drive the robot straight, turn the robot in place, arc the robot to a point, or make the robot follow a path.
     ├──math.h           // Contains the tao::math namespace which stores various helper functions and variables used in mathematical operations. This includes utilities for working with angles, intersection finders for pure pursuit, and basic number operations.

@@ -13,17 +13,42 @@
 namespace tao {
 
 /**
- * A structure describing values specific to the drivetrain's physical state. These values must be specifically tuned for each drivetrain.
+ * A structure describing values specific to the drivetrain's physical state.
+ * These values are unique to each drivetrain and must be specifically tuned.
  */
 typedef struct {
-	/** The  */
+	/** The PID tuning constants used by the drive velocity PID controller. */
 	PIDGains drive_gains;
+
+	/** The PID tuning constants used by the turn velocity PID controller. */
 	PIDGains turn_gains;
+
+	/** The minimum acceptable error threshold (in arbitrary distance units) for the drive PID controller to consider its movement settled. */
 	double drive_tolerance;
+
+	/** The minimum acceptable error threshold (in degrees) for the turn PID controller to consider its movement settled. */
 	double turn_tolerance;
+
+	/**The radius that the robot will use to find lookahead points when following a curve using pure pursuit. */
 	double lookahead_distance;
+
+	/**
+	 * The distance between the left and right drivetrain wheels.
+	 * If an IMU is unavailable (unplugged or not provided), this number will be used for calculating
+	 * the drivetrain's absolute heading.
+	 */
 	double track_width;
+
+	/**
+	 * The radius of the drivetrain's wheels. This measurement will determine the units used for movement.
+	 * If using external encoders, this measurement should be the radius of the drivetrain's tracking wheels.
+	 * Otherwise, these measurements should be the radius of the drivetrain's powered wheels.
+	 */
 	double wheel_radius;
+
+	/**
+	 * The external gear ratio of the robot as a quotient (INPUT TEETH / OUTPUT TEETH).
+	 */
 	double external_gear_ratio;
 } DrivetrainProfile;
 

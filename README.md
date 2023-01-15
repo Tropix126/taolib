@@ -36,7 +36,6 @@ These will link you to the latest builds found in the [releases](https://github.
     ├──math.h           // Contains the tao::math namespace which stores various helper functions and variables used in mathematical operations. This includes utilities for working with angles, intersection finders for pure pursuit, and basic number operations.
     ├──pid.h            // Contains the tao::PIDController class, which is a form of closed-loop feedback control for keeping a system at a stable desired target. Given a target and error (the difference between the current and desired number) as the input for the controller, the controller will output what is required to reach the target input. In practice, there are two PID controllers used in tao::Drivetrain for maintaining a target angular and linear velocity given a position as the input.
     ├──threading.h      // Contains various helpers for creating and working with multithreaded applications on vexcode. These helpers assist in various tasks that would normally be difficult to achieve with the vexcode provided vex::thread class, such as starting a thread from a non-static class member, or passing arguments to threads.
-
     └──vector2.h        // A class that represents a 2-dimensional vector stored as cartesian coordinates. Used internally to simplify the math used in odometry.
 ```
 

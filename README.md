@@ -21,7 +21,7 @@ taolib is a library that combines many motion control algorithms such as [PID fe
 
 These will link you to the latest builds found in the [releases](https://github.com/Tropix126/taolib/releases/) tab of this repository.
 
-| [VEXcode]()  | PROS (Coming (hopefully) soon!) |
+| [VEXcode]()  | PROS (planned) |
 | ------------- | ------------- |
 
 

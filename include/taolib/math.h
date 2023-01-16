@@ -1,4 +1,3 @@
-#include "vex.h"
 #include "vector2.h"
 #include <vector>
 

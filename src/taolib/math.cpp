@@ -14,7 +14,6 @@
 #include <algorithm>
 #include <math.h>
 
-#include "vex.h"
 #include "taolib/math.h"
 #include "taolib/vector2.h"
 

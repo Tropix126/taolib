@@ -2,7 +2,8 @@
 #include <vector>
 #include <iostream>
 
-#include "vex.h"
+#include "v5.h"
+#include "v5_cpp.h"
 
 #include "taolib/drivetrain.h"
 #include "taolib/pid.h"

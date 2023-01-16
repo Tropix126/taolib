@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="namespacetao_1_1math" kind="namespace" language="C++">
+    <compoundname>tao::math</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="math_8h_1a904306e9fcf2e0dbab20011a89ef2c76" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::PI</definition>
+        <argsstring></argsstring>
+        <name>PI</name>
+        <qualifiedname>tao::math::PI</qualifiedname>
+        <initializer>= 3.14159265358979323846</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="7" column="18" bodyfile="include/taolib/math.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="math_8h_1ac18a2780e7f143d609f000fcd8b1d140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::math::normalize_degrees</definition>
+        <argsstring>(double degrees)</argsstring>
+        <name>normalize_degrees</name>
+        <qualifiedname>tao::math::normalize_degrees</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+<para>Converts a number representing an angle in degrees and to an equivalent angle between -179 and 180 degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The equivalent normalized angle between -170 and 180 degrees. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="15" column="8" declfile="include/taolib/math.h" declline="15" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a0c338ae699604976c4ae5ae4b9dc6115" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::degrees_to_radians</definition>
+        <argsstring>(double degrees)</argsstring>
+        <name>degrees_to_radians</name>
+        <qualifiedname>tao::math::degrees_to_radians</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+<para>Converts an angle in degrees to an angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The angle in radians. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="23" column="18" bodyfile="include/taolib/math.h" bodystart="23" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a94179e6977cfd15f2e8f6f9e74a6552f" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::radians_to_degrees</definition>
+        <argsstring>(double radians)</argsstring>
+        <name>radians_to_degrees</name>
+        <qualifiedname>tao::math::radians_to_degrees</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>radians</declname>
+        </param>
+        <briefdescription>
+<para>Converts an angle in radians to an angle in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>radians</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The angle in degrees. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="33" column="18" bodyfile="include/taolib/math.h" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a68a966daca8ab43503142a45d327d1dc" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::clamp</definition>
+        <argsstring>(double x, double min, double max)</argsstring>
+        <name>clamp</name>
+        <qualifiedname>tao::math::clamp</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="37" column="18" bodyfile="include/taolib/math.h" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a7319b48b297f422e74b542952988afa5" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::sign</definition>
+        <argsstring>(double x)</argsstring>
+        <name>sign</name>
+        <qualifiedname>tao::math::sign</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="41" column="18" bodyfile="include/taolib/math.h" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a1227ad59b06fb0640d934115af89aacd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref> &gt;</type>
+        <definition>std::vector&lt; Vector2 &gt; tao::math::line_circle_intersections</definition>
+        <argsstring>(Vector2 center, Vector2 point1, Vector2 point2, double radius)</argsstring>
+        <name>line_circle_intersections</name>
+        <qualifiedname>tao::math::line_circle_intersections</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>center</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>point1</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>point2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="45" column="13" declfile="include/taolib/math.h" declline="45" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/math.h" line="5" column="1"/>
+  </compounddef>
+</doxygen>

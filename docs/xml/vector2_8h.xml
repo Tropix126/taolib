@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="vector2_8h" kind="file" language="C++">
+    <compoundname>vector2.h</compoundname>
+    <includedby refid="drivetrain_8h" local="yes">include/taolib/drivetrain.h</includedby>
+    <includedby refid="math_8h" local="yes">include/taolib/math.h</includedby>
+    <includedby refid="taolib_8h" local="yes">include/taolib/taolib.h</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/taolib/drivetrain.h</label>
+        <link refid="drivetrain_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/taolib/math.h</label>
+        <link refid="math_8h_source"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/taolib/taolib.h</label>
+        <link refid="taolib_8h_source"/>
+      </node>
+      <node id="6">
+        <label>include/taolib/threading.h</label>
+        <link refid="threading_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/taolib/vector2.h</label>
+        <link refid="vector2_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>include/vex.h</label>
+        <link refid="vex_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classtao_1_1_vector2" prot="public">tao::Vector2</innerclass>
+    <innernamespace refid="namespacetao">tao</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tao<sp/>{</highlight></codeline>
+<codeline lineno="7" refid="classtao_1_1_vector2" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14" refid="classtao_1_1_vector2_1a76b488cae66f02da126eafefbc5090d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2_1a76b488cae66f02da126eafefbc5090d9" kindref="member">Vector2</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="classtao_1_1_vector2_1a4b683aa12a50d17113c0ca5456e5d42a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2_1a4b683aa12a50d17113c0ca5456e5d42a" kindref="member">Vector2</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classtao_1_1_vector2_1a18f0d9cf89f39649c63c49d47ffcc9f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2_1a18f0d9cf89f39649c63c49d47ffcc9f7" kindref="member">Vector2</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classtao_1_1_vector2_1aaa918b115227d1e8aa9b22eead200e3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1aaa918b115227d1e8aa9b22eead200e3a" kindref="member">get_x</ref>();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classtao_1_1_vector2_1abd00ce60254a20edef09154364a6cef8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1abd00ce60254a20edef09154364a6cef8" kindref="member">get_y</ref>();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classtao_1_1_vector2_1afd403d34438c90ce6b9fcb898166c13c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1afd403d34438c90ce6b9fcb898166c13c" kindref="member">get_magnitude</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classtao_1_1_vector2_1a3e65ba8e9fa432ffb07a22a22801cc13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1a3e65ba8e9fa432ffb07a22a22801cc13" kindref="member">get_angle</ref>();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classtao_1_1_vector2_1a911e6a2b0a9087fdd9be7c17ff8c04dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a911e6a2b0a9087fdd9be7c17ff8c04dd" kindref="member">normalized</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classtao_1_1_vector2_1ae0f8951c3e148e326f728c80038e98b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1ae0f8951c3e148e326f728c80038e98b4" kindref="member">rotated</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>angle);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="classtao_1_1_vector2_1a45a264ebf3844c3755760474357257e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1a45a264ebf3844c3755760474357257e3" kindref="member">dot</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;right);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82" refid="classtao_1_1_vector2_1a7bcb9f2c7420c0a419789e928e2b93c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1a7bcb9f2c7420c0a419789e928e2b93c4" kindref="member">cross</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v2);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classtao_1_1_vector2_1a84749d146d1715a6e4238d300c4a75fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2_1a84749d146d1715a6e4238d300c4a75fc" kindref="member">distance</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v2);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="classtao_1_1_vector2_1a63e74f57546a0537d6fc8eed7ea1ddc9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a63e74f57546a0537d6fc8eed7ea1ddc9" kindref="member">operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v2);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a63e74f57546a0537d6fc8eed7ea1ddc9" kindref="member">operator+</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="classtao_1_1_vector2_1a0feca9ade3edd654f44ab6073ba3f15f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a0feca9ade3edd654f44ab6073ba3f15f" kindref="member">operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v2);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a0feca9ade3edd654f44ab6073ba3f15f" kindref="member">operator-</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="classtao_1_1_vector2_1a0cae90787028d9a95fa4cacc8ea90c56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a0cae90787028d9a95fa4cacc8ea90c56" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v2);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a0cae90787028d9a95fa4cacc8ea90c56" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="classtao_1_1_vector2_1a13733ffd2601e591203e86b8fccf258c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a13733ffd2601e591203e86b8fccf258c" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v2);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_vector2_1a13733ffd2601e591203e86b8fccf258c" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>&amp;v1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scalar);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="include/taolib/vector2.h"/>
+  </compounddef>
+</doxygen>

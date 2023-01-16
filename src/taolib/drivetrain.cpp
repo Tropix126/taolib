@@ -47,9 +47,9 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
-					   vex::inertial& IMU,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
+					   vex::inertial& IMU,
 					   DrivetrainProfile profile)
 	: left_motors(left_motors),
 	  right_motors(right_motors),

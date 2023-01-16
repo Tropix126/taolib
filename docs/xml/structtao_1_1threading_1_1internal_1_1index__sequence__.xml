@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="structtao_1_1threading_1_1internal_1_1index__sequence__" kind="struct" language="C++" prot="public">
+    <compoundname>tao::threading::internal::index_sequence_</compoundname>
+    <templateparamlist>
+      <param>
+        <type>std::size_t...</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/threading.h" line="12" column="1" bodyfile="include/taolib/threading.h" bodystart="12" bodyend="12"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

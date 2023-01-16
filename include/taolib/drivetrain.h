@@ -14,7 +14,7 @@ namespace tao {
 
 /**
  * A structure describing values specific to the drivetrain's physical state.
- * These values are unique to each drivetrain and must be specifically tuned.
+ * @attention These values are unique to each drivetrain and must be specifically tuned.
  */
 typedef struct {
 	/** The PID tuning constants used by the drive velocity PID controller. */
@@ -29,20 +29,18 @@ typedef struct {
 	/** The minimum acceptable error threshold (in degrees) for the turn PID controller to consider its movement settled. */
 	double turn_tolerance;
 
-	/**The radius that the robot will use to find lookahead points when following a curve using pure pursuit. */
+	/** The radius that the robot will use to find lookahead points when following a curve using pure pursuit. */
 	double lookahead_distance;
 
 	/**
 	 * The distance between the left and right drivetrain wheels.
-	 * If an IMU is unavailable (unplugged or not provided), this number will be used for calculating
-	 * the drivetrain's absolute heading.
+	 * @note If an IMU is unavailable (unplugged or not provided), this number will be used for calculating the drivetrain's absolute heading.
 	 */
 	double track_width;
 
 	/**
 	 * The radius of the drivetrain's wheels. This measurement will determine the units used for movement.
-	 * If using external encoders, this measurement should be the radius of the drivetrain's tracking wheels.
-	 * Otherwise, these measurements should be the radius of the drivetrain's powered wheels.
+	 * @attention If using external encoders, this measurement should be the radius of the drivetrain's tracking wheels. Otherwise, these measurements should be the radius of the drivetrain's powered wheels.
 	 */
 	double wheel_radius;
 
@@ -133,9 +131,7 @@ public:
 
 	/**
 	 * Gets the current counter-clockwise heading of the drivetrain in degrees.
-	 * 
-	 * If the IMU is not configured or installed, the heading will be calculated based on
-	 * integrated encoders using only the drivetrain's track width measurements.
+	 * @note If the IMU is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain's track width measurements.
 	 * @return The current heading of the drivetrain in degrees.
 	 */
 	double get_heading() const;
@@ -260,7 +256,7 @@ public:
 	
 	/**
 	 * Gets the current gear external ratio of the drivetrain.
-	 * This could be useful for robots with a variable gear ratio (PTO) system.
+	 * @note This could be useful for robots with a variable gear ratio (PTO) system.
 	 * 
 	 * @param ratio The new external gear ratio as a quotient.
 	 */

@@ -2,7 +2,7 @@
 
 namespace tao {
 /**
- * \brief Class object to represent a vector within a 2 dimensional space
+ * Class object to represent a vector within a 2 dimensional space
 */
 class Vector2 {
 public:

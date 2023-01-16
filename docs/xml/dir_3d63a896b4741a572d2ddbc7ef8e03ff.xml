@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="dir_3d63a896b4741a572d2ddbc7ef8e03ff" kind="dir">
+    <compoundname>include/taolib</compoundname>
+    <innerfile refid="drivetrain_8h">drivetrain.h</innerfile>
+    <innerfile refid="math_8h">math.h</innerfile>
+    <innerfile refid="pid_8h">pid.h</innerfile>
+    <innerfile refid="taolib_8h">taolib.h</innerfile>
+    <innerfile refid="threading_8h">threading.h</innerfile>
+    <innerfile refid="vector2_8h">vector2.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/"/>
+  </compounddef>
+</doxygen>

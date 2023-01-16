@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="pid_8h" kind="file" language="C++">
+    <compoundname>pid.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includedby refid="drivetrain_8h" local="yes">include/taolib/drivetrain.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/taolib/pid.h</label>
+        <link refid="pid_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/taolib/drivetrain.h</label>
+        <link refid="drivetrain_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/taolib/pid.h</label>
+        <link refid="pid_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/taolib/taolib.h</label>
+        <link refid="taolib_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structtao_1_1_p_i_d_gains" prot="public">tao::PIDGains</innerclass>
+    <innerclass refid="classtao_1_1_p_i_d_controller" prot="public">tao::PIDController</innerclass>
+    <innernamespace refid="namespacetao">tao</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tao<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="structtao_1_1_p_i_d_gains" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13" refid="structtao_1_1_p_i_d_gains_1aa5ee1188c05c7cbca1345d6509592b03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_p_i_d_gains_1aa5ee1188c05c7cbca1345d6509592b03" kindref="member">kP</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="structtao_1_1_p_i_d_gains_1ae0d851ace5410cf72cac1af9a48ebdb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_p_i_d_gains_1ae0d851ace5410cf72cac1af9a48ebdb1" kindref="member">kI</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="structtao_1_1_p_i_d_gains_1a86c551d3a88e206485288cf69dd85385" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_p_i_d_gains_1a86c551d3a88e206485288cf69dd85385" kindref="member">kD</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}<sp/><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>PID<sp/>controller<sp/>class</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classtao_1_1_p_i_d_controller" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor(s)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref>(<ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref><sp/>gains);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>the<sp/>PID<sp/>output<sp/>with<sp/>the<sp/>given<sp/>error<sp/>and<sp/>time<sp/>step</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>update(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>error,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_time);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>the<sp/>controller<sp/>to<sp/>use<sp/>new<sp/>gains.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref><sp/>get_gains()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_gains(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref>&amp;<sp/>gains);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>PID<sp/>gains</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref><sp/>gains;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Previous<sp/>error<sp/>and<sp/>integral<sp/>term</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>previous_error,<sp/>integral;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="include/taolib/pid.h"/>
+  </compounddef>
+</doxygen>

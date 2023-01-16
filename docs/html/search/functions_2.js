@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['get_5fangle_0',['get_angle',['../classtao_1_1_vector2.html#a3e65ba8e9fa432ffb07a22a22801cc13',1,'tao::Vector2']]],
+  ['get_5fdrive_5fdistance_1',['get_drive_distance',['../classtao_1_1_drivetrain.html#affb17e0bc14ae1780c6327296aa1d6a0',1,'tao::Drivetrain']]],
+  ['get_5fdrive_5ferror_2',['get_drive_error',['../classtao_1_1_drivetrain.html#af1e6b329d695b7e375fe544df3c44359',1,'tao::Drivetrain']]],
+  ['get_5fdrive_5fgains_3',['get_drive_gains',['../classtao_1_1_drivetrain.html#af2a2573a05c075484cef0209cd6b86b9',1,'tao::Drivetrain']]],
+  ['get_5fdrive_5ftolerance_4',['get_drive_tolerance',['../classtao_1_1_drivetrain.html#acf95c62e6e4c4d56cdb7980ec6100a5e',1,'tao::Drivetrain']]],
+  ['get_5fexternal_5fgear_5fratio_5',['get_external_gear_ratio',['../classtao_1_1_drivetrain.html#a1904f98b7bd7ce4489203f1cf4905d89',1,'tao::Drivetrain']]],
+  ['get_5fheading_6',['get_heading',['../classtao_1_1_drivetrain.html#aac06a6b2e934608e0e0890f3115529d9',1,'tao::Drivetrain']]],
+  ['get_5flookahead_5fdistance_7',['get_lookahead_distance',['../classtao_1_1_drivetrain.html#a353c31cc7e6554299186fe2cc0274566',1,'tao::Drivetrain']]],
+  ['get_5fmagnitude_8',['get_magnitude',['../classtao_1_1_vector2.html#afd403d34438c90ce6b9fcb898166c13c',1,'tao::Vector2']]],
+  ['get_5fmax_5fdrive_5fvelocity_9',['get_max_drive_velocity',['../classtao_1_1_drivetrain.html#aa8c3f9b38c85835f0aa928317cf3bb8d',1,'tao::Drivetrain']]],
+  ['get_5fmax_5fturn_5fvelocity_10',['get_max_turn_velocity',['../classtao_1_1_drivetrain.html#a65293743431e4370ef05e539891a63b7',1,'tao::Drivetrain']]],
+  ['get_5fposition_11',['get_position',['../classtao_1_1_drivetrain.html#a514807bac58c3590e0c3da1e27c42338',1,'tao::Drivetrain']]],
+  ['get_5fprofile_12',['get_profile',['../classtao_1_1_drivetrain.html#ac3f4528f41c8582c51f8f83fc59fcaab',1,'tao::Drivetrain']]],
+  ['get_5ftrack_5fwidth_13',['get_track_width',['../classtao_1_1_drivetrain.html#a94b5d5694d15f3f7920fae9dbdbfe855',1,'tao::Drivetrain']]],
+  ['get_5fturn_5ferror_14',['get_turn_error',['../classtao_1_1_drivetrain.html#a975ff7607b60814ae4e5e52803ef3cfd',1,'tao::Drivetrain']]],
+  ['get_5fturn_5fgains_15',['get_turn_gains',['../classtao_1_1_drivetrain.html#ab99c88e9b7a18f03cbc51461dec9b526',1,'tao::Drivetrain']]],
+  ['get_5fturn_5ftolerance_16',['get_turn_tolerance',['../classtao_1_1_drivetrain.html#ae9a6393f847dd32aed8e939e52c24e02',1,'tao::Drivetrain']]],
+  ['get_5fx_17',['get_x',['../classtao_1_1_vector2.html#aaa918b115227d1e8aa9b22eead200e3a',1,'tao::Vector2']]],
+  ['get_5fy_18',['get_y',['../classtao_1_1_vector2.html#abd00ce60254a20edef09154364a6cef8',1,'tao::Vector2']]]
+];

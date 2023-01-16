@@ -3,7 +3,6 @@
 #include <tuple>
 #include <utility>
 
-#include "v5.h"
 #include "v5_cpp.h"
 
 namespace tao::threading {

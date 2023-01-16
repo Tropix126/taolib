@@ -7,7 +7,6 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-#include "v5.h"
 #include "v5_cpp.h"
 
 #include "taolib/taolib.h"
@@ -44,8 +43,6 @@ tao::Drivetrain drivetrain(
 );
 
 int main() {
-	Brain.Screen.printAt(10, 50, "Hello V5");
-
 	drivetrain.setup_tracking(tao::Vector2(0, 0), 90);
 	drivetrain.move_to(tao::Vector2(25, 25));
 

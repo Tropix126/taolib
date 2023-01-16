@@ -119,15 +119,15 @@ double Drivetrain::get_heading() const {
 		// Use the IMU-reported gyroscope heading if available.
 		return std::fmod((360 - IMU->heading()) + start_heading, 360);
 	} else {
-		// If the IMU is not available, then find the heading based on only integrated encoders.
+		// If the IMU is not available, then find the heading based on only encoders.
 		double left_distance, right_distance;
 
 		if (left_encoder != NULL && right_encoder != NULL) {
 			left_distance = left_encoder->position(vex::rev) * wheel_circumference;
-			right_distance = left_encoder->position(vex::rev) * wheel_circumference;
+			right_distance = right_encoder->position(vex::rev) * wheel_circumference;
 		} else {
 			left_distance = left_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
-			right_distance = left_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
+			right_distance = right_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
 		}
 
 		// Unrestricted counterclockwise-facing heading in radians.

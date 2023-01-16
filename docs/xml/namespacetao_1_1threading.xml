@@ -32,7 +32,7 @@
 <para>Creates a vex::thread that runs a given function with arguments. </para>
         </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
+<para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>Ret</parametername>
 </parameternamelist>
@@ -48,8 +48,7 @@
 <para>types of arguments to <computeroutput>fn</computeroutput> </para>
 </parameterdescription>
 </parameteritem>
-</parameterlist>
-<parameterlist kind="param"><parameteritem>
+<parameteritem>
 <parameternamelist>
 <parametername>fn</parametername>
 </parameternamelist>

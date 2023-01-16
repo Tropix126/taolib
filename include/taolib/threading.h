@@ -42,8 +42,8 @@ void wrap_func_(void* func_and_args_void) {
 
 /**
  * Creates a vex::thread that runs a given function with arguments
- * @tparam Ret return type of `fn`
- * @tparam Args types of arguments to `fn`
+ * @param Ret return type of `fn`
+ * @param Args types of arguments to `fn`
  * @param fn the target function
  * @param args the arguments to `fn`
  * @return vex::thread that is running `fn`
@@ -63,6 +63,7 @@ vex::thread make_thread(Ret (*fn)(Args...), Args... args) {
   return internal_thread;
 }
 
+template <typename Cls, typename Ret, typename... Args>
 /**
  * Wraps a member function to allow calling it like a static function
  * @tparam Cls type of `cls_instance`
@@ -73,7 +74,6 @@ vex::thread make_thread(Ret (*fn)(Args...), Args... args) {
  * @param args arguments to `cls_fn`
  * @return whatever value `cls_fn(args...)` returns
  */
-template <typename Cls, typename Ret, typename... Args>
 Ret static_proxy(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {
   return (cls_instance->*cls_fn)(std::forward<Args>(args)...);
 }

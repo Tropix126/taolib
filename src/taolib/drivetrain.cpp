@@ -341,7 +341,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 	// Set the PID target distance.
 	set_target_distance(get_drive_distance() + distance);
 
-	if (blocking) waitUntil(settled);
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
@@ -350,7 +350,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 	// Set the PID target heading.
 	set_target_heading(heading);
 	
-	if (blocking) waitUntil(settled);
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
@@ -364,7 +364,7 @@ void Drivetrain::move_to(Vector2 position, bool blocking) {
 
 	set_target_position(position);
 
-	if (blocking) waitUntil(settled);
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::move_path(std::vector<Vector2> path) {
@@ -413,7 +413,7 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 		}
 	}
 
-	waitUntil(settled);
+	while (!settled) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::hold_position(bool blocking) {
@@ -422,7 +422,7 @@ void Drivetrain::hold_position(bool blocking) {
 	set_target_distance(get_drive_distance());
 	set_target_heading(get_heading());
 
-	if (blocking) waitUntil(settled);
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 }

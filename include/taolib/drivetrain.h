@@ -324,7 +324,7 @@ public:
 	 * Moves the drivetrain to a set of target coordinates.
 	 * @param position A 2D vector representing the absolute target coordinates to move to.
 	 * @param direction Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn.
-	 * @param blocking Determines if the function should block the current thread until settled (within tolerance for 10 iterations).
+	 * @param blocking Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations).
 	*/
 	void move_to(Vector2 position, bool blocking = true);
 	
@@ -335,7 +335,7 @@ public:
 	void move_path(std::vector<Vector2> path);
 
 	/**
-	 * Stops and holds the drivetrain at the current position and heading.
+	 * Stops and holds the drivetrain at its current position and heading.
 	 * @param blocking Determines if the function should block the current thread until settled (within tolerance for 10 iterations).
 	 */
 	void hold_position(bool blocking = true);

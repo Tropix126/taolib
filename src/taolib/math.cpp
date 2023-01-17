@@ -39,8 +39,8 @@ std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, 
 
 	double dx = (offset_2 - offset_1).get_x();
 	double dy = (offset_2 - offset_1).get_y();
-	double dr = Vector2::distance(offset_1, offset_2);
-	double D = Vector2::cross(offset_1, offset_2);
+	double dr = offset_1.distance(offset_2);
+	double D = offset_1.cross(offset_2);
 	double discriminant = pow(radius, 2) * pow(dr, 2) - pow(D, 2);
 
 	// The line formed as a slope of point_1 and point_2 intersects the circle at least once.

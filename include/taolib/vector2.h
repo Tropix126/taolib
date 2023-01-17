@@ -27,28 +27,28 @@ public:
 	/**
 	 * Returns the x value of the vector
 	*/
-	double get_x();
+	double get_x() const;
 
 	/**
 	 * Returns the y value of the vector
 	*/
-	double get_y();
+	double get_y() const;
 
 	/**
 	 * Returns the magnitude of the vector (the vector's length, or distance from the origin)
 	*/
-	double get_magnitude();
+	double get_magnitude() const;
 
 	/**
 	 * Returns the angle of the vector
 	*/
-	double get_angle();
+	double get_angle() const;
 
 	/**
 	 * Normalize the vector (change the length of the vector to 1 while retaining the direction)
 	 * @return Normalized version of the vector
 	*/
-	Vector2 normalized();
+	Vector2 normalized() const;
 
 	/**
 	 * Rotate the vector by a given angle in radians
@@ -57,65 +57,85 @@ public:
 	 * 
 	 * @return Normalized version of the vector
 	*/
-	Vector2 rotated(double angle);
+	Vector2 rotated(double angle) const;
 
 	/**
-	 * @brief Calculate the dot product of two vetors.
+	 * Calculate the dot product of two vetors.
 	 * @details The dot product is the product of the vector in the
 	 * same length.
 	 *
-	 * @param left Left hand side of the dot operator.
-	 * @param right Right hand side of the dot operator.
+	 * @param other The other vector to perform the dot operation with.
 	 *
 	 * @return Vector result of the dot operation.
 	 */
-	static double dot(const Vector2 &left, const Vector2 &right);
+	double Vector2::dot(const Vector2& other) const;
 	
 	/**
 	 * Calculate the cross product of two vetors.
 	 * 
-	 * @param v1 The first vector.
-	 * @param v2 The second vector.
+	 * @param other The other vector to perform the cross operation with.
 	 *
 	 * @return Vector result of the cross operation.
 	 */
-	static double cross(const Vector2 &v1, const Vector2 &v2);
+	double Vector2::cross(const Vector2& other) const;
 
 	/**
 	 * @brief Calculates the distance between two vectors.
 	 *
-	 * @param v1 The first vector.
-	 * @param v2 The second vector.
+	 * @param other The other vector to perform the distance calculation with.
 	 *
 	 * @return Vector result of the dot operation.
 	 */
-	static double distance(const Vector2 &v1, const Vector2 &v2);
+	double Vector2::distance(const Vector2& other) const;
+
+	double Vector2::project(const Vector2& other) const;
 
 	// Operators
 
 	/**
 	 * Scalar and vector addition
-	*/
-	friend Vector2 operator+(const Vector2 &v1, const Vector2 &v2);
-	friend Vector2 operator+(const Vector2 &v1, double scalar);
+	 */
+	friend Vector2 operator+(const Vector2& first, const Vector2& second);
+	friend Vector2 operator+(const Vector2& first, double scalar);
+	friend Vector2 operator+(double scalar, const Vector2& second);
+	
+	friend Vector2 operator+=(const Vector2& first, const Vector2& second);
+	friend Vector2 operator+=(const Vector2& first, double scalar);
 
 	/**
 	 * Scalar and vector subtraction
-	*/
-	friend Vector2 operator-(const Vector2 &v1, const Vector2 &v2);
-	friend Vector2 operator-(const Vector2 &v1, double scalar);
+	 */
+	friend Vector2 operator-(const Vector2& first, const Vector2& second);
+	friend Vector2 operator-(const Vector2& first, double scalar);
+	friend Vector2 operator-(double scalar, const Vector2& second);
+
+	friend Vector2 operator-=(const Vector2& first, const Vector2& second);
+	friend Vector2 operator-=(const Vector2& first, double scalar);
 
 	/**
 	 * Scalar and vector multiplication
-	*/
-	friend Vector2 operator*(const Vector2 &v1, const Vector2 &v2);
-	friend Vector2 operator*(const Vector2 &v1, double scalar);
+	 */
+	friend Vector2 operator*(const Vector2& first, const Vector2& second);
+	friend Vector2 operator*(const Vector2& first, double scalar);
+	friend Vector2 operator*(double scalar, const Vector2& second);
+
+	friend Vector2 operator*=(const Vector2& first, const Vector2& second);
+	friend Vector2 operator*=(const Vector2& first, double scalar);
 
 	/**
 	 * Scalar and vector division
-	*/
-	friend Vector2 operator/(const Vector2 &v1, const Vector2 &v2);
-	friend Vector2 operator/(const Vector2 &v1, double scalar);
+	 */
+	friend Vector2 operator/(const Vector2& first, const Vector2& second);
+	friend Vector2 operator/(const Vector2& first, double scalar);
+	friend Vector2 operator/(double scalar, const Vector2& second);
+
+	friend Vector2 operator/=(const Vector2& first, const Vector2& second);
+	friend Vector2 operator/=(const Vector2& first, double scalar);
+
+	/**
+	 * Vector comparison
+	 */
+	friend bool operator==(const Vector2& first, const Vector2& second);
 
 private:
 	/**

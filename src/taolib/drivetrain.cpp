@@ -193,7 +193,7 @@ int Drivetrain::daemon() {
 	
 		// Perform odometry calculations.
 		// Update global position based on current heading and change in distance.
-		global_position = global_position + Vector2(
+		global_position += Vector2(
 			delta_distance * std::cos(math::degrees_to_radians(get_heading())),
 			delta_distance * std::sin(math::degrees_to_radians(get_heading()))
 		);
@@ -378,7 +378,7 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 		Vector2 start = path[i]; // The current waypoint
 		Vector2 end = path[i + 1]; // The next waypoint
 
-		while (Vector2::distance(global_position, end) > lookahead_distance) {
+		while (global_position.distance(end) > lookahead_distance) {
 			// Find the point(s) of intersection between a circle centered around our global position with the radius of our
 			// lookahead distance and a line segment formed between our starting/ending points.
 			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, start, end, lookahead_distance);
@@ -389,7 +389,7 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 			// Choose the best intersection to go to, ensuring that we don't go backwards.
 			if (intersections.size() == 2) {
 				// There are two intersections. Find the one closest to the end of the line segment.
-				if (Vector2::distance(intersections[0], end) < Vector2::distance(intersections[1], end)) {
+				if (intersections[0].distance(end) < intersections[1].distance(end)) {
 					target_intersection = intersections[0];
 				} else {
 					target_intersection = intersections[1];

@@ -135,7 +135,7 @@ public:
 	 * @note If the IMU is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain's track width measurements.
 	 * @return The current heading of the drivetrain in degrees.
 	 */
-	double get_heading() const;
+	double get_heading();
 
 	/**
 	 * Gets the average linear distance from the starting position traveled by each wheel.
@@ -370,6 +370,7 @@ private:
 	double turn_error, drive_error;
 
 	bool settled = false;
+	bool imu_invalid = false;
 
 	PIDController drive_controller, turn_controller;
 

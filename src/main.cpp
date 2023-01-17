@@ -29,7 +29,7 @@ vex::encoder left_encoder(Brain.ThreeWirePort.A);
 vex::encoder right_encoder(Brain.ThreeWirePort.C);
 
 tao::Drivetrain drivetrain(
-	left_drive, right_drive, left_encoder, right_encoder, IMU,
+	left_drive, right_drive, IMU,
 	{
 		.drive_gains = { 4.24, 0, 0.06 },
 		.turn_gains = { 0.82, 0.003, 0.0875 },
@@ -38,13 +38,13 @@ tao::Drivetrain drivetrain(
 		.lookahead_distance = 8.5,
 		.track_width = 13.75,
 		.wheel_radius = 2.0202411586464617389578904181119,
-		.external_gear_ratio = ((double)84 / 60),
+		.external_gear_ratio = ((double)84/60),
 	}
 );
 
 int main() {
 	drivetrain.setup_tracking(tao::Vector2(0, 0), 90);
-	drivetrain.move_to(tao::Vector2(25, 25));
+	// drivetrain.move_to(tao::Vector2(25, 25));
 
 	while (true) {
 

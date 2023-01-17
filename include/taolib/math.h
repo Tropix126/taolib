@@ -43,7 +43,6 @@ constexpr T sign(T x) {
 	return x < 0 ? -1 : 1;
 }
 
-std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point1, Vector2 point2, double radius);
-
+std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius);
 
 }

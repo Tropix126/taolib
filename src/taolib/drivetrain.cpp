@@ -114,8 +114,15 @@ DrivetrainProfile Drivetrain::get_profile() const {
 		external_gear_ratio
 	};
 }
-double Drivetrain::get_heading() const {
-	if (IMU != NULL && IMU->installed()) {
+double Drivetrain::get_heading() {
+	// The IMU has was passed in, but is not plugged in.
+	// Invalidate it's readings for the duration of the tracking routine.
+	// TODO: check for possible spikes in reported heading due to ESD, then invalidate it
+	if (!imu_invalid && IMU != NULL && !IMU->installed()) {
+		imu_invalid = true;
+	}
+
+	if (IMU != NULL && !imu_invalid) {
 		// Use the IMU-reported gyroscope heading if available.
 		return std::fmod((360 - IMU->heading()) + start_heading, 360);
 	} else {
@@ -131,7 +138,7 @@ double Drivetrain::get_heading() const {
 		}
 
 		// Unrestricted counterclockwise-facing heading in radians.
-		double raw_heading = (left_distance - right_distance) / track_width;
+		double raw_heading = (right_distance - left_distance) / track_width;
 
 		// Convert to degrees, restrict to 0 <= x < 360, add the user-provided heading offset.
 		return std::fmod(math::radians_to_degrees(raw_heading) + start_heading, 360);
@@ -244,8 +251,8 @@ int Drivetrain::daemon() {
 		}
 
 		// Spin motors at the output velocity.
-		left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
-		right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
+		// left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
+		// right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.

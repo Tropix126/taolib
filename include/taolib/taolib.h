@@ -3,7 +3,6 @@
 
 // TODO:
 // - Finalize API design
-// - Ensure that the fallback no-IMU heading math is correct
 // - File comment headers
 // - Documentation (and tutorials/examples?)
 // - Web interface for graphical auton routine planning

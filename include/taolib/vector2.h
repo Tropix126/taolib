@@ -68,7 +68,7 @@ public:
 	 *
 	 * @return Vector result of the dot operation.
 	 */
-	double Vector2::dot(const Vector2& other) const;
+	double dot(const Vector2& other) const;
 	
 	/**
 	 * Calculate the cross product of two vetors.
@@ -77,7 +77,7 @@ public:
 	 *
 	 * @return Vector result of the cross operation.
 	 */
-	double Vector2::cross(const Vector2& other) const;
+	double cross(const Vector2& other) const;
 
 	/**
 	 * @brief Calculates the distance between two vectors.
@@ -86,9 +86,9 @@ public:
 	 *
 	 * @return Vector result of the dot operation.
 	 */
-	double Vector2::distance(const Vector2& other) const;
+	double distance(const Vector2& other) const;
 
-	double Vector2::project(const Vector2& other) const;
+	double project(const Vector2& other) const;
 
 	// Operators
 

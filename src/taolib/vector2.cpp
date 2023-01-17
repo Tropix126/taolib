@@ -86,32 +86,51 @@ Vector2 operator/(const double scalar, const Vector2& second) {
 	return { scalar / second.x, scalar / second.y };
 }
 
-Vector2 operator+=(const Vector2& first, const Vector2& second) {
-	return first + second;
+Vector2& Vector2::operator+=(const Vector2& other) {
+	x += other.x;
+	y += other.y;
+	return *this;
 }
-Vector2 operator+=(const Vector2& first, const double scalar) {
-	return first + scalar;
-}
-
-Vector2 operator-=(const Vector2& first, const Vector2& second) {
-	return first - second;
-}
-Vector2 operator-=(const Vector2& first, const double scalar) {
-	return first - scalar;
+Vector2& Vector2::operator+=(const double scalar) {
+	x += scalar;
+	y += scalar;
+	return *this;
 }
 
-Vector2 operator*=(const Vector2& first, const Vector2& second) {
-	return first * second;
+Vector2& Vector2::operator-=(const Vector2& other) {
+	x -= other.x;
+	y -= other.y;
+	return *this;
 }
-Vector2 operator*=(const Vector2& first, const double scalar) {
-	return first * scalar;
+Vector2& Vector2::operator-=(const double scalar) {
+	x -= scalar;
+	y -= scalar;
+	return *this;
 }
 
-Vector2 operator/=(const Vector2& first, const Vector2& second) {
-	return first / second;
+Vector2& Vector2::operator*=(const Vector2& other) {
+	x *= other.x;
+	y *= other.y;
+	return *this;
 }
-Vector2 operator/=(const Vector2& first, const double scalar) {
-	return first / scalar;
+Vector2& Vector2::operator*=(const double scalar) {
+	x *= scalar;
+	y *= scalar;
+	return *this;
+}
+
+Vector2& Vector2::operator/=(const Vector2& other) {
+	if(other.x != 0 && other.y != 0){
+		x /= other.x;
+		y /= other.y;
+	}
+
+	return *this;
+}
+Vector2& Vector2::operator/=(const double scalar) {
+	x /= scalar;
+	y /= scalar;
+	return *this;
 }
 
 bool operator==(const Vector2& first, const Vector2& second) {

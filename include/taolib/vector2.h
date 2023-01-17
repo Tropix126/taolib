@@ -99,8 +99,8 @@ public:
 	friend Vector2 operator+(const Vector2& first, double scalar);
 	friend Vector2 operator+(double scalar, const Vector2& second);
 	
-	friend Vector2 operator+=(const Vector2& first, const Vector2& second);
-	friend Vector2 operator+=(const Vector2& first, double scalar);
+	Vector2& operator+=(const Vector2& other);
+	Vector2& operator+=(const double scalar);
 
 	/**
 	 * Scalar and vector subtraction
@@ -109,18 +109,18 @@ public:
 	friend Vector2 operator-(const Vector2& first, double scalar);
 	friend Vector2 operator-(double scalar, const Vector2& second);
 
-	friend Vector2 operator-=(const Vector2& first, const Vector2& second);
-	friend Vector2 operator-=(const Vector2& first, double scalar);
+	Vector2& operator-=(const Vector2& other);
+	Vector2& operator-=(const double scalar);
 
 	/**
 	 * Scalar and vector multiplication
 	 */
 	friend Vector2 operator*(const Vector2& first, const Vector2& second);
 	friend Vector2 operator*(const Vector2& first, double scalar);
-	friend Vector2 operator*(double scalar, const Vector2& second);
+	friend Vector2 operator*(const double scalar, const Vector2& second);
 
-	friend Vector2 operator*=(const Vector2& first, const Vector2& second);
-	friend Vector2 operator*=(const Vector2& first, double scalar);
+	Vector2& operator*=(const Vector2& other);
+	Vector2& operator*=(const double scalar);
 
 	/**
 	 * Scalar and vector division
@@ -129,8 +129,8 @@ public:
 	friend Vector2 operator/(const Vector2& first, double scalar);
 	friend Vector2 operator/(double scalar, const Vector2& second);
 
-	friend Vector2 operator/=(const Vector2& first, const Vector2& second);
-	friend Vector2 operator/=(const Vector2& first, double scalar);
+	Vector2& operator/=(const Vector2& other);
+	Vector2& operator/=(const double scalar);
 
 	/**
 	 * Vector comparison

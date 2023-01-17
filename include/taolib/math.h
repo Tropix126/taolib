@@ -33,11 +33,13 @@ constexpr double radians_to_degrees(double radians) {
 	return radians * (180 / PI);
 }
 
-constexpr double clamp(double x, double min, double max) {
-	return (x < min) ? min : (x > max) ? max : x;
+template <typename T>
+constexpr T clamp(T value, T min, T max) {
+	return std::min(max, std::max(min, value));
 }
 
-constexpr double sign(double x) {
+template <typename T>
+constexpr T sign(T x) {
 	return x < 0 ? -1 : 1;
 }
 

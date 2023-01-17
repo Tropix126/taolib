@@ -251,8 +251,8 @@ int Drivetrain::daemon() {
 		}
 
 		// Spin motors at the output velocity.
-		// left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
-		// right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
+		left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
+		right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.

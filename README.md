@@ -6,9 +6,9 @@
   <a href="#contributors">Contributors</a>
 </p>
 
-<p align="center">  <br/>
-A library for complex autonomous robot movement in the VEX Robotics Competition (VRC).
-  <br/>
+<p align="center">
+<br/>
+A library for creating complex autonomous routines on VEX V5 robots.
 </p>
 
 ---

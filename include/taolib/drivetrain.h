@@ -3,6 +3,7 @@
 #include <cmath>
 #include <vector>
 #include <ratio>
+#include <memory>
 
 #include "v5_cpp.h"
 
@@ -346,20 +347,15 @@ private:
 		Absolute
 	};
 
-	vex::motor_group& left_motors;
-	vex::motor_group& right_motors;
-
-	vex::encoder* left_encoder;
-	vex::encoder* right_encoder;
-
+	vex::motor_group &left_motors, &right_motors;
+	vex::encoder *left_encoder, *right_encoder;
 	vex::inertial* IMU;
 	
 	Vector2 global_position;
 
 	Vector2 target_position;
-	double target_distance;
-	double target_heading;
-
+	double target_distance, target_heading;
+	double start_heading;
 	double initial_heading;
 
 	ErrorModes error_mode;
@@ -369,21 +365,13 @@ private:
 	double wheel_circumference;
 	double external_gear_ratio;
 
-	double start_heading = 0;
-
-	double max_drive_velocity = 100;
-	double max_turn_velocity = 100;
-
-	double turn_tolerance;
-	double drive_tolerance;
-
-	double turn_error;
-	double drive_error;
+	double max_drive_velocity = 100, max_turn_velocity = 100;
+	double turn_tolerance, drive_tolerance;
+	double turn_error, drive_error;
 
 	bool settled = false;
 
-	PIDController drive_controller;
-	PIDController turn_controller;
+	PIDController drive_controller, turn_controller;
 
 	void set_target_position(Vector2 position);
 	void set_target_distance(double distance);

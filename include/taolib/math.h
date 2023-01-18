@@ -1,3 +1,11 @@
+/**
+ * @file src/taolib/math.h
+ * @author Tropical
+ *
+ * Contains various helper functions and variables used in mathematical
+ * operations.
+ */
+
 #include "vector2.h"
 #include <vector>
 

@@ -1,3 +1,14 @@
+/**
+ * @file src/taolib/drivetrain.cpp
+ * @author Tropical
+ *
+ * Abstracts various position tracking and motion control algorithms to
+ * provide various functions for controlling a physical drivetrain.
+ * Given appropriate devices, and a model (called a "profile") for
+ * tuning certain physical aspects unique to each robot, the
+ tao::Drivetrain class can perform various autonomous actions.
+ */
+
 #include <cmath>
 #include <vector>
 #include <iostream>

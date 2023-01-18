@@ -1,11 +1,10 @@
-/*----------------------------------------------------------------------------*/
-/*                                                                            */
-/*    Module:       math.cpp                                                  */
-/*    Author:       Tropical                                                  */
-/*    Created:      Mon Oct 25 2022                                           */
-/*    Description:                                                            */
-/*                                                                            */
-/*----------------------------------------------------------------------------*/
+/**
+ * @file src/taolib/math.cpp
+ * @author Tropical
+ *
+ * Contains various helper functions and variables used in mathematical
+ * operations.
+ */
 
 
 #include <cmath>

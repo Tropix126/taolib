@@ -1,3 +1,10 @@
+/**
+ * @file src/taolib/pid.cpp
+ * @author Tropical
+ *
+ * Implementation for a 2-dimensional vector stored as cartesian coordinates.
+ */
+
 #include <cmath>
 
 #include "taolib/vector2.h"

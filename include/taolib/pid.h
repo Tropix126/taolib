@@ -1,3 +1,10 @@
+/**
+ * @file src/taolib/pid.h
+ * @author Tropical
+ *
+ * Closed-loop PID Feedback Controller
+ */
+
 #pragma once
 #include <iostream>
 

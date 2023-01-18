@@ -1,3 +1,14 @@
+/**
+ * @file src/taolib/threading.h
+ * @author 
+ *
+ * Various various helpers for creating and working with multithreaded
+ * applications on vexcode. These helpers assist in various tasks that
+ * would normally be difficult to achieve with the vexcode-provided
+ * vex::thread class, such as starting a thread from a non-static class
+ * member, or passing arguments to threads.
+ */
+
 #pragma once
 
 #include <tuple>

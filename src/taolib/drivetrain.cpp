@@ -357,6 +357,11 @@ void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 	// Reset motor encoders.
 	left_motors.resetPosition();
 	right_motors.resetPosition();
+	
+	if (left_encoder != NULL && right_encoder != NULL) {
+		left_encoder->resetRotation();
+		right_encoder->resetRotation();
+	}
 
 	// Reset gyro heading.
 	if (IMU != NULL) {

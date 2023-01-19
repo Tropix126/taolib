@@ -400,9 +400,9 @@ private:
 	vex::encoder *left_encoder, *right_encoder;
 	vex::inertial* IMU;
 #elif defined(TAO_ENV_PROS)
-	vex::Motor_group &left_motors, &right_motors;
-	vex::ADIEncoder *left_encoder, *right_encoder;
-	vex::IMU* IMU;
+	pros::Motor_group &left_motors, &right_motors;
+	pros::ADIEncoder *left_encoder, *right_encoder;
+	pros::IMU* IMU;
 #endif
 	
 	Vector2 global_position;

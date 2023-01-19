@@ -22,17 +22,10 @@
 
 namespace tao {
 
-#ifdef TAO_ENV_VEXCODE
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::inertial& IMU,
+Drivetrain::Drivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
+					   env::IMU& IMU,
 					   DrivetrainProfile profile)
-#elif defined(TAO_ENV_PROS)
-Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
-					   pros::Motor_Group& right_motors,
-					   pros::IMU& IMU,
-					   DrivetrainProfile profile)
-#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  IMU(&IMU),
@@ -46,15 +39,9 @@ Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
-#ifdef TAO_ENV_VEXCODE
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
+Drivetrain::Drivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
 					   DrivetrainProfile profile)
-#elif defined(TAO_ENV_PROS)
-Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
-					   pros::Motor_Group& right_motors,
-					   DrivetrainProfile profile)
-#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  IMU(NULL),
@@ -68,21 +55,12 @@ Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
-#ifdef TAO_ENV_VEXCODE
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::encoder& left_encoder,
-					   vex::encoder& right_encoder,
-					   vex::inertial& IMU,
+Drivetrain::Drivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
+					   env::Encoder& left_encoder,
+					   env::Encoder& right_encoder,
+					   env::IMU& IMU,
 					   DrivetrainProfile profile)
-#elif defined(TAO_ENV_PROS)
-Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
-					   pros::Motor_Group& right_motors,
-					   pros::ADIEncoder& left_encoder,
-					   pros::ADIEncoder& right_encoder,
-					   pros::IMU& IMU,
-					   DrivetrainProfile profile)
-#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
@@ -98,19 +76,11 @@ Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
-#ifdef TAO_ENV_VEXCODE
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::encoder& left_encoder,
-					   vex::encoder& right_encoder,
+Drivetrain::Drivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
+					   env::Encoder& left_encoder,
+					   env::Encoder& right_encoder,
 					   DrivetrainProfile profile)
-#elif defined(TAO_ENV_PROS)
-Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
-					   pros::Motor_Group& right_motors,
-					   pros::ADIEncoder& left_encoder,
-					   pros::ADIEncoder& right_encoder,
-					   DrivetrainProfile profile)
-#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),

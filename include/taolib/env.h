@@ -13,14 +13,22 @@
 #endif
 
 namespace tao::env {
+	// Platform-specific timer stuff
 	void sleep_for(uint32_t time);
 	int64_t system_time_high_resolution();
 
+	// Platform-specific aliases
 #ifdef TAO_ENV_VEXCODE
-	typedef vex::thread PlatformThread;
-	typedef vex::mutex PlatformMutex;
+	using Thread = vex::thread;
+	using Mutex = vex::mutex;
+	using MotorGroup = vex::motor_group;
+	using IMU = vex::inertial;
+	using Encoder = vex::encoder;
 #elif defined(TAO_ENV_PROS)
-	typedef pros::Task PlatformThread;
-	typedef pros::Mutex PlatformMutex;
+	using Thread = pros::Task;
+	using Mutex = pros::Mutex;
+	using MotorGroup = pros::Motor_Group;
+	using IMU = pros::IMU;
+	using Encoder = pros::ADIEncoder;
 #endif
 }

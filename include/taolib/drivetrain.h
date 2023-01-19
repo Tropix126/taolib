@@ -16,8 +16,7 @@
 #include <ratio>
 #include <memory>
 
-#include "v5_cpp.h"
-
+#include "env.h"
 #include "vector2.h"
 #include "pid.h"
 #include "threading.h"
@@ -76,12 +75,21 @@ public:
 	 * @param IMU A reference to a vex::inertial object for tracking the drivetrain's orientation through a gyro.
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
+#ifdef TAO_ENV_VEXCODE
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
 		vex::inertial& IMU,
 		DrivetrainProfile profile
 	);
+#elif defined(TAO_ENV_PROS)
+	Drivetrain(
+		pros::Motor_Group& left_motors,
+		pros::Motor_Group& right_motors,
+		pros::IMU& IMU,
+		DrivetrainProfile profile
+	);
+#endif
 
 	/**
 	 * Constructs a new Drivetrain object using two motor groups.
@@ -89,11 +97,19 @@ public:
 	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
+#ifdef TAO_ENV_VEXCODE
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
 		DrivetrainProfile profile
 	);
+#elif defined(TAO_ENV_PROS)
+	Drivetrain(
+		pros::Motor_Group& left_motors,
+		pros::Motor_Group& right_motors,
+		DrivetrainProfile profile
+	);
+#endif
 
 	/**
 	 * Constructs a new Drivetrain object using two motor groups, an IMU, and two tracking encoders.
@@ -104,6 +120,7 @@ public:
 	 * @param IMU A reference to a vex::inertial object for tracking the drivetrain's orientation through a gyro.
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
+#ifdef TAO_ENV_VEXCODE
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
@@ -112,6 +129,16 @@ public:
 		vex::inertial& IMU,
 		DrivetrainProfile profile
 	);
+#elif defined(TAO_ENV_PROS)
+	Drivetrain(
+		vex::Motor_Group& left_motors,
+		vex::Motor_Group& right_motors,
+		vex::ADIEncoder& left_encoder,
+		vex::ADIEncoder& right_encoder,
+		vex::IMU& IMU,
+		DrivetrainProfile profile
+	);
+#endif
 
 	/**
 	 * Constructs a new Drivetrain object using two motor groups and two tracking encoders.
@@ -121,6 +148,7 @@ public:
 	 * @param right_encoder A reference to a vex::encoder object representing the right tracking encoder.
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
+#ifdef TAO_ENV_VEXCODE
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
@@ -128,6 +156,15 @@ public:
 		vex::encoder& right_encoder,
 		DrivetrainProfile profile
 	);
+#elif defined(TAO_ENV_PROS)
+	Drivetrain(
+		vex::Motor_Group& left_motors,
+		vex::Motor_Group& right_motors,
+		vex::ADIEncoder& left_encoder,
+		vex::ADIEncoder& right_encoder,
+		DrivetrainProfile profile
+	);
+#endif
 
 	~Drivetrain();
 
@@ -358,9 +395,15 @@ private:
 		Absolute
 	};
 
+#ifdef TAO_ENV_VEXCODE
 	vex::motor_group &left_motors, &right_motors;
 	vex::encoder *left_encoder, *right_encoder;
 	vex::inertial* IMU;
+#elif defined(TAO_ENV_PROS)
+	vex::Motor_group &left_motors, &right_motors;
+	vex::ADIEncoder *left_encoder, *right_encoder;
+	vex::IMU* IMU;
+#endif
 	
 	Vector2 global_position;
 
@@ -371,14 +414,14 @@ private:
 
 	ErrorModes error_mode;
 
+	double max_drive_velocity = 100, max_turn_velocity = 100;
+	double drive_tolerance, turn_tolerance;
+	double drive_error, turn_error;
+
 	double lookahead_distance;
 	double track_width;
 	double wheel_circumference;
 	double external_gear_ratio;
-
-	double max_drive_velocity = 100, max_turn_velocity = 100;
-	double turn_tolerance, drive_tolerance;
-	double turn_error, drive_error;
 
 	bool settled = false;
 	bool imu_invalid = false;
@@ -395,8 +438,8 @@ private:
 	bool daemon_active = false;
 	bool logging_active = false;
 
-	vex::thread daemon_thread;
-	vex::thread logging_thread;
+	env::PlatformThread daemon_thread;
+	env::PlatformThread logging_thread;
 };
 
 }

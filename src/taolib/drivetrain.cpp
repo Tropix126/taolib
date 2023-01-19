@@ -6,15 +6,14 @@
  * provide various functions for controlling a physical drivetrain.
  * Given appropriate devices, and a model (called a "profile") for
  * tuning certain physical aspects unique to each robot, the
- tao::Drivetrain class can perform various autonomous actions.
+ * tao::Drivetrain class can perform various autonomous actions.
  */
 
 #include <cmath>
 #include <vector>
 #include <iostream>
 
-#include "v5_cpp.h"
-
+#include "taolib/env.h"
 #include "taolib/drivetrain.h"
 #include "taolib/pid.h"
 #include "taolib/math.h"
@@ -23,10 +22,17 @@
 
 namespace tao {
 
+#ifdef TAO_ENV_VEXCODE
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::inertial& IMU,
 					   DrivetrainProfile profile)
+#elif defined(TAO_ENV_PROS)
+Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
+					   pros::Motor_Group& right_motors,
+					   pros::IMU& IMU,
+					   DrivetrainProfile profile)
+#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  IMU(&IMU),
@@ -40,9 +46,15 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
+#ifdef TAO_ENV_VEXCODE
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   DrivetrainProfile profile)
+#elif defined(TAO_ENV_PROS)
+Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
+					   pros::Motor_Group& right_motors,
+					   DrivetrainProfile profile)
+#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  IMU(NULL),
@@ -56,12 +68,21 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
+#ifdef TAO_ENV_VEXCODE
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
 					   vex::inertial& IMU,
 					   DrivetrainProfile profile)
+#elif defined(TAO_ENV_PROS)
+Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
+					   pros::Motor_Group& right_motors,
+					   pros::ADIEncoder& left_encoder,
+					   pros::ADIEncoder& right_encoder,
+					   pros::IMU& IMU,
+					   DrivetrainProfile profile)
+#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
@@ -77,11 +98,19 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
+#ifdef TAO_ENV_VEXCODE
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
 					   DrivetrainProfile profile)
+#elif defined(TAO_ENV_PROS)
+Drivetrain::Drivetrain(pros::Motor_Group& left_motors,
+					   pros::Motor_Group& right_motors,
+					   pros::ADIEncoder& left_encoder,
+					   pros::ADIEncoder& right_encoder,
+					   DrivetrainProfile profile)
+#endif
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
@@ -188,7 +217,7 @@ void Drivetrain::set_target_heading(double heading) {
 
 int Drivetrain::daemon() {
 	// Stores the previous time in microseconds that the last loop iteration started at.
-	int previous_time = vex::timer::systemHighResolution();
+	uint64_t previous_time = env::system_time_high_resolution();
 
 	// Stores the average encoder revolutions from the last loop iteration.
 	double previous_drive_distance = 0.0;
@@ -198,7 +227,7 @@ int Drivetrain::daemon() {
 	int settle_counter = 0;
 
 	while (daemon_active) {
-		int current_time = vex::timer::systemHighResolution();
+		uint64_t current_time = env::system_time_high_resolution();
 
 		// Measure the current time in microseconds and calculate how long the last iteration took to complete in milliseconds.
 		double delta_time = (double)(current_time - previous_time) * 0.000001;
@@ -262,6 +291,8 @@ int Drivetrain::daemon() {
 		}
 
 		// Spin motors at the output velocity.
+		// TODO: check if spinning in voltage mode is more ideal
+		// TODO: if it is, verify that it's safe to spin at max voltage without slew rate
 		left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
 		right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
 
@@ -285,7 +316,7 @@ int Drivetrain::daemon() {
 		}
 
 		// Integrated motor encoders only report at 100hz (once every 10ms).
-		vex::this_thread::sleep_for(10);
+		env::sleep_for(10);
 
 		// Measure how long this iteration took to complete for calculating delta_time
 		previous_time = current_time;
@@ -299,7 +330,7 @@ int Drivetrain::logging() {
 	while (logging_active) {
 		wprintf(L"(%f, %f) %f°\n", global_position.get_x(), global_position.get_y(), get_heading());
 
-		vex::this_thread::sleep_for(1000);
+		env::sleep_for(1000);
 	}
 
 	return 0;
@@ -359,7 +390,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 	// Set the PID target distance.
 	set_target_distance(get_drive_distance() + distance);
 
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	while (!settled && blocking) { env::sleep_for(10); }
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
@@ -368,7 +399,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 	// Set the PID target heading.
 	set_target_heading(heading);
 	
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	while (!settled && blocking) { env::sleep_for(10); }
 }
 
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
@@ -382,7 +413,7 @@ void Drivetrain::move_to(Vector2 position, bool blocking) {
 
 	set_target_position(position);
 
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	while (!settled && blocking) { env::sleep_for(10); }
 }
 
 void Drivetrain::move_path(std::vector<Vector2> path) {
@@ -427,11 +458,11 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 				set_target_heading(math::radians_to_degrees(local_target.get_angle()));
 			}
 
-			vex::wait(10, vex::msec);
+			env::sleep_for(10);
 		}
 	}
 
-	while (!settled) { vex::wait(10, vex::msec); }
+	while (!settled) { env::sleep_for(10); }
 }
 
 void Drivetrain::hold_position(bool blocking) {
@@ -440,7 +471,7 @@ void Drivetrain::hold_position(bool blocking) {
 	set_target_distance(get_drive_distance());
 	set_target_heading(get_heading());
 
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	while (!settled && blocking) { env::sleep_for(10); }
 }
 
 }

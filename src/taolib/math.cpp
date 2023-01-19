@@ -16,7 +16,8 @@
 #include "taolib/math.h"
 #include "taolib/vector2.h"
 
-namespace tao::math {
+namespace tao {
+namespace math {
 
 double normalize_degrees(double degrees) {
 	degrees = fmod(degrees, 360);
@@ -79,4 +80,5 @@ std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, 
 	return intersections;
 }
 
+}
 }

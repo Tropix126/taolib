@@ -29,10 +29,5 @@ uint64_t system_time_high_resolution() {
 	#endif
 }
 
-template<class T, class... Args>
-std::unique_ptr<T> make_unique(Args&&... args) {
-    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-}
-
 }
 }

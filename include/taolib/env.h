@@ -27,10 +27,6 @@ namespace tao::env {
 void sleep_for(uint32_t time);
 uint64_t system_time_high_resolution();
 
-// Polyfill for std::make_unique added in C++14
-template<class T, class... Args>
-std::unique_ptr<T> make_unique(Args&&... args);
-
 // Platform-specific classes
 #ifdef TAO_ENV_VEXCODE
 	using Thread = vex::thread;

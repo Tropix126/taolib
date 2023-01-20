@@ -14,7 +14,6 @@
 #include <iostream>
 
 #ifdef TAO_ENV_PROS
-#include <numeric>
 #include <cerrno>
 #endif
 

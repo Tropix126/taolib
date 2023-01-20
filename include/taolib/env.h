@@ -20,12 +20,13 @@
 #endif
 
 #include <memory>
+#include <cstdint>
 
 namespace tao::env {
 
 // Useful timer stuff
-void sleep_for(uint32_t time);
-uint64_t system_time_high_resolution();
+void sleep_for(std::uint32_t time);
+std::uint64_t system_time_high_resolution();
 
 // make_unique polyfill
 template<class T, class... Args>

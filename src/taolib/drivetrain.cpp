@@ -12,6 +12,7 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
+#include <cstdint>
 
 #ifdef TAO_ENV_PROS
 #include <cerrno>
@@ -242,7 +243,7 @@ void Drivetrain::set_target_heading(double heading) {
 
 int Drivetrain::daemon() {
 	// Stores the previous time in microseconds that the last loop iteration started at.
-	uint64_t previous_time = env::system_time_high_resolution();
+	std::uint64_t previous_time = env::system_time_high_resolution();
 
 	// Stores the average encoder revolutions from the last loop iteration.
 	double previous_drive_distance = 0.0;
@@ -252,7 +253,7 @@ int Drivetrain::daemon() {
 	int settle_counter = 0;
 
 	while (daemon_active) {
-		uint64_t current_time = env::system_time_high_resolution();
+		std::uint64_t current_time = env::system_time_high_resolution();
 
 		// Measure the current time in microseconds and calculate how long the last iteration took to complete in milliseconds.
 		double delta_time = (double)(current_time - previous_time) * 0.000001;

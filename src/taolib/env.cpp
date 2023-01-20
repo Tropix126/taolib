@@ -8,10 +8,12 @@
 
 #include "taolib/env.h"
 
+#include <cstdint>
+
 namespace tao {
 namespace env {
 
-void sleep_for(uint32_t time) {
+void sleep_for(std::uint32_t time) {
 	#ifdef TAO_ENV_VEXCODE
 		vex::this_thread::sleep_for(time);
 	#elif defined(TAO_ENV_PROS)
@@ -19,7 +21,7 @@ void sleep_for(uint32_t time) {
 	#endif
 }
 
-uint64_t system_time_high_resolution() {
+std::uint64_t system_time_high_resolution() {
 	#ifdef TAO_ENV_VEXCODE
 		return vex::timer::systemHighResolution();
 	#elif defined(TAO_ENV_PROS)

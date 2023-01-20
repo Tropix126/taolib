@@ -365,24 +365,18 @@ int Drivetrain::logging() {
 	return 0;
 }
 
-template<class T, class... Args>
-std::unique_ptr<T> make_unique(Args&&... args) {
-	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-}
-
 void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool enable_logging) {
 	// Reset with desired starting data
 	reset_tracking(start_vector, start_heading);
 
-
 	// Start daemon
 	daemon_active = true;
-	daemon_thread = make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::daemon));
+	daemon_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::daemon));
 
 	// Start logging if enabled
 	if (enable_logging) {
 		logging_active = true;
-		logging_thread = make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::logging));
+		logging_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::logging));
 	}
 }
 

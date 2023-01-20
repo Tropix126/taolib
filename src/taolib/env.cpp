@@ -8,8 +8,6 @@
 
 #include "taolib/env.h"
 
-#include <memory>
-
 namespace tao {
 namespace env {
 

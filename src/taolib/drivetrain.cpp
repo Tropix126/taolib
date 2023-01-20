@@ -319,11 +319,11 @@ int Drivetrain::daemon() {
 		// Spin motors at the output velocity.
 		// TODO: check if spinning in voltage mode is more ideal
 		#ifdef TAO_ENV_VEXCODE
-			left_motors.spin(vex::forward, 12 * ((drive_velocity + turn_velocity) / 100), vex::volt);
-			right_motors.spin(vex::forward, 12 * ((drive_velocity - turn_velocity) / 100), vex::volt);
+			left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
+			right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
 		#elif defined(TAO_ENV_PROS)
-			left_motors.move_voltage(127 * ((drive_velocity + turn_velocity) / 100));
-			right_motors.move_voltage(127 * ((drive_velocity - turn_velocity) / 100));
+			for motor: left_motors[] { motor.move_velocity(motor.get_gearing() * (drive_velocity + turn_velocity) / 100)); }
+			for motor: right_motors[] { motor.move_velocity(motor.get_gearing() * (drive_velocity - turn_velocity) / 100)); }
 		#endif
 
 		// Check if the errors of both loops are under their tolerances.

@@ -129,26 +129,26 @@ double Drivetrain::get_heading() {
 	// The IMU has was passed in, but is not plugged in, invalidate its readings for the
 	// duration of the tracking routine.
 	// TODO: check for possible spikes in reported heading due to ESD, then invalidate it
-#ifdef TAO_ENV_VEXCODE
-	if (!IMU_invalid && IMU != NULL && !IMU->installed()) {
-		IMU_invalid = true;
-	}
-#elif defined(TAO_ENV_PROS)
-	// Unfortunately, in its current state, PROS has no simple API for checking if a V5
-	// device is "installed" into a smart port, so I have to "check" whether it's installed
-	// by calling a random function and checking errno. That sucks. :/
-	if (!IMU_invalid && IMU != NULL && IMU->get_status() == PROS_ERR && errno == ENODEV) {
-		IMU_invalid = true;
-	}
-#endif
+	#ifdef TAO_ENV_VEXCODE
+		if (!IMU_invalid && IMU != NULL && !IMU->installed()) {
+			IMU_invalid = true;
+		}
+	#elif defined(TAO_ENV_PROS)
+		// Unfortunately, in its current state, PROS has no simple API for checking if a V5
+		// device is "installed" into a smart port, so I have to check whether it's installed
+		// by calling a random function and checking errno. That sucks. :/
+		if (!IMU_invalid && IMU != NULL && IMU->get_status() == PROS_ERR && errno == ENODEV) {
+			IMU_invalid = true;
+		}
+	#endif
 
 	if (IMU != NULL && !IMU_invalid) {
 		// Use the IMU-reported gyroscope heading if available.
-#ifdef TAO_ENV_VEXCODE
-		double raw_heading = IMU->heading(vex::degrees);
-#elif defined(TAO_ENV_PROS)
-		double raw_heading = IMU->get_heading();
-#endif
+		#ifdef TAO_ENV_VEXCODE
+			double raw_heading = IMU->heading(vex::degrees);
+		#elif defined(TAO_ENV_PROS)
+			double raw_heading = IMU->get_heading();
+		#endif
 		return std::fmod((360 - raw_heading) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
@@ -340,31 +340,31 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 
 void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 	// Reset sensors
-#ifdef TAO_ENV_VEXCODE
-	left_motors.resetPosition();
-	right_motors.resetPosition();
+	#ifdef TAO_ENV_VEXCODE
+		left_motors.resetPosition();
+		right_motors.resetPosition();
 
-	if (left_encoder != NULL && right_encoder != NULL) {
-		left_encoder->resetRotation();
-		right_encoder->resetRotation();
-	}
+		if (left_encoder != NULL && right_encoder != NULL) {
+			left_encoder->resetRotation();
+			right_encoder->resetRotation();
+		}
 
-	if (IMU != NULL) {
-		IMU->resetHeading();
-	}
-#elif defined(TAO_ENV_PROS)
-	left_motors.tare_position();
-	right_motors.tare_position();
+		if (IMU != NULL) {
+			IMU->resetHeading();
+		}
+	#elif defined(TAO_ENV_PROS)
+		left_motors.tare_position();
+		right_motors.tare_position();
 
-	if (left_encoder != NULL && right_encoder != NULL) {
-		left_encoder->reset();
-		right_encoder->reset();
-	}
-	
-	if (IMU != NULL) {
-		IMU->tare_heading();
-	}
-#endif
+		if (left_encoder != NULL && right_encoder != NULL) {
+			left_encoder->reset();
+			right_encoder->reset();
+		}
+		
+		if (IMU != NULL) {
+			IMU->tare_heading();
+		}
+	#endif
 
 
 	this->start_heading = start_heading;

@@ -154,11 +154,13 @@ double Drivetrain::get_heading() {
 			double raw_heading = IMU->get_heading();
 		#endif
 		
+		// Restrict between 0 <= x < 360
 		return std::fmod((360 - raw_heading) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
 		double left_distance, right_distance;
 
+		// Use tracking wheel positions if available.
 		if (left_encoder != NULL && right_encoder != NULL) {
 			#ifdef TAO_ENV_VEXCODE
 				left_distance = left_encoder->position(vex::rev);
@@ -171,6 +173,7 @@ double Drivetrain::get_heading() {
 			left_distance *= wheel_circumference;
 			right_distance *= wheel_circumference;
 		} else {
+			// Find heading from motor encoders
 			#ifdef TAO_ENV_VEXCODE
 				left_distance = left_motors.position(vex::rev);
 				right_distance = right_motors.position(vex::rev);
@@ -315,9 +318,13 @@ int Drivetrain::daemon() {
 
 		// Spin motors at the output velocity.
 		// TODO: check if spinning in voltage mode is more ideal
-		// TODO: if it is, verify that it's safe to spin at max voltage without slew rate
-		left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
-		right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
+		#ifdef TAO_ENV_VEXCODE
+			left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
+			right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
+		#elif defined(TAO_ENV_PROS)
+			left_motors.move_velocity(left_motors.get_gearing() * ((drive_velocity + turn_velocity) / 100));
+			right_motors.move_velocity(right_motors.get_gearing() * ((drive_velocity - turn_velocity) / 100));
+		#endif
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.
@@ -420,8 +427,13 @@ void Drivetrain::stop_tracking() {
 		daemon_active = false;
 		daemon_thread.join();
 
-		left_motors.stop();
-		right_motors.stop();
+		#ifdef TAO_ENV_VEXCODE
+			left_motors.stop();
+			right_motors.stop();
+		#elif defined(TAO_ENV_PROS
+			left_motors.brake();
+			right_motors.brake();
+		#endif
 	}
 
 	if (logging_active) {

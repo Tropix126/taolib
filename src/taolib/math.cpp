@@ -30,6 +30,9 @@ double normalize_degrees(double degrees) {
 	return degrees > 180 ? degrees - 360 : degrees;
 }
 
+double vector_average(std::vector<double> const& v) {
+   return v.empty() ? 0.0 : std::accumulate(v.begin(), v.end(), 0.0) / v.size();
+}
 
 std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius) {
 	std::vector<Vector2> intersections = {};

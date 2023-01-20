@@ -52,9 +52,7 @@ constexpr T sign(T x) {
 	return x < 0 ? -1 : 1;
 }
 
-constexpr double vector_average(std::vector<double> const& v) {
-   return v.empty() ? 0.0 : std::accumulate(v.begin(), v.end(), 0.0) / v.size();
-}
+double vector_average(std::vector<double> const& v);
 
 std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius);
 

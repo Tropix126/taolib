@@ -380,7 +380,7 @@ private:
 	double external_gear_ratio;
 
 	bool settled = false;
-	bool imu_invalid = false;
+	bool IMU_invalid = false;
 
 	PIDController drive_controller, turn_controller;
 

@@ -16,10 +16,7 @@
 #ifdef TAO_ENV_VEXCODE
 #include "v5_cpp.h"
 #elif defined(TAO_ENV_PROS)
-#include "pros/rtos.hpp"
-#include "pros/motors.hpp"
-#include "pros/imu.hpp"
-#include "pros/adi.hpp"
+#include "api.h"
 #endif
 
 namespace tao::env {

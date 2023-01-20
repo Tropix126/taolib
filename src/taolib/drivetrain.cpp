@@ -12,6 +12,7 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
+#include <cerrno>
 
 #include "taolib/env.h"
 #include "taolib/drivetrain.h"
@@ -125,16 +126,30 @@ DrivetrainProfile Drivetrain::get_profile() const {
 	};
 }
 double Drivetrain::get_heading() {
-	// The IMU has was passed in, but is not plugged in.
-	// Invalidate it's readings for the duration of the tracking routine.
+	// The IMU has was passed in, but is not plugged in, invalidate its readings for the
+	// duration of the tracking routine.
 	// TODO: check for possible spikes in reported heading due to ESD, then invalidate it
-	if (!imu_invalid && IMU != NULL && !IMU->installed()) {
-		imu_invalid = true;
+#ifdef TAO_ENV_VEXCODE
+	if (!IMU_invalid && IMU != NULL && !IMU->installed()) {
+		IMU_invalid = true;
 	}
+#elif defined(TAO_ENV_PROS)
+	// Unfortunately, in its current state, PROS has no simple API for checking if a V5
+	// device is "installed" into a smart port, so I have to "check" whether it's installed
+	// by calling a random function and checking errno. That sucks. :/
+	if (!IMU_invalid && IMU != NULL && IMU->get_status() == PROS_ERR && errno == ENODEV) {
+		IMU_invalid = true;
+	}
+#endif
 
-	if (IMU != NULL && !imu_invalid) {
+	if (IMU != NULL && !IMU_invalid) {
 		// Use the IMU-reported gyroscope heading if available.
-		return std::fmod((360 - IMU->heading()) + start_heading, 360);
+#ifdef TAO_ENV_VEXCODE
+		double raw_heading = IMU->heading(vex::degrees);
+#elif defined(TAO_ENV_PROS)
+		double raw_heading = IMU->get_heading();
+#endif
+		return std::fmod((360 - raw_heading) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
 		double left_distance, right_distance;

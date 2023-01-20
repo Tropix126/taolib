@@ -1,3 +1,11 @@
+/**
+ * @file src/taolib/env.h
+ * @author Tropical
+ *
+ * Defines platform-speccific methods and classes for
+ * simpler cross-compatiblity between VEXcode and PROS.
+ */
+
 #include "taolib/env.h"
 
 namespace tao {

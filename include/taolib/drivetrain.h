@@ -394,8 +394,7 @@ private:
 	bool daemon_active = false;
 	bool logging_active = false;
 
-	env::Thread daemon_thread;
-	env::Thread logging_thread;
+	std::unique_ptr<env::Thread> daemon_thread, logging_thread;
 };
 
 }

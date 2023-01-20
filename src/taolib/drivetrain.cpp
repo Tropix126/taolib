@@ -12,6 +12,7 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
+#include <memory>
 
 #ifdef TAO_ENV_PROS
 #include <cerrno>
@@ -208,7 +209,7 @@ double Drivetrain::get_drive_distance() const {
 			double average_left_position = 360 / math::vector_average(left_motors.get_positions());
 			double average_right_position = 360 / math::vector_average(right_motors.get_positions());
 
-			double average_encoder_position = (average_left_positon + average_right_position) / 2;
+			double average_encoder_position = (average_left_position + average_right_position) / 2;
 		#endif
 
 		return average_encoder_position * external_gear_ratio * wheel_circumference;
@@ -318,11 +319,11 @@ int Drivetrain::daemon() {
 		// Spin motors at the output velocity.
 		// TODO: check if spinning in voltage mode is more ideal
 		#ifdef TAO_ENV_VEXCODE
-			left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
-			right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
+			left_motors.spin(vex::forward, 12 * ((drive_velocity + turn_velocity) / 100), vex::volts);
+			right_motors.spin(vex::forward, 12 * ((drive_velocity - turn_velocity) / 100), vex::volts);
 		#elif defined(TAO_ENV_PROS)
-			left_motors.move_velocity(left_motors.get_gearing() * ((drive_velocity + turn_velocity) / 100));
-			right_motors.move_velocity(right_motors.get_gearing() * ((drive_velocity - turn_velocity) / 100));
+			left_motors.move_voltage(127 * ((drive_velocity + turn_velocity) / 100));
+			right_motors.move_voltage(127 * ((drive_velocity - turn_velocity) / 100));
 		#endif
 
 		// Check if the errors of both loops are under their tolerances.
@@ -371,13 +372,13 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 
 	// Start daemon
 	daemon_active = true;
-	daemon_thread = threading::make_member_thread(this, &Drivetrain::daemon);
+	daemon_thread = std::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::daemon));
 	// daemon_thread.detach();
 
 	// Start logging if enabled
 	if (enable_logging) {
 		logging_active = true;
-		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
+		logging_thread = std::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::logging));
 		// logging_thread.detach();
 	}
 }
@@ -422,22 +423,22 @@ void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 }
 
 void Drivetrain::stop_tracking() {
-	if (daemon_active) {
+	if (daemon_active && daemon_thread != NULL) {
 		daemon_active = false;
-		daemon_thread.join();
+		daemon_thread->join();
 
 		#ifdef TAO_ENV_VEXCODE
 			left_motors.stop();
 			right_motors.stop();
-		#elif defined(TAO_ENV_PROS
+		#elif defined(TAO_ENV_PROS)
 			left_motors.brake();
 			right_motors.brake();
 		#endif
 	}
 
-	if (logging_active) {
+	if (logging_active && logging_thread != NULL) {
 		logging_active = false;
-		logging_thread.join();
+		logging_thread->join();
 	}
 }
 

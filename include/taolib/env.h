@@ -10,7 +10,7 @@
 
 // Determines the current enviornment
 #define TAO_ENV_VEXCODE
-// #define TAOLIB_ENV_PROS
+// #define TAO_ENV_PROS
 
 // Include the required environment libraries
 #ifdef TAO_ENV_VEXCODE

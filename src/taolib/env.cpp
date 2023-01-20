@@ -8,6 +8,8 @@
 
 #include "taolib/env.h"
 
+#include <memory>
+
 namespace tao {
 namespace env {
 
@@ -25,6 +27,11 @@ uint64_t system_time_high_resolution() {
 	#elif defined(TAO_ENV_PROS)
 		return pros::micros();
 	#endif
+}
+
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args&&... args) {
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
 }

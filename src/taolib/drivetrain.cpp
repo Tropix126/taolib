@@ -12,7 +12,6 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
-#include <memory>
 
 #ifdef TAO_ENV_PROS
 #include <cerrno>
@@ -319,8 +318,8 @@ int Drivetrain::daemon() {
 		// Spin motors at the output velocity.
 		// TODO: check if spinning in voltage mode is more ideal
 		#ifdef TAO_ENV_VEXCODE
-			left_motors.spin(vex::forward, 12 * ((drive_velocity + turn_velocity) / 100), vex::volts);
-			right_motors.spin(vex::forward, 12 * ((drive_velocity - turn_velocity) / 100), vex::volts);
+			left_motors.spin(vex::forward, 12 * ((drive_velocity + turn_velocity) / 100), vex::volt);
+			right_motors.spin(vex::forward, 12 * ((drive_velocity - turn_velocity) / 100), vex::volt);
 		#elif defined(TAO_ENV_PROS)
 			left_motors.move_voltage(127 * ((drive_velocity + turn_velocity) / 100));
 			right_motors.move_voltage(127 * ((drive_velocity - turn_velocity) / 100));
@@ -372,13 +371,13 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 
 	// Start daemon
 	daemon_active = true;
-	daemon_thread = std::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::daemon));
+	daemon_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::daemon));
 	// daemon_thread.detach();
 
 	// Start logging if enabled
 	if (enable_logging) {
 		logging_active = true;
-		logging_thread = std::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::logging));
+		logging_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::logging));
 		// logging_thread.detach();
 	}
 }

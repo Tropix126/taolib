@@ -324,19 +324,34 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 }
 
 void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
-	// Reset motor encoders.
+	// Reset sensors
+#ifdef TAO_ENV_VEXCODE
 	left_motors.resetPosition();
 	right_motors.resetPosition();
-	
+
 	if (left_encoder != NULL && right_encoder != NULL) {
 		left_encoder->resetRotation();
 		right_encoder->resetRotation();
 	}
 
-	// Reset gyro heading.
 	if (IMU != NULL) {
 		IMU->resetHeading();
 	}
+#elif defined(TAO_ENV_PROS)
+	left_motors.tare_position();
+	right_motors.tare_position();
+
+	if (left_encoder != NULL && right_encoder != NULL) {
+		left_encoder->reset();
+		right_encoder->reset();
+	}
+	
+	if (IMU != NULL) {
+		IMU->tare_heading();
+	}
+#endif
+
+
 	this->start_heading = start_heading;
 	set_target_heading(start_heading);
 

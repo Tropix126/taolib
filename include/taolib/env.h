@@ -1,8 +1,18 @@
+/**
+ * @file src/taolib/env.h
+ * @author Tropical
+ *
+ * Defines platform-speccific methods and classes for
+ * simpler cross-compatiblity between VEXcode and PROS.
+ */
+
 #pragma once
 
+// Determines the current enviornment
 #define TAO_ENV_VEXCODE
 // #define TAOLIB_ENV_PROS
 
+// Include the required environment libraries
 #ifdef TAO_ENV_VEXCODE
 #include "v5_cpp.h"
 #elif defined(TAO_ENV_PROS)
@@ -13,11 +23,11 @@
 #endif
 
 namespace tao::env {
-	// Platform-specific timer stuff
+	// Useful timer stuff
 	void sleep_for(uint32_t time);
-	int64_t system_time_high_resolution();
+	uint64_t system_time_high_resolution();
 
-	// Platform-specific aliases
+	// Platform-specific classes
 #ifdef TAO_ENV_VEXCODE
 	using Thread = vex::thread;
 	using Mutex = vex::mutex;
@@ -27,7 +37,7 @@ namespace tao::env {
 #elif defined(TAO_ENV_PROS)
 	using Thread = pros::Task;
 	using Mutex = pros::Mutex;
-	using MotorGroup = pros::Motor_Group;
+	using MotorGroup = pros::MotorGroup;
 	using IMU = pros::IMU;
 	using Encoder = pros::ADIEncoder;
 #endif

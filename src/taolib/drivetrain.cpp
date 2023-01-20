@@ -12,7 +12,11 @@
 #include <cmath>
 #include <vector>
 #include <iostream>
+
+#ifdef TAO_ENV_PROS
+#include <numeric>
 #include <cerrno>
+#endif
 
 #include "taolib/env.h"
 #include "taolib/drivetrain.h"
@@ -149,17 +153,34 @@ double Drivetrain::get_heading() {
 		#elif defined(TAO_ENV_PROS)
 			double raw_heading = IMU->get_heading();
 		#endif
+		
 		return std::fmod((360 - raw_heading) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
 		double left_distance, right_distance;
 
 		if (left_encoder != NULL && right_encoder != NULL) {
-			left_distance = left_encoder->position(vex::rev) * wheel_circumference;
-			right_distance = right_encoder->position(vex::rev) * wheel_circumference;
+			#ifdef TAO_ENV_VEXCODE
+				left_distance = left_encoder->position(vex::rev);
+				right_distance = right_encoder->position(vex::rev);
+			#elif defined(TAO_ENV_PROS)
+				left_distance = (left_encoder->get_value() / 360);
+				right_distance = (right_encoder->get_value() / 360);
+			#endif
+
+			left_distance *= wheel_circumference;
+			right_distance *= wheel_circumference;
 		} else {
-			left_distance = left_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
-			right_distance = right_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
+			#ifdef TAO_ENV_VEXCODE
+				left_distance = left_motors.position(vex::rev);
+				right_distance = right_motors.position(vex::rev);
+			#elif defined(TAO_ENV_PROS)
+				left_distance = 360 / math::vector_average(left_motors.get_positions());
+				right_distance = 360 / math::vector_average(right_motors.get_positions());
+			#endif
+
+			left_distance *= wheel_circumference * external_gear_ratio;
+			right_distance *= wheel_circumference * external_gear_ratio;
 		}
 
 		// Unrestricted counterclockwise-facing heading in radians.
@@ -170,9 +191,26 @@ double Drivetrain::get_heading() {
 	}
 }
 double Drivetrain::get_drive_distance() const {
-	double average_encoder_position = (left_motors.position(vex::rev) + right_motors.position(vex::rev)) / 2;
+	if (left_encoder != NULL && right_encoder != NULL) {
+		#ifdef TAO_ENV_VEXCODE
+			double average_encoder_position = (left_encoder->position(vex::rev) + right_encoder->position(vex::rev)) / 2;
+		#elif defined(TAO_ENV_PROS)
+			double average_encoder_position = ((left_encoder->get_value() / 360) + (right_encoder->get_value() / 360)) / 2;
+		#endif
 
-	return average_encoder_position * external_gear_ratio * wheel_circumference;
+		return average_encoder_position * wheel_circumference;
+	} else {
+		#ifdef TAO_ENV_VEXCODE
+			double average_encoder_position = (left_motors.position(vex::rev) + right_motors.position(vex::rev)) / 2;
+		#elif defined(TAO_ENV_PROS)
+			double average_left_position = 360 / math::vector_average(left_motors.get_positions());
+			double average_right_position = 360 / math::vector_average(right_motors.get_positions());
+
+			double average_encoder_position = (average_left_positon + average_right_position) / 2;
+		#endif
+
+		return average_encoder_position * external_gear_ratio * wheel_circumference;
+	}
 }
 bool Drivetrain::is_settled() const { return settled; }
 
@@ -353,6 +391,9 @@ void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 			IMU->resetHeading();
 		}
 	#elif defined(TAO_ENV_PROS)
+		left_motors.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+		right_motors.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
+
 		left_motors.tare_position();
 		right_motors.tare_position();
 

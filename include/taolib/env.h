@@ -20,20 +20,22 @@
 #endif
 
 namespace tao::env {
-	// Useful timer stuff
-	void sleep_for(uint32_t time);
-	uint64_t system_time_high_resolution();
 
-	// Platform-specific classes
-	#ifdef TAO_ENV_VEXCODE
-		using Thread = vex::thread;
-		using MotorGroup = vex::motor_group;
-		using IMU = vex::inertial;
-		using Encoder = vex::encoder;
-	#elif defined(TAO_ENV_PROS)
-		using Thread = pros::Task;
-		using MotorGroup = pros::MotorGroup;
-		using IMU = pros::IMU;
-		using Encoder = pros::ADIEncoder;
-	#endif
+// Useful timer stuff
+void sleep_for(uint32_t time);
+uint64_t system_time_high_resolution();
+
+// Platform-specific classes
+#ifdef TAO_ENV_VEXCODE
+	using Thread = vex::thread;
+	using MotorGroup = vex::motor_group;
+	using IMU = vex::inertial;
+	using Encoder = vex::encoder;
+#elif defined(TAO_ENV_PROS)
+	using Thread = pros::Task;
+	using MotorGroup = pros::MotorGroup;
+	using IMU = pros::IMU;
+	using Encoder = pros::ADIEncoder;
+#endif
+
 }

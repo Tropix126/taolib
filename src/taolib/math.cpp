@@ -30,6 +30,7 @@ double normalize_degrees(double degrees) {
 	return degrees > 180 ? degrees - 360 : degrees;
 }
 
+
 std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius) {
 	std::vector<Vector2> intersections = {};
 

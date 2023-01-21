@@ -8,9 +8,9 @@
 
 #include "vector2.h"
 #include <vector>
-#include <numeric>
 
-namespace tao::math {
+namespace tao {
+namespace math {
 
 constexpr double PI = 3.14159265358979323846;
 
@@ -52,8 +52,7 @@ constexpr T sign(T x) {
 	return x < 0 ? -1 : 1;
 }
 
-double vector_average(std::vector<double> const& v);
-
 std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius);
 
+}
 }

@@ -6,7 +6,7 @@
  * provide various functions for controlling a physical drivetrain.
  * Given appropriate devices, and a model (called a "profile") for
  * tuning certain physical aspects unique to each robot, the
- * tao::Drivetrain class can perform various autonomous actions.
+ tao::Drivetrain class can perform various autonomous actions.
  */
 
 #include <cmath>
@@ -14,11 +14,8 @@
 #include <iostream>
 #include <cstdint>
 
-#ifdef TAO_ENV_PROS
-#include <cerrno>
-#endif
+#include "v5_cpp.h"
 
-#include "taolib/env.h"
 #include "taolib/drivetrain.h"
 #include "taolib/pid.h"
 #include "taolib/math.h"
@@ -27,9 +24,9 @@
 
 namespace tao {
 
-Drivetrain::Drivetrain(env::MotorGroup& left_motors,
-					   env::MotorGroup& right_motors,
-					   env::IMU& IMU,
+Drivetrain::Drivetrain(vex::motor_group& left_motors,
+					   vex::motor_group& right_motors,
+					   vex::inertial& IMU,
 					   DrivetrainProfile profile)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
@@ -44,8 +41,8 @@ Drivetrain::Drivetrain(env::MotorGroup& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
-Drivetrain::Drivetrain(env::MotorGroup& left_motors,
-					   env::MotorGroup& right_motors,
+Drivetrain::Drivetrain(vex::motor_group& left_motors,
+					   vex::motor_group& right_motors,
 					   DrivetrainProfile profile)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
@@ -60,11 +57,11 @@ Drivetrain::Drivetrain(env::MotorGroup& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
-Drivetrain::Drivetrain(env::MotorGroup& left_motors,
-					   env::MotorGroup& right_motors,
-					   env::Encoder& left_encoder,
-					   env::Encoder& right_encoder,
-					   env::IMU& IMU,
+Drivetrain::Drivetrain(vex::motor_group& left_motors,
+					   vex::motor_group& right_motors,
+					   vex::encoder& left_encoder,
+					   vex::encoder& right_encoder,
+					   vex::inertial& IMU,
 					   DrivetrainProfile profile)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
@@ -81,10 +78,10 @@ Drivetrain::Drivetrain(env::MotorGroup& left_motors,
 	turn_controller.set_gains(profile.turn_gains);
 }
 
-Drivetrain::Drivetrain(env::MotorGroup& left_motors,
-					   env::MotorGroup& right_motors,
-					   env::Encoder& left_encoder,
-					   env::Encoder& right_encoder,
+Drivetrain::Drivetrain(vex::motor_group& left_motors,
+					   vex::motor_group& right_motors,
+					   vex::encoder& left_encoder,
+					   vex::encoder& right_encoder,
 					   DrivetrainProfile profile)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
@@ -130,60 +127,26 @@ DrivetrainProfile Drivetrain::get_profile() const {
 	};
 }
 double Drivetrain::get_heading() {
-	// The IMU has was passed in, but is not plugged in, invalidate its readings for the
-	// duration of the tracking routine.
+	// The IMU has was passed in, but is not plugged in.
+	// Invalidate it's readings for the duration of the tracking routine.
 	// TODO: check for possible spikes in reported heading due to ESD, then invalidate it
-	#ifdef TAO_ENV_VEXCODE
-		if (!IMU_invalid && IMU != NULL && !IMU->installed()) {
-			IMU_invalid = true;
-		}
-	#elif defined(TAO_ENV_PROS)
-		// Unfortunately, in its current state, PROS has no simple API for checking if a V5
-		// device is "installed" into a smart port, so I have to check whether it's installed
-		// by calling a random function and checking errno. That sucks. :/
-		if (!IMU_invalid && IMU != NULL && IMU->get_status() == PROS_ERR && errno == ENODEV) {
-			IMU_invalid = true;
-		}
-	#endif
+	if (!IMU_invalid && IMU != NULL && !IMU->installed()) {
+		IMU_invalid = true;
+	}
 
 	if (IMU != NULL && !IMU_invalid) {
 		// Use the IMU-reported gyroscope heading if available.
-		#ifdef TAO_ENV_VEXCODE
-			double raw_heading = IMU->heading(vex::degrees);
-		#elif defined(TAO_ENV_PROS)
-			double raw_heading = IMU->get_heading();
-		#endif
-		
-		// Restrict between 0 <= x < 360
-		return std::fmod((360 - raw_heading) + start_heading, 360);
+		return std::fmod((360 - IMU->heading()) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
 		double left_distance, right_distance;
 
-		// Use tracking wheel positions if available.
 		if (left_encoder != NULL && right_encoder != NULL) {
-			#ifdef TAO_ENV_VEXCODE
-				left_distance = left_encoder->position(vex::rev);
-				right_distance = right_encoder->position(vex::rev);
-			#elif defined(TAO_ENV_PROS)
-				left_distance = (left_encoder->get_value() / 360);
-				right_distance = (right_encoder->get_value() / 360);
-			#endif
-
-			left_distance *= wheel_circumference;
-			right_distance *= wheel_circumference;
+			left_distance = left_encoder->position(vex::rev) * wheel_circumference;
+			right_distance = right_encoder->position(vex::rev) * wheel_circumference;
 		} else {
-			// Find heading from motor encoders
-			#ifdef TAO_ENV_VEXCODE
-				left_distance = left_motors.position(vex::rev);
-				right_distance = right_motors.position(vex::rev);
-			#elif defined(TAO_ENV_PROS)
-				left_distance = 360 / math::vector_average(left_motors.get_positions());
-				right_distance = 360 / math::vector_average(right_motors.get_positions());
-			#endif
-
-			left_distance *= wheel_circumference * external_gear_ratio;
-			right_distance *= wheel_circumference * external_gear_ratio;
+			left_distance = left_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
+			right_distance = right_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
 		}
 
 		// Unrestricted counterclockwise-facing heading in radians.
@@ -194,26 +157,9 @@ double Drivetrain::get_heading() {
 	}
 }
 double Drivetrain::get_drive_distance() const {
-	if (left_encoder != NULL && right_encoder != NULL) {
-		#ifdef TAO_ENV_VEXCODE
-			double average_encoder_position = (left_encoder->position(vex::rev) + right_encoder->position(vex::rev)) / 2;
-		#elif defined(TAO_ENV_PROS)
-			double average_encoder_position = ((left_encoder->get_value() / 360) + (right_encoder->get_value() / 360)) / 2;
-		#endif
+	double average_encoder_position = (left_motors.position(vex::rev) + right_motors.position(vex::rev)) / 2;
 
-		return average_encoder_position * wheel_circumference;
-	} else {
-		#ifdef TAO_ENV_VEXCODE
-			double average_encoder_position = (left_motors.position(vex::rev) + right_motors.position(vex::rev)) / 2;
-		#elif defined(TAO_ENV_PROS)
-			double average_left_position = 360 / math::vector_average(left_motors.get_positions());
-			double average_right_position = 360 / math::vector_average(right_motors.get_positions());
-
-			double average_encoder_position = (average_left_position + average_right_position) / 2;
-		#endif
-
-		return average_encoder_position * external_gear_ratio * wheel_circumference;
-	}
+	return average_encoder_position * external_gear_ratio * wheel_circumference;
 }
 bool Drivetrain::is_settled() const { return settled; }
 
@@ -243,17 +189,17 @@ void Drivetrain::set_target_heading(double heading) {
 
 int Drivetrain::daemon() {
 	// Stores the previous time in microseconds that the last loop iteration started at.
-	std::uint64_t previous_time = env::system_time_high_resolution();
+	std::uint64_t previous_time = vex::timer::systemHighResolution();
 
 	// Stores the average encoder revolutions from the last loop iteration.
 	double previous_drive_distance = 0.0;
 	
 	// Counter representing the amount of iterations that each PID position has been within it's respective min error range.
 	// For example, if the counter reaches 10 then the drivetrain has been within drive_tolerance and turn_tolerance for ~100ms.
-	int settle_counter = 0;
+	std::int32_t settle_counter = 0;
 
 	while (daemon_active) {
-		std::uint64_t current_time = env::system_time_high_resolution();
+		std::uint64_t current_time = vex::timer::systemHighResolution();
 
 		// Measure the current time in microseconds and calculate how long the last iteration took to complete in milliseconds.
 		double delta_time = (double)(current_time - previous_time) * 0.000001;
@@ -317,14 +263,8 @@ int Drivetrain::daemon() {
 		}
 
 		// Spin motors at the output velocity.
-		// TODO: check if spinning in voltage mode is more ideal
-		#ifdef TAO_ENV_VEXCODE
-			left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
-			right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
-		#elif defined(TAO_ENV_PROS)
-			for motor: left_motors[] { motor.move_velocity(motor.get_gearing() * (drive_velocity + turn_velocity) / 100)); }
-			for motor: right_motors[] { motor.move_velocity(motor.get_gearing() * (drive_velocity - turn_velocity) / 100)); }
-		#endif
+		left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
+		right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.
@@ -346,7 +286,7 @@ int Drivetrain::daemon() {
 		}
 
 		// Integrated motor encoders only report at 100hz (once every 10ms).
-		env::sleep_for(10);
+		vex::this_thread::sleep_for(10);
 
 		// Measure how long this iteration took to complete for calculating delta_time
 		previous_time = current_time;
@@ -360,7 +300,7 @@ int Drivetrain::logging() {
 	while (logging_active) {
 		wprintf(L"(%f, %f) %f°\n", global_position.get_x(), global_position.get_y(), get_heading());
 
-		env::sleep_for(1000);
+		vex::this_thread::sleep_for(1000);
 	}
 
 	return 0;
@@ -372,47 +312,26 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 
 	// Start daemon
 	daemon_active = true;
-	daemon_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::daemon));
+	daemon_thread = threading::make_member_thread(this, &Drivetrain::daemon);
+	// daemon_thread.detach();
 
 	// Start logging if enabled
 	if (enable_logging) {
 		logging_active = true;
-		logging_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &Drivetrain::logging));
+		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
+		// logging_thread.detach();
 	}
 }
 
 void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
-	// Reset sensors
-	#ifdef TAO_ENV_VEXCODE
-		left_motors.resetPosition();
-		right_motors.resetPosition();
+	// Reset motor encoders.
+	left_motors.resetPosition();
+	right_motors.resetPosition();
 
-		if (left_encoder != NULL && right_encoder != NULL) {
-			left_encoder->resetRotation();
-			right_encoder->resetRotation();
-		}
-
-		if (IMU != NULL) {
-			IMU->resetHeading();
-		}
-	#elif defined(TAO_ENV_PROS)
-		left_motors.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-		right_motors.set_encoder_units(pros::E_MOTOR_ENCODER_DEGREES);
-
-		left_motors.tare_position();
-		right_motors.tare_position();
-
-		if (left_encoder != NULL && right_encoder != NULL) {
-			left_encoder->reset();
-			right_encoder->reset();
-		}
-		
-		if (IMU != NULL) {
-			IMU->tare_heading();
-		}
-	#endif
-
-
+	// Reset gyro heading.
+	if (IMU != NULL) {
+		IMU->resetHeading();
+	}
 	this->start_heading = start_heading;
 	set_target_heading(start_heading);
 
@@ -421,22 +340,17 @@ void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 }
 
 void Drivetrain::stop_tracking() {
-	if (daemon_active && daemon_thread != NULL) {
+	if (daemon_active) {
 		daemon_active = false;
-		daemon_thread->join();
+		daemon_thread.join();
 
-		#ifdef TAO_ENV_VEXCODE
-			left_motors.stop();
-			right_motors.stop();
-		#elif defined(TAO_ENV_PROS)
-			left_motors.brake();
-			right_motors.brake();
-		#endif
+		left_motors.stop();
+		right_motors.stop();
 	}
 
-	if (logging_active && logging_thread != NULL) {
+	if (logging_active) {
 		logging_active = false;
-		logging_thread->join();
+		logging_thread.join();
 	}
 }
 
@@ -446,7 +360,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 	// Set the PID target distance.
 	set_target_distance(get_drive_distance() + distance);
 
-	while (!settled && blocking) { env::sleep_for(10); }
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
@@ -455,7 +369,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 	// Set the PID target heading.
 	set_target_heading(heading);
 	
-	while (!settled && blocking) { env::sleep_for(10); }
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
@@ -469,7 +383,7 @@ void Drivetrain::move_to(Vector2 position, bool blocking) {
 
 	set_target_position(position);
 
-	while (!settled && blocking) { env::sleep_for(10); }
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::move_path(std::vector<Vector2> path) {
@@ -514,11 +428,11 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 				set_target_heading(math::radians_to_degrees(local_target.get_angle()));
 			}
 
-			env::sleep_for(10);
+			vex::wait(10, vex::msec);
 		}
 	}
 
-	while (!settled) { env::sleep_for(10); }
+	while (!settled) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::hold_position(bool blocking) {
@@ -527,7 +441,7 @@ void Drivetrain::hold_position(bool blocking) {
 	set_target_distance(get_drive_distance());
 	set_target_heading(get_heading());
 
-	while (!settled && blocking) { env::sleep_for(10); }
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 }

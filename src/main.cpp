@@ -7,8 +7,6 @@
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-#include "taolib/env.h"
-
 #include "taolib/taolib.h"
 
 // A global instance of vex::brain used for printing to the V5 brain screen

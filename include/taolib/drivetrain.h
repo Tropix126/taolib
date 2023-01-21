@@ -16,7 +16,8 @@
 #include <ratio>
 #include <memory>
 
-#include "env.h"
+#include "v5_cpp.h"
+
 #include "vector2.h"
 #include "pid.h"
 #include "threading.h"
@@ -76,9 +77,9 @@ public:
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
-		env::MotorGroup& left_motors,
-		env::MotorGroup& right_motors,
-		env::IMU& IMU,
+		vex::motor_group& left_motors,
+		vex::motor_group& right_motors,
+		vex::inertial& IMU,
 		DrivetrainProfile profile
 	);
 
@@ -89,8 +90,8 @@ public:
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
-		env::MotorGroup& left_motors,
-		env::MotorGroup& right_motors,
+		vex::motor_group& left_motors,
+		vex::motor_group& right_motors,
 		DrivetrainProfile profile
 	);
 
@@ -104,11 +105,11 @@ public:
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
-		env::MotorGroup& left_motors,
-		env::MotorGroup& right_motors,
-		env::Encoder& left_encoder,
-		env::Encoder& right_encoder,
-		env::IMU& IMU,
+		vex::motor_group& left_motors,
+		vex::motor_group& right_motors,
+		vex::encoder& left_encoder,
+		vex::encoder& right_encoder,
+		vex::inertial& IMU,
 		DrivetrainProfile profile
 	);
 
@@ -121,10 +122,10 @@ public:
 	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
-		env::MotorGroup& left_motors,
-		env::MotorGroup& right_motors,
-		env::Encoder& left_encoder,
-		env::Encoder& right_encoder,
+		vex::motor_group& left_motors,
+		vex::motor_group& right_motors,
+		vex::encoder& left_encoder,
+		vex::encoder& right_encoder,
 		DrivetrainProfile profile
 	);
 
@@ -357,9 +358,9 @@ private:
 		Absolute
 	};
 
-	env::MotorGroup &left_motors, &right_motors;
-	env::Encoder *left_encoder, *right_encoder;
-	env::IMU* IMU;
+	vex::motor_group &left_motors, &right_motors;
+	vex::encoder *left_encoder, *right_encoder;
+	vex::inertial* IMU;
 	
 	Vector2 global_position;
 
@@ -369,7 +370,7 @@ private:
 	double initial_heading;
 
 	ErrorModes error_mode;
-
+	
 	double max_drive_velocity = 100, max_turn_velocity = 100;
 	double drive_tolerance, turn_tolerance;
 	double drive_error, turn_error;
@@ -378,6 +379,7 @@ private:
 	double track_width;
 	double wheel_circumference;
 	double external_gear_ratio;
+
 
 	bool settled = false;
 	bool IMU_invalid = false;
@@ -394,7 +396,7 @@ private:
 	bool daemon_active = false;
 	bool logging_active = false;
 
-	std::unique_ptr<env::Thread> daemon_thread, logging_thread;
+	vex::thread daemon_thread, logging_thread;
 };
 
 }

@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('classtao_1_1_drivetrain.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p>A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.  
+<p>A class representing a nonholonomic drivetrain using position tracking and PID motion control.  
  <a href="classtao_1_1_drivetrain.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="drivetrain_8h_source.html">drivetrain.h</a>&gt;</code></p>
@@ -110,23 +110,23 @@ $(document).ready(function(){initNavTree('classtao_1_1_drivetrain.html',''); ini
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aef492840275283a8c78183213f7f11e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#aef492840275283a8c78183213f7f11e4">Drivetrain</a> (vex::motor_group &amp;left_motors, vex::motor_group &amp;right_motors, vex::inertial &amp;IMU, <a class="el" href="structtao_1_1_drivetrain_profile.html">DrivetrainProfile</a> profile)</td></tr>
-<tr class="memdesc:aef492840275283a8c78183213f7f11e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups and an IMU.  <br /></td></tr>
+<tr class="memdesc:aef492840275283a8c78183213f7f11e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups and an IMU.  <br /></td></tr>
 <tr class="separator:aef492840275283a8c78183213f7f11e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a604e19d423fbb4a7655b251c6fc83f89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#a604e19d423fbb4a7655b251c6fc83f89">Drivetrain</a> (vex::motor_group &amp;left_motors, vex::motor_group &amp;right_motors, <a class="el" href="structtao_1_1_drivetrain_profile.html">DrivetrainProfile</a> profile)</td></tr>
-<tr class="memdesc:a604e19d423fbb4a7655b251c6fc83f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups.  <br /></td></tr>
+<tr class="memdesc:a604e19d423fbb4a7655b251c6fc83f89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups.  <br /></td></tr>
 <tr class="separator:a604e19d423fbb4a7655b251c6fc83f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af27cccd2315a0729c9fa89314312d0c4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#af27cccd2315a0729c9fa89314312d0c4">Drivetrain</a> (vex::motor_group &amp;left_motors, vex::motor_group &amp;right_motors, vex::encoder &amp;left_encoder, vex::encoder &amp;right_encoder, vex::inertial &amp;IMU, <a class="el" href="structtao_1_1_drivetrain_profile.html">DrivetrainProfile</a> profile)</td></tr>
-<tr class="memdesc:af27cccd2315a0729c9fa89314312d0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups, an IMU, and two tracking encoders.  <br /></td></tr>
+<tr class="memdesc:af27cccd2315a0729c9fa89314312d0c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups, an IMU, and two tracking encoders.  <br /></td></tr>
 <tr class="separator:af27cccd2315a0729c9fa89314312d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8358a68227d0aa01d55d29dd99df8e13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#a8358a68227d0aa01d55d29dd99df8e13">Drivetrain</a> (vex::motor_group &amp;left_motors, vex::motor_group &amp;right_motors, vex::encoder &amp;left_encoder, vex::encoder &amp;right_encoder, <a class="el" href="structtao_1_1_drivetrain_profile.html">DrivetrainProfile</a> profile)</td></tr>
-<tr class="memdesc:a8358a68227d0aa01d55d29dd99df8e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups and two tracking encoders.  <br /></td></tr>
+<tr class="memdesc:a8358a68227d0aa01d55d29dd99df8e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups and two tracking encoders.  <br /></td></tr>
 <tr class="separator:a8358a68227d0aa01d55d29dd99df8e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a514807bac58c3590e0c3da1e27c42338"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classtao_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#a514807bac58c3590e0c3da1e27c42338">get_position</a> () const</td></tr>
 <tr class="memdesc:a514807bac58c3590e0c3da1e27c42338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current global position of the drivetrain as a <a class="el" href="classtao_1_1_vector2.html" title="Class object to represent a vector within a 2 dimensional space.">Vector2</a> object.  <br /></td></tr>
 <tr class="separator:a514807bac58c3590e0c3da1e27c42338"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac06a6b2e934608e0e0890f3115529d9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#aac06a6b2e934608e0e0890f3115529d9">get_heading</a> () const</td></tr>
-<tr class="memdesc:aac06a6b2e934608e0e0890f3115529d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current counter-clockwise heading of the drivetrain in degrees.  <br /></td></tr>
-<tr class="separator:aac06a6b2e934608e0e0890f3115529d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad17418f668336fa5a150bddf91120854"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#ad17418f668336fa5a150bddf91120854">get_heading</a> ()</td></tr>
+<tr class="memdesc:ad17418f668336fa5a150bddf91120854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current counter-clockwise heading of the drivetrain in degrees.  <br /></td></tr>
+<tr class="separator:ad17418f668336fa5a150bddf91120854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affb17e0bc14ae1780c6327296aa1d6a0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#affb17e0bc14ae1780c6327296aa1d6a0">get_drive_distance</a> () const</td></tr>
 <tr class="memdesc:affb17e0bc14ae1780c6327296aa1d6a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the average linear distance from the starting position traveled by each wheel.  <br /></td></tr>
 <tr class="separator:affb17e0bc14ae1780c6327296aa1d6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,11 +219,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
 <tr class="memdesc:a98dc88d3c22a1fe1c64f539611d0b22f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the drivetrain along a set of waypoints using pure pursuit.  <br /></td></tr>
 <tr class="separator:a98dc88d3c22a1fe1c64f539611d0b22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28f7520e91518beb92c3346058d93421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_drivetrain.html#a28f7520e91518beb92c3346058d93421">hold_position</a> (bool blocking=true)</td></tr>
-<tr class="memdesc:a28f7520e91518beb92c3346058d93421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops and holds the drivetrain at the current position and heading.  <br /></td></tr>
+<tr class="memdesc:a28f7520e91518beb92c3346058d93421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops and holds the drivetrain at its current position and heading.  <br /></td></tr>
 <tr class="separator:a28f7520e91518beb92c3346058d93421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities. </p>
+<div class="textblock"><p>A class representing a nonholonomic drivetrain using position tracking and PID motion control. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aef492840275283a8c78183213f7f11e4" name="aef492840275283a8c78183213f7f11e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef492840275283a8c78183213f7f11e4">&#9670;&#160;</a></span>Drivetrain() <span class="overload">[1/4]</span></h2>
@@ -263,7 +263,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups and an IMU. </p>
+<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups and an IMU. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">left_motors</td><td>A reference to a vex::motor_group object representing the left side of the drivetrain. </td></tr>
@@ -308,7 +308,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups. </p>
+<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">left_motors</td><td>A reference to a vex::motor_group object representing the left side of the drivetrain. </td></tr>
@@ -370,7 +370,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups, an IMU, and two tracking encoders. </p>
+<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups, an IMU, and two tracking encoders. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">left_motors</td><td>A reference to a vex::motor_group object representing the left side of the drivetrain. </td></tr>
@@ -429,7 +429,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities.">Drivetrain</a> object using two motor groups and two tracking encoders. </p>
+<p>Constructs a new <a class="el" href="classtao_1_1_drivetrain.html" title="A class representing a nonholonomic drivetrain using position tracking and PID motion control.">Drivetrain</a> object using two motor groups and two tracking encoders. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">left_motors</td><td>A reference to a vex::motor_group object representing the left side of the drivetrain. </td></tr>
@@ -581,8 +581,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
 
 </div>
 </div>
-<a id="aac06a6b2e934608e0e0890f3115529d9" name="aac06a6b2e934608e0e0890f3115529d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac06a6b2e934608e0e0890f3115529d9">&#9670;&#160;</a></span>get_heading()</h2>
+<a id="ad17418f668336fa5a150bddf91120854" name="ad17418f668336fa5a150bddf91120854"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad17418f668336fa5a150bddf91120854">&#9670;&#160;</a></span>get_heading()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -591,7 +591,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
           <td class="memname">double tao::Drivetrain::get_heading </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -798,7 +798,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Stops and holds the drivetrain at the current position and heading. </p>
+<p>Stops and holds the drivetrain at its current position and heading. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">blocking</td><td>Determines if the function should block the current thread until settled (within tolerance for 10 iterations). </td></tr>
@@ -885,7 +885,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()<
   <table class="params">
     <tr><td class="paramname">position</td><td>A 2D vector representing the absolute target coordinates to move to. </td></tr>
     <tr><td class="paramname">direction</td><td>Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn. </td></tr>
-    <tr><td class="paramname">blocking</td><td>Determines if the function should block the current thread until settled (within tolerance for 10 iterations). </td></tr>
+    <tr><td class="paramname">blocking</td><td>Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations). </td></tr>
   </table>
   </dd>
 </dl>

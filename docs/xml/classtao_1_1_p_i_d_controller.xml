@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="38" column="10" bodyfile="include/taolib/pid.h" bodystart="38" bodyend="-1"/>
+        <location file="include/taolib/pid.h" line="45" column="10" bodyfile="include/taolib/pid.h" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_p_i_d_controller_1aa7b55c77c073fa16d9148829e0c23d9d" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="41" column="8" bodyfile="include/taolib/pid.h" bodystart="41" bodyend="-1"/>
+        <location file="include/taolib/pid.h" line="48" column="8" bodyfile="include/taolib/pid.h" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_p_i_d_controller_1a37753603b27b22ff13e606c16ec9424e" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -43,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="41" column="23" bodyfile="include/taolib/pid.h" bodystart="41" bodyend="-1"/>
+        <location file="include/taolib/pid.h" line="48" column="23" bodyfile="include/taolib/pid.h" bodystart="48" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="26" column="1"/>
+        <location file="include/taolib/pid.h" line="33" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1aa1cc5b8f06baa3ad5a1a0e13b533ef19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -77,7 +77,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="27" column="1"/>
+        <location file="include/taolib/pid.h" line="34" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1a673ddba69e6279cfa868d404a60abcff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -99,7 +99,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="30" column="8"/>
+        <location file="include/taolib/pid.h" line="37" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1a319ace707138c2169a8035ed36680aa3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref></type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="33" column="10"/>
+        <location file="include/taolib/pid.h" line="40" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1abc58372aa248465d05d2e980556baa0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -131,14 +131,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="34" column="6"/>
+        <location file="include/taolib/pid.h" line="41" column="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/taolib/pid.h" line="23" column="1" bodyfile="include/taolib/pid.h" bodystart="23" bodyend="42"/>
+    <location file="include/taolib/pid.h" line="30" column="1" bodyfile="include/taolib/pid.h" bodystart="30" bodyend="49"/>
     <listofallmembers>
       <member refid="classtao_1_1_p_i_d_controller_1a237c656c0032206d24cdf6fe6dad2866" prot="private" virt="non-virtual"><scope>tao::PIDController</scope><name>gains</name></member>
       <member refid="classtao_1_1_p_i_d_controller_1a319ace707138c2169a8035ed36680aa3" prot="public" virt="non-virtual"><scope>tao::PIDController</scope><name>get_gains</name></member>

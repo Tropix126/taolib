@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="344" column="1" bodyfile="include/taolib/drivetrain.h" bodystart="344" bodyend="347"/>
+        <location file="include/taolib/drivetrain.h" line="356" column="1" bodyfile="include/taolib/drivetrain.h" bodystart="356" bodyend="359"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -44,11 +44,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="349" column="18" bodyfile="include/taolib/drivetrain.h" bodystart="349" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="361" column="18" bodyfile="include/taolib/drivetrain.h" bodystart="361" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a2faff4be757eba858cf8e679f15d3983" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1af27899d6b811fcb523f2da967e468e57" prot="private" static="no" mutable="no">
         <type>vex::motor_group &amp;</type>
-        <definition>vex::motor_group&amp; tao::Drivetrain::right_motors</definition>
+        <definition>vex::motor_group &amp; tao::Drivetrain::right_motors</definition>
         <argsstring></argsstring>
         <name>right_motors</name>
         <qualifiedname>tao::Drivetrain::right_motors</qualifiedname>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="350" column="18" bodyfile="include/taolib/drivetrain.h" bodystart="350" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="361" column="30" bodyfile="include/taolib/drivetrain.h" bodystart="361" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a6b701677d5612b218460cddfe4a85091" prot="private" static="no" mutable="no">
         <type>vex::encoder *</type>
@@ -72,11 +72,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="352" column="14" bodyfile="include/taolib/drivetrain.h" bodystart="352" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="362" column="14" bodyfile="include/taolib/drivetrain.h" bodystart="362" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a40b1823387b8593cb654d9dabbce47e8" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1aeac47de5f3557d1f61f609cfc3df21b4" prot="private" static="no" mutable="no">
         <type>vex::encoder *</type>
-        <definition>vex::encoder* tao::Drivetrain::right_encoder</definition>
+        <definition>vex::encoder * tao::Drivetrain::right_encoder</definition>
         <argsstring></argsstring>
         <name>right_encoder</name>
         <qualifiedname>tao::Drivetrain::right_encoder</qualifiedname>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="353" column="14" bodyfile="include/taolib/drivetrain.h" bodystart="353" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="362" column="27" bodyfile="include/taolib/drivetrain.h" bodystart="362" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1ab3c0834a767f1e7d9767dd25618040ae" prot="private" static="no" mutable="no">
         <type>vex::inertial *</type>
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="355" column="15" bodyfile="include/taolib/drivetrain.h" bodystart="355" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="363" column="15" bodyfile="include/taolib/drivetrain.h" bodystart="363" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a336548e88be874b8635575acf8e462c6" prot="private" static="no" mutable="no">
         <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="357" column="9" bodyfile="include/taolib/drivetrain.h" bodystart="357" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="365" column="9" bodyfile="include/taolib/drivetrain.h" bodystart="365" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a302419a1fb0c3470140aa44528b9c3c7" prot="private" static="no" mutable="no">
         <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
@@ -128,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="359" column="9" bodyfile="include/taolib/drivetrain.h" bodystart="359" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="367" column="9" bodyfile="include/taolib/drivetrain.h" bodystart="367" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1aab2a1b792a62cd30f4eda9f3c815aad9" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -142,7 +142,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="360" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="360" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="368" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="368" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1aea7039d6481adeb19afbe68c522fd6aa" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -156,7 +156,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="361" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="361" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="368" column="24" bodyfile="include/taolib/drivetrain.h" bodystart="368" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a38d469766eddf01428933f24b26fe2bf" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::Drivetrain::start_heading</definition>
+        <argsstring></argsstring>
+        <name>start_heading</name>
+        <qualifiedname>tao::Drivetrain::start_heading</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="369" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="369" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a5895a8b657c381e3e1f5286f5c0a5ced" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -170,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="363" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="363" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="370" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="370" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a98991417402b4ec969a0d2561bc126e1" prot="private" static="no" mutable="no">
         <type>ErrorModes</type>
@@ -184,78 +198,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="365" column="12" bodyfile="include/taolib/drivetrain.h" bodystart="365" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a5989b2bc87e0a16aaaeb6cad5b516a13" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double tao::Drivetrain::lookahead_distance</definition>
-        <argsstring></argsstring>
-        <name>lookahead_distance</name>
-        <qualifiedname>tao::Drivetrain::lookahead_distance</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="367" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="367" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a53e04e719fc3c6724e6200ace6fc84bc" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double tao::Drivetrain::track_width</definition>
-        <argsstring></argsstring>
-        <name>track_width</name>
-        <qualifiedname>tao::Drivetrain::track_width</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="368" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="368" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1ac34a8f5c590680b0d152fd155c86d12a" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double tao::Drivetrain::wheel_circumference</definition>
-        <argsstring></argsstring>
-        <name>wheel_circumference</name>
-        <qualifiedname>tao::Drivetrain::wheel_circumference</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="369" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="369" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a0e301bdff053f3aa371851ffc4cc208d" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double tao::Drivetrain::external_gear_ratio</definition>
-        <argsstring></argsstring>
-        <name>external_gear_ratio</name>
-        <qualifiedname>tao::Drivetrain::external_gear_ratio</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="370" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="370" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a38d469766eddf01428933f24b26fe2bf" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double tao::Drivetrain::start_heading</definition>
-        <argsstring></argsstring>
-        <name>start_heading</name>
-        <qualifiedname>tao::Drivetrain::start_heading</qualifiedname>
-        <initializer>= 0</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="372" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="372" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="372" column="12" bodyfile="include/taolib/drivetrain.h" bodystart="372" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a5daf127e214efc809253586fd962f6ff" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -285,6 +228,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="374" column="28" bodyfile="include/taolib/drivetrain.h" bodystart="374" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a927a8b0429e5fbde5e479cf40158b1e8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::Drivetrain::drive_tolerance</definition>
+        <argsstring></argsstring>
+        <name>drive_tolerance</name>
+        <qualifiedname>tao::Drivetrain::drive_tolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
         <location file="include/taolib/drivetrain.h" line="375" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="375" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a317bef2333abd120d0df9356b4ed2927" prot="private" static="no" mutable="no">
@@ -299,21 +256,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="377" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="377" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="375" column="24" bodyfile="include/taolib/drivetrain.h" bodystart="375" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a927a8b0429e5fbde5e479cf40158b1e8" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1abfebcf7a511b33d6778b6e9ae7da9f99" prot="private" static="no" mutable="no">
         <type>double</type>
-        <definition>double tao::Drivetrain::drive_tolerance</definition>
+        <definition>double tao::Drivetrain::drive_error</definition>
         <argsstring></argsstring>
-        <name>drive_tolerance</name>
-        <qualifiedname>tao::Drivetrain::drive_tolerance</qualifiedname>
+        <name>drive_error</name>
+        <qualifiedname>tao::Drivetrain::drive_error</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="378" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="378" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="376" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="376" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a23bbf108e35f9a7a5269a61259d8cc3b" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -327,14 +284,56 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="376" column="20" bodyfile="include/taolib/drivetrain.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a5989b2bc87e0a16aaaeb6cad5b516a13" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::Drivetrain::lookahead_distance</definition>
+        <argsstring></argsstring>
+        <name>lookahead_distance</name>
+        <qualifiedname>tao::Drivetrain::lookahead_distance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="378" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a53e04e719fc3c6724e6200ace6fc84bc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::Drivetrain::track_width</definition>
+        <argsstring></argsstring>
+        <name>track_width</name>
+        <qualifiedname>tao::Drivetrain::track_width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="379" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1ac34a8f5c590680b0d152fd155c86d12a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::Drivetrain::wheel_circumference</definition>
+        <argsstring></argsstring>
+        <name>wheel_circumference</name>
+        <qualifiedname>tao::Drivetrain::wheel_circumference</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
         <location file="include/taolib/drivetrain.h" line="380" column="8" bodyfile="include/taolib/drivetrain.h" bodystart="380" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classtao_1_1_drivetrain_1abfebcf7a511b33d6778b6e9ae7da9f99" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1a0e301bdff053f3aa371851ffc4cc208d" prot="private" static="no" mutable="no">
         <type>double</type>
-        <definition>double tao::Drivetrain::drive_error</definition>
+        <definition>double tao::Drivetrain::external_gear_ratio</definition>
         <argsstring></argsstring>
-        <name>drive_error</name>
-        <qualifiedname>tao::Drivetrain::drive_error</qualifiedname>
+        <name>external_gear_ratio</name>
+        <qualifiedname>tao::Drivetrain::external_gear_ratio</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -356,7 +355,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="383" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="383" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="384" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_drivetrain_1aca61da845056d394007ab8c1926a19d7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tao::Drivetrain::IMU_invalid</definition>
+        <argsstring></argsstring>
+        <name>IMU_invalid</name>
+        <qualifiedname>tao::Drivetrain::IMU_invalid</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="385" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="385" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1ae873fb5b2a4f507669cbb3283af50991" prot="private" static="no" mutable="no">
         <type><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref></type>
@@ -370,7 +384,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="385" column="15" bodyfile="include/taolib/drivetrain.h" bodystart="385" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="387" column="15" bodyfile="include/taolib/drivetrain.h" bodystart="387" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1afaec4419e4fb98af8a504eee2ed58e60" prot="private" static="no" mutable="no">
         <type><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref></type>
@@ -384,7 +398,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="386" column="15" bodyfile="include/taolib/drivetrain.h" bodystart="386" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="387" column="32" bodyfile="include/taolib/drivetrain.h" bodystart="387" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a37292b2fbf3529a0f2250bd5231015f3" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -399,7 +413,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="395" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="395" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="396" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="396" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1aa66dee790cc4b05186528c6be378e35d" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -414,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="396" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="396" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="397" column="6" bodyfile="include/taolib/drivetrain.h" bodystart="397" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1aef9d215635af3ce4849b51d81a52b631" prot="private" static="no" mutable="no">
         <type>vex::thread</type>
@@ -428,7 +442,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="398" column="13" bodyfile="include/taolib/drivetrain.h" bodystart="398" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="399" column="13" bodyfile="include/taolib/drivetrain.h" bodystart="399" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classtao_1_1_drivetrain_1a94283e2ca8ba6f47971426cf0348a877" prot="private" static="no" mutable="no">
         <type>vex::thread</type>
@@ -442,7 +456,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="399" column="13" bodyfile="include/taolib/drivetrain.h" bodystart="399" bodyend="-1"/>
+        <location file="include/taolib/drivetrain.h" line="399" column="27" bodyfile="include/taolib/drivetrain.h" bodystart="399" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -509,7 +523,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="67" column="1"/>
+        <location file="include/taolib/drivetrain.h" line="79" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a604e19d423fbb4a7655b251c6fc83f89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -562,7 +576,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="80" column="1"/>
+        <location file="include/taolib/drivetrain.h" line="92" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1af27cccd2315a0729c9fa89314312d0c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -651,7 +665,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="95" column="1"/>
+        <location file="include/taolib/drivetrain.h" line="107" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a8358a68227d0aa01d55d29dd99df8e13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -728,7 +742,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="112" column="1"/>
+        <location file="include/taolib/drivetrain.h" line="124" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a1a1fa53ea307cb18c0094a1f540953ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -742,7 +756,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="120" column="1"/>
+        <location file="include/taolib/drivetrain.h" line="132" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a514807bac58c3590e0c3da1e27c42338" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
@@ -760,12 +774,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="130" column="9"/>
+        <location file="include/taolib/drivetrain.h" line="142" column="9"/>
       </memberdef>
-      <memberdef kind="function" id="classtao_1_1_drivetrain_1aac06a6b2e934608e0e0890f3115529d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classtao_1_1_drivetrain_1ad17418f668336fa5a150bddf91120854" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double tao::Drivetrain::get_heading</definition>
-        <argsstring>() const</argsstring>
+        <argsstring>()</argsstring>
         <name>get_heading</name>
         <qualifiedname>tao::Drivetrain::get_heading</qualifiedname>
         <briefdescription>
@@ -780,7 +794,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="137" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="149" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1affb17e0bc14ae1780c6327296aa1d6a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -798,7 +812,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="143" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="155" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1af2a2573a05c075484cef0209cd6b86b9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref></type>
@@ -816,7 +830,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="149" column="10"/>
+        <location file="include/taolib/drivetrain.h" line="161" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1ab99c88e9b7a18f03cbc51461dec9b526" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structtao_1_1_p_i_d_gains" kindref="compound">PIDGains</ref></type>
@@ -834,7 +848,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="155" column="10"/>
+        <location file="include/taolib/drivetrain.h" line="167" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1af1e6b329d695b7e375fe544df3c44359" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -852,7 +866,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="161" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="173" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a975ff7607b60814ae4e5e52803ef3cfd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -870,7 +884,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="167" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="179" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1acf95c62e6e4c4d56cdb7980ec6100a5e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -888,7 +902,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="173" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="185" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1ae9a6393f847dd32aed8e939e52c24e02" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -906,7 +920,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="179" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="191" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a353c31cc7e6554299186fe2cc0274566" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -924,7 +938,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="185" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="197" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a94b5d5694d15f3f7920fae9dbdbfe855" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -942,7 +956,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="191" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="203" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a1904f98b7bd7ce4489203f1cf4905d89" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -960,7 +974,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="197" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="209" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1aa8c3f9b38c85835f0aa928317cf3bb8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -978,7 +992,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="203" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="215" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a65293743431e4370ef05e539891a63b7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -996,7 +1010,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="209" column="8"/>
+        <location file="include/taolib/drivetrain.h" line="221" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1ac3f4528f41c8582c51f8f83fc59fcaab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structtao_1_1_drivetrain_profile" kindref="compound">DrivetrainProfile</ref></type>
@@ -1014,7 +1028,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="215" column="19"/>
+        <location file="include/taolib/drivetrain.h" line="227" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a0b51d63457060a86be51bc642ba2872c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -1032,7 +1046,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="221" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="233" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a35ecffb0b5339ea79480373ade5249ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1061,7 +1075,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="231" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="243" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a32e15c0a3ef58f7e46b83a46ed741b15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1090,7 +1104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="237" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="249" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a5b15ebf8d8817cea28a7c6441cc56def" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1119,7 +1133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="243" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="255" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a6d214520c2470c6c052397a091913b31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1148,7 +1162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="249" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="261" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a6e2fe02fc1879143d7095f1460ebbcb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1177,7 +1191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="255" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="267" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1ac83ee63f438567eddee1e6af5b9488e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1208,7 +1222,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="263" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="275" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1aa8c6855350fce4c249d030ca1a6ac59d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1237,7 +1251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="269" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="281" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a5e18ba61ebbe28d5a54af00223416968" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1266,7 +1280,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="275" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="287" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a446345e28adebd6cce98d0bab3b0f136" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1314,7 +1328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="286" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="298" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a11c2137fdf39b18314c341c901a0c81d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1357,7 +1371,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="293" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="305" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a2f5d526ef373b69666309afc45c98302" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1372,7 +1386,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="296" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="308" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a5067680a32f2ad4a7b69c8396fc3fd65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1414,7 +1428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="307" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="319" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a1721f37994074aa47c7051a01c41b68c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1456,7 +1470,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="314" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="326" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a6cf09dd9309e2771d725d5f862b8928a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1498,7 +1512,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="321" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="333" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1acd954f07296e9fd2effae3e932eb54f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1540,7 +1554,7 @@
 <parametername>blocking</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Determines if the function should block the current thread until settled (within tolerance for 10 iterations). </para>
+<para>Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations). </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -1548,7 +1562,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="329" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="341" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a98dc88d3c22a1fe1c64f539611d0b22f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1577,7 +1591,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="335" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="347" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a28f7520e91518beb92c3346058d93421" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1591,7 +1605,7 @@
           <defval>true</defval>
         </param>
         <briefdescription>
-<para>Stops and holds the drivetrain at the current position and heading. </para>
+<para>Stops and holds the drivetrain at its current position and heading. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
@@ -1607,7 +1621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="341" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="353" column="6"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -1627,7 +1641,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="388" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="389" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a107ae68d73e5fd6039e3ffea7bd96deb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1645,7 +1659,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="389" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="390" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1ae6a21561349164fc277f4c9f7b8cff4c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1663,7 +1677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="390" column="6"/>
+        <location file="include/taolib/drivetrain.h" line="391" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1a3c7b89560057a9e9316bde1866f96fbd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1677,7 +1691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="392" column="5"/>
+        <location file="include/taolib/drivetrain.h" line="393" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1af8c0be6063e5432261516691186b2e00" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -1691,15 +1705,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="393" column="5"/>
+        <location file="include/taolib/drivetrain.h" line="394" column="5"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>A class representing a drivetrain with autonomous closed-loop PID control and odometry capabilities. </para>
+<para>A class representing a nonholonomic drivetrain using position tracking and PID motion control. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/taolib/drivetrain.h" line="56" column="1" bodyfile="include/taolib/drivetrain.h" bodystart="56" bodyend="400"/>
+    <location file="include/taolib/drivetrain.h" line="68" column="1" bodyfile="include/taolib/drivetrain.h" bodystart="68" bodyend="400"/>
     <listofallmembers>
       <member refid="classtao_1_1_drivetrain_1a3c7b89560057a9e9316bde1866f96fbd" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>daemon</name></member>
       <member refid="classtao_1_1_drivetrain_1a37292b2fbf3529a0f2250bd5231015f3" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>daemon_active</name></member>
@@ -1720,7 +1734,7 @@
       <member refid="classtao_1_1_drivetrain_1af2a2573a05c075484cef0209cd6b86b9" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_drive_gains</name></member>
       <member refid="classtao_1_1_drivetrain_1acf95c62e6e4c4d56cdb7980ec6100a5e" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_drive_tolerance</name></member>
       <member refid="classtao_1_1_drivetrain_1a1904f98b7bd7ce4489203f1cf4905d89" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_external_gear_ratio</name></member>
-      <member refid="classtao_1_1_drivetrain_1aac06a6b2e934608e0e0890f3115529d9" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_heading</name></member>
+      <member refid="classtao_1_1_drivetrain_1ad17418f668336fa5a150bddf91120854" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_heading</name></member>
       <member refid="classtao_1_1_drivetrain_1a353c31cc7e6554299186fe2cc0274566" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_lookahead_distance</name></member>
       <member refid="classtao_1_1_drivetrain_1aa8c3f9b38c85835f0aa928317cf3bb8d" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_max_drive_velocity</name></member>
       <member refid="classtao_1_1_drivetrain_1a65293743431e4370ef05e539891a63b7" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_max_turn_velocity</name></member>
@@ -1733,6 +1747,7 @@
       <member refid="classtao_1_1_drivetrain_1a336548e88be874b8635575acf8e462c6" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>global_position</name></member>
       <member refid="classtao_1_1_drivetrain_1a28f7520e91518beb92c3346058d93421" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>hold_position</name></member>
       <member refid="classtao_1_1_drivetrain_1ab3c0834a767f1e7d9767dd25618040ae" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>IMU</name></member>
+      <member refid="classtao_1_1_drivetrain_1aca61da845056d394007ab8c1926a19d7" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>IMU_invalid</name></member>
       <member refid="classtao_1_1_drivetrain_1a5895a8b657c381e3e1f5286f5c0a5ced" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>initial_heading</name></member>
       <member refid="classtao_1_1_drivetrain_1a0b51d63457060a86be51bc642ba2872c" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>is_settled</name></member>
       <member refid="classtao_1_1_drivetrain_1a6b701677d5612b218460cddfe4a85091" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>left_encoder</name></member>
@@ -1746,8 +1761,8 @@
       <member refid="classtao_1_1_drivetrain_1a98dc88d3c22a1fe1c64f539611d0b22f" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>move_path</name></member>
       <member refid="classtao_1_1_drivetrain_1acd954f07296e9fd2effae3e932eb54f8" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>move_to</name></member>
       <member refid="classtao_1_1_drivetrain_1a11c2137fdf39b18314c341c901a0c81d" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>reset_tracking</name></member>
-      <member refid="classtao_1_1_drivetrain_1a40b1823387b8593cb654d9dabbce47e8" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>right_encoder</name></member>
-      <member refid="classtao_1_1_drivetrain_1a2faff4be757eba858cf8e679f15d3983" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>right_motors</name></member>
+      <member refid="classtao_1_1_drivetrain_1aeac47de5f3557d1f61f609cfc3df21b4" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>right_encoder</name></member>
+      <member refid="classtao_1_1_drivetrain_1af27899d6b811fcb523f2da967e468e57" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>right_motors</name></member>
       <member refid="classtao_1_1_drivetrain_1a6d214520c2470c6c052397a091913b31" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>set_drive_gains</name></member>
       <member refid="classtao_1_1_drivetrain_1a35ecffb0b5339ea79480373ade5249ef" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>set_drive_tolerance</name></member>
       <member refid="classtao_1_1_drivetrain_1ac83ee63f438567eddee1e6af5b9488e1" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>set_external_gear_ratio</name></member>

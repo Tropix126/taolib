@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="13" column="8" bodyfile="include/taolib/pid.h" bodystart="13" bodyend="-1"/>
+        <location file="include/taolib/pid.h" line="20" column="8" bodyfile="include/taolib/pid.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtao_1_1_p_i_d_gains_1ae0d851ace5410cf72cac1af9a48ebdb1" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="16" column="8" bodyfile="include/taolib/pid.h" bodystart="16" bodyend="-1"/>
+        <location file="include/taolib/pid.h" line="23" column="8" bodyfile="include/taolib/pid.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structtao_1_1_p_i_d_gains_1a86c551d3a88e206485288cf69dd85385" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -47,7 +47,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/taolib/pid.h" line="19" column="8" bodyfile="include/taolib/pid.h" bodystart="19" bodyend="-1"/>
+        <location file="include/taolib/pid.h" line="26" column="8" bodyfile="include/taolib/pid.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -56,7 +56,7 @@
     <detaileddescription>
 <para>Each component of the PID controller will be multiplied by these gain constants to calculate the final output. The controller must be tuned by adjusting constants until the final output is stable. </para>
     </detaileddescription>
-    <location file="include/taolib/pid.h" line="11" column="1" bodyfile="include/taolib/pid.h" bodystart="11" bodyend="20"/>
+    <location file="include/taolib/pid.h" line="18" column="1" bodyfile="include/taolib/pid.h" bodystart="18" bodyend="27"/>
     <listofallmembers>
       <member refid="structtao_1_1_p_i_d_gains_1a86c551d3a88e206485288cf69dd85385" prot="public" virt="non-virtual"><scope>tao::PIDGains</scope><name>kD</name></member>
       <member refid="structtao_1_1_p_i_d_gains_1ae0d851ace5410cf72cac1af9a48ebdb1" prot="public" virt="non-virtual"><scope>tao::PIDGains</scope><name>kI</name></member>

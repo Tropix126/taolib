@@ -10,7 +10,7 @@ var classtao_1_1_drivetrain =
     [ "get_drive_gains", "classtao_1_1_drivetrain.html#af2a2573a05c075484cef0209cd6b86b9", null ],
     [ "get_drive_tolerance", "classtao_1_1_drivetrain.html#acf95c62e6e4c4d56cdb7980ec6100a5e", null ],
     [ "get_external_gear_ratio", "classtao_1_1_drivetrain.html#a1904f98b7bd7ce4489203f1cf4905d89", null ],
-    [ "get_heading", "classtao_1_1_drivetrain.html#aac06a6b2e934608e0e0890f3115529d9", null ],
+    [ "get_heading", "classtao_1_1_drivetrain.html#ad17418f668336fa5a150bddf91120854", null ],
     [ "get_lookahead_distance", "classtao_1_1_drivetrain.html#a353c31cc7e6554299186fe2cc0274566", null ],
     [ "get_max_drive_velocity", "classtao_1_1_drivetrain.html#aa8c3f9b38c85835f0aa928317cf3bb8d", null ],
     [ "get_max_turn_velocity", "classtao_1_1_drivetrain.html#a65293743431e4370ef05e539891a63b7", null ],

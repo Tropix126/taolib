@@ -16,7 +16,8 @@
 
 #include "v5_cpp.h"
 
-namespace tao::threading {
+namespace tao {
+namespace threading {
 namespace internal {
 
 // Implementation of several missing standard library clstructs and functions to allow for `apply_`
@@ -103,5 +104,7 @@ Ret static_proxy(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {
 template <typename Cls, typename Ret, typename... Args>
 vex::thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {
   return make_thread(static_proxy<Cls, Ret, Args...>, cls_instance, cls_fn, std::forward<Args>(args)...);
+}
+
 }
 }

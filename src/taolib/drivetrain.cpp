@@ -232,7 +232,7 @@ int Drivetrain::daemon() {
 			target_heading = get_heading();
 
 			// Reverse the direction that the drivetrain travels to the point if turn error exceeds 90.
-			if (std::fabs(turn_error) >= 90) {
+			if (std::abs(turn_error) >= 90) {
 				turn_error = math::normalize_degrees(turn_error - 180);
 				drive_error *= -1;
 			}
@@ -262,13 +262,26 @@ int Drivetrain::daemon() {
 			drive_velocity *= turn_scale;
 		}
 
-		// Spin motors at the output velocity.
-		left_motors.spin(vex::forward, drive_velocity + turn_velocity, vex::percent);
-		right_motors.spin(vex::forward, drive_velocity - turn_velocity, vex::percent);
+		// Calculate the left and motor right voltages
+		double left_voltage = 12 * (drive_velocity + turn_velocity) / 100;
+		double right_voltage = 12 * (drive_velocity - turn_velocity) / 100;
+
+		// Find the largest of the two calculated voltages (left or right), and
+		// check if it is greater than the maximum voltage that the motor can
+		// run at (12V). If it is, then divide by the largest voltage.
+		double largest_voltage = std::max(std::abs(left_voltage), std::abs(right_voltage));
+		if (largest_voltage >= 12) {
+			left_voltage /= largest_voltage;
+			right_voltage /= largest_voltage;
+		}
+
+		// Spin motors at the output voltage.
+		left_motors.spin(vex::forward, left_voltage, vex::percent);
+		right_motors.spin(vex::forward, right_voltage, vex::percent);
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.
-		if (std::fabs(drive_error) < drive_tolerance && (std::fabs(turn_error) < turn_tolerance || error_mode == ErrorModes::Absolute)) {
+		if (std::abs(drive_error) < drive_tolerance && (std::abs(turn_error) < turn_tolerance || error_mode == ErrorModes::Absolute)) {
 			settle_counter++;
 		} else {
 			settle_counter = 0;

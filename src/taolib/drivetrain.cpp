@@ -323,12 +323,14 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 	// Reset with desired starting data
 	reset_tracking(start_vector, start_heading);
 
-	// Start daemon
-	daemon_active = true;
-	daemon_thread = threading::make_member_thread(this, &Drivetrain::daemon);
+	// Start daemon if it isn't already running
+	if (!daemon_active) {
+		daemon_active = true;
+		daemon_thread = threading::make_member_thread(this, &Drivetrain::daemon);
+	}
 
-	// Start logging if enabled
-	if (enable_logging) {
+	// Start logging if enable_logging was specified and it isn't already running
+	if (enable_logging && !logging_active) {
 		logging_active = true;
 		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
 	}

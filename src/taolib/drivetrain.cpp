@@ -326,13 +326,11 @@ void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool
 	// Start daemon
 	daemon_active = true;
 	daemon_thread = threading::make_member_thread(this, &Drivetrain::daemon);
-	// daemon_thread.detach();
 
 	// Start logging if enabled
 	if (enable_logging) {
 		logging_active = true;
 		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
-		// logging_thread.detach();
 	}
 }
 
@@ -353,16 +351,16 @@ void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 }
 
 void Drivetrain::stop_tracking() {
-	if (daemon_active) {
-		daemon_active = false;
+	daemon_active = false;
+	logging_active = false;
+	
+	if (daemon_thread.joinable()) {
 		daemon_thread.join();
-
 		left_motors.stop();
 		right_motors.stop();
 	}
 
-	if (logging_active) {
-		logging_active = false;
+	if (logging_thread.joinable()) {
 		logging_thread.join();
 	}
 }

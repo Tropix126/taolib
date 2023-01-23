@@ -53,21 +53,21 @@ std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, 
 	double D = offset_1.cross(offset_2);
 	double discriminant = pow(radius, 2) * pow(dr, 2) - pow(D, 2);
 
-	// The line formed as a slope of point_1 and point_2 intersects the circle at least once.
+	// If our discriminant is greater than or equal to 0, the line formed as a slope of
+	// point_1 and point_2 intersects the circle at least once.
 	if (discriminant >= 0) {
 		// https://mathworld.wolfram.com/Circle-LineIntersection.html
-		double solution_x1 = (D * dy + sign(dy) * dx * sqrt(discriminant)) / pow(dr, 2);
-		double solution_x2 = (D * dy - sign(dy) * dx * sqrt(discriminant)) / pow(dr, 2);
-		double solution_y1 = (-D * dx + fabs(dy) * sqrt(discriminant)) / pow(dr, 2);
-		double solution_y2 = (-D * dx - fabs(dy) * sqrt(discriminant)) / pow(dr, 2);
-
-		// Add the center of the circle back to the solutions, offset the system back to its original position.
-		Vector2 solution_1 = Vector2(solution_x1, solution_y1) + center;
-		Vector2 solution_2 = Vector2(solution_x2, solution_y2) + center;
+		Vector2 solution_1 = Vector2(
+			(D * dy + sign(dy) * dx * std::sqrt(discriminant)) / std::pow(dr, 2),
+			(-D * dx + fabs(dy) * std::sqrt(discriminant)) / std::pow(dr, 2)
+		) + center;
+		Vector2 solution_2 = Vector2(
+			(D * dy - sign(dy) * dx * std::sqrt(discriminant)) / std::pow(dr, 2),
+			(-D * dx - fabs(dy) * std::sqrt(discriminant)) / std::pow(dr, 2)
+		) + center;
 
 		double min_x = std::min(point_1.get_x(), point_2.get_x());
 		double max_x = std::max(point_1.get_x(), point_2.get_x());
-
 		double min_y = std::min(point_1.get_y(), point_2.get_y());
 		double max_y = std::max(point_1.get_y(), point_2.get_y());
 

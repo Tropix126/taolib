@@ -11,22 +11,33 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
-#include <math.h>
 
 #include "taolib/math.h"
 #include "taolib/vector2.h"
 
-namespace tao::math {
+namespace tao {
+namespace math {
 
 double normalize_degrees(double degrees) {
-	degrees = fmod(degrees, 360);
-	degrees = fmod((degrees + 360), 360);
+	degrees = std::fmod(degrees, 360);
+	degrees = std::fmod((degrees + 360), 360);
 
 	if (degrees > 180) {
 		degrees -= 360;
 	}
 
 	return degrees > 180 ? degrees - 360 : degrees;
+}
+
+std::pair<double, double> normalize_speeds(double left_speed, double right_speed, double max_speed) {
+	double largest_speed = std::max(std::abs(left_speed), std::abs(right_speed)) / max_speed;
+
+	if (largest_speed > 1.0) {
+		left_speed /= largest_speed;
+		right_speed /= largest_speed;
+	}
+
+	return { left_speed, right_speed };
 }
 
 std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius) {
@@ -79,4 +90,5 @@ std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, 
 	return intersections;
 }
 
+}
 }

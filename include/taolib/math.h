@@ -23,6 +23,15 @@ constexpr double PI = 3.14159265358979323846;
 double normalize_degrees(double degrees);
 
 /**
+ * Given a left, right, and maximum speed, calculate a new set of speed values that preserve the
+ * ratio between left and right if one of the two values is over the maximum threshold.
+ * 
+ * @return A pair of speed values {left_speed, right_speed} that is correctly scaled down if one
+ * of the two values exceeds max_speed.
+*/
+std::pair<double, double> normalize_speeds(double left_speed, double right_speed, double max_speed);
+
+/**
  * Converts an angle in degrees to an angle in radians.
  *
  * @param degrees The angle in degrees.

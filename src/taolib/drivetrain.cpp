@@ -46,7 +46,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   DrivetrainProfile profile)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
-	  IMU(NULL),
+	  IMU(nullptr),
 	  drive_tolerance(profile.drive_tolerance),
 	  turn_tolerance(profile.turn_tolerance),
 	  lookahead_distance(profile.lookahead_distance),
@@ -87,7 +87,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
 	  right_encoder(&right_encoder),
-	  IMU(NULL),
+	  IMU(nullptr),
 	  drive_tolerance(profile.drive_tolerance),
 	  turn_tolerance(profile.turn_tolerance),
 	  lookahead_distance(profile.lookahead_distance),
@@ -130,18 +130,18 @@ double Drivetrain::get_heading() {
 	// The IMU has was passed in, but is not plugged in.
 	// Invalidate it's readings for the duration of the tracking routine.
 	// TODO: check for possible spikes in reported heading due to ESD, then invalidate it
-	if (!IMU_invalid && IMU != NULL && !IMU->installed()) {
+	if (!IMU_invalid && IMU != nullptr && !IMU->installed()) {
 		IMU_invalid = true;
 	}
 
-	if (IMU != NULL && !IMU_invalid) {
+	if (IMU != nullptr && !IMU_invalid) {
 		// Use the IMU-reported gyroscope heading if available.
 		return std::fmod((360 - IMU->heading()) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
 		double left_distance, right_distance;
 
-		if (left_encoder != NULL && right_encoder != NULL) {
+		if (left_encoder != nullptr && right_encoder != nullptr) {
 			left_distance = left_encoder->position(vex::rev) * wheel_circumference;
 			right_distance = right_encoder->position(vex::rev) * wheel_circumference;
 		} else {
@@ -266,18 +266,11 @@ int Drivetrain::daemon() {
 		double left_voltage = 12 * (drive_velocity + turn_velocity) / 100;
 		double right_voltage = 12 * (drive_velocity - turn_velocity) / 100;
 
-		// Find the largest of the two calculated voltages (left or right), and
-		// check if it is greater than the maximum voltage that the motor can
-		// run at (12V). If it is, then divide by the largest voltage.
-		double largest_voltage = std::max(std::abs(left_voltage), std::abs(right_voltage));
-		if (largest_voltage >= 12) {
-			left_voltage /= largest_voltage;
-			right_voltage /= largest_voltage;
-		}
+		std::pair<double, double> normalized_voltages = math::normalize_speeds(left_voltage, right_voltage, 12);
 
 		// Spin motors at the output voltage.
-		left_motors.spin(vex::forward, left_voltage, vex::percent);
-		right_motors.spin(vex::forward, right_voltage, vex::percent);
+		left_motors.spin(vex::forward, normalized_voltages.first, vex::volt);
+		right_motors.spin(vex::forward, normalized_voltages.second, vex::volt);
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.
@@ -342,7 +335,7 @@ void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
 	right_motors.resetPosition();
 
 	// Reset gyro heading.
-	if (IMU != NULL) {
+	if (IMU != nullptr) {
 		IMU->resetHeading();
 	}
 	this->start_heading = start_heading;

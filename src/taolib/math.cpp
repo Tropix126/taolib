@@ -2,8 +2,7 @@
  * @file src/taolib/math.cpp
  * @author Tropical
  *
- * Contains various helper functions and variables used in mathematical
- * operations.
+ * Various helper functions and variables used in mathematical operations.
  */
 
 
@@ -40,7 +39,7 @@ std::pair<double, double> normalize_speeds(double left_speed, double right_speed
 	return { left_speed, right_speed };
 }
 
-std::vector<Vector2> line_circle_intersections(Vector2 center, Vector2 point_1, Vector2 point_2, double radius) {
+std::vector<Vector2> line_circle_intersections(Vector2 center, double radius, Vector2 point_1, Vector2 point_2) {
 	std::vector<Vector2> intersections = {};
 
 	// Subtract the circle's center to offset the system to origin.

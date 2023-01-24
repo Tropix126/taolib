@@ -127,9 +127,8 @@ DrivetrainProfile Drivetrain::get_profile() const {
 	};
 }
 double Drivetrain::get_heading() {
-	// The IMU has was passed in, but is not plugged in.
-	// Invalidate it's readings for the duration of the tracking routine.
-	// TODO: check for possible spikes in reported heading due to ESD, then invalidate it
+	// The IMU has was passed in, but is not plugged in. Invalidate it's readings for the duration of the tracking routine.
+	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the IMU if detected.
 	if (!IMU_invalid && IMU != nullptr && !IMU->installed()) {
 		IMU_invalid = true;
 	}
@@ -262,10 +261,11 @@ int Drivetrain::daemon() {
 			drive_velocity *= turn_scale;
 		}
 
-		// Calculate the left and motor right voltages
+		// Calculate the (uncapped) left and motor right voltages.
 		double left_voltage = 12 * (drive_velocity + turn_velocity) / 100;
 		double right_voltage = 12 * (drive_velocity - turn_velocity) / 100;
 
+		// Normalize the voltages to be within +-12v while preserving the ratio of left to right speed.
 		std::pair<double, double> normalized_voltages = math::normalize_speeds(left_voltage, right_voltage, 12);
 
 		// Spin motors at the output voltage.
@@ -274,7 +274,7 @@ int Drivetrain::daemon() {
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, then reset the counter.
-		if (std::abs(drive_error) < drive_tolerance && (std::abs(turn_error) < turn_tolerance || error_mode == ErrorModes::Absolute)) {
+		if (std::abs(drive_error) <= drive_tolerance && (std::abs(turn_error) <= turn_tolerance || error_mode == ErrorModes::Absolute)) {
 			settle_counter++;
 		} else {
 			settle_counter = 0;
@@ -282,7 +282,7 @@ int Drivetrain::daemon() {
 
 		// Once the settle_counter reaches 10 (~100ms of wait time), the drivetrain is now considered "settled", and
 		// blocking movement functions will now complete.
-		if (settle_counter >= 10 && !settled) {
+		if (settle_counter == 10 && !settled) {
 			settled = true;
 
 			if (error_mode == ErrorModes::Absolute)  {
@@ -406,7 +406,7 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 		while (global_position.distance(end) > lookahead_distance) {
 			// Find the point(s) of intersection between a circle centered around our global position with the radius of our
 			// lookahead distance and a line segment formed between our starting/ending points.
-			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, start, end, lookahead_distance);
+			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, lookahead_distance, start, end);
 
 			Vector2 target_intersection;
 			bool intersection_found = true;

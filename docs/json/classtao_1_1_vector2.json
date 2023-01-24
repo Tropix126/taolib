@@ -1,0 +1,1646 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "brief": "Class object to represent a vector within a 2 dimensional space. ",
+  "category": "classes",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "friends": [
+    {
+      "abstract": false,
+      "anchor": "#friend-operator+",
+      "argsString": "(const Vector2 &first, const Vector2 &second)",
+      "brief": "Scalar and vector addition. ",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator+",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator+",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 105
+      },
+      "name": "operator+",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator+",
+      "refid": "classtao_1_1_vector2_1a6edb1310a676dcfda6f574e5822d3c4e",
+      "static": false,
+      "strong": false,
+      "summary": "Scalar and vector addition. ",
+      "title": "operator+",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator+",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator+",
+      "argsString": "(const Vector2 &first, double scalar)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator+",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator+",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 106
+      },
+      "name": "operator+",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator+",
+      "refid": "classtao_1_1_vector2_1a80bc1eebcc4f873563795c3d1c642f2c",
+      "static": false,
+      "strong": false,
+      "title": "operator+",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator+",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator+",
+      "argsString": "(double scalar, const Vector2 &second)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator+",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator+",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 107
+      },
+      "name": "operator+",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator+",
+      "refid": "classtao_1_1_vector2_1a562ab9c68ef114811112c9005a83e78c",
+      "static": false,
+      "strong": false,
+      "title": "operator+",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator+",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator-",
+      "argsString": "(const Vector2 &first, const Vector2 &second)",
+      "brief": "Scalar and vector subtraction. ",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator-",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator-",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 115
+      },
+      "name": "operator-",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator-",
+      "refid": "classtao_1_1_vector2_1a3a71148e45019e258f7f522acc91442e",
+      "static": false,
+      "strong": false,
+      "summary": "Scalar and vector subtraction. ",
+      "title": "operator-",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator-",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator-",
+      "argsString": "(const Vector2 &first, double scalar)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator-",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator-",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 116
+      },
+      "name": "operator-",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator-",
+      "refid": "classtao_1_1_vector2_1acbb46280f945972ce526b20f19eb25a6",
+      "static": false,
+      "strong": false,
+      "title": "operator-",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator-",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator-",
+      "argsString": "(double scalar, const Vector2 &second)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator-",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator-",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 117
+      },
+      "name": "operator-",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator-",
+      "refid": "classtao_1_1_vector2_1a15e352f172094fd3ace2bb09d8775e91",
+      "static": false,
+      "strong": false,
+      "title": "operator-",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator-",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator*",
+      "argsString": "(const Vector2 &first, const Vector2 &second)",
+      "brief": "Scalar and vector multiplication. ",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator*",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator*",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 125
+      },
+      "name": "operator*",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator*",
+      "refid": "classtao_1_1_vector2_1a7582b11a2427f500f88c486269e467c6",
+      "static": false,
+      "strong": false,
+      "summary": "Scalar and vector multiplication. ",
+      "title": "operator*",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator*",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator*",
+      "argsString": "(const Vector2 &first, double scalar)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator*",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator*",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 126
+      },
+      "name": "operator*",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator*",
+      "refid": "classtao_1_1_vector2_1a1390cc58a6c7ec5e2487c38bae1bb4e5",
+      "static": false,
+      "strong": false,
+      "title": "operator*",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator*",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator*",
+      "argsString": "(const double scalar, const Vector2 &second)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator*",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator*",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 127
+      },
+      "name": "operator*",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "const double",
+          "typePlain": "const double"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator*",
+      "refid": "classtao_1_1_vector2_1a97e3dd5c4e17c193992b181356a101c3",
+      "static": false,
+      "strong": false,
+      "title": "operator*",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator*",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator/",
+      "argsString": "(const Vector2 &first, const Vector2 &second)",
+      "brief": "Scalar and vector division. ",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator/",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator/",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 135
+      },
+      "name": "operator/",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator/",
+      "refid": "classtao_1_1_vector2_1a9d95331313366e0476cac3e17c55664e",
+      "static": false,
+      "strong": false,
+      "summary": "Scalar and vector division. ",
+      "title": "operator/",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator/",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator/",
+      "argsString": "(const Vector2 &first, double scalar)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator/",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator/",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 136
+      },
+      "name": "operator/",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator/",
+      "refid": "classtao_1_1_vector2_1a59cacb96af6ba4d7386e9cb98048ae7d",
+      "static": false,
+      "strong": false,
+      "title": "operator/",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator/",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator/",
+      "argsString": "(double scalar, const Vector2 &second)",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 operator/",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator/",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 16,
+        "file": "include/taolib/vector2.h",
+        "line": 137
+      },
+      "name": "operator/",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "double",
+          "typePlain": "double"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator/",
+      "refid": "classtao_1_1_vector2_1a9963c1e89c4e1678ac603eea6d638982",
+      "static": false,
+      "strong": false,
+      "title": "operator/",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#friend-operator/",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#friend-operator==",
+      "argsString": "(const Vector2 &first, const Vector2 &second)",
+      "brief": "Vector comparison. ",
+      "category": "friends",
+      "const": false,
+      "default": false,
+      "definition": "bool operator==",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator==",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "friend",
+      "language": "cpp",
+      "location": {
+        "column": 13,
+        "file": "include/taolib/vector2.h",
+        "line": 145
+      },
+      "name": "operator==",
+      "override": false,
+      "params": [
+        {
+          "name": "first",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        },
+        {
+          "name": "second",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator==",
+      "refid": "classtao_1_1_vector2_1a8f5e1db52aa8a55dd104f3e85e69eb2b",
+      "static": false,
+      "strong": false,
+      "summary": "Vector comparison. ",
+      "title": "operator==",
+      "type": "bool",
+      "typePlain": "bool",
+      "url": "classtao_1_1_vector2.md#friend-operator==",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "fullname": "tao::Vector2",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "<vector2.h>",
+  "inline": false,
+  "kind": "class",
+  "language": "cpp",
+  "location": {
+    "bodyEnd": 157,
+    "bodyFile": "include/taolib/vector2.h",
+    "bodyStart": 14,
+    "column": 1,
+    "file": "include/taolib/vector2.h",
+    "line": 14
+  },
+  "name": "tao::Vector2",
+  "override": false,
+  "parent": {
+    "anchor": "",
+    "category": "namespaces",
+    "fullname": "tao",
+    "kind": "namespace",
+    "language": "cpp",
+    "name": "tao",
+    "qualifiedname": "tao",
+    "refid": "namespacetao",
+    "title": "tao",
+    "url": "namespacetao.md",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "privateAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-x",
+      "brief": "The x value of the vector. ",
+      "category": "attributes",
+      "const": false,
+      "definition": "double tao::Vector2::x",
+      "explicit": false,
+      "fullname": "tao::Vector2::x",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "variable",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/vector2.h",
+        "bodyStart": 151,
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 151
+      },
+      "name": "x",
+      "override": false,
+      "qualifiedname": "tao::Vector2::x",
+      "refid": "classtao_1_1_vector2_1a84b259315e2000abdc2e6af5cd65d3c9",
+      "static": false,
+      "strong": false,
+      "summary": "The x value of the vector. ",
+      "title": "x",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#variable-x",
+      "visibility": "private"
+    },
+    {
+      "abstract": false,
+      "anchor": "#variable-y",
+      "brief": "The y value of the vector. ",
+      "category": "attributes",
+      "const": false,
+      "definition": "double tao::Vector2::y",
+      "explicit": false,
+      "fullname": "tao::Vector2::y",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "variable",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/vector2.h",
+        "bodyStart": 156,
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 156
+      },
+      "name": "y",
+      "override": false,
+      "qualifiedname": "tao::Vector2::y",
+      "refid": "classtao_1_1_vector2_1af1bb61a0f28fe19d09efbe4f7b01da6e",
+      "static": false,
+      "strong": false,
+      "summary": "The y value of the vector. ",
+      "title": "y",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#variable-y",
+      "visibility": "private"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-vector2",
+      "argsString": "(double x, double y)",
+      "brief": "Initializes the [Vector2](classtao_1_1_vector2.md) class with preloaded x and y values. ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "tao::Vector2::Vector2",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::Vector2",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 1,
+        "file": "include/taolib/vector2.h",
+        "line": 21
+      },
+      "name": "Vector2",
+      "override": false,
+      "paramList": [
+        {
+          "name": "x",
+          "text": "x value of the vector "
+        },
+        {
+          "name": "y",
+          "text": "y value of the vector "
+        }
+      ],
+      "params": [
+        {
+          "name": "x",
+          "type": "double",
+          "typePlain": "double"
+        },
+        {
+          "name": "y",
+          "type": "double",
+          "typePlain": "double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::Vector2",
+      "refid": "classtao_1_1_vector2_1a76b488cae66f02da126eafefbc5090d9",
+      "static": false,
+      "strong": false,
+      "summary": "Initializes the Vector2 class with preloaded x and y values. ",
+      "title": "Vector2",
+      "url": "classtao_1_1_vector2.md#function-vector2",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-vector2",
+      "argsString": "(const Vector2 &v)",
+      "brief": "Initializes the [Vector2](classtao_1_1_vector2.md) class with another vector. ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "tao::Vector2::Vector2",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::Vector2",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 1,
+        "file": "include/taolib/vector2.h",
+        "line": 27
+      },
+      "name": "Vector2",
+      "override": false,
+      "paramList": [
+        {
+          "name": "v",
+          "text": "The other vector "
+        }
+      ],
+      "params": [
+        {
+          "name": "v",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::Vector2",
+      "refid": "classtao_1_1_vector2_1a4b683aa12a50d17113c0ca5456e5d42a",
+      "static": false,
+      "strong": false,
+      "summary": "Initializes the Vector2 class with another vector. ",
+      "title": "Vector2",
+      "url": "classtao_1_1_vector2.md#function-vector2",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-vector2",
+      "argsString": "()",
+      "brief": "Initializes the [Vector2](classtao_1_1_vector2.md) class with the default x and y values of 0. ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "tao::Vector2::Vector2",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::Vector2",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 1,
+        "file": "include/taolib/vector2.h",
+        "line": 32
+      },
+      "name": "Vector2",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::Vector2",
+      "refid": "classtao_1_1_vector2_1a18f0d9cf89f39649c63c49d47ffcc9f7",
+      "static": false,
+      "strong": false,
+      "summary": "Initializes the Vector2 class with the default x and y values of 0. ",
+      "title": "Vector2",
+      "url": "classtao_1_1_vector2.md#function-vector2",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-get-x",
+      "argsString": "() const",
+      "brief": "Returns the x value of the vector. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::get_x",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::get_x",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 37
+      },
+      "name": "get_x",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::get_x",
+      "refid": "classtao_1_1_vector2_1a76c1626e03e6cdcfdc5a7580c0c05c5c",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the x value of the vector. ",
+      "title": "get_x",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-get-x",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-get-y",
+      "argsString": "() const",
+      "brief": "Returns the y value of the vector. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::get_y",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::get_y",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 42
+      },
+      "name": "get_y",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::get_y",
+      "refid": "classtao_1_1_vector2_1a0e61744c51a72cb2b0604d26d23e132c",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the y value of the vector. ",
+      "title": "get_y",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-get-y",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-get-magnitude",
+      "argsString": "() const",
+      "brief": "Returns the magnitude of the vector (the vector's length, or distance from the origin) ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::get_magnitude",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::get_magnitude",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 47
+      },
+      "name": "get_magnitude",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::get_magnitude",
+      "refid": "classtao_1_1_vector2_1ad4cf4b8c74741670cf9f442b8710ddc5",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the magnitude of the vector (the vector's length, or distance from the origin) ",
+      "title": "get_magnitude",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-get-magnitude",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-get-angle",
+      "argsString": "() const",
+      "brief": "Returns the angle of the vector. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::get_angle",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::get_angle",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 52
+      },
+      "name": "get_angle",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::get_angle",
+      "refid": "classtao_1_1_vector2_1ab8566c5cf96c055a97c60acb5eb87b1f",
+      "static": false,
+      "strong": false,
+      "summary": "Returns the angle of the vector. ",
+      "title": "get_angle",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-get-angle",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-normalized",
+      "argsString": "() const",
+      "brief": "Normalize the vector (change the length of the vector to 1 while retaining the direction) ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "Vector2 tao::Vector2::normalized",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::normalized",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 58
+      },
+      "name": "normalized",
+      "override": false,
+      "params": [],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::normalized",
+      "refid": "classtao_1_1_vector2_1aad656f9e325178df919ea1db6b1228c1",
+      "returns": [
+        "Normalized version of the vector "
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Normalize the vector (change the length of the vector to 1 while retaining the direction) ",
+      "title": "normalized",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#function-normalized",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-rotated",
+      "argsString": "(double angle) const",
+      "brief": "Rotate the vector by a given angle in radians. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "Vector2 tao::Vector2::rotated",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::rotated",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 67
+      },
+      "name": "rotated",
+      "override": false,
+      "paramList": [
+        {
+          "name": "angle",
+          "text": "The angle by which the vector should be rotated"
+        }
+      ],
+      "params": [
+        {
+          "name": "angle",
+          "type": "double",
+          "typePlain": "double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::rotated",
+      "refid": "classtao_1_1_vector2_1af5a50aba85663b8e72c7131b0ee93f03",
+      "returns": [
+        "Normalized version of the vector "
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Rotate the vector by a given angle in radians. ",
+      "title": "rotated",
+      "type": "[Vector2](classtao_1_1_vector2.md)",
+      "typePlain": "Vector2",
+      "url": "classtao_1_1_vector2.md#function-rotated",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-dot",
+      "argsString": "(const Vector2 &other) const",
+      "brief": "Calculate the dot product of two vetors. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::dot",
+      "deleted": false,
+      "details": "The dot product is the product of the vector in the same length.",
+      "explicit": false,
+      "fullname": "tao::Vector2::dot",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 78
+      },
+      "name": "dot",
+      "override": false,
+      "paramList": [
+        {
+          "name": "other",
+          "text": "The other vector to perform the dot operation with."
+        }
+      ],
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::dot",
+      "refid": "classtao_1_1_vector2_1a9ff2da09ab7e1e4bb184eacee38b2646",
+      "returns": [
+        "Vector result of the dot operation. "
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Calculate the dot product of two vetors. ",
+      "title": "dot",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-dot",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-cross",
+      "argsString": "(const Vector2 &other) const",
+      "brief": "Calculate the cross product of two vetors. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::cross",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::cross",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 87
+      },
+      "name": "cross",
+      "override": false,
+      "paramList": [
+        {
+          "name": "other",
+          "text": "The other vector to perform the cross operation with."
+        }
+      ],
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::cross",
+      "refid": "classtao_1_1_vector2_1a458233bbf27d2bcba94ce96aaedb9343",
+      "returns": [
+        "Vector result of the cross operation. "
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Calculate the cross product of two vetors. ",
+      "title": "cross",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-cross",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-distance",
+      "argsString": "(const Vector2 &other) const",
+      "brief": "Calculates the distance between two vectors. ",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::distance",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::distance",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 96
+      },
+      "name": "distance",
+      "override": false,
+      "paramList": [
+        {
+          "name": "other",
+          "text": "The other vector to perform the distance calculation with."
+        }
+      ],
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::distance",
+      "refid": "classtao_1_1_vector2_1a5360e1671e705b132c60e1c0c248d92a",
+      "returns": [
+        "Vector result of the dot operation. "
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Calculates the distance between two vectors. ",
+      "title": "distance",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-distance",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-project",
+      "argsString": "(const Vector2 &other) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "double tao::Vector2::project",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::project",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 8,
+        "file": "include/taolib/vector2.h",
+        "line": 98
+      },
+      "name": "project",
+      "override": false,
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::project",
+      "refid": "classtao_1_1_vector2_1a36fead8cbbcf0de28c6accf2da32a7eb",
+      "static": false,
+      "strong": false,
+      "title": "project",
+      "type": "double",
+      "typePlain": "double",
+      "url": "classtao_1_1_vector2.md#function-project",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator+=",
+      "argsString": "(const Vector2 &other)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator+=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator+=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 109
+      },
+      "name": "operator+=",
+      "override": false,
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator+=",
+      "refid": "classtao_1_1_vector2_1ab361fde9f3ed1285c85f5d059374b980",
+      "static": false,
+      "strong": false,
+      "title": "operator+=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator+=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator+=",
+      "argsString": "(const double scalar)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator+=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator+=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 110
+      },
+      "name": "operator+=",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "const double",
+          "typePlain": "const double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator+=",
+      "refid": "classtao_1_1_vector2_1a1720ce63dde12e8c4a0236e7553c0653",
+      "static": false,
+      "strong": false,
+      "title": "operator+=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator+=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator-=",
+      "argsString": "(const Vector2 &other)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator-=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator-=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 119
+      },
+      "name": "operator-=",
+      "override": false,
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator-=",
+      "refid": "classtao_1_1_vector2_1aa29f34e78ef253ce518586307a82350b",
+      "static": false,
+      "strong": false,
+      "title": "operator-=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator-=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator-=",
+      "argsString": "(const double scalar)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator-=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator-=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 120
+      },
+      "name": "operator-=",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "const double",
+          "typePlain": "const double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator-=",
+      "refid": "classtao_1_1_vector2_1ac18bd615edb410fa1b72c24f4cf1a3a9",
+      "static": false,
+      "strong": false,
+      "title": "operator-=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator-=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator*=",
+      "argsString": "(const Vector2 &other)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator*=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator*=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 129
+      },
+      "name": "operator*=",
+      "override": false,
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator*=",
+      "refid": "classtao_1_1_vector2_1af5d3dc56ee6d63b387caed93f91cd766",
+      "static": false,
+      "strong": false,
+      "title": "operator*=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator*=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator*=",
+      "argsString": "(const double scalar)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator*=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator*=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 130
+      },
+      "name": "operator*=",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "const double",
+          "typePlain": "const double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator*=",
+      "refid": "classtao_1_1_vector2_1a32bf61f3816b287660adcadf0de99047",
+      "static": false,
+      "strong": false,
+      "title": "operator*=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator*=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator/=",
+      "argsString": "(const Vector2 &other)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator/=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator/=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 139
+      },
+      "name": "operator/=",
+      "override": false,
+      "params": [
+        {
+          "name": "other",
+          "type": "const [Vector2](classtao_1_1_vector2.md) &",
+          "typePlain": "const Vector2 &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator/=",
+      "refid": "classtao_1_1_vector2_1a87da7fc471bab0f04710ff69b647fcee",
+      "static": false,
+      "strong": false,
+      "title": "operator/=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator/=",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-operator/=",
+      "argsString": "(const double scalar)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Vector2 & tao::Vector2::operator/=",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Vector2::operator/=",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 9,
+        "file": "include/taolib/vector2.h",
+        "line": 140
+      },
+      "name": "operator/=",
+      "override": false,
+      "params": [
+        {
+          "name": "scalar",
+          "type": "const double",
+          "typePlain": "const double"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Vector2::operator/=",
+      "refid": "classtao_1_1_vector2_1a5b5b3bd9f3d02ca2074c03323f4b6cd4",
+      "static": false,
+      "strong": false,
+      "title": "operator/=",
+      "type": "[Vector2](classtao_1_1_vector2.md) &",
+      "typePlain": "Vector2 &",
+      "url": "classtao_1_1_vector2.md#function-operator/=",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "qualifiedname": "tao::Vector2",
+  "refid": "classtao_1_1_vector2",
+  "static": false,
+  "strong": false,
+  "summary": "Class object to represent a vector within a 2 dimensional space. ",
+  "title": "tao::Vector2",
+  "url": "classtao_1_1_vector2.md",
+  "visibility": "public"
+}

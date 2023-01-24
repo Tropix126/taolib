@@ -1,14 +1,14 @@
 #include "taolib/taolib.h"
 #include "v5_cpp.h"
 
-vex::motor_group left_drive(
-	vex::motor(vex::PORT1, vex::ratio18_1, true),
-	vex::motor(vex::PORT2, vex::ratio18_1, true)
-);
-vex::motor_group right_drive(
-	vex::motor(vex::PORT3, vex::ratio18_1, false),
-	vex::motor(vex::PORT4, vex::ratio18_1, false)
-);
+vex::motor front_left_drive(vex::PORT1, vex::ratio18_1, true);
+vex::motor back_left_drive(vex::PORT2, vex::ratio18_1, true);
+vex::motor front_right_drive(vex::PORT3, vex::ratio18_1, false);
+vex::motor back_right_drive(vex::PORT4, vex::ratio18_1, false);
+
+vex::motor_group left_drive(front_left_drive, back_left_drive);
+vex::motor_group right_drive(front_right_drive, back_right_drive);
+
 vex::inertial IMU(vex::PORT9);
 
 tao::Drivetrain drivetrain(left_drive, right_drive, IMU, {

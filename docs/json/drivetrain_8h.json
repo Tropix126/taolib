@@ -1,0 +1,117 @@
+{
+  "abstract": false,
+  "anchor": "#file-drivetrain.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/drivetrain.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "<cmath>",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/drivetrain.h",
+    "line": 0
+  },
+  "name": "include/taolib/drivetrain.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "\n#pragma once\n\n#include <cmath>\n#include <vector>\n#include <ratio>\n#include <memory>\n\n#include \"v5_cpp.h\"\n\n#include \"vector2.h\"\n#include \"pid.h\"\n#include \"threading.h\"\n\nnamespace tao {\n\ntypedef struct {\n    PIDGains drive_gains;\n\n    PIDGains turn_gains;\n\n    double drive_tolerance;\n\n    double turn_tolerance;\n\n    double lookahead_distance;\n\n    double track_width;\n\n    double wheel_radius;\n\n    double external_gear_ratio;\n} DrivetrainProfile;\n\nclass Drivetrain {\npublic:\n    // Constructors\n\n    Drivetrain(\n        vex::motor_group& left_motors,\n        vex::motor_group& right_motors,\n        vex::inertial& IMU,\n        DrivetrainProfile profile\n    );\n\n    Drivetrain(\n        vex::motor_group& left_motors,\n        vex::motor_group& right_motors,\n        DrivetrainProfile profile\n    );\n\n    Drivetrain(\n        vex::motor_group& left_motors,\n        vex::motor_group& right_motors,\n        vex::encoder& left_encoder,\n        vex::encoder& right_encoder,\n        vex::inertial& IMU,\n        DrivetrainProfile profile\n    );\n\n    Drivetrain(\n        vex::motor_group& left_motors,\n        vex::motor_group& right_motors,\n        vex::encoder& left_encoder,\n        vex::encoder& right_encoder,\n        DrivetrainProfile profile\n    );\n\n    ~Drivetrain();\n\n\n\n    // Getters\n\n    Vector2 get_position() const;\n\n    double get_heading();\n\n    double get_drive_distance() const;\n\n    PIDGains get_drive_gains() const;\n\n    PIDGains get_turn_gains() const;\n\n    double get_drive_error() const;\n\n    double get_turn_error() const;\n\n    double get_drive_tolerance() const;\n\n    double get_turn_tolerance() const;\n\n    double get_lookahead_distance() const;\n\n    double get_track_width() const;\n\n    double get_external_gear_ratio() const;\n\n    double get_max_drive_velocity() const;\n\n    double get_max_turn_velocity() const;\n\n    DrivetrainProfile get_profile() const;\n\n    bool is_settled() const;\n\n\n\n    // Setters\n\n    void set_drive_tolerance(double error);\n    \n    void set_turn_tolerance(double error);\n\n    void set_lookahead_distance(double distance);\n\n    void set_drive_gains(const PIDGains& gains);\n    \n    void set_turn_gains(const PIDGains& gains);\n    \n    void set_external_gear_ratio(double ratio);\n    \n    void set_max_drive_velocity(double velocity);\n\n    void set_max_turn_velocity(double velocity);\n\n\n\n    // Lifecycle functions\n\n    void setup_tracking(Vector2 start_position = Vector2(0, 0), double start_heading = 0, bool enable_logging = true);\n\n    void reset_tracking(Vector2 start_position = Vector2(0, 0), double start_heading = 0);\n\n    void stop_tracking();\n\n    \n\n    // Movement functions\n\n    void drive(double distance, bool blocking = true);\n\n    void turn_to(double heading, bool blocking = true);\n\n    void turn_to(Vector2 point, bool blocking = true);\n\n    void move_to(Vector2 position, bool blocking = true);\n    \n    void move_path(std::vector<Vector2> path);\n\n    void hold_position(bool blocking = true);\n\nprivate:\n    enum class ErrorModes {\n        Relative,\n        Absolute\n    };\n\n    vex::motor_group &left_motors, &right_motors;\n    vex::encoder *left_encoder, *right_encoder;\n    vex::inertial* IMU;\n    \n    Vector2 global_position;\n\n    Vector2 target_position;\n    double target_distance, target_heading;\n    double start_heading;\n    double initial_heading;\n\n    ErrorModes error_mode;\n    \n    double max_drive_velocity = 100, max_turn_velocity = 100;\n    double drive_tolerance, turn_tolerance;\n    double drive_error, turn_error;\n\n    double lookahead_distance;\n    double track_width;\n    double wheel_circumference;\n    double external_gear_ratio;\n\n\n    bool settled = false;\n    bool IMU_invalid = false;\n\n    PIDController drive_controller, turn_controller;\n\n    void set_target_position(Vector2 position);\n    void set_target_distance(double distance);\n    void set_target_heading(double heading);\n\n    int daemon();\n    int logging();\n    \n    bool daemon_active = false;\n    bool logging_active = false;\n\n    vex::thread daemon_thread, logging_thread;\n};\n\n}",
+  "publicClasses": [
+    {
+      "anchor": "",
+      "brief": "A structure describing values specific to the drivetrain's physical state. ",
+      "category": "classes",
+      "fullname": "tao::DrivetrainProfile",
+      "kind": "struct",
+      "language": "cpp",
+      "name": "tao::DrivetrainProfile",
+      "qualifiedname": "tao::DrivetrainProfile",
+      "refid": "structtao_1_1_drivetrain_profile",
+      "summary": "A structure describing values specific to the drivetrain's physical state. ",
+      "title": "tao::DrivetrainProfile",
+      "url": "structtao_1_1_drivetrain_profile.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "A class representing a nonholonomic drivetrain using position tracking and PID motion control. ",
+      "category": "classes",
+      "fullname": "tao::Drivetrain",
+      "kind": "class",
+      "language": "cpp",
+      "name": "tao::Drivetrain",
+      "qualifiedname": "tao::Drivetrain",
+      "refid": "classtao_1_1_drivetrain",
+      "summary": "A class representing a nonholonomic drivetrain using position tracking and PID motion control. ",
+      "title": "tao::Drivetrain",
+      "url": "classtao_1_1_drivetrain.md",
+      "visibility": "public"
+    }
+  ],
+  "refid": "drivetrain_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/drivetrain.h",
+  "url": "drivetrain_8h.md#file-drivetrain.h",
+  "visibility": "public"
+}

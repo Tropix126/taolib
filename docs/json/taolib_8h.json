@@ -1,0 +1,85 @@
+{
+  "abstract": false,
+  "anchor": "#file-taolib.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/taolib.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "\"drivetrain.h\"",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/taolib.h",
+    "line": 0
+  },
+  "name": "include/taolib/taolib.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "#include \"drivetrain.h\"\n#include \"vector2.h\"\n\n// TODO:\n// - Finalize API design\n//   - Non-blocking pure pursusit (+performing actions once the drivetrain has passed a waypoint.)\n//   - Moving to a point backwards always?\n// - Documentation (and tutorials/examples)\n// - Web interface for graphical auton routine planning\n// - Pivot turning (turning with only one side of the drivetrain.)\n// - 3 Encoder odometry (left/right/center)\n//   - Useful for peeps without traction wheels or locked omnis who can easily slide sideways\n// - PROS Support\n//   - I strongly dislike parts of the PROS API, which is why I ditched this previously after\n//     it was mostly finished. Not sure if this should be a separate project or not, or how\n//     it'll affect documentation.\n// - Slew rate limiting\n//   - Last time I messed with voltage control, I burnt out 2 motors in the span of a second.\n//     I'm 90% sure that non-rev10 motors can handle basic PID control, but I want to be safe.\nnamespace tao {}",
+  "refid": "taolib_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/taolib.h",
+  "url": "taolib_8h.md#file-taolib.h",
+  "visibility": "public"
+}

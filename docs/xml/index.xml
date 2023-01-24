@@ -153,11 +153,12 @@
   <compound refid="namespacetao_1_1math" kind="namespace"><name>tao::math</name>
     <member refid="math_8h_1a904306e9fcf2e0dbab20011a89ef2c76" kind="variable"><name>PI</name></member>
     <member refid="math_8h_1ac18a2780e7f143d609f000fcd8b1d140" kind="function"><name>normalize_degrees</name></member>
+    <member refid="math_8h_1ad983cebd164e1a084690578b5109aeac" kind="function"><name>normalize_speeds</name></member>
     <member refid="math_8h_1a0c338ae699604976c4ae5ae4b9dc6115" kind="function"><name>degrees_to_radians</name></member>
     <member refid="math_8h_1a94179e6977cfd15f2e8f6f9e74a6552f" kind="function"><name>radians_to_degrees</name></member>
     <member refid="math_8h_1a12b8b8e2c9cab5cc23719cadf3d358e6" kind="function"><name>clamp</name></member>
-    <member refid="math_8h_1a5eed94f9a3b48ee2a323f5d37bd89504" kind="function"><name>sign</name></member>
-    <member refid="math_8h_1aaa8808717aee30e77943da0a2ec76bec" kind="function"><name>line_circle_intersections</name></member>
+    <member refid="math_8h_1a45d3693678b15657a25eba8d16223ab5" kind="function"><name>sign</name></member>
+    <member refid="math_8h_1a6703bcfcdf062c26b9450553be54c1a3" kind="function"><name>line_circle_intersections</name></member>
   </compound>
   <compound refid="namespacetao_1_1threading" kind="namespace"><name>tao::threading</name>
     <member refid="threading_8h_1a89090dc949bed226d9082fd4e02bec66" kind="function"><name>make_thread</name></member>

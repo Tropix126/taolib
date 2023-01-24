@@ -1,0 +1,115 @@
+{
+  "abstract": false,
+  "anchor": "#file-pid.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/pid.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "<iostream>",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/pid.h",
+    "line": 0
+  },
+  "name": "include/taolib/pid.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "\n#pragma once\n#include <iostream>\n\nnamespace tao {\n\ntypedef struct {\n    double kP;\n\n    double kI;\n\n    double kD;\n} PIDGains;\n\n// PID controller class\nclass PIDController {\npublic:\n    // Constructor(s)\n    PIDController();\n    PIDController(PIDGains gains);\n\n    // Update the PID output with the given error and time step\n    double update(double error, double delta_time);\n\n    // Update the controller to use new gains.\n    PIDGains get_gains() const;\n    void set_gains(const PIDGains& gains);\n\nprivate:\n    // PID gains\n    PIDGains gains;\n\n    // Previous error and integral term\n    double previous_error, integral;\n};\n\n}",
+  "publicClasses": [
+    {
+      "anchor": "",
+      "brief": "A structure containing the gain constants for a PID feedback controller. ",
+      "category": "classes",
+      "fullname": "tao::PIDGains",
+      "kind": "struct",
+      "language": "cpp",
+      "name": "tao::PIDGains",
+      "qualifiedname": "tao::PIDGains",
+      "refid": "structtao_1_1_p_i_d_gains",
+      "summary": "A structure containing the gain constants for a PID feedback controller. ",
+      "title": "tao::PIDGains",
+      "url": "structtao_1_1_p_i_d_gains.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "category": "classes",
+      "fullname": "tao::PIDController",
+      "kind": "class",
+      "language": "cpp",
+      "name": "tao::PIDController",
+      "qualifiedname": "tao::PIDController",
+      "refid": "classtao_1_1_p_i_d_controller",
+      "title": "tao::PIDController",
+      "url": "classtao_1_1_p_i_d_controller.md",
+      "visibility": "public"
+    }
+  ],
+  "refid": "pid_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/pid.h",
+  "url": "pid_8h.md#file-pid.h",
+  "visibility": "public"
+}

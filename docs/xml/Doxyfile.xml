@@ -213,7 +213,7 @@
   <option  id='ALPHABETICAL_INDEX' default='yes' type='bool'><value>YES</value></option>
   <option  id='IGNORE_PREFIX' default='yes' type='stringlist'>
   </option>
-  <option  id='GENERATE_HTML' default='yes' type='bool'><value>YES</value></option>
+  <option  id='GENERATE_HTML' default='no' type='bool'><value>NO</value></option>
   <option  id='HTML_OUTPUT' default='yes' type='string'><value><![CDATA[html]]></value></option>
   <option  id='HTML_FILE_EXTENSION' default='yes' type='string'><value><![CDATA[.html]]></value></option>
   <option  id='HTML_HEADER' default='yes' type='string'><value><![CDATA[]]></value></option>
@@ -254,7 +254,7 @@
   <option  id='QHG_LOCATION' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='GENERATE_ECLIPSEHELP' default='yes' type='bool'><value>NO</value></option>
   <option  id='ECLIPSE_DOC_ID' default='yes' type='string'><value><![CDATA[org.doxygen.Project]]></value></option>
-  <option  id='DISABLE_INDEX' default='no' type='bool'><value>YES</value></option>
+  <option  id='DISABLE_INDEX' default='yes' type='bool'><value>NO</value></option>
   <option  id='GENERATE_TREEVIEW' default='no' type='bool'><value>YES</value></option>
   <option  id='FULL_SIDEBAR' default='yes' type='bool'><value>NO</value></option>
   <option  id='ENUM_VALUES_PER_LINE' default='yes' type='int'><value>4</value></option>

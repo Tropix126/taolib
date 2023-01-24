@@ -24,9 +24,7 @@ tao::Drivetrain drivetrain(left_drive, right_drive, IMU, {
 
 int main() {
 	IMU.calibrate();
-	while (IMU.isCalibrating()) {
-		vex::wait(25, vex::msec);
-	}
+	while (IMU.isCalibrating()) { vex::wait(25, vex::msec); }
 
 	drivetrain.setup_tracking(tao::Vector2(0, 0), 90);
 	drivetrain.move_to(tao::Vector2(24, 24));

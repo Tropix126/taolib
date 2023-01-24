@@ -410,7 +410,6 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, lookahead_distance, start, end);
 
 			Vector2 target_intersection;
-			bool intersection_found = true;
 
 			// Choose the best intersection to go to, ensuring that we don't go backwards.
 			if (intersections.size() == 2) {
@@ -423,12 +422,10 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 			} else if (intersections.size() == 1) {
 				// There is one intersection. Go to that intersection.
 				target_intersection = intersections[0];
-			} else {
-				intersection_found = false; // No intersections are found. Hold the last found intersection.
 			}
 
 			// Move to the target intersection
-			if (intersection_found) {
+			if (intersections.size() > 0) {
 				Vector2 local_target(target_intersection - global_position);
 
 				set_target_distance(get_drive_distance() + local_target.get_magnitude());

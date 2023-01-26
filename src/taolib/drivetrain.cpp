@@ -320,7 +320,7 @@ int Drivetrain::daemon() {
 int Drivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
-		std::wprintf(L"(%f, %f) %f°\n", global_position.get_x(), global_position.get_y(), get_heading());
+		std::cout << "Global Position: " << "(" << global_position.get_x() << ", " << global_position.get_y() << ")" << " Heading: " << get_heading() << std::endl;
 
 		vex::this_thread::sleep_for(1000);
 	}

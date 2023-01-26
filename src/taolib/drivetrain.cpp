@@ -218,7 +218,14 @@ int Drivetrain::daemon() {
 		double average_wheel_travel = (wheel_travel.first + wheel_travel.second) / 2;
 		double average_delta_travel = (delta_travel.first + delta_travel.second) / 2;
 
-		// Update global position based on current heading and change in distance.
+		// Perform a basic odometry calculation that uses average wheel travel deltas
+		// and the current heading to approximate change in position using a straight
+		// line as the hypotenuse.
+		//
+		// This method is different from some more sophisticated odometry algorithms
+		// (such as the one used by The Pilons), in that it estimates arc length as
+		// a right triangle rather than forming an arc. The loss in accuracy of this
+		// is generally negligible, because it's recalculated every 10ms.
 		global_position += Vector2(
 			average_delta_travel * std::cos(math::degrees_to_radians(heading)),
 			average_delta_travel * std::sin(math::degrees_to_radians(heading))

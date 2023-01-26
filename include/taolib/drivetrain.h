@@ -142,17 +142,17 @@ public:
 	Vector2 get_position() const;
 
 	/**
+	 * Gets the average wheel travel distance of each side of the drivetrain.
+	 * @return A pair representing the total distance traveled by the left and right wheels of the drivetrain.
+	 */
+	std::pair<double, double> get_wheel_travel() const;
+
+	/**
 	 * Gets the current counter-clockwise heading of the drivetrain in degrees.
 	 * @note If the IMU is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain's track width measurements.
 	 * @return The current heading of the drivetrain in degrees.
 	 */
 	double get_heading();
-
-	/**
-	 * Gets the average linear distance from the starting position traveled by each wheel.
-	 * @return The average linear distance from the starting position traveled by each wheel.
-	 */
-	double get_drive_distance() const;
 
 	/**
 	 * Gets the current gain constants of the drive PID controller.

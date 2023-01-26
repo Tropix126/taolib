@@ -6,13 +6,14 @@
  * provide various functions for controlling a physical drivetrain.
  * Given appropriate devices, and a model (called a "profile") for
  * tuning certain physical aspects unique to each robot, the
- tao::Drivetrain class can perform various autonomous actions.
+ * tao::Drivetrain class can perform various autonomous actions.
  */
 
 #include <cmath>
 #include <vector>
 #include <iostream>
 #include <cstdint>
+#include <utility>
 
 #include "v5_cpp.h"
 
@@ -126,6 +127,19 @@ DrivetrainProfile Drivetrain::get_profile() const {
 		external_gear_ratio
 	};
 }
+std::pair<double, double> Drivetrain::get_wheel_travel() const {
+	double left_travel, right_travel;
+
+	if (left_encoder != nullptr && right_encoder != nullptr) {
+		left_travel = left_encoder->position(vex::rev) * wheel_circumference;
+		right_travel = right_encoder->position(vex::rev) * wheel_circumference;
+	} else {
+		left_travel = left_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
+		right_travel = right_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
+	}
+
+	return { left_travel, right_travel };
+}
 double Drivetrain::get_heading() {
 	// The IMU has was passed in, but is not plugged in. Invalidate it's readings for the duration of the tracking routine.
 	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the IMU if detected.
@@ -138,27 +152,14 @@ double Drivetrain::get_heading() {
 		return std::fmod((360 - IMU->heading()) + start_heading, 360);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
-		double left_distance, right_distance;
-
-		if (left_encoder != nullptr && right_encoder != nullptr) {
-			left_distance = left_encoder->position(vex::rev) * wheel_circumference;
-			right_distance = right_encoder->position(vex::rev) * wheel_circumference;
-		} else {
-			left_distance = left_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
-			right_distance = right_motors.position(vex::rev) * external_gear_ratio * wheel_circumference;
-		}
+		std::pair<double, double> wheel_travel = get_wheel_travel();
 
 		// Unrestricted counterclockwise-facing heading in radians.
-		double raw_heading = (right_distance - left_distance) / track_width;
+		double raw_heading = (wheel_travel.second - wheel_travel.first) / track_width;
 
 		// Convert to degrees, restrict to 0 <= x < 360, add the user-provided heading offset.
 		return std::fmod(math::radians_to_degrees(raw_heading) + start_heading, 360);
 	}
-}
-double Drivetrain::get_drive_distance() const {
-	double average_encoder_position = (left_motors.position(vex::rev) + right_motors.position(vex::rev)) / 2;
-
-	return average_encoder_position * external_gear_ratio * wheel_circumference;
 }
 bool Drivetrain::is_settled() const { return settled; }
 
@@ -191,44 +192,50 @@ int Drivetrain::daemon() {
 	std::uint64_t previous_time = vex::timer::systemHighResolution();
 
 	// Stores the average encoder revolutions from the last loop iteration.
-	double previous_drive_distance = 0.0;
-	
+	std::pair<double, double> previous_wheel_travel = {0, 0};
+
 	// Counter representing the amount of iterations that each PID position has been within it's respective min error range.
 	// For example, if the counter reaches 10 then the drivetrain has been within drive_tolerance and turn_tolerance for ~100ms.
 	std::int32_t settle_counter = 0;
 
 	while (daemon_active) {
-		std::uint64_t current_time = vex::timer::systemHighResolution();
-
 		// Measure the current time in microseconds and calculate how long the last iteration took to complete in milliseconds.
+		std::uint64_t current_time = vex::timer::systemHighResolution();
 		double delta_time = (double)(current_time - previous_time) * 0.000001;
 
-		// Measure the average linear distance has traveled using encoders.
-		double drive_distance = get_drive_distance();
+		// Measure the current absolute heading and calculate the change in heading from the last loop cycle
+		double heading = get_heading();
 
-		// Change in distance in inches from last iteration's position (for odometry).
-		double delta_distance = drive_distance - previous_drive_distance;
-	
-		// Perform odometry calculations.
+		// Measure the linear left and rigt distance distance the wheels have traveled using encoders.
+		std::pair<double, double> wheel_travel = get_wheel_travel();
+		std::pair<double, double> delta_travel = {
+			wheel_travel.first - previous_wheel_travel.first,
+			wheel_travel.second - previous_wheel_travel.second
+		};
+		previous_wheel_travel = wheel_travel;
+
+		// Find the average distance traveled by all wheels
+		double average_wheel_travel = (wheel_travel.first + wheel_travel.second) / 2;
+		double average_delta_travel = (delta_travel.first + delta_travel.second) / 2;
+
 		// Update global position based on current heading and change in distance.
 		global_position += Vector2(
-			delta_distance * std::cos(math::degrees_to_radians(get_heading())),
-			delta_distance * std::sin(math::degrees_to_radians(get_heading()))
+			average_delta_travel * std::cos(math::degrees_to_radians(heading)),
+			average_delta_travel * std::sin(math::degrees_to_radians(heading))
 		);
-		previous_drive_distance = drive_distance;
 
-		// Recalculate error for each controller.
+		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).
 		// - If in relative mode, the error is determined by a target encoder distance and heading (The target is heading and distance).
 		if (error_mode == ErrorModes::Absolute) {
 			Vector2 local_target = target_position - global_position;
 
-			turn_error = math::normalize_degrees(get_heading() - math::radians_to_degrees(local_target.get_angle()));
+			turn_error = math::normalize_degrees(heading - math::radians_to_degrees(local_target.get_angle()));
 			drive_error = local_target.get_magnitude();
 
 			// Update relative targets for when we settle.
-			target_distance = get_drive_distance();
-			target_heading = get_heading();
+			target_distance = average_wheel_travel;
+			target_heading = heading;
 
 			// Reverse the direction that the drivetrain travels to the point if turn error exceeds 90.
 			if (std::abs(turn_error) >= 90) {
@@ -236,8 +243,8 @@ int Drivetrain::daemon() {
 				drive_error *= -1;
 			}
 		} else if (error_mode == ErrorModes::Relative) {
-			turn_error = math::normalize_degrees(get_heading() - target_heading);
-			drive_error = target_distance - drive_distance;
+			turn_error = math::normalize_degrees(heading - target_heading);
+			drive_error = target_distance - average_wheel_travel;
 		}
 
 		// Get output of PID controllers (uncapped velocity percentages)
@@ -256,6 +263,7 @@ int Drivetrain::daemon() {
 		if (error_mode == ErrorModes::Absolute) {
 			Vector2 local_target = target_position - global_position;
 
+			// TODO: test out consine scaling
 			double turn_scale = 1 - fabs(turn_error / (math::normalize_degrees(initial_heading - math::radians_to_degrees(local_target.get_angle()))));
 
 			drive_velocity *= turn_scale;
@@ -287,7 +295,7 @@ int Drivetrain::daemon() {
 
 			if (error_mode == ErrorModes::Absolute)  {
 				error_mode = ErrorModes::Relative;
-				initial_heading = get_heading();
+				initial_heading = heading;
 			}
 		}
 
@@ -364,8 +372,11 @@ void Drivetrain::stop_tracking() {
 void Drivetrain::drive(double distance, bool blocking) {
 	settled = false;
 
-	// Set the PID target distance.
-	set_target_distance(get_drive_distance() + distance);
+	std::pair<double, double> wheel_travel = get_wheel_travel();
+	double average_wheel_travel = (wheel_travel.first + wheel_travel.second) / 2;
+
+	// Set the PID target distance to our desired distance plus our current wheel travel.
+	set_target_distance(average_wheel_travel + distance);
 
 	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
@@ -424,11 +435,14 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 				target_intersection = intersections[0];
 			}
 
-			// Move to the target intersection
+			// Move to the target intersection using relative-mode PID
 			if (intersections.size() > 0) {
 				Vector2 local_target(target_intersection - global_position);
 
-				set_target_distance(get_drive_distance() + local_target.get_magnitude());
+				std::pair<double, double> wheel_travel = get_wheel_travel();
+				double average_wheel_travel = (wheel_travel.first + wheel_travel.second) / 2;
+
+				set_target_distance(average_wheel_travel + local_target.get_magnitude());
 				set_target_heading(math::radians_to_degrees(local_target.get_angle()));
 			}
 
@@ -442,7 +456,12 @@ void Drivetrain::move_path(std::vector<Vector2> path) {
 void Drivetrain::hold_position(bool blocking) {
 	settled = false;
 
-	set_target_distance(get_drive_distance());
+	// Find the current heading and wheel travel and set relative PID targets to those current values
+	// This effectively tells the PID controllers to hold both the current heading and the current wheel travel
+	std::pair<double, double> wheel_travel = get_wheel_travel();
+	double average_wheel_travel = (wheel_travel.first + wheel_travel.second) / 2;
+
+	set_target_distance(average_wheel_travel);
 	set_target_heading(get_heading());
 
 	while (!settled && blocking) { vex::wait(10, vex::msec); }

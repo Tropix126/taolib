@@ -154,7 +154,7 @@ double Drivetrain::get_heading() {
 		// If the IMU is not available, then find the heading based on only encoders.
 		std::pair<double, double> wheel_travel = get_wheel_travel();
 
-		// Unrestricted counterclockwise-facing heading in radians.
+		// Unrestricted counterclockwise-facing heading in radians ((right - left) / trackwidth).
 		double raw_heading = (wheel_travel.second - wheel_travel.first) / track_width;
 
 		// Convert to degrees, restrict to 0 <= x < 360, add the user-provided heading offset.
@@ -188,18 +188,18 @@ void Drivetrain::set_target_heading(double heading) {
 }
 
 int Drivetrain::daemon() {
-	// Stores the previous time in microseconds that the last loop iteration started at.
+	// Stores the previous time in microseconds that the last loop cycle started at.
 	std::uint64_t previous_time = vex::timer::systemHighResolution();
 
-	// Stores the average encoder revolutions from the last loop iteration.
+	// Stores the average encoder revolutions from the last loop cycle.
 	std::pair<double, double> previous_wheel_travel = {0, 0};
 
-	// Counter representing the amount of iterations that each PID position has been within it's respective min error range.
+	// Counter representing the amount of cycles that each PID position has been within it's respective min error range.
 	// For example, if the counter reaches 10 then the drivetrain has been within drive_tolerance and turn_tolerance for ~100ms.
 	std::int32_t settle_counter = 0;
 
 	while (daemon_active) {
-		// Measure the current time in microseconds and calculate how long the last iteration took to complete in milliseconds.
+		// Measure the current time in microseconds and calculate how long the last cycle took to complete in milliseconds.
 		std::uint64_t current_time = vex::timer::systemHighResolution();
 		double delta_time = (double)(current_time - previous_time) * 0.000001;
 
@@ -226,6 +226,7 @@ int Drivetrain::daemon() {
 		// (such as the one used by The Pilons), in that it estimates arc length as
 		// a right triangle rather than forming an arc. The loss in accuracy of this
 		// is generally negligible, because it's recalculated every 10ms.
+		// For more information: https://rossum.sourceforge.net/papers/DiffSteer/
 		global_position += Vector2(
 			average_delta_travel * std::cos(math::degrees_to_radians(heading)),
 			average_delta_travel * std::sin(math::degrees_to_radians(heading))
@@ -309,7 +310,7 @@ int Drivetrain::daemon() {
 		// Integrated motor encoders only report at 100hz (once every 10ms).
 		vex::this_thread::sleep_for(10);
 
-		// Measure how long this iteration took to complete for calculating delta_time
+		// Measure how long this cycle took to complete for calculating delta_time
 		previous_time = current_time;
 	}
 

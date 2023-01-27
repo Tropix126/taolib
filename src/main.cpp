@@ -1,5 +1,6 @@
 #include "taolib/taolib.h"
 #include "v5_cpp.h"
+#include <iostream>
 
 vex::motor front_left_drive(vex::PORT1, vex::ratio18_1, true);
 vex::motor back_left_drive(vex::PORT2, vex::ratio18_1, true);
@@ -12,10 +13,10 @@ vex::motor_group right_drive(front_right_drive, back_right_drive);
 vex::inertial IMU(vex::PORT9);
 
 tao::Drivetrain drivetrain(left_drive, right_drive, IMU, {
-	.drive_gains = { 4.24, 0, 0.06 },
-	.turn_gains = { 0.82, 0.003, 0.0875 },
-	.drive_tolerance = 0.7,
-	.turn_tolerance = 1.4,
+	.drive_gains = { 12.24, 0, 0.125 },
+	.turn_gains = { 5.23, 0, 0.275 },
+	.drive_tolerance = 0.5,
+	.turn_tolerance = 1.65,
 	.lookahead_distance = 8.5,
 	.track_width = 13.75,
 	.wheel_radius = 2.0202411586464617389578904181119,
@@ -27,7 +28,8 @@ int main() {
 	while (IMU.isCalibrating()) { vex::wait(25, vex::msec); }
 
 	drivetrain.setup_tracking(tao::Vector2(0, 0), 90);
-	drivetrain.move_to(tao::Vector2(24, 24));
+	drivetrain.drive(48);
+	std::cout << "settled" << std::endl;
 
 	while (true) {
 		vex::this_thread::sleep_for(10);

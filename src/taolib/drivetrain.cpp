@@ -298,7 +298,7 @@ int Drivetrain::daemon() {
 
 		// Once the settle_counter reaches 10 (~100ms of wait time), the drivetrain is now considered "settled", and
 		// blocking movement functions will now complete.
-		if (settle_counter == 10 && !settled) {
+		if (settle_counter >= 5 && !settled) {
 			settled = true;
 
 			if (error_mode == ErrorModes::Absolute)  {

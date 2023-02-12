@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;600;700;800&display=swap');
+
+/* @font-face {
+	font-family: "Manrope";
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+	src: url("/fonts/Manrope[wght].woff2") format("woff2");
+} */
+
+:root,
+dialog {
+	color-scheme: dark;
+	font-family: "Sofia Sans", sans-serif;
+
+	--base-hue: 227deg;
+	--base-accent: var(--base-hue), 69%, 76%;
+
+	--accent-primary: hsl(var(--base-accent));
+	--accent-faded: hsla(var(--base-accent), 50%);
+	--accent-faded-secondary: hsla(var(--base-hue), 69%, 16%, 15%);
+
+	--foreground-primary: hsl(var(--base-hue), 0%, 100%);
+	--foreground-secondary: hsl(var(--base-hue), 35%, 80%);
+	--foreground-tertiary: hsl(var(--base-hue), 18%, 64%);
+	--foreground-danger: hsl(0, 66%, 56%);
+
+	--background-primary: hsl(var(--base-hue), 5%, 11%);
+	--background-secondary: hsl(var(--base-hue), 5%, 9%);
+	--background-tertiary: hsl(var(--base-hue), 3%, 8%);
+	--background-quaternary: hsl(var(--base-hue), 3%, 7%);
+	--background-danger: hsl(0deg 100% 68%);
+
+	--interactive-primary: hsl(var(--base-hue), 7%, 15%);
+	--interactive-secondary: hsl(var(--base-hue), 7%, 18%);
+	--interactive-tertiary: hsl(var(--base-hue), 7%, 24%);
+	--interactive-quaternary: hsl(var(--base-hue), 7%, 32%);
+}
+
+html,
+body {
+	background-color: var(--background-quaternary);
+	scroll-behavior: smooth;
+	margin: 0;
+	padding: 0;
+	inline-size: 100%;
+	block-size: 100%;
+}
+
+::-webkit-scrollbar {
+    inline-size: 8px;
+    block-size: 8px;
+    background-color: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid var(--background-secondary);
+    background-color: var(--interactive-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--interactive-secondary);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--interactive-tertiary);
+}
+
+::-webkit-scrollbar-corner {
+    appearance: none;
+}

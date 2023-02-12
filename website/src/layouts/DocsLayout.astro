@@ -1,0 +1,53 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+import Section from "~/components/Section";
+---
+
+<BaseLayout>
+	<Section class="docs-layout">
+		<article>
+			<slot />
+		</article>
+	</Section>
+</BaseLayout>
+
+<style>
+	:global(.docs-layout) {
+		background-color: var(--background-secondary);
+		display: flex;
+	}
+
+	:global(.docs-layout) article {
+		padding-block: 48px;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.5;
+		color: var(--foreground-secondary);
+	}
+
+	:global(.docs-layout h1) {
+		font-size: 36px;
+		margin-block-start: 84px;
+	}
+
+	:global(.docs-layout h1:first-child) {
+		margin-block-start: 0;
+	}
+
+	:global(.docs-layout h1),
+	:global(.docs-layout h2),
+	:global(.docs-layout h3),
+	:global(.docs-layout h4),
+	:global(.docs-layout h5),
+	:global(.docs-layout h6) {
+		color: var(--foreground-primary);
+	}
+
+	:global(.docs-layout h1),
+	:global(.docs-layout h2),
+	:global(.docs-layout h3) {
+		border-block-end: 1px solid var(--interactive-primary);
+		padding-bottom: 0.25em;
+	}
+</style>

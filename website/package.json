@@ -1,0 +1,20 @@
+{
+  "name": "@example/basics",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^1.0.0",
+    "@astrojs/solid-js": "^1.2.3",
+    "@babel/core": "^7.20.12",
+    "astro": "^1.9.2",
+    "solid-js": "^1.6.9"
+  }
+}

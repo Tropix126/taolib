@@ -1,0 +1,245 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+
+import Section from "~/components/Section";
+import Button from "~/components/Button";
+
+import { Code } from 'astro/components';
+
+const BACKGROUND_CONTROL_POINTS = [
+	{x: 16, y: 220},
+	{x: 68, y: 159},
+	{x: 99, y: 257},
+	{x: 167, y: 264},
+	{x: 168, y: 194},
+	{x: 129, y: 158},
+	{x: 159, y: 92},
+	{x: 217, y: 118},
+	{x: 248, y: 183},
+	{x: 272, y: 223},
+	{x: 308, y: 224},
+	{x: 320, y: 143},
+	{x: 355, y: 85},
+	{x: 379, y: 112},
+	{x: 385, y: 163},
+	{x: 398, y: 172}
+];
+
+const EXAMPLE_CODE = `#include "taolib/taolib.h"
+
+// Create a drivetrain instance with some motors and an inertial sensor.
+// You can also use external encoders if you wish!
+auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, {
+	.drive_gains = { 4.24, 0, 0.06 },
+	.turn_gains = { 0.82, 0.003, 0.0875 },
+	.drive_tolerance = 0.7,
+	.turn_tolerance = 1.4,
+	.lookahead_distance = 8.5,
+	.track_width = 13.75,
+	.wheel_radius = 2.02,
+	.external_gear_ratio = ((double)84 / 60),
+});
+
+void autonomous() {
+	// Set the tracking origin to the robot's starting position
+	chassis.setup_tracking(tao::Vector2(0, 0), 90);
+
+	// Move the robot to (25, 25) using odometry for targetting
+	chassis.move_to(tao::Vector2(25, 25));
+}`;
+---
+
+<BaseLayout>
+	<Section id="hero">
+		<h1>taolib</h1>
+		<p>A library for creating complex autonomous routines on VEX V5.</p>
+		<div class="hero-buttons">
+			<Button variant="accent">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+					<path fill-rule="evenodd" d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z" class="astro-UOAZ7IOQ"></path>
+				</svg>
+				Download
+			</Button>
+			<Button>
+				Get Started
+				<svg style="margin-right: -6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+					<path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"></path>
+				</svg>
+			</Button>
+		</div>
+		<div class="hero-code-example">
+			<div class="code-example-header">
+				src/main.cpp
+			</div>
+			<div class="code-example-split">
+				<div class="code-example-lines">{EXAMPLE_CODE.split(/\n/g).map((_, i) => (i + 1 + "\n"))}</div>
+				<Code code={EXAMPLE_CODE} lang="cpp" />
+			</div>
+		</div>
+		<svg slot="outer" class="hero-background" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 321 629">
+			<g style="transform: translate(-140px, 350px) scale(3); transform-origin: center;">
+				<g>
+					<path stroke-width="2" stroke="black" fill="none" stroke-linecap="round" d="M16,220 C24.666666666666668,209.83333333333334 54.166666666666664,152.83333333333334 68,159 C81.83333333333333,165.16666666666666 82.5,239.5 99,257 C115.5,274.5 155.5,274.5 167,264 C178.5,253.5 174.33333333333334,211.66666666666666 168,194 C161.66666666666666,176.33333333333334 130.5,175 129,158 C127.5,141 144.33333333333334,98.66666666666667 159,92 C173.66666666666666,85.33333333333333 202.16666666666666,102.83333333333333 217,118 C231.83333333333334,133.16666666666666 238.83333333333334,165.5 248,183 C257.1666666666667,200.5 262,216.16666666666666 272,223 C282,229.83333333333334 300,237.33333333333334 308,224 C316,210.66666666666666 312.1666666666667,166.16666666666666 320,143 C327.8333333333333,119.83333333333333 345.1666666666667,90.16666666666667 355,85 C364.8333333333333,79.83333333333333 374,99 379,112 C384,125 381.8333333333333,153 385,163 C388.1666666666667,173 395.8333333333333,170.5 398,172" />
+					<path stroke-width="2" stroke="black" fill="none" stroke-linecap="round" d="M16,220 C24.666666666666668,209.83333333333334 54.166666666666664,152.83333333333334 68,159 C81.83333333333333,165.16666666666666 82.5,239.5 99,257 C115.5,274.5 155.5,274.5 167,264 C178.5,253.5 174.33333333333334,211.66666666666666 168,194 C161.66666666666666,176.33333333333334 130.5,175 129,158 C127.5,141 144.33333333333334,98.66666666666667 159,92 C173.66666666666666,85.33333333333333 202.16666666666666,102.83333333333333 217,118 C231.83333333333334,133.16666666666666 238.83333333333334,165.5 248,183 C257.1666666666667,200.5 262,216.16666666666666 272,223 C282,229.83333333333334 300,237.33333333333334 308,224 C316,210.66666666666666 312.1666666666667,166.16666666666666 320,143 C327.8333333333333,119.83333333333333 345.1666666666667,90.16666666666667 355,85 C364.8333333333333,79.83333333333333 374,99 379,112 C384,125 381.8333333333333,153 385,163 C388.1666666666667,173 395.8333333333333,170.5 398,172" />
+				</g>
+				<g>
+					{BACKGROUND_CONTROL_POINTS.map(({ x, y }, index) => (
+						<foreignObject x={x} y={y} width="128" height="128">
+							<div style={`--index: ${index}`} class="hero-background-control-point"></div>
+						</foreignObject>
+					))}
+				</g>
+			</g>
+		</svg>
+	</Section>
+</BaseLayout>
+
+<style>
+	@keyframes control-point-in {
+		from {
+			transform-origin: center;
+			transform: translate(-50%, -50%) scale(0.5);
+			opacity: 0;
+		}
+	}
+
+	@keyframes path {
+		from {
+			stroke-dasharray: 947.2763671875;
+			stroke-dashoffset: 947.2763671875;
+		}
+		to {
+			stroke-dasharray: 947.2763671875;
+			stroke-dashoffset: 0;
+		}
+	}
+
+	:global(#hero) {
+		background-color: var(--background-secondary);
+	}
+
+	:global(#hero .section-inner) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-block: 128px 64px;
+		position: relative;
+		z-index: 1;
+	}
+
+	:global(#hero .section-inner > *) {
+		mix-blend-mode: difference;
+	}
+
+	h1, p {
+		text-align: center;
+	}
+
+	h1 {
+		font-size: 84px;
+		font-weight: 800;
+		font-size: 72px;
+		margin: 0;
+		color: var(--foreground-primary);
+	}
+
+	p {
+		font-size: 18px;
+		font-weight: 500;
+		margin-block: 16px 24px;
+		color: var(--foreground-tertiary);
+	}
+
+	.hero-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.hero-code-example {
+		--code-example-hue: 322deg;
+		--code-example-accent: var(--code-example-hue), 69%, 76%;
+		margin-block-start: max(20vh, 72px);
+		border: 1px solid hsl(var(--code-example-accent));
+		border-radius: 5px;
+		inline-size: 100%;
+		max-inline-size: 640px;
+		overflow: hidden;
+	}
+
+	.code-example-header {
+		user-select: none;
+		padding-inline: 12px;
+		padding-block: 8px;
+		font-size: 14px;
+		font-weight: 600;
+		background: hsl(226deg 7% 18%);
+	}
+
+	.code-example-split {
+		display: flex;
+		background-color: hsl(var(--code-example-hue), 5%, 11%);
+		padding: 8px 16px;
+	}
+
+	.code-example-lines {
+		user-select: none;
+		padding-inline-end: 12px;
+		margin-inline-end: 12px;
+		border-inline-end: 1px solid hsl(var(--code-example-hue), 7%, 24%);
+		color: hsl(var(--code-example-hue), 18%, 64%);
+		white-space: pre;
+		font-family: monospace;
+	}
+
+	.hero-code-example :global(.astro-code) {
+		background: transparent !important;
+		flex: 1 1 auto;
+		margin: 0;
+ 	}
+
+	.hero-background {
+		position: absolute;
+		z-index: 0;
+		top: 0;
+		left: 0;
+		width: calc(100vw - 8px);
+		height: 100vh;
+	}
+
+	.hero-background path:first-child {
+		stroke: var(--interactive-primary);
+		animation: path 4s ease, path-dash 500ms linear 4.5s;
+		stroke-width: 2.5;
+	}
+
+	.hero-background path:last-child {
+		stroke: var(--background-secondary);
+		stroke-width: 4;
+		stroke-dasharray: 15;
+		stroke-dashoffset: 15;
+		stroke-linecap: square;
+	}
+
+	.hero-background foreignObject {
+		transform: translate(-64px, -64px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.hero-background-control-point {
+		position: absolute;
+		z-index: 0;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(1);
+		width: 5%;
+		height: 5%;
+		border-radius: 50px;
+		background: var(--accent-primary);
+		box-shadow: 0 0 6.6px 2px hsla(var(--base-accent),.281),0 0 16px 2px hsla(var(--base-accent),.404),0 0 30.1px 2px hsla(var(--base-accent),.5),0 0 53.6px 2px hsla(var(--base-accent),.596),0 0 100.3px 2px hsla(var(--base-accent),.719),0 0 240px 2px hsla(var(--base-accent),1);
+		animation: control-point-in 250ms linear calc(var(--index) * 200ms) backwards;
+		opacity: 0.5;
+	}
+</style>

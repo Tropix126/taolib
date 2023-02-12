@@ -1,0 +1,11 @@
+---
+import "~/styles/NavigationItem.css";
+
+const { selected } = Astro.props;
+---
+
+<li class={`navigation-item-wrapper ${selected ? "selected" : ""}`}>
+    <a class="navigation-item" {...Astro.props}>
+        <slot />
+    </a>
+</li>

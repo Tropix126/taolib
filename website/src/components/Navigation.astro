@@ -1,0 +1,35 @@
+---
+import "~/styles/Navigation.css";
+
+const { title = "" } = Astro.props;
+---
+
+<header class="navigation">
+    <nav class="navigation-inner">
+        {title && (
+            <a href="/" class="navigation-title">
+                <span>{title}</span>
+            </a>
+        )}
+        <ul class="navigation-items">
+            <slot />
+        </ul>
+        {Astro.slots.has("actions") && <ul class="navigation-actions">
+            <slot name="actions" />
+        </ul>}
+        <details class="mobile-navigation">
+            <summary class="mobile-navigation-button">
+                <div class="hamburger-icon"></div>
+            </summary>
+            <ul class="mobile-navigation-items">
+                <slot />
+
+                <li class="mobile-navigation-separator" role="presentation">
+                    <hr />
+                </li>
+                
+                <slot name="actions" />
+            </ul>
+        </details>
+    </nav>
+</header>

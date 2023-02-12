@@ -1,9 +1,6 @@
 # build output
-/bin
-/build
-/dist
-/.output
-compile_commands.json
+dist/
+.output/
 
 # dependencies
 node_modules/
@@ -13,6 +10,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
 
 # environment variables
 .env

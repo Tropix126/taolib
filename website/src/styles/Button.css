@@ -1,0 +1,51 @@
+.button {
+	user-select: none;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	text-align: center;
+	font-family: inherit;
+	border-radius: 100px;
+	font-size: 14px;
+	font-weight: 400;
+	padding-inline: 24px;
+	padding-block: 12px;
+	gap: 8px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: 150ms ease;
+}
+
+.button:focus {
+	box-shadow: 0 0 0 3px var(--accent-faded);
+}
+
+.button.variant-default {
+	background-color: var(--interactive-primary);
+	color: var(--foreground-secondary);
+}
+
+.button.variant-default:hover {
+	background-color: var(--interactive-secondary);
+}
+
+.button.variant-danger,
+.button.variant-accent {
+	font-weight: 700;
+	color: var(--background-tertiary);
+}
+
+.button.variant-danger {
+	background-color: var(--background-danger);
+}
+
+.button.variant-accent {
+	background-color: var(--accent-primary);
+}
+
+.button > svg {
+	fill: currentColor;
+}

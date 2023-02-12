@@ -776,6 +776,24 @@
         </inbodydescription>
         <location file="include/taolib/drivetrain.h" line="142" column="9"/>
       </memberdef>
+      <memberdef kind="function" id="classtao_1_1_drivetrain_1a4066f5aede9a8051d42bc84e1d417be0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; double, double &gt;</type>
+        <definition>std::pair&lt; double, double &gt; tao::Drivetrain::get_wheel_travel</definition>
+        <argsstring>() const</argsstring>
+        <name>get_wheel_travel</name>
+        <qualifiedname>tao::Drivetrain::get_wheel_travel</qualifiedname>
+        <briefdescription>
+<para>Gets the average wheel travel distance of each side of the drivetrain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A pair representing the total distance traveled by the left and right wheels of the drivetrain. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/drivetrain.h" line="148" column="11"/>
+      </memberdef>
       <memberdef kind="function" id="classtao_1_1_drivetrain_1ad17418f668336fa5a150bddf91120854" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double tao::Drivetrain::get_heading</definition>
@@ -789,24 +807,6 @@
 <para><simplesect kind="note"><para>If the IMU is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain&apos;s track width measurements. </para>
 </simplesect>
 <simplesect kind="return"><para>The current heading of the drivetrain in degrees. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="include/taolib/drivetrain.h" line="149" column="8"/>
-      </memberdef>
-      <memberdef kind="function" id="classtao_1_1_drivetrain_1affb17e0bc14ae1780c6327296aa1d6a0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>double</type>
-        <definition>double tao::Drivetrain::get_drive_distance</definition>
-        <argsstring>() const</argsstring>
-        <name>get_drive_distance</name>
-        <qualifiedname>tao::Drivetrain::get_drive_distance</qualifiedname>
-        <briefdescription>
-<para>Gets the average linear distance from the starting position traveled by each wheel. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><simplesect kind="return"><para>The average linear distance from the starting position traveled by each wheel. </para>
 </simplesect>
 </para>
         </detaileddescription>
@@ -1729,7 +1729,6 @@
       <member refid="classtao_1_1_drivetrain_1a98991417402b4ec969a0d2561bc126e1" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>error_mode</name></member>
       <member refid="classtao_1_1_drivetrain_1a2dc10ef11b554e29627d93869bade72f" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>ErrorModes</name></member>
       <member refid="classtao_1_1_drivetrain_1a0e301bdff053f3aa371851ffc4cc208d" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>external_gear_ratio</name></member>
-      <member refid="classtao_1_1_drivetrain_1affb17e0bc14ae1780c6327296aa1d6a0" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_drive_distance</name></member>
       <member refid="classtao_1_1_drivetrain_1af1e6b329d695b7e375fe544df3c44359" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_drive_error</name></member>
       <member refid="classtao_1_1_drivetrain_1af2a2573a05c075484cef0209cd6b86b9" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_drive_gains</name></member>
       <member refid="classtao_1_1_drivetrain_1acf95c62e6e4c4d56cdb7980ec6100a5e" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_drive_tolerance</name></member>
@@ -1744,6 +1743,7 @@
       <member refid="classtao_1_1_drivetrain_1a975ff7607b60814ae4e5e52803ef3cfd" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_turn_error</name></member>
       <member refid="classtao_1_1_drivetrain_1ab99c88e9b7a18f03cbc51461dec9b526" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_turn_gains</name></member>
       <member refid="classtao_1_1_drivetrain_1ae9a6393f847dd32aed8e939e52c24e02" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_turn_tolerance</name></member>
+      <member refid="classtao_1_1_drivetrain_1a4066f5aede9a8051d42bc84e1d417be0" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>get_wheel_travel</name></member>
       <member refid="classtao_1_1_drivetrain_1a336548e88be874b8635575acf8e462c6" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>global_position</name></member>
       <member refid="classtao_1_1_drivetrain_1a28f7520e91518beb92c3346058d93421" prot="public" virt="non-virtual"><scope>tao::Drivetrain</scope><name>hold_position</name></member>
       <member refid="classtao_1_1_drivetrain_1ab3c0834a767f1e7d9767dd25618040ae" prot="private" virt="non-virtual"><scope>tao::Drivetrain</scope><name>IMU</name></member>

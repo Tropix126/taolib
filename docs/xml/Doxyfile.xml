@@ -219,7 +219,8 @@
   <option  id='HTML_HEADER' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='HTML_FOOTER' default='yes' type='string'><value><![CDATA[]]></value></option>
   <option  id='HTML_STYLESHEET' default='yes' type='string'><value><![CDATA[]]></value></option>
-  <option  id='HTML_EXTRA_STYLESHEET' default='yes' type='stringlist'>
+  <option  id='HTML_EXTRA_STYLESHEET' default='no' type='stringlist'>
+    <value><![CDATA[doxygen-awesome-css/doxygen-awesome.css]]></value>
   </option>
   <option  id='HTML_EXTRA_FILES' default='yes' type='stringlist'>
   </option>

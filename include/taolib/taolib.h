@@ -14,7 +14,4 @@
 //   - I strongly dislike parts of the PROS API, which is why I ditched this previously after
 //	   it was mostly finished. Not sure if this should be a separate project or not, or how
 //     it'll affect documentation.
-// - Slew rate limiting
-//   - Last time I messed with voltage control, I burnt out 2 motors in the span of a second.
-//     I'm 90% sure that non-rev10 motors can handle basic PID control, but I want to be safe.
 namespace tao {}

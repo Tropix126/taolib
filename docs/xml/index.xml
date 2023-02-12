@@ -40,8 +40,8 @@
     <member refid="classtao_1_1_drivetrain_1a8358a68227d0aa01d55d29dd99df8e13" kind="function"><name>Drivetrain</name></member>
     <member refid="classtao_1_1_drivetrain_1a1a1fa53ea307cb18c0094a1f540953ce" kind="function"><name>~Drivetrain</name></member>
     <member refid="classtao_1_1_drivetrain_1a514807bac58c3590e0c3da1e27c42338" kind="function"><name>get_position</name></member>
+    <member refid="classtao_1_1_drivetrain_1a4066f5aede9a8051d42bc84e1d417be0" kind="function"><name>get_wheel_travel</name></member>
     <member refid="classtao_1_1_drivetrain_1ad17418f668336fa5a150bddf91120854" kind="function"><name>get_heading</name></member>
-    <member refid="classtao_1_1_drivetrain_1affb17e0bc14ae1780c6327296aa1d6a0" kind="function"><name>get_drive_distance</name></member>
     <member refid="classtao_1_1_drivetrain_1af2a2573a05c075484cef0209cd6b86b9" kind="function"><name>get_drive_gains</name></member>
     <member refid="classtao_1_1_drivetrain_1ab99c88e9b7a18f03cbc51461dec9b526" kind="function"><name>get_turn_gains</name></member>
     <member refid="classtao_1_1_drivetrain_1af1e6b329d695b7e375fe544df3c44359" kind="function"><name>get_drive_error</name></member>

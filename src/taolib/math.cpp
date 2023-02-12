@@ -18,14 +18,7 @@ namespace tao {
 namespace math {
 
 double normalize_degrees(double degrees) {
-	degrees = std::fmod(degrees, 360);
-	degrees = std::fmod((degrees + 360), 360);
-
-	if (degrees > 180) {
-		degrees -= 360;
-	}
-
-	return degrees > 180 ? degrees - 360 : degrees;
+	return std::remainder(degrees, 360.0);
 }
 
 std::pair<double, double> normalize_speeds(double left_speed, double right_speed, double max_speed) {

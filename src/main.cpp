@@ -20,7 +20,7 @@ tao::Drivetrain drivetrain(left_drive, right_drive, IMU, {
 	.lookahead_distance = 8.5,
 	.track_width = 13.75,
 	.wheel_radius = 2.0202411586464617389578904181119,
-	.external_gear_ratio = ((double)84/60),
+	.external_gear_ratio = ((double)84 / 60),
 });
 
 int main() {

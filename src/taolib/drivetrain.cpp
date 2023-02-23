@@ -194,6 +194,10 @@ int Drivetrain::daemon() {
 	// Stores the average encoder revolutions from the last loop cycle.
 	std::pair<double, double> previous_wheel_travel = {0, 0};
 
+	double previous_sideways_travel = 0;
+
+	double previous_heading;
+
 	// Counter representing the amount of cycles that each PID position has been within it's respective min error range.
 	// For example, if the counter reaches 10 then the drivetrain has been within drive_tolerance and turn_tolerance for ~100ms.
 	std::int32_t settle_counter = 0;
@@ -205,6 +209,9 @@ int Drivetrain::daemon() {
 
 		// Measure the current absolute heading and calculate the change in heading from the last loop cycle
 		double heading = get_heading();
+		double delta_heading = previous_heading - heading;
+
+		previous_heading = heading;
 
 		// Measure the linear left and rigt distance distance the wheels have traveled using encoders.
 		std::pair<double, double> wheel_travel = get_wheel_travel();
@@ -215,8 +222,8 @@ int Drivetrain::daemon() {
 		previous_wheel_travel = wheel_travel;
 
 		// Find the average distance traveled by all wheels
-		double average_wheel_travel = (wheel_travel.first + wheel_travel.second) / 2;
-		double average_delta_travel = (delta_travel.first + delta_travel.second) / 2;
+		double forward_travel = (wheel_travel.first + wheel_travel.second) / 2;
+		double delta_forward_travel = (delta_travel.first + delta_travel.second) / 2;
 
 		// Perform a basic odometry calculation that uses average wheel travel deltas
 		// and the current heading to approximate change in position using a straight
@@ -227,10 +234,28 @@ int Drivetrain::daemon() {
 		// a right triangle rather than forming an arc. The loss in accuracy of this
 		// is generally negligible, because it's recalculated every 10ms.
 		// For more information: https://rossum.sourceforge.net/papers/DiffSteer/
-		global_position += Vector2(
-			average_delta_travel * std::cos(math::degrees_to_radians(heading)),
-			average_delta_travel * std::sin(math::degrees_to_radians(heading))
-		);
+		if (sideways_encoder == nullptr) {
+			// Use two parallel encoder inputs if heading has not changed or if sideways tracker is unavailable.
+			// Treat change in position as a vector (using wheel travel as the y-axis), then rotate that vector by the robot's heading to 
+			// find a position delta.
+			//
+			// This doesn't account for any lateral translation of the robot (for example, the robot sliding sideways on omni-wheels), because
+			// we have no way to track side-to-side motion without the presence of a ideways encoder.
+			global_position += Vector2(0, delta_forward_travel).rotated(math::degrees_to_radians(heading));
+		} else {
+			// Find lateral shift from sideways encoder if available.
+			constexpr double SIDEWAYS_TRACKER_OFFSET = 0;
+
+			// Find the rotation of the sideways encoder. Convert that rotation to a distance of wheel travel.
+			double sideways_travel = sideways_encoder->position(vex::rev) * wheel_circumference;
+			double delta_sideways_travel = sideways_travel - previous_sideways_travel;
+			previous_sideways_travel = sideways_travel;
+
+			// Approximated lateral shift along the x-axis canceling out change of rotation in place.
+			double sideways_offset = delta_sideways_travel - (math::degrees_to_radians(delta_heading) * SIDEWAYS_TRACKER_OFFSET);
+
+			global_position += Vector2(sideways_offset, delta_forward_travel).rotated(math::degrees_to_radians(heading));
+		}
 
 		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).
@@ -242,7 +267,7 @@ int Drivetrain::daemon() {
 			drive_error = local_target.get_magnitude();
 
 			// Update relative targets for when we settle.
-			target_distance = average_wheel_travel;
+			target_distance = forward_travel;
 			target_heading = heading;
 
 			// Reverse the direction that the drivetrain travels to the point if turn error exceeds 90.
@@ -252,7 +277,7 @@ int Drivetrain::daemon() {
 			}
 		} else if (error_mode == ErrorModes::Relative) {
 			turn_error = math::normalize_degrees(heading - target_heading);
-			drive_error = target_distance - average_wheel_travel;
+			drive_error = target_distance - forward_travel;
 		}
 
 		// Get output of PID controllers (uncapped velocity percentages)

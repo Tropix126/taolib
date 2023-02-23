@@ -129,6 +129,25 @@ public:
 		DrivetrainProfile profile
 	);
 
+	Drivetrain(
+		vex::motor_group& left_motors,
+		vex::motor_group& right_motors,
+		vex::encoder& left_encoder,
+		vex::encoder& right_encoder,
+		vex::encoder& sideways_encoder,
+		vex::inertial& IMU,
+		DrivetrainProfile profile
+	);
+
+	Drivetrain(
+		vex::motor_group& left_motors,
+		vex::motor_group& right_motors,
+		vex::encoder& left_encoder,
+		vex::encoder& right_encoder,
+		vex::encoder& sideways_encoder,
+		DrivetrainProfile profile
+	);
+
 	~Drivetrain();
 
 
@@ -359,7 +378,7 @@ private:
 	};
 
 	vex::motor_group &left_motors, &right_motors;
-	vex::encoder *left_encoder, *right_encoder;
+	vex::encoder *left_encoder, *right_encoder, *sideways_encoder;
 	vex::inertial* IMU;
 	
 	Vector2 global_position;
@@ -379,7 +398,6 @@ private:
 	double track_width;
 	double wheel_circumference;
 	double external_gear_ratio;
-
 
 	bool settled = false;
 	bool IMU_invalid = false;

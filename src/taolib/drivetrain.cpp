@@ -225,6 +225,19 @@ int Drivetrain::daemon() {
 		double forward_travel = (wheel_travel.first + wheel_travel.second) / 2;
 		double delta_forward_travel = (delta_travel.first + delta_travel.second) / 2;
 
+		double sideways_offset = 0;
+
+		if (sideways_encoder != nullptr) {
+			constexpr double SIDEWAYS_TRACKER_OFFSET = 0;
+
+			double sideways_travel = sideways_encoder->position(vex::rev) * wheel_circumference;
+			double delta_sideways_travel = sideways_travel - previous_sideways_travel;
+			previous_sideways_travel = sideways_travel;
+
+			// Approximated lateral shift along the x-axis canceling out change of rotation in place.
+			double sideways_offset = delta_sideways_travel - (math::degrees_to_radians(delta_heading) * SIDEWAYS_TRACKER_OFFSET);
+		}
+
 		// Perform a basic odometry calculation that uses average wheel travel deltas
 		// and the current heading to approximate change in position using a straight
 		// line as the hypotenuse.
@@ -234,28 +247,7 @@ int Drivetrain::daemon() {
 		// a right triangle rather than forming an arc. The loss in accuracy of this
 		// is generally negligible, because it's recalculated every 10ms.
 		// For more information: https://rossum.sourceforge.net/papers/DiffSteer/
-		if (sideways_encoder == nullptr) {
-			// Use two parallel encoder inputs if heading has not changed or if sideways tracker is unavailable.
-			// Treat change in position as a vector (using wheel travel as the y-axis), then rotate that vector by the robot's heading to 
-			// find a position delta.
-			//
-			// This doesn't account for any lateral translation of the robot (for example, the robot sliding sideways on omni-wheels), because
-			// we have no way to track side-to-side motion without the presence of a ideways encoder.
-			global_position += Vector2(0, delta_forward_travel).rotated(math::degrees_to_radians(heading));
-		} else {
-			// Find lateral shift from sideways encoder if available.
-			constexpr double SIDEWAYS_TRACKER_OFFSET = 0;
-
-			// Find the rotation of the sideways encoder. Convert that rotation to a distance of wheel travel.
-			double sideways_travel = sideways_encoder->position(vex::rev) * wheel_circumference;
-			double delta_sideways_travel = sideways_travel - previous_sideways_travel;
-			previous_sideways_travel = sideways_travel;
-
-			// Approximated lateral shift along the x-axis canceling out change of rotation in place.
-			double sideways_offset = delta_sideways_travel - (math::degrees_to_radians(delta_heading) * SIDEWAYS_TRACKER_OFFSET);
-
-			global_position += Vector2(sideways_offset, delta_forward_travel).rotated(math::degrees_to_radians(heading));
-		}
+		global_position += Vector2(sideways_offset, delta_forward_travel).rotated(math::degrees_to_radians(heading));
 
 		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).

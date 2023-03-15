@@ -1,0 +1,15 @@
+- [ ] Finish refactoring to polymorphic odometry types
+  - [x] Tracking Wheel Class
+  - [ ] Parallel encoder odometry
+  - [ ] 3 Wheel odometry
+  - [ ] 2 Wheel perpendicular odometry
+- [ ] DifferentialDrive class
+  - [ ] Calculate pure pursuit linear velocity based on waypoint curvature.
+  - [ ] Pivot turns
+- [ ] Holonomic drivetrain support
+- [ ] Possibly split pure pursuit-related things out of `tao::math` and into their own classes.
+- [ ] Better tolerance/settling handling
+- [ ] Better logger stuff
+- [ ] Vision following? idk
+- [ ] Catmull-rom spline generation for pursuit paths
+  - [ ] Possibly generate at compile time?

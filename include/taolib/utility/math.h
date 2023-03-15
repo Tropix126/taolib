@@ -5,8 +5,9 @@
  * Various helper functions and variables used in mathematical operations.
  */
 
-#include "vector2.h"
 #include <vector>
+
+#include "Vector2.h"
 
 namespace tao {
 namespace math {
@@ -78,6 +79,10 @@ constexpr T clamp(T value, T min, T max) {
 template <typename T>
 constexpr T sign(T value) {
 	return value < 0 ? -1 : 1;
+}
+
+constexpr double slew(double target, double current, double max) {
+	return max == 0 ? target : current + clamp(target - current, -max, max);
 }
 
 /**

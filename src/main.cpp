@@ -1,27 +1,42 @@
-#include "taolib/taolib.h"
-#include "v5_cpp.h"
 #include <iostream>
+#include <memory>
 
-vex::motor front_left_drive(vex::PORT1, vex::ratio18_1, true);
-vex::motor back_left_drive(vex::PORT2, vex::ratio18_1, true);
-vex::motor front_right_drive(vex::PORT3, vex::ratio18_1, false);
-vex::motor back_right_drive(vex::PORT4, vex::ratio18_1, false);
+#include "taolib/taolib.h"
 
-vex::motor_group left_drive(front_left_drive, back_left_drive);
-vex::motor_group right_drive(front_right_drive, back_right_drive);
+#include "v5_cpp.h"
 
-vex::inertial IMU(vex::PORT9);
+tao::TrackingWheel left_tracker(left_motors, 3.25, (double)(48/60));
+tao::TrackingWheel right_tracker(right_motors, 3.25, (double)(48/60));
+tao::TrackingWheel sideways_tracker(sideways_encoder, 2.74);
 
-tao::Drivetrain drivetrain(left_drive, right_drive, IMU, {
-	.drive_gains = { 12.24, 0, 0.125 },
-	.turn_gains = { 5.23, 0, 0.275 },
-	.drive_tolerance = 0.5,
-	.turn_tolerance = 1.65,
-	.lookahead_distance = 8.5,
-	.track_width = 13.75,
-	.wheel_radius = 2.0202411586464617389578904181119,
-	.external_gear_ratio = ((double)84 / 60),
-});
+std::make_shared<tao::ThreeWheelOdometry> odometry(left_tracker, right_tracker, sideways_tracker, imu {
+	.origin = tao::Vector2(0, 0),
+	.heading = 90,
+	.track_width = 13.25,
+	.sideways_wheel_offset = 2.0
+}, tao::Logger::default());
+
+std::make_shared<tao::DifferentialDrivetrain> chassis(left_motors, right_motors, odometry {
+	.drive_controller = tao::PIDController({ .kP = 0.3, .kI = 0.0, .kD = 1 }),
+	.turn_controller = tao::PIDController({ .kP = 0.3, kI = 0.0, .kD = 1 }),
+	.drive_settler = tao::SettleCondition({
+		.tolerance = 0.3,
+		.tolerance_duration = 0.8
+		.timeout_duration = 3
+	}),
+	.turn_settler = tao::SettleCondition({
+		.tolerance = 0.3,
+		.tolerance_duration = 0.3,
+		.timeout_duration = 8
+	}),
+	.lookahead_distance = 3
+}, tao::Logger::default());
+
+chassis->enable();
+chassis->turn_to(90);
+chassis->move_to(Vector2(2, 8));
+chassis->follow_path(tao::CatmullRomSpline(Vector2(2, 2), Vector2(0, 0)).generate());
+chassis->disable();
 
 int main() {
 	IMU.calibrate();

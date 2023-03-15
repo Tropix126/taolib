@@ -7,7 +7,7 @@
 
 #include <cmath>
 
-#include "taolib/vector2.h"
+#include "taolib/utility/vector2.h"
 
 namespace tao {
 
@@ -32,8 +32,8 @@ Vector2 Vector2::normalized() const {
 
 Vector2 Vector2::rotated(double angle) const {
 	return Vector2(
-		(x * cos(angle)) - (y * sin(angle)),
-		(x * sin(angle)) + (y * cos(angle))
+		(x * std::cos(angle)) - (y * std::sin(angle)),
+		(x * std::sin(angle)) + (y * std::cos(angle))
 	);
 }
 

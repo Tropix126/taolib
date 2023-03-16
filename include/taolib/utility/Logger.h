@@ -10,14 +10,15 @@ namespace tao {
 
 class Logger {
 public:
-	using Handle = std::function<void(Level, const std::string&)>;
-
 	enum class Level {
 		DEBUG,
 		INFO,
 		WARNING,
-		ERROR
+		ERROR,
+		FATAL
 	};
+
+	using Handle = std::function<void(Level, const std::string&)>;
 
 	Logger(std::ostream& output_stream = std::cout, Level level = Level::INFO)
 		: output_stream_(output_stream), level_(level) {}
@@ -30,11 +31,11 @@ public:
 		level_ = level;
 	}
 
-	void add_handle(std::function<void(Level, const std::string&)> handle) {
+	void add_handle(Handle handle) {
 		handles_.push_back(handle);
 	}
 
-	void log(Level level, const std::string& message) const {
+	void log(const std::string& message, Level level) const {
 		if (level >= level_) {
 			std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 			output_stream_ << std::ctime(&now) << "[" << level_to_string(level) << "] " << message << std::endl;
@@ -46,23 +47,23 @@ public:
 	}
 
 	void debug(const std::string& message) const {
-		log(Level::DEBUG, message);
+		log(message, Level::DEBUG);
 	}
 
 	void info(const std::string& message) const {
-		log(Level::INFO, message);
+		log(message, Level::INFO);
 	}
 
 	void warning(const std::string& message) const {
-		log(Level::WARNING, message);
+		log(message, Level::WARNING);
 	}
 
 	void error(const std::string& message) const {
-		log(Level::ERROR, message);
+		log(message, Level::ERROR);
 	}
 	
 	void fatal(const std::string& message) const {
-		log(Level::FATAL, message);
+		log(message, Level::FATAL);
 	}
 
 private:

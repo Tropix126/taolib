@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cmath>
 
 #include "v5_cpp.h"

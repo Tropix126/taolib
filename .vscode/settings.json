@@ -61,6 +61,21 @@
 		"xutility": "cpp",
 		"*.tcc": "cpp",
 		"thread": "cpp",
-		"mutex": "cpp"
+		"mutex": "cpp",
+		"bit": "cpp",
+		"charconv": "cpp",
+		"forward_list": "cpp",
+		"map": "cpp",
+		"format": "cpp",
+		"iomanip": "cpp",
+		"locale": "cpp",
+		"optional": "cpp",
+		"stop_token": "cpp",
+		"xlocbuf": "cpp",
+		"xlocmes": "cpp",
+		"xlocmon": "cpp",
+		"xloctime": "cpp",
+		"xtree": "cpp",
+		"string_view": "cpp"
 	}
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "taolib/odometry/ParallelWheelOdometry.h"
 #include "taolib/utility/math.h"
 
@@ -6,14 +8,17 @@
 
 namespace tao {
 
-ParallelWheelOdometry::ParallelWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, Config& config) :
+ParallelWheelOdometry::ParallelWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, const Config& config) :
 	left_wheel_(left_wheel), right_wheel_(right_wheel), heading_origin_(config.heading), position_(config.origin), track_width_(config.track_width) {}
 
-ParallelWheelOdometry::ParallelWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, vex::guido* imu, Config& config) :
-	left_wheel_(left_wheel), right_wheel_(right_wheel), imu_(imu), heading_origin_(config.heading), position_(config.origin), track_width_(config.track_width) {}
+ParallelWheelOdometry::ParallelWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, vex::guido& imu, const Config& config) :
+	left_wheel_(left_wheel), right_wheel_(right_wheel), imu_(&imu), heading_origin_(config.heading), position_(config.origin), track_width_(config.track_width) {}
+
+double ParallelWheelOdometry::get_track_width() const { return track_width_; }
+void ParallelWheelOdometry::set_track_width(double width) { track_width_ = width; }
 
 Vector2 ParallelWheelOdometry::get_position() const { return position_; }
-Vector2 ParallelWheelOdometry::set_position(Vector2& position) { position_ = position; }
+void ParallelWheelOdometry::set_position(const Vector2& position) { position_ = position; }
 
 double ParallelWheelOdometry::get_heading() {
 	// The IMU has was passed in, but is not plugged in. Invalidate its readings for the duration of the tracking routine.
@@ -26,7 +31,7 @@ double ParallelWheelOdometry::get_heading() {
 		double raw_heading = (right_wheel_.get_travel() - left_wheel_.get_travel()) / track_width_;
 
 		// Convert to degrees, restrict to 0 <= x < 360, add the user-provided heading offset.
-		return std::fmod(math::radians_to_degrees(raw_heading) + heading_origin_, 360);
+		return std::fmod(math::degrees(raw_heading) + heading_origin_, 360);
 	}
 }
 
@@ -51,7 +56,7 @@ void ParallelWheelOdometry::update() {
 
 	double delta_forward_travel = forward_travel - previous_forward_travel_;
 
-	position_ += Vector2(0, delta_forward_travel).rotated(math::degrees_to_radians(heading));
+	position_ += Vector2(0, delta_forward_travel).rotated(math::radians(heading));
 	
 	previous_forward_travel_ = forward_travel;
 }

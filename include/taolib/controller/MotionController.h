@@ -1,3 +1,5 @@
+#pragma once
+
 namespace tao {
     class MotionController {
     public:

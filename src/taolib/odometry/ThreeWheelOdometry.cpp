@@ -1,3 +1,5 @@
+#pragma once
+
 #include "taolib/odometry/ThreeWheelOdometry.h"
 #include "taolib/utility/math.h"
 
@@ -7,22 +9,25 @@
 
 namespace tao {
 
-ThreeWheelOdometry::ThreeWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, TrackingWheel& sideways_wheel, Config& config) :
+ThreeWheelOdometry::ThreeWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, TrackingWheel& sideways_wheel, const Config& config) :
 	left_wheel_(left_wheel), right_wheel_(right_wheel), sideways_wheel_(sideways_wheel), heading_origin_(config.heading), position_(config.origin), track_width_(config.track_width), sideways_wheel_offset_(config.sideways_wheel_offset) {
 	if (config.sideways_wheel_offset == 0) {
 		throw std::invalid_argument("ThreeWheelOdometry: sideways_wheel_offset cannot be 0.");
 	}
 }
 
-ThreeWheelOdometry::ThreeWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, TrackingWheel& sideways_wheel, vex::guido* imu, Config& config) :
-	left_wheel_(left_wheel), right_wheel_(right_wheel), imu_(imu), sideways_wheel_(sideways_wheel), heading_origin_(config.heading), position_(config.origin), track_width_(config.track_width), sideways_wheel_offset_(config.sideways_wheel_offset) {
+ThreeWheelOdometry::ThreeWheelOdometry(TrackingWheel& left_wheel, TrackingWheel& right_wheel, TrackingWheel& sideways_wheel, vex::guido& imu, const Config& config) :
+	left_wheel_(left_wheel), right_wheel_(right_wheel), imu_(&imu), sideways_wheel_(sideways_wheel), heading_origin_(config.heading), position_(config.origin), track_width_(config.track_width), sideways_wheel_offset_(config.sideways_wheel_offset) {
 	if (config.sideways_wheel_offset == 0) {
 		throw std::invalid_argument("ThreeWheelOdometry: sideways_wheel_offset cannot be 0.");
 	}
 }
 
+double ThreeWheelOdometry::get_track_width() const { return track_width_; }
+void ThreeWheelOdometry::set_track_width(double width) { track_width_ = width; }
+
 Vector2 ThreeWheelOdometry::get_position() const { return position_; }
-Vector2 ThreeWheelOdometry::set_position(Vector2& position) { position_ = position; }
+void ThreeWheelOdometry::set_position(const Vector2& position) { position_ = position; }
 
 double ThreeWheelOdometry::get_heading() {
 	// The IMU has was passed in, but is not plugged in. Invalidate its readings for the duration of the tracking routine.
@@ -35,7 +40,7 @@ double ThreeWheelOdometry::get_heading() {
 		double raw_heading = (right_wheel_.get_travel() - left_wheel_.get_travel()) / track_width_;
 
 		// Convert to degrees, restrict to 0 <= x < 360, add the user-provided heading offset.
-		return std::fmod(math::radians_to_degrees(raw_heading) + heading_origin_, 360);
+		return std::fmod(math::degrees(raw_heading) + heading_origin_, 360);
 	}
 }
 
@@ -64,9 +69,9 @@ void ThreeWheelOdometry::update() {
 	double delta_sideways_travel = sideways_travel - previous_sideways_travel_;
 	double delta_heading = heading - previous_heading_;
 
-	double delta_sideways_offset = delta_sideways_travel - (math::degrees_to_radians(delta_heading) * sideways_wheel_offset_);
+	double delta_sideways_offset = delta_sideways_travel - (math::radians(delta_heading) * sideways_wheel_offset_);
 
-	position_ += Vector2(delta_sideways_offset, forward_travel).rotated(math::degrees_to_radians(heading));
+	position_ += Vector2(delta_sideways_offset, forward_travel).rotated(math::radians(heading));
 	
 	previous_forward_travel_ = forward_travel;
 	previous_sideways_travel_ = sideways_travel;

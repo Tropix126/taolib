@@ -21,7 +21,7 @@ public:
 	 * Each component of the PID controller will be multiplied by these gain constants to calculate the final output.
 	 * The controller must be tuned by adjusting constants until the final output is stable.
 	 */
-	typedef struct {
+	struct Gains {
 		/** The proportional gain constant. */
 		double kP;
 
@@ -30,7 +30,7 @@ public:
 
 		/** The derivative gain constant. */
 		double kD;
-	} Gains;
+	};
 
 	// Constructor(s)
 	PIDController();
@@ -41,14 +41,14 @@ public:
 
 	// Update the controller to use new gains.
 	Gains get_gains() const;
-	void set_gains(const Gains& gains);
+	void set_gains(const Gains gains);
 
 private:
 	// PID gains
-	Gains gains;
+	Gains gains_;
 
 	// Previous error and integral term
-	double previous_error, integral;
+	double previous_error_, integral_;
 };
 
 }

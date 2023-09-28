@@ -4,7 +4,7 @@
  *
  * Abstracts various position tracking and motion control algorithms to
  * provide functions for controlling a physical drivetrain.
- * Given appropriate devices, and a model (called a "profile") for
+ * Given appropriate devices, and a model (called a "config") for
  * tuning physical aspects unique to each robot, the
  * tao::Drivetrain class can perform autonomous movement.
  */
@@ -19,7 +19,7 @@
 
 #include "taolib/drivetrain.h"
 #include "taolib/pid.h"
-#include "taolib/math.h"
+#include "taolib/utility.h"
 #include "taolib/vector2.h"
 #include "taolib/threading.h"
 
@@ -28,34 +28,38 @@ namespace tao {
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::inertial& IMU,
-					   DrivetrainProfile profile)
+					   Config config,
+					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  IMU(&IMU),
-	  drive_tolerance(profile.drive_tolerance),
-	  turn_tolerance(profile.turn_tolerance),
-	  lookahead_distance(profile.lookahead_distance),
-	  track_width(profile.track_width),
-	  wheel_circumference(profile.wheel_diameter * math::PI),
-	  gearing(profile.gearing) {
-	drive_controller.set_gains(profile.drive_gains);
-	turn_controller.set_gains(profile.turn_gains);
+	  drive_tolerance(config.drive_tolerance),
+	  turn_tolerance(config.turn_tolerance),
+	  lookahead_distance(config.lookahead_distance),
+	  track_width(config.track_width),
+	  wheel_circumference(config.wheel_diameter * math::PI),
+	  gearing(config.gearing),
+	  logger(logger) {
+	drive_controller.set_gains(config.drive_gains);
+	turn_controller.set_gains(config.turn_gains);
 }
 
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
-					   DrivetrainProfile profile)
+					   Config config,
+					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  IMU(nullptr),
-	  drive_tolerance(profile.drive_tolerance),
-	  turn_tolerance(profile.turn_tolerance),
-	  lookahead_distance(profile.lookahead_distance),
-	  track_width(profile.track_width),
-	  wheel_circumference(profile.wheel_diameter * math::PI),
-	  gearing(profile.gearing) {
-	drive_controller.set_gains(profile.drive_gains);
-	turn_controller.set_gains(profile.turn_gains);
+	  drive_tolerance(config.drive_tolerance),
+	  turn_tolerance(config.turn_tolerance),
+	  lookahead_distance(config.lookahead_distance),
+	  track_width(config.track_width),
+	  wheel_circumference(config.wheel_diameter * math::PI),
+	  gearing(config.gearing),
+	  logger(logger) {
+	drive_controller.set_gains(config.drive_gains);
+	turn_controller.set_gains(config.turn_gains);
 }
 
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
@@ -63,40 +67,44 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
 					   vex::inertial& IMU,
-					   DrivetrainProfile profile)
+					   Config config,
+					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
 	  right_encoder(&right_encoder),
 	  IMU(&IMU),
-	  drive_tolerance(profile.drive_tolerance),
-	  turn_tolerance(profile.turn_tolerance),
-	  lookahead_distance(profile.lookahead_distance),
-	  track_width(profile.track_width),
-	  wheel_circumference(profile.wheel_diameter * math::PI),
-	  gearing(profile.gearing) {
-	drive_controller.set_gains(profile.drive_gains);
-	turn_controller.set_gains(profile.turn_gains);
+	  drive_tolerance(config.drive_tolerance),
+	  turn_tolerance(config.turn_tolerance),
+	  lookahead_distance(config.lookahead_distance),
+	  track_width(config.track_width),
+	  wheel_circumference(config.wheel_diameter * math::PI),
+	  gearing(config.gearing),
+	  logger(logger) {
+	drive_controller.set_gains(config.drive_gains);
+	turn_controller.set_gains(config.turn_gains);
 }
 
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
-					   DrivetrainProfile profile)
+					   Config config,
+					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
 	  right_encoder(&right_encoder),
 	  IMU(nullptr),
-	  drive_tolerance(profile.drive_tolerance),
-	  turn_tolerance(profile.turn_tolerance),
-	  lookahead_distance(profile.lookahead_distance),
-	  track_width(profile.track_width),
-	  wheel_circumference(profile.wheel_diameter * math::PI),
-	  gearing(profile.gearing) {
-  drive_controller.set_gains(profile.drive_gains);
-  turn_controller.set_gains(profile.turn_gains);
+	  drive_tolerance(config.drive_tolerance),
+	  turn_tolerance(config.turn_tolerance),
+	  lookahead_distance(config.lookahead_distance),
+	  track_width(config.track_width),
+	  wheel_circumference(config.wheel_diameter * math::PI),
+	  gearing(config.gearing),
+	  logger(logger) {
+  drive_controller.set_gains(config.drive_gains);
+  turn_controller.set_gains(config.turn_gains);
 }
 
 Drivetrain::~Drivetrain() {
@@ -104,18 +112,18 @@ Drivetrain::~Drivetrain() {
 }
 
 Vector2 Drivetrain::get_position() const { return global_position; }
-PIDGains Drivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
-PIDGains Drivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
+PIDController::Gains Drivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
+PIDController::Gains Drivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
 double Drivetrain::get_drive_error() const { return drive_error; }
 double Drivetrain::get_turn_error() const { return turn_error; }
-double Drivetrain::get_max_drive_velocity() const { return max_drive_velocity; }
-double Drivetrain::get_max_turn_velocity() const { return max_turn_velocity; }
+double Drivetrain::get_max_drive_power() const { return max_drive_power; }
+double Drivetrain::get_max_turn_power() const { return max_turn_power; }
 double Drivetrain::get_drive_tolerance() const { return drive_tolerance; }
 double Drivetrain::get_turn_tolerance() const { return turn_tolerance; }
 double Drivetrain::get_track_width() const { return track_width; }
 double Drivetrain::get_lookahead_distance() const { return lookahead_distance; }
 double Drivetrain::get_gearing() const { return gearing; }
-DrivetrainProfile Drivetrain::get_profile() const {
+Drivetrain::Config Drivetrain::get_config() const {
 	return {
 		drive_controller.get_gains(),
 		turn_controller.get_gains(),
@@ -127,6 +135,7 @@ DrivetrainProfile Drivetrain::get_profile() const {
 		gearing
 	};
 }
+
 std::pair<double, double> Drivetrain::get_wheel_travel() const {
 	double left_travel, right_travel;
 
@@ -157,7 +166,7 @@ double Drivetrain::get_heading() {
 
 	if (IMU != nullptr && !IMU_invalid) {
 		// Use the IMU-reported gyroscope heading if available.
-		return std::fmod((360 - IMU->heading()) + start_heading, 360);
+		return std::fmod((360.0 - IMU->heading()) + start_heading, 360.0);
 	} else {
 		// If the IMU is not available, then find the heading based on only encoders.
 		std::pair<double, double> wheel_travel = get_wheel_travel();
@@ -166,17 +175,17 @@ double Drivetrain::get_heading() {
 		double raw_heading = (wheel_travel.second - wheel_travel.first) / track_width;
 
 		// Convert to degrees, restrict to 0 <= x < 360, add the user-provided heading offset.
-		return std::fmod(math::radians_to_degrees(raw_heading) + start_heading, 360);
+		return std::fmod(math::to_degrees(raw_heading) + start_heading, 360.0);
 	}
 }
 bool Drivetrain::is_settled() const { return settled; }
 
 void Drivetrain::set_turn_tolerance(double error) { turn_tolerance = error; }
 void Drivetrain::set_drive_tolerance(double error) { drive_tolerance = error; }
-void Drivetrain::set_drive_gains(const PIDGains& gains) { drive_controller.set_gains(gains); }
-void Drivetrain::set_turn_gains(const PIDGains& gains) { turn_controller.set_gains(gains); }
-void Drivetrain::set_max_drive_velocity(double velocity) { max_drive_velocity = velocity; }
-void Drivetrain::set_max_turn_velocity(double velocity) { max_turn_velocity = velocity; }
+void Drivetrain::set_drive_gains(const PIDController::Gains& gains) { drive_controller.set_gains(gains); }
+void Drivetrain::set_turn_gains(const PIDController::Gains& gains) { turn_controller.set_gains(gains); }
+void Drivetrain::set_max_drive_power(double power) { max_drive_power = power; }
+void Drivetrain::set_max_turn_power(double power) { max_turn_power = power; }
 void Drivetrain::set_lookahead_distance(double distance) { lookahead_distance = distance; }
 void Drivetrain::set_gearing(double ratio) { gearing = ratio; }
 
@@ -191,9 +200,6 @@ void Drivetrain::set_target(double distance, double heading) {
 }
 
 int Drivetrain::daemon() {
-	// Store the previous time in microseconds that the last loop cycle started at.
-	std::uint64_t previous_time = vex::timer::systemHighResolution();
-
 	// Store the wheel travel from the last loop cycle.
 	double previous_forward_travel = 0.0;
 
@@ -202,16 +208,12 @@ int Drivetrain::daemon() {
 	std::int32_t settle_counter = 0;
 
 	while (daemon_active) {
-		// Measure the current time in microseconds and calculate how long the last cycle took to complete in milliseconds.
-		std::uint64_t current_time = vex::timer::systemHighResolution();
-		double delta_time = (double)(current_time - previous_time) * 0.000001;
-
 		// Measure the current absolute heading and calculate the change in heading from the last loop cycle
 		double heading = get_heading();
 
 		// Measure the forward travel by taking the average value of all encoders.
 		double forward_travel = get_forward_travel();
-		double delta_forward_travel = get_forward_travel();
+		double delta_forward_travel = forward_travel - previous_forward_travel;
 		previous_forward_travel = forward_travel;
 
 		// Perform a basic odometry calculation that uses average wheel travel deltas
@@ -223,7 +225,7 @@ int Drivetrain::daemon() {
 		// a right triangle rather than forming an arc. The loss in accuracy of this
 		// is generally negligible, because it's recalculated at a high sample rate (10ms).
 		// For more information: https://rossum.sourceforge.net/papers/DiffSteer/
-		global_position += Vector2(delta_forward_travel, 0).rotated(math::degrees_to_radians(heading));
+		global_position += Vector2(delta_forward_travel, 0.0).rotated(math::to_radians(heading));
 
 		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).
@@ -231,13 +233,13 @@ int Drivetrain::daemon() {
 		if (error_mode == ErrorModes::Absolute) {
 			Vector2 local_target = target_position - global_position;
 
-			turn_error = math::normalize_degrees(heading - math::radians_to_degrees(local_target.get_angle()));
+			turn_error = math::normalize_degrees(heading - math::to_degrees(local_target.get_angle()));
 			drive_error = local_target.get_magnitude();
 
 			// Reverse the direction that the drivetrain travels to the point if turn error exceeds 90.
-			if (std::abs(turn_error) >= 90) {
-				turn_error = math::normalize_degrees(turn_error - 180);
-				drive_error *= -1;
+			if (std::abs(turn_error) >= 90.0) {
+				turn_error = math::normalize_degrees(turn_error - 180.0);
+				drive_error *= -1.0;
 			}
 		} else if (error_mode == ErrorModes::Relative) {
 			turn_error = math::normalize_degrees(heading - target_heading);
@@ -249,8 +251,8 @@ int Drivetrain::daemon() {
 		double turn_output = turn_controller.update(turn_error, 0.01);
 
 		// Calculate the linear/angular final velocity of the motors by clamping the values at the provided max velocities
-		double drive_velocity = math::clamp(drive_output, -max_drive_velocity, max_drive_velocity);
-		double turn_velocity = math::clamp(turn_output, -max_turn_velocity, max_turn_velocity);
+		double drive_velocity = math::clamp(drive_output, -max_drive_power, max_drive_power);
+		double turn_velocity = math::clamp(turn_output, -max_turn_power, max_turn_power);
 
 		// If we are driving to a point, scale linear velocity how complete the turn is. This is done by
 		// finding the heading of the robot when the move first started, and comparing that to how far the
@@ -258,7 +260,7 @@ int Drivetrain::daemon() {
 		// As the turn gets closer to facing the point (error decreases), the scaling factor will approach 1,
 		// running the drivetrain at the full capped output of the PID controller.
 		if (error_mode == ErrorModes::Absolute) {
-			drive_velocity *= std::cos(math::degrees_to_radians(turn_error));
+			drive_velocity *= std::cos(math::to_radians(turn_error));
 		}
 
 		// Normalize the voltages to be within +-100% while preserving the ratio of left to right speed.
@@ -284,9 +286,7 @@ int Drivetrain::daemon() {
 		// blocking movement functions will now complete.
 		if (settle_counter >= 5 && !settled) {
 			if (error_mode == ErrorModes::Absolute) {
-				error_mode = ErrorModes::Relative;
-				target_distance = forward_travel;
-				target_heading = heading;
+				hold_position();
 			}
 
 			settled = true;
@@ -295,9 +295,6 @@ int Drivetrain::daemon() {
 
 		// Integrated motor encoders only report at 100hz (once every 10ms).
 		vex::this_thread::sleep_for(10);
-
-		// Measure how long this cycle took to complete for calculating delta_time
-		previous_time = current_time;
 	}
 
 	left_motors.stop();
@@ -309,7 +306,7 @@ int Drivetrain::daemon() {
 int Drivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
-		std::cout << "Global Position: " << "(" << global_position.get_x() << ", " << global_position.get_y() << ")" << " Heading: " << get_heading() << std::endl;
+		logger.info("Position: (%f, %f) Heading: %f°", global_position.get_x(), global_position.get_y(), get_heading());
 
 		vex::this_thread::sleep_for(1000);
 	}
@@ -384,7 +381,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
 	Vector2 local_target = point - global_position;
 
-	turn_to(math::radians_to_degrees(local_target.get_angle()), blocking);
+	turn_to(math::to_degrees(local_target.get_angle()), blocking);
 }
 
 void Drivetrain::move_to(Vector2 position, bool blocking) {
@@ -428,12 +425,7 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 
 			// Move to the target intersection using relative-mode PID
 			if (intersections.size() > 0) {
-				Vector2 local_target(target_intersection - global_position);
-
-				set_target(
-					get_forward_travel() + local_target.get_magnitude(),
-					math::radians_to_degrees(local_target.get_angle())
-				);
+				set_target(target_intersection);
 			}
 
 			vex::wait(10, vex::msec);
@@ -443,12 +435,8 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 	while (!settled) { vex::wait(10, vex::msec); }
 }
 
-void Drivetrain::hold_position(bool blocking) {
-	settled = false;
-
+void Drivetrain::hold_position() {
 	set_target(get_forward_travel(), get_heading());
-
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 }

@@ -1,5 +1,5 @@
 /**
- * @file src/taolib/math.h
+ * @file src/taolib/utility.h
  * @author Tropical
  *
  * Various helper functions and variables used in mathematical operations.
@@ -40,8 +40,8 @@ std::pair<double, double> normalize_speeds(double left_speed, double right_speed
  * @param degrees The angle in degrees.
  * @return The angle in radians.
  */
-constexpr double degrees_to_radians(double degrees) {
-	return degrees * (PI / 180);
+constexpr double to_radians(double degrees) {
+	return degrees * (PI / 180.0);
 }
 
 /**
@@ -50,8 +50,8 @@ constexpr double degrees_to_radians(double degrees) {
  * @param radians The angle in radians.
  * @return The angle in degrees.
  */
-constexpr double radians_to_degrees(double radians) {
-	return radians * (180 / PI);
+constexpr double to_degrees(double radians) {
+	return radians * (180.0 / PI);
 }
 
 /**

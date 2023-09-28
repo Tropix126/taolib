@@ -11,7 +11,7 @@
 #include <numeric>
 #include <algorithm>
 
-#include "taolib/math.h"
+#include "taolib/utility.h"
 #include "taolib/vector2.h"
 
 namespace tao {

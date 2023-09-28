@@ -19,8 +19,8 @@ tao::Drivetrain drivetrain(left_drive, right_drive, imu, {
 	.turn_tolerance = 3.0,
 	.lookahead_distance = 12.5,
 	.track_width = 13.75,
-	.wheel_diameter = 4.0,
-	.gearing = (36.0 / 84.0)
+	.wheel_diameter = 3.25,
+	.gearing = (36.0 / 60.0)
 });
 
 int main() {
@@ -29,7 +29,6 @@ int main() {
 
 	drivetrain.setup_tracking(tao::Vector2(0, 0), 90);
 	drivetrain.drive(48);
-	std::cout << "settled" << std::endl;
 
 	while (true) {
 		vex::this_thread::sleep_for(10);

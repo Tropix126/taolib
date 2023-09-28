@@ -1,4 +1,7 @@
 #include "drivetrain.h"
+#include "utility.h"
+#include "threading.h"
+#include "pid.h"
 #include "vector2.h"
 
 // TODO:

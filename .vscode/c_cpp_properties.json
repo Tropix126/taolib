@@ -1,16 +1,14 @@
 {
 	"env": {
-		"vex_compilerPath": "${config:vexcode.Cpp.Toolchain.Path}\\clang\\bin\\clang",
-		"vex_sdkPath": "${config:vexcode.Cpp.Sdk.Home}\\V5\\V5_20220726_10_00_00\\vexv5",
+		"vex_compilerPath": "${config:vexrobotics.vexcode.Cpp.Toolchain.Path}\\clang\\bin\\clang",
+		"vex_sdkPath": "${config:vexrobotics.vexcode.Cpp.Sdk.Home}\\V5\\V5_20220726_10_00_00\\vexv5",
 		"vex_gcc": "${vex_sdkPath}/gcc/include/c++/4.9.3",
 		"vex_sdkIncludes": [
-			"${vex_sdkPath}/include/**",
-			"${vex_sdkPath}/gcc/include/**",
-			"${vex_sdkPath}/gcc/include/machine/**",
-			"${vex_sdkPath}/gcc/include/newlib-nano/**",
-			"${vex_sdkPath}/gcc/include/sys/**",
 			"${vex_sdkPath}/clang/8.0.0/include/**",
-			"${vex_gcc}/",
+			"${vex_gcc}/**",
+			"${vex_gcc}/arm-none-eabi/armv7-arm/thumb",
+			"${vex_sdkPath}/gcc/include",
+			"${vex_sdkPath}/include/**",
 			"${workspaceFolder}/include/**",
 			"${workspaceFolder}/src/**"
 		]

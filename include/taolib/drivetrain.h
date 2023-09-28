@@ -4,7 +4,7 @@
  *
  * Abstracts various position tracking and motion control algorithms to
  * provide various functions for controlling a physical drivetrain.
- * Given appropriate devices, and a model (called a "profile") for
+ * Given appropriate devices, and a model (called a "config") for
  * tuning certain physical aspects unique to each robot, the
  * tao::Drivetrain class can perform various autonomous actions.
  */
@@ -21,52 +21,53 @@
 #include "vector2.h"
 #include "pid.h"
 #include "threading.h"
+#include "logger.h"
 
 namespace tao {
-
-/**
- * A structure describing values specific to the drivetrain's physical state.
- * @attention These values are unique to each drivetrain and must be specifically tuned.
- */
-typedef struct {
-	/** The PID tuning constants used by the drive velocity PID controller. */
-	PIDGains drive_gains;
-
-	/** The PID tuning constants used by the turn velocity PID controller. */
-	PIDGains turn_gains;
-
-	/** The minimum acceptable error threshold (in arbitrary distance units) for the drive PID controller to consider its movement settled. */
-	double drive_tolerance;
-
-	/** The minimum acceptable error threshold (in degrees) for the turn PID controller to consider its movement settled. */
-	double turn_tolerance;
-
-	/** The radius that the robot will use to find lookahead points when following a curve using pure pursuit. */
-	double lookahead_distance;
-
-	/**
-	 * The distance between the left and right drivetrain wheels.
-	 * @note If an IMU is unavailable (unplugged or not provided), this number will be used for calculating the drivetrain's absolute heading.
-	 */
-	double track_width;
-
-	/**
-	 * The radius of the drivetrain's wheels. This measurement will determine the units used for movement.
-	 * @attention If using external encoders, this measurement should be the radius of the drivetrain's tracking wheels. Otherwise, these measurements should be the radius of the drivetrain's powered wheels.
-	 */
-	double wheel_diameter;
-
-	/**
-	 * The external gear ratio of the robot as a quotient (INPUT TEETH / OUTPUT TEETH).
-	 */
-	double gearing;
-} DrivetrainProfile;
 
 /**
  * A class representing a nonholonomic drivetrain using position tracking and PID motion control.
  */
 class Drivetrain {
 public:
+	/**
+	 * A structure describing values specific to the drivetrain's physical state.
+	 * @attention These values are unique to each drivetrain and must be specifically tuned.
+	 */
+	typedef struct {
+		/** The PID tuning constants used by the drive velocity PID controller. */
+		PIDController::Gains drive_gains;
+
+		/** The PID tuning constants used by the turn velocity PID controller. */
+		PIDController::Gains turn_gains;
+
+		/** The minimum acceptable error threshold (in arbitrary distance units) for the drive PID controller to consider its movement settled. */
+		double drive_tolerance;
+
+		/** The minimum acceptable error threshold (in degrees) for the turn PID controller to consider its movement settled. */
+		double turn_tolerance;
+
+		/** The radius that the robot will use to find lookahead points when following a curve using pure pursuit. */
+		double lookahead_distance;
+
+		/**
+		 * The distance between the left and right drivetrain wheels.
+		 * @note If an IMU is unavailable (unplugged or not provided), this number will be used for calculating the drivetrain's absolute heading.
+		 */
+		double track_width;
+
+		/**
+		 * The radius of the drivetrain's wheels. This measurement will determine the units used for movement.
+		 * @attention If using external encoders, this measurement should be the radius of the drivetrain's tracking wheels. Otherwise, these measurements should be the radius of the drivetrain's powered wheels.
+		 */
+		double wheel_diameter;
+
+		/**
+		 * The external gear ratio of the robot as a quotient (INPUT TEETH / OUTPUT TEETH).
+		 */
+		double gearing;
+	} Config;
+
 	// Constructors
 
 	/**
@@ -74,25 +75,27 @@ public:
 	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
 	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
 	 * @param IMU A reference to a vex::inertial object for tracking the drivetrain's orientation through a gyro.
-	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
+	 * @param config A Drivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
 		vex::inertial& IMU,
-		DrivetrainProfile profile
+		Config config,
+		Logger logger = tao::Logger()
 	);
 
 	/**
 	 * Constructs a new Drivetrain object using two motor groups.
 	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
 	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
-	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
+	 * @param config A Drivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
-		DrivetrainProfile profile
+		Config config,
+		Logger logger = tao::Logger()
 	);
 
 	/**
@@ -102,7 +105,7 @@ public:
 	 * @param left_encoder A reference to a vex::encoder object representing the left tracking encoder.
 	 * @param right_encoder A reference to a vex::encoder object representing the right tracking encoder.
 	 * @param IMU A reference to a vex::inertial object for tracking the drivetrain's orientation through a gyro.
-	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
+	 * @param config A Drivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
 		vex::motor_group& left_motors,
@@ -110,7 +113,8 @@ public:
 		vex::encoder& left_encoder,
 		vex::encoder& right_encoder,
 		vex::inertial& IMU,
-		DrivetrainProfile profile
+		Config config,
+		Logger logger = tao::Logger()
 	);
 
 	/**
@@ -119,14 +123,15 @@ public:
 	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
 	 * @param left_encoder A reference to a vex::encoder object representing the left tracking encoder.
 	 * @param right_encoder A reference to a vex::encoder object representing the right tracking encoder.
-	 * @param profile A tao::DrivetrainProfile structure describing values related to the drivetrain for tuning.
+	 * @param config A Drivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
 		vex::encoder& left_encoder,
 		vex::encoder& right_encoder,
-		DrivetrainProfile profile
+		Config config,
+		Logger logger = tao::Logger()
 	);
 
 	~Drivetrain();
@@ -147,7 +152,7 @@ public:
 	 */
 	std::pair<double, double> get_wheel_travel() const;
 
-	double Drivetrain::get_forward_travel() const;
+	double get_forward_travel() const;
 
 	/**
 	 * Gets the current counter-clockwise heading of the drivetrain in degrees.
@@ -158,15 +163,15 @@ public:
 
 	/**
 	 * Gets the current gain constants of the drive PID controller.
-	 * @return The current gains as a PIDGains struct.
+	 * @return The current gains as a PIDController::Gains struct.
 	 */
-	PIDGains get_drive_gains() const;
+	PIDController::Gains get_drive_gains() const;
 
 	/**
 	 * Gets the current gains of the turn PID controller.
-	 * @return The current gains as a PIDGains struct.
+	 * @return The current gains as a PIDController::Gains struct.
 	 */
-	PIDGains get_turn_gains() const;
+	PIDController::Gains get_turn_gains() const;
 
 	/**
 	 * Gets the current error of the drive PID controller.
@@ -214,19 +219,19 @@ public:
 	 * Gets the current maximum velocity cap for forwards/backwards driving.
 	 * @return The maximum forward/backward driving velocity.
 	 */
-	double get_max_drive_velocity() const;
+	double get_max_drive_power() const;
 
 	/**
 	 * Gets the current maximum velocity cap for turning.
 	 * @return The maximum forward/backward turingn velocity.
 	 */
-	double get_max_turn_velocity() const;
+	double get_max_turn_power() const;
 
 	/**
-	 * Generates a tao::DrivetrainProfile structure from the current drivetrain state.
-	 * @return The current drivetrain profile.
+	 * Generates a Drivetrain::Config structure from the current drivetrain state.
+	 * @return The current drivetrain config.
 	 */
-	DrivetrainProfile get_profile() const;
+	Config get_config() const;
 
 	/**
 	 * Indicates if the drivetrain is currently settled (within the threshold of both minimum error ranges).
@@ -258,15 +263,15 @@ public:
 
 	/**
 	 * Sets the gain constants for the drive PID controller.
-	 * @param gains A PIDGains structure containing the new proportional, integral and derivative gain constants.
+	 * @param gains A PIDController::Gains structure containing the new proportional, integral and derivative gain constants.
 	 */
-	void set_drive_gains(const PIDGains& gains);
+	void set_drive_gains(const PIDController::Gains& gains);
 	
 	/**
 	 * Sets the gain constants for the turn PID controller.
-	 * @param gains A PIDGains structure containing the new proportional, integral and derivative gain constants.
+	 * @param gains A PIDController::Gains structure containing the new proportional, integral and derivative gain constants.
 	 */
-	void set_turn_gains(const PIDGains& gains);
+	void set_turn_gains(const PIDController::Gains& gains);
 	
 	/**
 	 * Gets the current gear external ratio of the drivetrain.
@@ -278,15 +283,15 @@ public:
 	
 	/**
 	 * Sets the maximum velocity cap for forwards/backwards driving.
-	 * @param velocity A percentage of the new maximum velocity cap.
+	 * @param power A percentage of the new maximum velocity cap.
 	 */
-	void set_max_drive_velocity(double velocity);
+	void set_max_drive_power(double power);
 
 	/**
 	 * Sets the maximum velocity cap for turning..
-	 * @param velocity A percentage of the new maximum velocity cap.
+	 * @param power A percentage of the new maximum velocity cap.
 	 */
-	void set_max_turn_velocity(double velocity);
+	void set_max_turn_power(double power);
 
 
 
@@ -328,14 +333,14 @@ public:
 	void turn_to(double heading, bool blocking = true);
 
 	/**
-	 * Turns the drivetrain face towards the direction of a cartesian coordinate.
+	 * Turns the drivetrain face towards the direction of a point.
 	 * @param point A 2D vector representing the desired coordinates to face towards.
 	 * @param blocking Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations).
 	 */
 	void turn_to(Vector2 point, bool blocking = true);
 
 	/**
-	 * Moves the drivetrain to a set of target coordinates.
+	 * Moves the drivetrain to a target point.
 	 * @param position A 2D vector representing the absolute target coordinates to move to.
 	 * @param direction Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations).
@@ -343,7 +348,7 @@ public:
 	void move_to(Vector2 position, bool blocking = true);
 	
 	/**
-	 * Moves the drivetrain along a set of waypoints using pure pursuit.
+	 * Moves the drivetrain along a set of path waypoints.
 	 * @param path A vector of 2D vectors representing waypoints forming a path..
 	*/
 	void follow_path(std::vector<Vector2> path);
@@ -352,7 +357,7 @@ public:
 	 * Stops and holds the drivetrain at its current position and heading.
 	 * @param blocking Determines if the function should block the current thread until settled (within tolerance for 10 iterations).
 	 */
-	void hold_position(bool blocking = true);
+	void hold_position();
 
 private:
 	enum class ErrorModes {
@@ -372,7 +377,7 @@ private:
 
 	ErrorModes error_mode;
 	
-	double max_drive_velocity = 100, max_turn_velocity = 100;
+	double max_drive_power = 100, max_turn_power = 100;
 	double drive_tolerance, turn_tolerance;
 	double drive_error, turn_error;
 
@@ -386,6 +391,7 @@ private:
 	bool IMU_invalid = false;
 
 	PIDController drive_controller, turn_controller;
+	Logger logger;
 
 	void set_target(Vector2 position);
 	void set_target(double distance, double heading);

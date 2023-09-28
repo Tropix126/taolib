@@ -9,40 +9,39 @@
 #include <iostream>
 
 namespace tao {
-
-/**
- * A structure containing the gain constants for a PID feedback controller.
- * Each component of the PID controller will be multiplied by these gain constants to calculate the final output.
- * The controller must be tuned by adjusting constants until the final output is stable.
- */
-typedef struct {
-	/** The proportional gain constant. */
-	double kP;
-
-	/** The integral gain constant. */
-	double kI;
-
-	/** The derivative gain constant. */
-	double kD;
-} PIDGains;
-
 // PID controller class
 class PIDController {
 public:
+	/**
+	 * A structure containing the gain constants for a PID feedback controller.
+	 * Each component of the PID controller will be multiplied by these gain constants to calculate the final output.
+	 * The controller must be tuned by adjusting constants until the final output is stable.
+	 */
+	typedef struct {
+		/** The proportional gain constant. */
+		double kP;
+
+		/** The integral gain constant. */
+		double kI;
+
+		/** The derivative gain constant. */
+		double kD;
+	} Gains;
+
 	// Constructor(s)
 	PIDController();
-	PIDController(PIDGains gains);
+	PIDController(Gains gains);
 
 	// Update the PID output with the given error and time step
 	double update(double error, double delta_time);
 
 	// Update the controller to use new gains.
-	PIDGains get_gains() const;
-	void set_gains(const PIDGains& gains);
+	Gains get_gains() const;
+	void set_gains(const Gains& gains);
 
 private:
 	// PID gains
-	PIDGains gains;
+	Gains gains;
 
 	// Previous error and integral term
 	double previous_error, integral;

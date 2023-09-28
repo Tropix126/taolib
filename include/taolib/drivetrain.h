@@ -54,12 +54,12 @@ typedef struct {
 	 * The radius of the drivetrain's wheels. This measurement will determine the units used for movement.
 	 * @attention If using external encoders, this measurement should be the radius of the drivetrain's tracking wheels. Otherwise, these measurements should be the radius of the drivetrain's powered wheels.
 	 */
-	double wheel_radius;
+	double wheel_diameter;
 
 	/**
 	 * The external gear ratio of the robot as a quotient (INPUT TEETH / OUTPUT TEETH).
 	 */
-	double external_gear_ratio;
+	double gearing;
 } DrivetrainProfile;
 
 /**
@@ -129,25 +129,6 @@ public:
 		DrivetrainProfile profile
 	);
 
-	Drivetrain(
-		vex::motor_group& left_motors,
-		vex::motor_group& right_motors,
-		vex::encoder& left_encoder,
-		vex::encoder& right_encoder,
-		vex::encoder& sideways_encoder,
-		vex::inertial& IMU,
-		DrivetrainProfile profile
-	);
-
-	Drivetrain(
-		vex::motor_group& left_motors,
-		vex::motor_group& right_motors,
-		vex::encoder& left_encoder,
-		vex::encoder& right_encoder,
-		vex::encoder& sideways_encoder,
-		DrivetrainProfile profile
-	);
-
 	~Drivetrain();
 
 
@@ -165,6 +146,8 @@ public:
 	 * @return A pair representing the total distance traveled by the left and right wheels of the drivetrain.
 	 */
 	std::pair<double, double> get_wheel_travel() const;
+
+	double Drivetrain::get_forward_travel() const;
 
 	/**
 	 * Gets the current counter-clockwise heading of the drivetrain in degrees.
@@ -225,7 +208,7 @@ public:
 	 * Gets the current external gear ratio of the drivetrain.
 	 * @return The current external gear ratio as a quotient.
 	 */
-	double get_external_gear_ratio() const;
+	double get_gearing() const;
 
 	/**
 	 * Gets the current maximum velocity cap for forwards/backwards driving.
@@ -291,7 +274,7 @@ public:
 	 * 
 	 * @param ratio The new external gear ratio as a quotient.
 	 */
-	void set_external_gear_ratio(double ratio);
+	void set_gearing(double ratio);
 	
 	/**
 	 * Sets the maximum velocity cap for forwards/backwards driving.
@@ -363,7 +346,7 @@ public:
 	 * Moves the drivetrain along a set of waypoints using pure pursuit.
 	 * @param path A vector of 2D vectors representing waypoints forming a path..
 	*/
-	void move_path(std::vector<Vector2> path);
+	void follow_path(std::vector<Vector2> path);
 
 	/**
 	 * Stops and holds the drivetrain at its current position and heading.
@@ -378,7 +361,7 @@ private:
 	};
 
 	vex::motor_group &left_motors, &right_motors;
-	vex::encoder *left_encoder, *right_encoder, *sideways_encoder;
+	vex::encoder *left_encoder, *right_encoder;
 	vex::inertial* IMU;
 	
 	Vector2 global_position;
@@ -386,7 +369,6 @@ private:
 	Vector2 target_position;
 	double target_distance, target_heading;
 	double start_heading;
-	double initial_heading;
 
 	ErrorModes error_mode;
 	
@@ -397,16 +379,16 @@ private:
 	double lookahead_distance;
 	double track_width;
 	double wheel_circumference;
-	double external_gear_ratio;
+	double gearing;
+
 
 	bool settled = false;
 	bool IMU_invalid = false;
 
 	PIDController drive_controller, turn_controller;
 
-	void set_target_position(Vector2 position);
-	void set_target_distance(double distance);
-	void set_target_heading(double heading);
+	void set_target(Vector2 position);
+	void set_target(double distance, double heading);
 
 	int daemon();
 	int logging();

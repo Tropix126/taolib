@@ -31,9 +31,12 @@ Vector2 Vector2::normalized() const {
 }
 
 Vector2 Vector2::rotated(double angle) const {
+	double sin_angle = sin(angle);
+	double cos_angle = cos(angle);
+
 	return Vector2(
-		(x * cos(angle)) - (y * sin(angle)),
-		(x * sin(angle)) + (y * cos(angle))
+		x * cos_angle - y * sin_angle,
+		x * sin_angle + y * cos_angle
 	);
 }
 

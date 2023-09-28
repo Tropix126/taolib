@@ -52,7 +52,7 @@ public:
 
 		/**
 		 * The distance between the left and right drivetrain wheels.
-		 * @note If an IMU is unavailable (unplugged or not provided), this number will be used for calculating the drivetrain's absolute heading.
+		 * @note If an imu is unavailable (unplugged or not provided), this number will be used for calculating the drivetrain's absolute heading.
 		 */
 		double track_width;
 
@@ -71,16 +71,16 @@ public:
 	// Constructors
 
 	/**
-	 * Constructs a new Drivetrain object using two motor groups and an IMU.
+	 * Constructs a new Drivetrain object using two motor groups and an imu.
 	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
 	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
-	 * @param IMU A reference to a vex::inertial object for tracking the drivetrain's orientation through a gyro.
+	 * @param imu A reference to a vex::inertial object for tracking the drivetrain's orientation through a imu.
 	 * @param config A Drivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
 		vex::motor_group& left_motors,
 		vex::motor_group& right_motors,
-		vex::inertial& IMU,
+		vex::inertial& imu,
 		Config config,
 		Logger logger = tao::Logger()
 	);
@@ -99,12 +99,12 @@ public:
 	);
 
 	/**
-	 * Constructs a new Drivetrain object using two motor groups, an IMU, and two tracking encoders.
+	 * Constructs a new Drivetrain object using two motor groups, an imu, and two tracking encoders.
 	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
 	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
 	 * @param left_encoder A reference to a vex::encoder object representing the left tracking encoder.
 	 * @param right_encoder A reference to a vex::encoder object representing the right tracking encoder.
-	 * @param IMU A reference to a vex::inertial object for tracking the drivetrain's orientation through a gyro.
+	 * @param imu A reference to a vex::inertial object for tracking the drivetrain's orientation through a imu.
 	 * @param config A Drivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	Drivetrain(
@@ -112,7 +112,7 @@ public:
 		vex::motor_group& right_motors,
 		vex::encoder& left_encoder,
 		vex::encoder& right_encoder,
-		vex::inertial& IMU,
+		vex::inertial& imu,
 		Config config,
 		Logger logger = tao::Logger()
 	);
@@ -156,7 +156,7 @@ public:
 
 	/**
 	 * Gets the current counter-clockwise heading of the drivetrain in degrees.
-	 * @note If the IMU is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain's track width measurements.
+	 * @note If the imu is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain's track width measurements.
 	 * @return The current heading of the drivetrain in degrees.
 	 */
 	double get_heading();
@@ -302,17 +302,12 @@ public:
 	 * @param start_position A 2D vector representing the starting cartesian coordinates of the drivetrain.
 	 * @param start_heading An angle in degrees representing the starting orientation of the drivetrain.
 	 */
-	void setup_tracking(Vector2 start_position = Vector2(0, 0), double start_heading = 0, bool enable_logging = true);
-
-	/**
-	 * Resets the drive encoders and sets a new starting position for the drivetrain.
-	 * @param start_position A 2D vector representing the starting cartesian coordinates of the drivetrain.
-	 * @param start_heading An angle in degrees representing the starting orientation of the drivetrain.
-	 */
-	void reset_tracking(Vector2 start_position = Vector2(0, 0), double start_heading = 0);
+	void begin_tracking(Vector2 origin = Vector2(0, 0), double heading = 90);
 
 	/** Stops all threads used for tracking and movement, restoring manual control of the drivetrain. */
-	void stop_tracking();
+	void end_tracking();
+
+	void calibrate_imu();
 
 	
 
@@ -367,7 +362,7 @@ private:
 
 	vex::motor_group &left_motors, &right_motors;
 	vex::encoder *left_encoder, *right_encoder;
-	vex::inertial* IMU;
+	vex::inertial* imu;
 	
 	Vector2 global_position;
 
@@ -388,7 +383,8 @@ private:
 
 
 	bool settled = false;
-	bool IMU_invalid = false;
+	bool imu_calibrated = false;
+	bool imu_invalid = false;
 
 	PIDController drive_controller, turn_controller;
 	Logger logger;
@@ -396,13 +392,13 @@ private:
 	void set_target(Vector2 position);
 	void set_target(double distance, double heading);
 
-	int daemon();
+	int tracking();
 	int logging();
 	
-	bool daemon_active = false;
+	bool tracking_active = false;
 	bool logging_active = false;
 
-	vex::thread daemon_thread, logging_thread;
+	vex::thread tracking_thread, logging_thread;
 };
 
 }

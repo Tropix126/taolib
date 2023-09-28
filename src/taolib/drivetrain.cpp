@@ -27,12 +27,12 @@ namespace tao {
 
 Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
-					   vex::inertial& IMU,
+					   vex::inertial& imu,
 					   Config config,
 					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
-	  IMU(&IMU),
+	  imu(&imu),
 	  drive_tolerance(config.drive_tolerance),
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
@@ -50,30 +50,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
-	  IMU(nullptr),
-	  drive_tolerance(config.drive_tolerance),
-	  turn_tolerance(config.turn_tolerance),
-	  lookahead_distance(config.lookahead_distance),
-	  track_width(config.track_width),
-	  wheel_circumference(config.wheel_diameter * math::PI),
-	  gearing(config.gearing),
-	  logger(logger) {
-	drive_controller.set_gains(config.drive_gains);
-	turn_controller.set_gains(config.turn_gains);
-}
-
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::encoder& left_encoder,
-					   vex::encoder& right_encoder,
-					   vex::inertial& IMU,
-					   Config config,
-					   Logger logger)
-	: left_motors(left_motors),
-	  right_motors(right_motors),
-	  left_encoder(&left_encoder),
-	  right_encoder(&right_encoder),
-	  IMU(&IMU),
+	  imu(nullptr),
 	  drive_tolerance(config.drive_tolerance),
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
@@ -89,13 +66,36 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
+					   vex::inertial& imu,
 					   Config config,
 					   Logger logger)
 	: left_motors(left_motors),
 	  right_motors(right_motors),
 	  left_encoder(&left_encoder),
 	  right_encoder(&right_encoder),
-	  IMU(nullptr),
+	  imu(&imu),
+	  drive_tolerance(config.drive_tolerance),
+	  turn_tolerance(config.turn_tolerance),
+	  lookahead_distance(config.lookahead_distance),
+	  track_width(config.track_width),
+	  wheel_circumference(config.wheel_diameter * math::PI),
+	  gearing(config.gearing),
+	  logger(logger) {
+	drive_controller.set_gains(config.drive_gains);
+	turn_controller.set_gains(config.turn_gains);
+}
+
+Drivetrain::Drivetrain(vex::motor_group& left_motors,
+					   vex::motor_group& right_motors,
+					   vex::encoder& left_encoder,
+					   vex::encoder& right_encoder,
+					   Config config,
+					   Logger logger)
+	: left_motors(left_motors),
+	  right_motors(right_motors),
+	  left_encoder(&left_encoder),
+	  right_encoder(&right_encoder),
+	  imu(nullptr),
 	  drive_tolerance(config.drive_tolerance),
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
@@ -108,7 +108,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 }
 
 Drivetrain::~Drivetrain() {
-	stop_tracking();
+	end_tracking();
 }
 
 Vector2 Drivetrain::get_position() const { return global_position; }
@@ -158,17 +158,17 @@ double Drivetrain::get_forward_travel() const {
 }
 
 double Drivetrain::get_heading() {
-	// The IMU has was passed in, but is not plugged in. Invalidate it's readings for the duration of the tracking routine.
-	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the IMU if detected.
-	if (!IMU_invalid && IMU != nullptr && !IMU->installed()) {
-		IMU_invalid = true;
+	// The imu has was passed in, but is not plugged in. Invalidate it's readings for the duration of the tracking routine.
+	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the imu if detected.
+	if (!imu_invalid && imu != nullptr && !imu->installed()) {
+		imu_invalid = true;
 	}
 
-	if (IMU != nullptr && !IMU_invalid) {
-		// Use the IMU-reported gyroscope heading if available.
-		return std::fmod((360.0 - IMU->heading()) + start_heading, 360.0);
+	if (imu != nullptr && !imu_invalid) {
+		// Use the imu-reported imuscope heading if available.
+		return std::fmod((360.0 - imu->heading()) + start_heading, 360.0);
 	} else {
-		// If the IMU is not available, then find the heading based on only encoders.
+		// If the imu is not available, then find the heading based on only encoders.
 		std::pair<double, double> wheel_travel = get_wheel_travel();
 
 		// Unrestricted counterclockwise-facing heading in radians ((right - left) / trackwidth).
@@ -199,7 +199,7 @@ void Drivetrain::set_target(double distance, double heading) {
 	target_heading = heading;
 }
 
-int Drivetrain::daemon() {
+int Drivetrain::tracking() {
 	// Store the wheel travel from the last loop cycle.
 	double previous_forward_travel = 0.0;
 
@@ -207,7 +207,10 @@ int Drivetrain::daemon() {
 	// For example, if the counter reaches 10 then the drivetrain has been within drive_tolerance and turn_tolerance for ~100ms.
 	std::int32_t settle_counter = 0;
 
-	while (daemon_active) {
+	// Integrated motor encoders only report at 100hz (once every 10ms).
+	constexpr int32_t SAMPLE_RATE = 10;
+
+	while (tracking_active) {
 		// Measure the current absolute heading and calculate the change in heading from the last loop cycle
 		double heading = get_heading();
 
@@ -236,7 +239,8 @@ int Drivetrain::daemon() {
 			turn_error = math::normalize_degrees(heading - math::to_degrees(local_target.get_angle()));
 			drive_error = local_target.get_magnitude();
 
-			// Reverse the direction that the drivetrain travels to the point if turn error exceeds 90.
+			// If the turn error exceeds 90 degrees, then the point is behind the
+			// robot, so it's more efficient to travel to the point backwards.
 			if (std::abs(turn_error) >= 90.0) {
 				turn_error = math::normalize_degrees(turn_error - 180.0);
 				drive_error *= -1.0;
@@ -246,36 +250,27 @@ int Drivetrain::daemon() {
 			drive_error = target_distance - forward_travel;
 		}
 
-		// Get output of PID controllers (uncapped velocity percentages)
-		double drive_output = drive_controller.update(drive_error, 0.01);
-		double turn_output = turn_controller.update(turn_error, 0.01);
+		// Get output of PID controllers and convert to motor voltages
+		double dt = SAMPLE_RATE / 1000.0;
+		double drive_voltage = 12 * drive_controller.update(drive_error, dt) / max_drive_power;
+		double turn_voltage =  12 * turn_controller.update(turn_error, dt) / max_turn_power;
 
-		// Calculate the linear/angular final velocity of the motors by clamping the values at the provided max velocities
-		double drive_velocity = math::clamp(drive_output, -max_drive_power, max_drive_power);
-		double turn_velocity = math::clamp(turn_output, -max_turn_power, max_turn_power);
-
-		// If we are driving to a point, scale linear velocity how complete the turn is. This is done by
-		// finding the heading of the robot when the move first started, and comparing that to how far the
-		// robot is from facing from the point.
-		// As the turn gets closer to facing the point (error decreases), the scaling factor will approach 1,
-		// running the drivetrain at the full capped output of the PID controller.
+		// Scale drive power by the cosine of turn_error if moving to a point.
+		// This biases turn power over drive power at the start of the movement, which makes the
+		// arc shapes less dramatic when moving to a point.
 		if (error_mode == ErrorModes::Absolute) {
-			drive_velocity *= std::cos(math::to_radians(turn_error));
+			drive_voltage *= std::cos(math::to_radians(turn_error));
 		}
 
-		// Normalize the voltages to be within +-100% while preserving the ratio of left to right speed.
-		std::pair<double, double> normalized_voltages = math::normalize_speeds(
-			12 * (drive_velocity + turn_velocity) / 100,
-			12 * (drive_velocity - turn_velocity) / 100,
-			12
-		);
+		// Normalize the voltages to be within +-12v while preserving the ratio of left to right speed.
+		std::pair<double, double> normalized_voltages = math::normalize_speeds(drive_voltage, turn_voltage, 12);
 
 		// Spin motors at the output voltage.
 		left_motors.spin(vex::forward, normalized_voltages.first, vex::volt);
 		right_motors.spin(vex::forward, normalized_voltages.second, vex::volt);
 
 		// Check if the errors of both loops are under their tolerances.
-		// If they are, increment the settle_counter. If they aren't, then reset the counter.
+		// If they are, increment the settle_counter. If they aren't, reset the counter.
 		if ((std::abs(drive_error) <= drive_tolerance) && ((std::abs(turn_error) <= turn_tolerance) || error_mode == ErrorModes::Absolute)) {
 			settle_counter++;
 		} else {
@@ -293,10 +288,10 @@ int Drivetrain::daemon() {
 			settle_counter = 0;
 		}
 
-		// Integrated motor encoders only report at 100hz (once every 10ms).
-		vex::this_thread::sleep_for(10);
+		vex::this_thread::sleep_for(SAMPLE_RATE);
 	}
 
+	// Stop the motors before the thread joins to prevent them from running at whatever the last voltage command was.
 	left_motors.stop();
 	right_motors.stop();
 
@@ -314,45 +309,53 @@ int Drivetrain::logging() {
 	return 0;
 }
 
-void Drivetrain::setup_tracking(Vector2 start_vector, double start_heading, bool enable_logging) {
-	// Reset with desired starting data
-	reset_tracking(start_vector, start_heading);
+void Drivetrain::calibrate_imu() {
+	if (imu != nullptr) {
+		// Prevent a possible race condition that can occur if the imu isn't detected as plugged in yet.
+		vex::wait(0.25, vex::seconds);
+		imu->calibrate();
+		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
 
-	// Start daemon if it isn't already running
-	if (!daemon_active) {
-		daemon_active = true;
-		daemon_thread = threading::make_member_thread(this, &Drivetrain::daemon);
-	}
-
-	// Start logging if enable_logging was specified and it isn't already running
-	if (enable_logging && !logging_active) {
-		logging_active = true;
-		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
+		imu_calibrated = false;
 	}
 }
 
-void Drivetrain::reset_tracking(Vector2 start_vector, double start_heading) {
+void Drivetrain::begin_tracking(Vector2 origin, double heading) {
 	// Reset motor encoders.
 	left_motors.resetPosition();
 	right_motors.resetPosition();
 
-	// Reset gyro heading.
-	if (IMU != nullptr) {
-		IMU->resetHeading();
+	// Reset imu heading.
+	start_heading = heading;
+	if (imu != nullptr) {
+		if (!imu_calibrated) {
+			logger.warning("IMU has not been calibrated! Turns may be inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
+		}
+		imu->resetHeading();
 	}
-	this->start_heading = start_heading;
-	set_target(0.0, start_heading);
 
 	// Set global position to supplied starting vector.
-	global_position = start_vector;
+	global_position = origin;
+
+	// Start threads
+	if (!tracking_active) {
+		tracking_active = true;
+		tracking_thread = threading::make_member_thread(this, &Drivetrain::tracking);
+	}
+	if (!logging_active) {
+		logging_active = true;
+		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
+	}
+
+	hold_position();
 }
 
-void Drivetrain::stop_tracking() {
-	daemon_active = false;
+void Drivetrain::end_tracking() {
+	tracking_active = false;
 	logging_active = false;
 	
-	if (daemon_thread.joinable()) {
-		daemon_thread.join();
+	if (tracking_thread.joinable()) {
+		tracking_thread.join();
 	}
 
 	if (logging_thread.joinable()) {
@@ -410,7 +413,7 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 
 			Vector2 target_intersection;
 
-			// Choose the best intersection to go to, ensuring that we don't go backwards.
+			// Choose the best intersection to go to, ensuring that we don't go backwards along the path.
 			if (intersections.size() == 2) {
 				// There are two intersections. Find the one closest to the end of the line segment.
 				if (intersections[0].distance(end) < intersections[1].distance(end)) {
@@ -423,7 +426,7 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 				target_intersection = intersections[0];
 			}
 
-			// Move to the target intersection using relative-mode PID
+			// Move to the target intersection
 			if (intersections.size() > 0) {
 				set_target(target_intersection);
 			}

@@ -17,7 +17,7 @@ PIDController::PIDController() : gains({ 0, 0, 0 }), previous_error(0), integral
 void PIDController::set_gains(const PIDGains& gains) { this->gains = gains; }
 PIDGains PIDController::get_gains() const { return gains; }
 
-double PIDController::update(double error, double delta_time, bool j) {
+double PIDController::update(double error, double delta_time) {
 	// Calculate the integral term
 	integral += error;
 

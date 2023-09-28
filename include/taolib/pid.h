@@ -34,7 +34,7 @@ public:
 	PIDController(PIDGains gains);
 
 	// Update the PID output with the given error and time step
-	double update(double error, double delta_time, bool j);
+	double update(double error, double delta_time);
 
 	// Update the controller to use new gains.
 	PIDGains get_gains() const;

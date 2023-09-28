@@ -245,8 +245,8 @@ int Drivetrain::daemon() {
 		}
 
 		// Get output of PID controllers (uncapped velocity percentages)
-		double drive_output = drive_controller.update(drive_error, 0.01, false);
-		double turn_output = turn_controller.update(turn_error, 0.01, true);
+		double drive_output = drive_controller.update(drive_error, 0.01);
+		double turn_output = turn_controller.update(turn_error, 0.01);
 
 		// Calculate the linear/angular final velocity of the motors by clamping the values at the provided max velocities
 		double drive_velocity = math::clamp(drive_output, -max_drive_velocity, max_drive_velocity);

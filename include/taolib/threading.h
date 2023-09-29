@@ -51,7 +51,7 @@ void wrap_func_(void* func_and_args_void) {
   delete func_and_args;
 }
 
-}
+} // namespace internal
 
 /**
  * Creates a vex::thread that runs a given function with arguments
@@ -106,5 +106,5 @@ vex::thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), A
   return make_thread(static_proxy<Cls, Ret, Args...>, cls_instance, cls_fn, std::forward<Args>(args)...);
 }
 
-}
-}
+} // namespace threading
+} // namespace tao

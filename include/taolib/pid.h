@@ -47,4 +47,4 @@ private:
 	double previous_error, integral;
 };
 
-}
+} // namespace tao

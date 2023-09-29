@@ -136,8 +136,6 @@ public:
 
 	~Drivetrain();
 
-
-
 	// Getters
 
 	/**
@@ -241,8 +239,6 @@ public:
 
 	double get_wheel_diameter() const;
 
-
-
 	// Setters
 
 	/**
@@ -297,8 +293,6 @@ public:
 
 	void set_wheel_diameter(double diameter);
 
-
-
 	// Lifecycle functions
 
 	/**
@@ -312,8 +306,6 @@ public:
 	void stop_tracking();
 
 	void calibrate_imu();
-
-	
 
 	// Movement functions
 
@@ -404,4 +396,4 @@ private:
 	vex::thread tracking_thread, logging_thread;
 };
 
-}
+} // namespace tao

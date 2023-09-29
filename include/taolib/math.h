@@ -1,5 +1,5 @@
 /**
- * @file src/taolib/utility.h
+ * @file src/taolib/math.h
  * @author Tropical
  *
  * Various helper functions and variables used in mathematical operations.
@@ -92,5 +92,5 @@ constexpr T sign(T value) {
  */
 std::vector<Vector2> line_circle_intersections(Vector2 center, double radius, Vector2 point_1, Vector2 point_2);
 
-}
-}
+} // namespace math
+} // namespace tao

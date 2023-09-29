@@ -19,7 +19,7 @@
 
 #include "taolib/drivetrain.h"
 #include "taolib/pid.h"
-#include "taolib/utility.h"
+#include "taolib/math.h"
 #include "taolib/vector2.h"
 #include "taolib/threading.h"
 

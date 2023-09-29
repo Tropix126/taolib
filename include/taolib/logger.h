@@ -50,4 +50,4 @@ private:
 	static const std::string format(const char * const format, va_list args);
 };
 
-}
+} // namespace tao

@@ -204,6 +204,8 @@ void Drivetrain::set_target(double distance, double heading) {
 }
 
 int Drivetrain::tracking() {
+	logger.info("Tracking period started.");
+
 	// Store the wheel travel from the last loop cycle.
 	double previous_forward_travel = 0.0;
 
@@ -288,6 +290,8 @@ int Drivetrain::tracking() {
 		// Once the settle_counter reaches 5 (~50ms of wait time), the drivetrain is now considered "settled", and
 		// blocking movement functions will now complete.
 		if (settle_counter >= 5 && !settled) {
+			logger.debug("Drivetrain has settled. Drive error: %f, Turn error: %f", drive_error, turn_error);
+
 			if (error_mode == ErrorModes::Absolute) {
 				hold_position();
 			}
@@ -302,6 +306,8 @@ int Drivetrain::tracking() {
 	// Stop the motors before the thread joins to prevent them from running at whatever the last voltage command was.
 	left_motors.stop();
 	right_motors.stop();
+
+	logger.info("Tracking period stopped.");
 
 	return 0;
 }
@@ -320,7 +326,7 @@ int Drivetrain::logging() {
 void Drivetrain::calibrate_imu() {
 	if (imu != nullptr) {
 		if (!imu->installed()) {
-			logger.error("IMU not plugged in. Skipping calibration");
+			logger.error("IMU not plugged in. Skipping calibration.");
 			return;
 		}
 		
@@ -379,6 +385,8 @@ void Drivetrain::stop_tracking() {
 }
 
 void Drivetrain::drive(double distance, bool blocking) {
+	logger.debug("Driving for %f", distance);
+
 	settled = false;
 
 	// Set the PID target distance to our desired distance plus our current wheel travel.
@@ -388,9 +396,9 @@ void Drivetrain::drive(double distance, bool blocking) {
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
+	logger.debug("Turning to %f°", heading);
 	settled = false;
 
-	// Set the PID target heading.
 	set_target(target_distance, heading);
 	
 	while (!settled && blocking) { vex::wait(10, vex::msec); }
@@ -399,10 +407,15 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
 	Vector2 local_target = point - global_position;
 
-	turn_to(math::to_degrees(local_target.get_angle()), blocking);
+	logger.debug("Turning to (%f, %f). Calculated angle: %f°", point.get_x(), point.get_y());
+
+	set_target(target_distance, local_target.get_angle());
+
+	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
 
 void Drivetrain::move_to(Vector2 position, bool blocking) {
+	logger.debug("Moving to (%f, %f). Distance: %f", position.get_x(), position.get_y(), global_position.distance(position));
 	settled = false;
 
 	set_target(position);
@@ -411,6 +424,7 @@ void Drivetrain::move_to(Vector2 position, bool blocking) {
 }
 
 void Drivetrain::follow_path(std::vector<Vector2> path) {
+	logger.debug("Following path.");
 	settled = false;
 
 	// Add current position to the start of the path so that intersections can be found.

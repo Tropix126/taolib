@@ -21,7 +21,7 @@ tao::Drivetrain drivetrain(left_drive, right_drive, imu, {
 	.track_width = 13.75,
 	.wheel_diameter = 3.25,
 	.gearing = (36.0 / 60.0)
-});
+}, tao::Logger(std::cout, tao::Logger::Level::DEBUG));
 
 int main() {
 	drivetrain.calibrate_imu();

@@ -350,7 +350,7 @@ void Drivetrain::start_tracking(Vector2 origin, double heading) {
 	if (imu != nullptr) {
 		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
 		if (!imu_calibrated) {
-			logger.warning("IMU has not been calibrated! Turns may be inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
+			logger.warning("IMU has not been calibrated! Heading may report inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
 		}
 		imu->resetHeading();
 	}

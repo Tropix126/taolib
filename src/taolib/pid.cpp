@@ -33,5 +33,4 @@ double PIDController::update(double error, double delta_time) {
 	return output;
 }
 
-
-}
+} // namespace tao

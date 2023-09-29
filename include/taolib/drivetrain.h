@@ -385,7 +385,6 @@ private:
 	double wheel_diameter;
 	double gearing;
 
-
 	bool settled = false;
 	bool imu_calibrated = false;
 	bool imu_invalid = false;

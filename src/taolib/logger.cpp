@@ -7,6 +7,7 @@
 #include <functional>
 #include <vector>
 #include <cstdarg>
+#include <cstdio>
 #include <memory>
 
 namespace tao {
@@ -17,10 +18,8 @@ Logger::Logger(std::ostream& output_stream, Level level)
 void Logger::set_level(Level level) { level_ = level; }
 void Logger::add_handle(const Handle& handle) { handles_.push_back(handle); }
 
-void Logger::log(Level level, const char* format, ...) const {
+void Logger::log(Level level, const char* format, va_list args) const {
 	if (level >= level_) {
-		va_list args;
-		va_start(args, format);
 		std::string message = this->format(format, args);
 		va_end(args);
 
@@ -101,20 +100,21 @@ std::string Logger::colorize(const std::string& message, Level level) {
 	}
 }
 
-template<typename ... Args>
-std::string Logger::format(const std::string& format, Args ... args) {
-	int32_t size_s = snprintf(nullptr, 0, format.c_str(), args ...) + 1;
-	
-	if(size_s <= 0) {
-		// throw std::runtime_error( "Error during formatting." );
-	}
+const std::string Logger::format(const char * const format, va_list args) {
+    // reliably acquire the size
+    // from a copy of the variable argument array
+    // and a functionally reliable call to mock the formatting
+    va_list args_copy;
+    va_copy(args_copy, args);
+    const int len = vsnprintf(NULL, 0, format, args_copy);
+    va_end(args_copy);
 
-	auto size = static_cast<size_t>(size_s);
-
-	std::unique_ptr<char[]> buf(new char[ size ]);
-	snprintf(buf.get(), size, format.c_str(), args ... );
-
-	return std::string(buf.get(), buf.get() + size - 1);
+    // return a formatted string without risking memory mismanagement
+    // and without assuming any compiler or platform specific behavior
+    std::vector<char> zc(len + 1);
+    vsnprintf(zc.data(), zc.size(), format, args);
+    va_end(args);
+    return std::string(zc.data(), len);
 }
 
 } // namespace tao

@@ -82,5 +82,5 @@ std::vector<Vector2> line_circle_intersections(Vector2 center, double radius, Ve
 	return intersections;
 }
 
-}
-}
+} // namespace math
+} // namespace tao

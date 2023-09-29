@@ -146,4 +146,5 @@ Vector2& Vector2::operator/=(const double scalar) {
 bool operator==(const Vector2& first, const Vector2& second) {
 	return (first.x == second.x) && (first.y == second.y);
 }
-}
+
+} // namespace tao

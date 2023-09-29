@@ -25,11 +25,11 @@ tao::Drivetrain drivetrain(left_drive, right_drive, imu, {
 
 int main() {
 	drivetrain.calibrate_imu();
-	drivetrain.begin_tracking(tao::Vector2(0, 0), 90);
+	drivetrain.start_tracking();
 	
 	drivetrain.drive(48);
 	
-	drivetrain.end_tracking();
+	drivetrain.stop_tracking();
 
 	while (true) {
 		vex::this_thread::sleep_for(10);

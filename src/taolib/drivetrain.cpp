@@ -309,7 +309,7 @@ int Drivetrain::tracking() {
 int Drivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
-		printf("Position: (%f, %f) Heading: %f\n", global_position.get_x(), global_position.get_y(), get_heading());
+		logger.info("Position: (%f, %f) Heading: %f°\n", global_position.get_x(), global_position.get_y(), get_heading());
 
 		vex::this_thread::sleep_for(1000);
 	}
@@ -457,4 +457,4 @@ void Drivetrain::hold_position() {
 	set_target(get_forward_travel(), get_heading());
 }
 
-}
+} // namespace tao

@@ -26,8 +26,6 @@ public:
 
 	void add_handle(const Handle& handle);
 
-	void log(Level level, const char* format, ...) const;
-
 	void debug(const char* format, ...) const;
 
 	void info(const char* format, ...) const;
@@ -42,13 +40,14 @@ private:
 	std::ostream& output_stream_;
 	Level level_;
 	std::vector<std::function<void(Level, const std::string&)>> handles_;
+	
+	void log(Level level, const char* format, va_list args) const;
 
 	static std::string level_to_string(Level level);
 
 	static std::string colorize(const std::string& message, Level level);
 
-	template<typename ... Args>
-	static std::string format(const std::string& format, Args ... args);
+	static const std::string Logger::format(const char * const format, va_list args);
 };
 
 }

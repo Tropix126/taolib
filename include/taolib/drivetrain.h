@@ -307,6 +307,8 @@ public:
 
 	void calibrate_imu();
 
+	void wait_until_settled();
+
 	// Movement functions
 
 	/**

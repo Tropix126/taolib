@@ -65,6 +65,7 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 	}
 	
 	.docs-sidebar li a {
+		outline: none;
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -75,6 +76,10 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 		border-radius: 3px;
 		font-size: 16px;
 		margin-block-end: 4px;
+	}
+
+	.docs-sidebar li a:focus {
+		box-shadow: 0 0 0 3px var(--accent-faded);
 	}
 
 	.docs-sidebar li a:hover {
@@ -111,6 +116,11 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 		color: var(--foreground-secondary);
 	}
 
+	.docs-content :global(:focus) {
+		outline: none;
+		box-shadow: 0 0 0 3px var(--accent-faded);
+	}
+
 	.docs-content :global(h1) {
 		font-size: 36px;
 		margin-block-start: 84px;
@@ -134,5 +144,13 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 	.docs-content :global(h3) {
 		border-block-end: 1px solid var(--interactive-primary);
 		padding-bottom: 0.25em;
+	}
+
+	.docs-content :global(pre) {
+		padding-inline: 16px;
+		padding-block: 8px;
+		border-radius: 4px;
+		background-color: var(--interactive-primary) !important;
+		font-size: 12px;
 	}
 </style>

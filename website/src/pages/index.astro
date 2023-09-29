@@ -118,6 +118,7 @@ void autonomous() {
 
 	:global(#hero) {
 		background-color: var(--background-secondary);
+		flex: 1 1 auto;
 	}
 
 	:global(#hero .section-inner) {
@@ -163,7 +164,7 @@ void autonomous() {
 		--code-example-accent: var(--code-example-hue), 69%, 76%;
 		margin-block-start: max(20vh, 72px);
 		border: 1px solid hsl(var(--code-example-accent));
-		border-radius: 5px;
+		border-radius: 4px;
 		inline-size: 100%;
 		max-inline-size: 640px;
 		overflow: hidden;

@@ -384,6 +384,10 @@ void Drivetrain::stop_tracking() {
 	}
 }
 
+void Drivetrain::wait_until_settled() {
+	while (!settled) { vex::wait(10, vex::msec); }
+}
+
 void Drivetrain::drive(double distance, bool blocking) {
 	logger.debug("Driving for %f", distance);
 
@@ -392,7 +396,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 	// Set the PID target distance to our desired distance plus our current wheel travel.
 	set_target(get_forward_travel() + distance, target_heading);
 
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
@@ -401,7 +405,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 
 	set_target(target_distance, heading);
 	
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
@@ -411,7 +415,7 @@ void Drivetrain::turn_to(Vector2 point, bool blocking) {
 
 	set_target(target_distance, local_target.get_angle());
 
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::move_to(Vector2 position, bool blocking) {
@@ -420,7 +424,7 @@ void Drivetrain::move_to(Vector2 position, bool blocking) {
 
 	set_target(position);
 
-	while (!settled && blocking) { vex::wait(10, vex::msec); }
+	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::follow_path(std::vector<Vector2> path) {
@@ -464,7 +468,7 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 		}
 	}
 
-	while (!settled) { vex::wait(10, vex::msec); }
+	wait_until_settled();
 }
 
 void Drivetrain::hold_position() {

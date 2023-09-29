@@ -2,11 +2,29 @@
 import BaseLayout from "./BaseLayout.astro";
 
 import Section from "~/components/Section";
+
+const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontmatter.page - b.frontmatter.page));
 ---
 
 <BaseLayout>
 	<Section class="docs-layout">
-		<article>
+		<aside class="docs-sidebar">
+			<ul>
+				{pages.map(page => {
+					const currentPage = "/" + (new URL(Astro.request.url).pathname.split("/docs/")[1] || "");
+					const path = page.url.split("/docs")[1] || "/";
+
+					return (
+						<li class:list={[{ selected: currentPage === path}]}>
+							<a href={page.url}>
+								{page.frontmatter.title}
+							</a>
+						</li>
+					);
+				})}
+			</ul>
+		</aside>
+		<article class="docs-content">
 			<slot />
 		</article>
 	</Section>
@@ -15,10 +33,77 @@ import Section from "~/components/Section";
 <style>
 	:global(.docs-layout) {
 		background-color: var(--background-secondary);
-		display: flex;
+		flex: 1 1 auto;
 	}
 
-	:global(.docs-layout) article {
+	:global(.docs-layout .section-inner) {
+		display: flex;
+	}
+	
+	.docs-sidebar {
+		position: sticky;
+		align-self: flex-start;
+		inset-block-start: 80px;
+		padding-block: 24px;
+		margin-inline-end: 48px;
+		flex: 0 0 auto;
+		inline-size: 240px;
+	}
+
+	.docs-sidebar ul {
+		flex-direction: column;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.docs-sidebar ul,
+	.docs-sidebar li a,
+	.docs-sidebar ul li {
+		display: flex;
+		flex: 1 1 auto;
+	}
+	
+	.docs-sidebar li a {
+		position: relative;
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		padding: 6px 12px;
+		transition: 100ms ease;
+		color: var(--foreground-secondary);
+		border-radius: 3px;
+		font-size: 16px;
+		margin-block-end: 4px;
+	}
+
+	.docs-sidebar li a:hover {
+		background-color: var(--background-primary);
+	}
+
+	.docs-sidebar li.selected a {
+		background-color: var(--interactive-primary);
+		color: var(--foreground-primary);
+		font-weight: 600;
+	}
+
+	.docs-sidebar li a::after {
+		content: "";
+		position: absolute;
+		inset-inline-start: 0;
+		block-size: 0;
+		inline-size: 2px;
+		border-radius: 8px;
+		background-color: var(--accent-primary);
+		box-shadow: 0 0 12px var(--accent-primary);
+	}
+
+	.docs-sidebar li.selected a::after {
+		block-size: 16px;
+	}
+
+	.docs-content {
+		flex: 1 1 auto;
 		padding-block: 48px;
 		font-size: 18px;
 		font-weight: 400;
@@ -26,27 +111,27 @@ import Section from "~/components/Section";
 		color: var(--foreground-secondary);
 	}
 
-	:global(.docs-layout h1) {
+	.docs-content :global(h1) {
 		font-size: 36px;
 		margin-block-start: 84px;
 	}
 
-	:global(.docs-layout h1:first-child) {
+	.docs-content :global(h1:first-child) {
 		margin-block-start: 0;
 	}
 
-	:global(.docs-layout h1),
-	:global(.docs-layout h2),
-	:global(.docs-layout h3),
-	:global(.docs-layout h4),
-	:global(.docs-layout h5),
-	:global(.docs-layout h6) {
+	.docs-content :global(h1),
+	.docs-content :global(h2),
+	.docs-content :global(h3),
+	.docs-content :global(h4),
+	.docs-content :global(h5),
+	.docs-content :global(h6) {
 		color: var(--foreground-primary);
 	}
 
-	:global(.docs-layout h1),
-	:global(.docs-layout h2),
-	:global(.docs-layout h3) {
+	.docs-content :global(h1),
+	.docs-content :global(h2),
+	.docs-content :global(h3) {
 		border-block-end: 1px solid var(--interactive-primary);
 		padding-bottom: 0.25em;
 	}

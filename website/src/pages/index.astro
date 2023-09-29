@@ -6,7 +6,9 @@ import Button from "~/components/Button";
 
 import { Code } from 'astro/components';
 
-const BACKGROUND_CONTROL_POINTS = [
+import { GITHUB_URL } from "~/config";
+
+const BACKGROUND_WAYPOINTS = [
 	{x: 16, y: 220},
 	{x: 68, y: 159},
 	{x: 99, y: 257},
@@ -29,20 +31,20 @@ const EXAMPLE_CODE = `#include "taolib/taolib.h"
 
 // Create a drivetrain instance with some motors and an inertial sensor.
 // You can also use external encoders if you wish!
-auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, {
+tao::Drivetrain chassis(left_drive, right_drive, IMU, {
 	.drive_gains = { 4.24, 0, 0.06 },
 	.turn_gains = { 0.82, 0.003, 0.0875 },
 	.drive_tolerance = 0.7,
 	.turn_tolerance = 1.4,
 	.lookahead_distance = 8.5,
 	.track_width = 13.75,
-	.wheel_radius = 2.02,
-	.external_gear_ratio = ((double)84 / 60),
+	.wheel_diameter = 2.02,
+	.gearing = ((double)84 / 60),
 });
 
 void autonomous() {
-	// Set the tracking origin to the robot's starting position
-	chassis.setup_tracking(tao::Vector2(0, 0), 90);
+	// Start the tracking period at (0, 0) facing 90 degrees
+	chassis.start_tracking();
 
 	// Move the robot to (25, 25) using odometry for targetting
 	chassis.move_to(tao::Vector2(25, 25));
@@ -54,13 +56,13 @@ void autonomous() {
 		<h1>taolib</h1>
 		<p>A library for creating complex autonomous routines on VEX V5.</p>
 		<div class="hero-buttons">
-			<Button variant="accent">
+			<Button variant="accent" href={`${GITHUB_URL}/releases`} target="_blank" rel="noreferrer noopener">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
 					<path fill-rule="evenodd" d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z" class="astro-UOAZ7IOQ"></path>
 				</svg>
 				Download
 			</Button>
-			<Button>
+			<Button href="/docs">
 				Get Started
 				<svg style="margin-right: -6px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
 					<path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"></path>
@@ -83,7 +85,7 @@ void autonomous() {
 					<path stroke-width="2" stroke="black" fill="none" stroke-linecap="round" d="M16,220 C24.666666666666668,209.83333333333334 54.166666666666664,152.83333333333334 68,159 C81.83333333333333,165.16666666666666 82.5,239.5 99,257 C115.5,274.5 155.5,274.5 167,264 C178.5,253.5 174.33333333333334,211.66666666666666 168,194 C161.66666666666666,176.33333333333334 130.5,175 129,158 C127.5,141 144.33333333333334,98.66666666666667 159,92 C173.66666666666666,85.33333333333333 202.16666666666666,102.83333333333333 217,118 C231.83333333333334,133.16666666666666 238.83333333333334,165.5 248,183 C257.1666666666667,200.5 262,216.16666666666666 272,223 C282,229.83333333333334 300,237.33333333333334 308,224 C316,210.66666666666666 312.1666666666667,166.16666666666666 320,143 C327.8333333333333,119.83333333333333 345.1666666666667,90.16666666666667 355,85 C364.8333333333333,79.83333333333333 374,99 379,112 C384,125 381.8333333333333,153 385,163 C388.1666666666667,173 395.8333333333333,170.5 398,172" />
 				</g>
 				<g>
-					{BACKGROUND_CONTROL_POINTS.map(({ x, y }, index) => (
+					{BACKGROUND_WAYPOINTS.map(({ x, y }, index) => (
 						<foreignObject x={x} y={y} width="128" height="128">
 							<div style={`--index: ${index}`} class="hero-background-control-point"></div>
 						</foreignObject>

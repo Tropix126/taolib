@@ -26,8 +26,7 @@ void Logger::log(Level level, const char* format, va_list args) const {
 		output_stream_
 			<< colorize("[" + level_to_string(level) + "] ", level)
 			<< message
-			<< colorize("\033[0m\n", level)
-			<< std::endl;
+			<< colorize("\033[0m\n", level);
 
 		for (auto& handle : handles_) {
 			handle(level, message);

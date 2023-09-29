@@ -107,12 +107,12 @@ $(document).ready(function(){initNavTree('math_8h_source.html',''); initResizabl
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>std::pair&lt;double, double&gt; normalize_speeds(<span class="keywordtype">double</span> left_speed, <span class="keywordtype">double</span> right_speed, <span class="keywordtype">double</span> max_speed);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> degrees_to_radians(<span class="keywordtype">double</span> degrees) {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> degrees * (PI / 180);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> to_radians(<span class="keywordtype">double</span> degrees) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> degrees * (PI / 180.0);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> radians_to_degrees(<span class="keywordtype">double</span> radians) {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> radians * (180 / PI);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">constexpr</span> <span class="keywordtype">double</span> to_degrees(<span class="keywordtype">double</span> radians) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> radians * (180.0 / PI);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
@@ -127,8 +127,8 @@ $(document).ready(function(){initNavTree('math_8h_source.html',''); initResizabl
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>std::vector&lt;Vector2&gt; line_circle_intersections(Vector2 center, <span class="keywordtype">double</span> radius, Vector2 point_1, Vector2 point_2);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>} <span class="comment">// namespace math</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>} <span class="comment">// namespace tao</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

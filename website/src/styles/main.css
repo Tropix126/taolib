@@ -39,6 +39,8 @@ dialog {
 
 html,
 body {
+	display: flex;
+	flex-direction: column;
 	background-color: var(--background-quaternary);
 	scroll-behavior: smooth;
 	margin: 0;

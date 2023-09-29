@@ -99,43 +99,42 @@ $(document).ready(function(){initNavTree('pid_8h_source.html',''); initResizable
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>tao {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_gains.html">   18</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_gains.html#aa5ee1188c05c7cbca1345d6509592b03">   20</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structtao_1_1_p_i_d_gains.html#aa5ee1188c05c7cbca1345d6509592b03">kP</a>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_gains.html#ae0d851ace5410cf72cac1af9a48ebdb1">   23</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structtao_1_1_p_i_d_gains.html#ae0d851ace5410cf72cac1af9a48ebdb1">kI</a>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_gains.html#a86c551d3a88e206485288cf69dd85385">   26</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="structtao_1_1_p_i_d_gains.html#a86c551d3a88e206485288cf69dd85385">kD</a>;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} <a class="code hl_struct" href="structtao_1_1_p_i_d_gains.html">PIDGains</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// PID controller class</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classtao_1_1_p_i_d_controller.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classtao_1_1_p_i_d_controller.html">PIDController</a> {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// Constructor(s)</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="classtao_1_1_p_i_d_controller.html">PIDController</a>();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_class" href="classtao_1_1_p_i_d_controller.html">PIDController</a>(<a class="code hl_struct" href="structtao_1_1_p_i_d_gains.html">PIDGains</a> gains);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// Update the PID output with the given error and time step</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">double</span> update(<span class="keywordtype">double</span> error, <span class="keywordtype">double</span> delta_time);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// Update the controller to use new gains.</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <a class="code hl_struct" href="structtao_1_1_p_i_d_gains.html">PIDGains</a> get_gains() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> set_gains(<span class="keyword">const</span> <a class="code hl_struct" href="structtao_1_1_p_i_d_gains.html">PIDGains</a>&amp; gains);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// PID gains</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_struct" href="structtao_1_1_p_i_d_gains.html">PIDGains</a> gains;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// Previous error and integral term</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">double</span> previous_error, integral;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
-<div class="ttc" id="aclasstao_1_1_p_i_d_controller_html"><div class="ttname"><a href="classtao_1_1_p_i_d_controller.html">tao::PIDController</a></div><div class="ttdef"><b>Definition:</b> pid.h:30</div></div>
-<div class="ttc" id="astructtao_1_1_p_i_d_gains_html"><div class="ttname"><a href="structtao_1_1_p_i_d_gains.html">tao::PIDGains</a></div><div class="ttdoc">A structure containing the gain constants for a PID feedback controller.</div><div class="ttdef"><b>Definition:</b> pid.h:18</div></div>
-<div class="ttc" id="astructtao_1_1_p_i_d_gains_html_a86c551d3a88e206485288cf69dd85385"><div class="ttname"><a href="structtao_1_1_p_i_d_gains.html#a86c551d3a88e206485288cf69dd85385">tao::PIDGains::kD</a></div><div class="ttdeci">double kD</div><div class="ttdoc">The derivative gain constant.</div><div class="ttdef"><b>Definition:</b> pid.h:26</div></div>
-<div class="ttc" id="astructtao_1_1_p_i_d_gains_html_aa5ee1188c05c7cbca1345d6509592b03"><div class="ttname"><a href="structtao_1_1_p_i_d_gains.html#aa5ee1188c05c7cbca1345d6509592b03">tao::PIDGains::kP</a></div><div class="ttdeci">double kP</div><div class="ttdoc">The proportional gain constant.</div><div class="ttdef"><b>Definition:</b> pid.h:20</div></div>
-<div class="ttc" id="astructtao_1_1_p_i_d_gains_html_ae0d851ace5410cf72cac1af9a48ebdb1"><div class="ttname"><a href="structtao_1_1_p_i_d_gains.html#ae0d851ace5410cf72cac1af9a48ebdb1">tao::PIDGains::kI</a></div><div class="ttdeci">double kI</div><div class="ttdoc">The integral gain constant.</div><div class="ttdef"><b>Definition:</b> pid.h:23</div></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// PID controller class</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classtao_1_1_p_i_d_controller.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classtao_1_1_p_i_d_controller.html">PIDController</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_controller_1_1_gains.html">   20</a></span>    <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_controller_1_1_gains.html#a380c957f13e59f4706788b3bdc69631b">   22</a></span>        <span class="keywordtype">double</span> <a class="code hl_variable" href="structtao_1_1_p_i_d_controller_1_1_gains.html#a380c957f13e59f4706788b3bdc69631b">kP</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_controller_1_1_gains.html#aac5208decf7a83eb02d03880fc089afd">   25</a></span>        <span class="keywordtype">double</span> <a class="code hl_variable" href="structtao_1_1_p_i_d_controller_1_1_gains.html#aac5208decf7a83eb02d03880fc089afd">kI</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structtao_1_1_p_i_d_controller_1_1_gains.html#a7424490b1800829cc8503f4aac1a4eaf">   28</a></span>        <span class="keywordtype">double</span> <a class="code hl_variable" href="structtao_1_1_p_i_d_controller_1_1_gains.html#a7424490b1800829cc8503f4aac1a4eaf">kD</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    } <a class="code hl_struct" href="structtao_1_1_p_i_d_controller_1_1_gains.html">Gains</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// Constructor(s)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_class" href="classtao_1_1_p_i_d_controller.html">PIDController</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="classtao_1_1_p_i_d_controller.html">PIDController</a>(<a class="code hl_struct" href="structtao_1_1_p_i_d_controller_1_1_gains.html">Gains</a> gains);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// Update the PID output with the given error and time step</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">double</span> update(<span class="keywordtype">double</span> error, <span class="keywordtype">double</span> delta_time);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// Update the controller to use new gains.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <a class="code hl_struct" href="structtao_1_1_p_i_d_controller_1_1_gains.html">Gains</a> get_gains() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> set_gains(<span class="keyword">const</span> <a class="code hl_struct" href="structtao_1_1_p_i_d_controller_1_1_gains.html">Gains</a>&amp; gains);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// PID gains</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_struct" href="structtao_1_1_p_i_d_controller_1_1_gains.html">Gains</a> gains;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// Previous error and integral term</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">double</span> previous_error, integral;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>} <span class="comment">// namespace tao</span></div>
+<div class="ttc" id="aclasstao_1_1_p_i_d_controller_html"><div class="ttname"><a href="classtao_1_1_p_i_d_controller.html">tao::PIDController</a></div><div class="ttdef"><b>Definition:</b> pid.h:13</div></div>
+<div class="ttc" id="astructtao_1_1_p_i_d_controller_1_1_gains_html"><div class="ttname"><a href="structtao_1_1_p_i_d_controller_1_1_gains.html">tao::PIDController::Gains</a></div><div class="ttdoc">A structure containing the gain constants for a PID feedback controller.</div><div class="ttdef"><b>Definition:</b> pid.h:20</div></div>
+<div class="ttc" id="astructtao_1_1_p_i_d_controller_1_1_gains_html_a380c957f13e59f4706788b3bdc69631b"><div class="ttname"><a href="structtao_1_1_p_i_d_controller_1_1_gains.html#a380c957f13e59f4706788b3bdc69631b">tao::PIDController::Gains::kP</a></div><div class="ttdeci">double kP</div><div class="ttdoc">The proportional gain constant.</div><div class="ttdef"><b>Definition:</b> pid.h:22</div></div>
+<div class="ttc" id="astructtao_1_1_p_i_d_controller_1_1_gains_html_a7424490b1800829cc8503f4aac1a4eaf"><div class="ttname"><a href="structtao_1_1_p_i_d_controller_1_1_gains.html#a7424490b1800829cc8503f4aac1a4eaf">tao::PIDController::Gains::kD</a></div><div class="ttdeci">double kD</div><div class="ttdoc">The derivative gain constant.</div><div class="ttdef"><b>Definition:</b> pid.h:28</div></div>
+<div class="ttc" id="astructtao_1_1_p_i_d_controller_1_1_gains_html_aac5208decf7a83eb02d03880fc089afd"><div class="ttname"><a href="structtao_1_1_p_i_d_controller_1_1_gains.html#aac5208decf7a83eb02d03880fc089afd">tao::PIDController::Gains::kI</a></div><div class="ttdeci">double kI</div><div class="ttdoc">The integral gain constant.</div><div class="ttdef"><b>Definition:</b> pid.h:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

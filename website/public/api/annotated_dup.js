@@ -9,9 +9,8 @@ var annotated_dup =
         ] ]
       ] ],
       [ "Drivetrain", "classtao_1_1_drivetrain.html", "classtao_1_1_drivetrain" ],
-      [ "DrivetrainProfile", "structtao_1_1_drivetrain_profile.html", "structtao_1_1_drivetrain_profile" ],
-      [ "PIDController", "classtao_1_1_p_i_d_controller.html", null ],
-      [ "PIDGains", "structtao_1_1_p_i_d_gains.html", "structtao_1_1_p_i_d_gains" ],
+      [ "Logger", "classtao_1_1_logger.html", null ],
+      [ "PIDController", "classtao_1_1_p_i_d_controller.html", "classtao_1_1_p_i_d_controller" ],
       [ "Vector2", "classtao_1_1_vector2.html", "classtao_1_1_vector2" ]
     ] ]
 ];

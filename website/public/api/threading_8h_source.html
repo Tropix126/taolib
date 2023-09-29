@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('threading_8h_source.html',''); initRes
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keyword">delete</span> func_and_args;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <span class="comment">// namespace internal</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Ret, <span class="keyword">typename</span>... Args&gt;</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>vex::thread make_thread(Ret (*fn)(Args...), Args... args) {</div>
@@ -164,8 +164,8 @@ $(document).ready(function(){initNavTree('threading_8h_source.html',''); initRes
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordflow">return</span> make_thread(static_proxy&lt;Cls, Ret, Args...&gt;, cls_instance, cls_fn, std::forward&lt;Args&gt;(args)...);</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>} <span class="comment">// namespace threading</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>} <span class="comment">// namespace tao</span></div>
 <div class="ttc" id="astructtao_1_1threading_1_1internal_1_1index__sequence___html"><div class="ttname"><a href="structtao_1_1threading_1_1internal_1_1index__sequence__.html">tao::threading::internal::index_sequence_</a></div><div class="ttdef"><b>Definition:</b> threading.h:25</div></div>
 <div class="ttc" id="astructtao_1_1threading_1_1internal_1_1index__sequence__helper___html"><div class="ttname"><a href="structtao_1_1threading_1_1internal_1_1index__sequence__helper__.html">tao::threading::internal::index_sequence_helper_</a></div><div class="ttdef"><b>Definition:</b> threading.h:28</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -315,7 +315,7 @@ int Drivetrain::tracking() {
 int Drivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
-		logger.info("Position: (%f, %f) Heading: %f°\n", global_position.get_x(), global_position.get_y(), get_heading());
+		logger.info("Position: (%f, %f) Heading: %f\u00B0", global_position.get_x(), global_position.get_y(), get_heading());
 
 		vex::this_thread::sleep_for(1000);
 	}
@@ -396,7 +396,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
-	logger.debug("Turning to %f°", heading);
+	logger.debug("Turning to %f\u00B0", heading);
 	settled = false;
 
 	set_target(target_distance, heading);
@@ -407,7 +407,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
 	Vector2 local_target = point - global_position;
 
-	logger.debug("Turning to (%f, %f). Calculated angle: %f°", point.get_x(), point.get_y());
+	logger.debug("Turning to (%f, %f). Calculated angle: %f\u00B0", point.get_x(), point.get_y());
 
 	set_target(target_distance, local_target.get_angle());
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector2_0',['Vector2',['../classtao_1_1_vector2.html#a76b488cae66f02da126eafefbc5090d9',1,'tao::Vector2::Vector2(double x, double y)'],['../classtao_1_1_vector2.html#a4b683aa12a50d17113c0ca5456e5d42a',1,'tao::Vector2::Vector2(const Vector2 &amp;v)'],['../classtao_1_1_vector2.html#a18f0d9cf89f39649c63c49d47ffcc9f7',1,'tao::Vector2::Vector2()']]]
+  ['turn_5fto_0',['turn_to',['../classtao_1_1_drivetrain.html#a1721f37994074aa47c7051a01c41b68c',1,'tao::Drivetrain::turn_to(double heading, bool blocking=true)'],['../classtao_1_1_drivetrain.html#a6cf09dd9309e2771d725d5f862b8928a',1,'tao::Drivetrain::turn_to(Vector2 point, bool blocking=true)']]]
 ];

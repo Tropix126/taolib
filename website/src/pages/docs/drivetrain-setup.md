@@ -1,64 +1,57 @@
 ---
 title: Basic Drivetrain Movement
+category: Tutorials
 layout: ~/layouts/DocsLayout.astro
+page: 2
 ---
 
 # Drivetrain Setup
 
-In this tutorial, we'll cover the basics of creating a Drivetrain object, tuning the parameters of the drivetrain to create a profile, and moving the robot around using taolib.
+In this tutorial, we'll create and configure a Drivetrain object, tune the parameters of the drivetrain, and perform some basic movement.
 
 # Setting Up Devices
 
-First you'll need to configure your drivetrain's devices (motors, sensors, etc). taolib supports a few different device configurations:
+First you'll need to provide your drivetrain's devices (motors, sensors, etc). taolib supports a few different device configurations:
 * At minimum, 2 parallel motors controlling wheels of the same size.
   * You can have as many motors as you wish on each side of the drivetrain (4, 6, 8, etc...)
-* You can optionally include a [VEX inertial sensor (IMU)]() for considerably more accurate turns.
+* You can optionally include a [VEX inertial sensor (IMU)]() for more accurate heading telemetry and turns.
 * You can optionally use two parallel [3-Wire Optical Shaft Encoders](https://kb.vex.com/hc/en-us/articles/360039512851-Using-the-V5-3-Wire-Optical-Shaft-Encoder) attached to [tracking wheels](https://gm0.org/en/latest/docs/common-mechanisms/dead-wheels.html) to prevent wheel slipping from messing up tracking.
 
 > If you're on VEXcode Pro, you can add the required devices through the Robot Configuration button at the top right of the application window.
 
 First, create two [motor groups](https://kb.vex.com/hc/en-us/articles/360058592211-Configuring-a-Motor-Group-in-VEXcode-V5) for your left and right side motors.
 
-> It is possible that one of these motor groups will need to be reversed to properly control the drivetrain. taolib does not handle this for you, so it is important that you check if one side of your drivetrain has its motors flipped upside-down. If it does, then set the appropriate motor group side to run in reverse.
+> It's possible that one of these motor groups will need to be reversed to properly control the drivetrain. taolib does not handle this for you, so it is important that you check if one side of your drivetrain has its motors flipped upside-down. If it does, then set the appropriate motor group side to run in reverse.
 
 If you wish to use an inertial sensor or external encoders, add those as devices with the appropriate ports as well.
 
 # Creating a Drivetrain Object
 
-After following the [getting started guide]() and setting up taolib, you're ready to create a `tao::Drivetrain` instace. This class is used for controlling all movement provided by taolib.
+After following the [getting started guide]() and setting up taolib, you're ready to create a `Drivetrain`` instace. This class is used for controlling all movement provided by taolib.
 
 ## Setup with 2 `vex::motor_group`s
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, profile);
+auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, config);
 ```
 
 This device configuration will initialize the `tao::Drivetrain` instance with two parallel motor groups and nothing else (the bare minimum configuration).
 
 ## Setup with an IMU
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, profile);
+auto chassis = tao::Drivetrain(left_drive, right_drive, imu, config);
 ```
 
 Similar to the previous configuration, we have two motor groups, but have additionally added in a V5 Inertial Sensor for accurate turns.
-> You'll need to calibrate the Inertial Sensor at the start of pre-autonomous. taolib doesn't handle this for you and **this is an important step if you want to use a gyro for turning.** Example code:
+> If you use an intertial sensor, you'll need to calibrate it before moving the robot using `Drivetrain::calibrate_imu`. **This is an important step if you want to use a gyro for turning.** Example code:
 > ```cpp
 > auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, profile);
 >
-> bool IMU_calibrated = false;
 > void pre_auton() {
->   // Perform calibration and ensure that it's properly done before setting IMU_calibrated to true.
->  	IMU.calibrate();
->  	waitUntil(!IMU.isCalibrating());
->  	IMU_calibrated = true;
+> 	chassis.calibrate_imu();
 > }
 > ...
-> // We need to make sure that the robot can't be moved while the IMU is calibrated, so wait until it is in both auton and driver control.
 > void autonomous() {
->  	waitUntil(IMU_calibrated);
-> }
-> ...
-> void usercontrol() {
->  	waitUntil(IMU_calibrated);
+>	chassis.start_tracking();
 > }
 > ```
 
@@ -76,11 +69,11 @@ auto chassis = tao::Drivetrain(left_drive, right_drive, left_encoder, right_enco
 auto chassis = tao::Drivetrain(left_drive, right_drive, left_encoder, right_encoder, profile);
 ```
 
-# Creating a Drivetrain Profile
+# Configuring the Drivetrain
 
-We aren't done yet. The next (and arguably most important step) is to tune our drivetrain. We do this by creating a *profile*, which will describe to taolib certain attributes (such as measurements and tolerances) that will be used by the drivetrain to calculate correct movements.
+We aren't done yet. `Drivetrain` objects need to be configured specifically for the physical aspects of a robot. Differences in size, weight, speed, and wheels typically means that no robot will behave exactly the same as another. This tuning process is extremely important, and an improperly tuned drivetrain will produce sub-optimal or unexpected movements.
 
-You might recall that in the last section, we passed in a `profile` object to `tao::Drivetrain`. Lets fill that in with an example profile for our drivetrain:
+You might recall that in the last section, we passed in a `config` parameter to `tao::Drivetrain`. Lets fill that in with an example config for our drivetrain:
 
 ```cpp
 auto chassis = tao::Drivetrain(left_drive, right_drive, {
@@ -90,22 +83,24 @@ auto chassis = tao::Drivetrain(left_drive, right_drive, {
 	.turn_tolerance = 0.0,
 	.lookahead_distance = 0.0,
 	.track_width = 0.0,
-	.wheel_radius = 0.0,
-	.external_gear_ratio = (double)(1 / 1),
+	.wheel_diameter = 0.0,
+	.gearing = (1.0 / 1.0),
 });
 ```
 
-All these values are set to 0, though, and need to be tuned for your specific drivetrain configuration. Let's go over each of them individually (backwards, since the first 4 values are the hardest to tune).
+All these values are set to 0, though, and need to be tuned for your specific drivetrain. Let's go over each of them individually.
 
-## External Gear Ratio
+## Gearing
 
-The `external_gear_ratio` parameter of `tao::DrivetrainProfile` describes the gear ratio used by your drivetrain. The parameter accepts a fraction of `(double)(DRIVE_TEETH / DRIVEN_TEETH)`. Let's say you have a drivetrain where your motors are on an 86 tooth gear engaged with a 60 tooth gear attached to your wheels. Your gear ratio would be `.external_gear_ratio = (double)(84 / 60)`.
+The `gearing` parameter of `tao::DrivetrainProfile` describes the external gear ratio used by your drivetrain. The parameter accepts a fraction of `(DRIVE_TEETH / DRIVEN_TEETH)`. Let's say you have a drivetrain where your motors are attached to an 84 tooth gear that drives a 60 tooth gear attached to your wheels. Your gearing `(84.0 / 60.0)`.
 
-If you have no gear ratio at all (your wheels are directly powered by motors), then leave this property as `1` to say you have a 1:1 direct drive.
+> Note: It's important that decimals (e.g. `84.0` rather than `84`) are used when passing in a gear ratio fraction to avoid unexpected behavior when dividing integers.
 
-## Wheel Radius
+If you have no gear ratio at all (your wheels are directly powered by motors), then leave this property as `1.0` to indicate you have a 1:1 direct drive.
 
-This value describes the radius of your drivetrain's driven wheels. Measure the distance between the center of your wheels to the outside edge, and set that measurement as your wheel radius.
+## Wheel Diameter
+
+This value describes the diameter of your drivetrain's driven wheels. To find this number, measure the distance from the center of the left wheels to the center of the right wheels. The wheels currently sold by VEX come in sizes of `2.75`, `3.25`, `4.0` inch diameters, however some of the older wheels (such as the discontinued versions of the 4-inch Omni-wheels) had a slightly larger diameter than advertised.
 
 > IMPORTANT: The units you use for measurement here (and in `.track_width` below) will determine the units used for everything else (including odometry and movement functions).
 
@@ -115,7 +110,7 @@ This value describes the distance between the center of your left wheels to the 
 
 ![Track Width Visualization](https://kb.vex.com/hc/article_attachments/360085801912/track_width.jpg)
 
-*You must measure this with the same units you used for your wheel radius*.
+*You must measure this with the same units you used for your `wheel_diameter`*.
 
 ## Tolerances
 
@@ -135,8 +130,9 @@ To turn `turn_gains` you'll want to setup a basic autonomous routine that turns 
 
 ```cpp
 void autonomous() {
-	chassis.setup_tracking(tao::Vector2(0, 0), 90);
-	chassis.turn_to(180);
+	// chassis.calibrate_imu(); // Uncomment if you use an inertial sensor!
+	chassis.setup_tracking();
+	chassis.turn_to(0);
 }
 ```
 
@@ -144,13 +140,14 @@ From there, the general process for tuning is as follows:
 1. Increase `kP` (the first number AKA the proportional constant) until the robot reaches the target (for example, 180 degrees) in a reasonable amount of time and oscillates around it (bounces back/forth around the target). The oscillations should not be large enough to increase over time. Rather, you want to find a `kP` value that causes minor overshoot of the target and has oscillations that decrease and eventually reach the target.
 2. From there, increase `kD` (the third number AKA the derivative constant) until the oscillations stop. A `kD` value that is too high will cause unpredictable movements, so increase it in small increments each time you test the movement.
 3. If the robot *consistently undershoots the target every time*, you *might* want to increase `kI` (the second number AKA the integral constant) a very slight amount.
-	> Keep in mind that undershoots are often caused by `kP` being too low, and not the need for an integral term. For almost all cases, `kI` should stay at or near 0, because the integral term is susceptable to [integral windup](), which can cause unpredictable movement.
+	> Keep in mind that undershoots are often caused by `kP` being too low, and not the need for an integral term. For almost all cases, `kI` should stay at or near 0, because the integral term is susceptable to [integral windup](), which can cause unpredictable movements.
 
 A similar process will be used for tuning the drivetrain's `drive_gains`. We can run a test movement that drives forward 24 inches (1 VEX field tile) to tune linear movement:
 
 ```cpp
 void autonomous() {
-	chassis.setup_tracking(tao::Vector2(0, 0), 90);
+	// chassis.calibrate_imu(); // Uncomment if you use an inertial sensor!
+	chassis.setup_tracking();
 	chassis.drive(24);
 }
 ```
@@ -174,7 +171,7 @@ The intersection point between a circle and the path is called the *lookahead po
 
 To tune lookahead distance, make the drivetrain follow a path and increase the distance until the path is followed with acceptable accuracy in a reasonable amount of time. A larger lookahead distance will typically yield lower accuracy but faster movement, while a smaller lookahead distance will have higher accuracy but slower movement.
 
-## Example Profile
+## Example Configuration
 
 Here's an example of what a drivetrain profile *might* look like once properly tuned for movement.
 
@@ -198,10 +195,10 @@ auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, {
 	// Track width is 13.75 inches
 	.track_width = 13.75,
 
-	// 2.02 inch wheel radius (tuned for VEX's new 4-inch omni wheels)
-	.wheel_radius = 2.02,
+	// 3.25 inch wheel radius (tuned for VEX's new 4-inch omni wheels)
+	.wheel_radius = 3.25,
 
-	// 84:60 external gear ratio
-	.external_gear_ratio = ((double)84 / 60),
+	// 36:60 external gear ratio
+	.gearing = (36.0 / 60.0),
 });
 ```

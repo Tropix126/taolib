@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['lookahead_5fdistance_0',['lookahead_distance',['../structtao_1_1_drivetrain_profile.html#a6b69402bddad0dfa65d9310a8385a86b',1,'tao::DrivetrainProfile']]]
+  ['logger_0',['Logger',['../classtao_1_1_logger.html',1,'tao']]],
+  ['lookahead_5fdistance_1',['lookahead_distance',['../structtao_1_1_drivetrain_1_1_config.html#af5c96f172608b92c8c831d948ff181b8',1,'tao::Drivetrain::Config']]]
 ];

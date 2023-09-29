@@ -3,25 +3,36 @@ import BaseLayout from "./BaseLayout.astro";
 
 import Section from "~/components/Section";
 
+const categorize = (array, fn) => array.reduce((r, v, i, a, k = fn(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+
 const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontmatter.page - b.frontmatter.page));
+const categories = categorize(pages, page => page.frontmatter.category);
 ---
 
 <BaseLayout>
 	<Section class="docs-layout">
 		<aside class="docs-sidebar">
 			<ul>
-				{pages.map(page => {
-					const currentPage = "/" + (new URL(Astro.request.url).pathname.split("/docs/")[1] || "");
-					const path = page.url.split("/docs")[1] || "/";
+				{Object.keys(categories).map(category => (
+					<details class="docs-sidebar-category" open>
+						<summary>
+							{category}
+							<svg data-hk="0-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="astro-XIML7APE "><path d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"></path></svg>
+						</summary>
+						{categories[category].map(page => {
+							const currentPage = "/" + (new URL(Astro.request.url).pathname.split("/docs/")[1] || "");
+							const path = page.url.split("/docs")[1] || "/";
 
-					return (
-						<li class:list={[{ selected: currentPage === path}]}>
-							<a href={page.url}>
-								{page.frontmatter.title}
-							</a>
-						</li>
-					);
-				})}
+							return (
+								<li class="docs-sidebar-item" class:list={[{ selected: currentPage === path}]}>
+									<a href={page.url}>
+										{page.frontmatter.title}
+									</a>
+								</li>
+							);
+						})}
+					</details>
+				))}
 			</ul>
 		</aside>
 		<article class="docs-content">
@@ -39,6 +50,25 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 	:global(.docs-layout .section-inner) {
 		display: flex;
 	}
+
+	@media only screen and (max-width: 768px) {
+		:global(.docs-layout .section-inner) {
+			flex-direction: column;
+		}
+
+		:global(.docs-layout) .docs-content {
+			padding-block: 24px;
+		}
+
+		:global(.docs-layout) .docs-sidebar {
+			position: relative;
+			top: 0;
+			margin: 0;
+			inline-size: 100%;
+			padding-block-start: 24px;
+			padding-block-end: 0;
+		}
+	}
 	
 	.docs-sidebar {
 		position: sticky;
@@ -50,6 +80,38 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 		inline-size: 240px;
 	}
 
+	.docs-sidebar-category summary {
+		user-select: none;
+		display: flex;
+		cursor: pointer;
+		justify-content: space-between;
+		font-size: 14px;
+		color: var(--foreground-primary);
+		line-height: normal;
+		margin: 0;
+		font-weight: 700;
+		padding-block-end: 8px;
+		margin-block-end: 8px;
+		border-block-end: 1px solid var(--interactive-primary);
+	}
+
+	.docs-sidebar-category summary:hover {
+		border-color: var(--interactive-tertiary);
+	}
+
+	.docs-sidebar-category summary:focus-visible {
+		outline: none;
+		box-shadow: 0 0 0 3px var(--accent-faded);
+	}
+
+	.docs-sidebar-category summary svg {
+		fill: var(--foreground-tertiary);
+	}
+
+	.docs-sidebar-category[open] summary svg {
+		transform: rotate(180deg);
+	}
+
 	.docs-sidebar ul {
 		flex-direction: column;
 		list-style: none;
@@ -58,13 +120,13 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 	}
 
 	.docs-sidebar ul,
-	.docs-sidebar li a,
-	.docs-sidebar ul li {
+	.docs-sidebar-item a,
+	.docs-sidebar-item {
 		display: flex;
 		flex: 1 1 auto;
 	}
 	
-	.docs-sidebar li a {
+	.docs-sidebar-item a {
 		outline: none;
 		position: relative;
 		display: flex;
@@ -78,21 +140,21 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 		margin-block-end: 4px;
 	}
 
-	.docs-sidebar li a:focus {
+	.docs-sidebar-item a:focus {
 		box-shadow: 0 0 0 3px var(--accent-faded);
 	}
 
-	.docs-sidebar li a:hover {
+	.docs-sidebar-item a:hover {
 		background-color: var(--background-primary);
 	}
 
-	.docs-sidebar li.selected a {
+	.docs-sidebar-item.selected a {
 		background-color: var(--interactive-primary);
 		color: var(--foreground-primary);
 		font-weight: 600;
 	}
 
-	.docs-sidebar li a::after {
+	.docs-sidebar-item a::after {
 		content: "";
 		position: absolute;
 		inset-inline-start: 0;
@@ -100,14 +162,14 @@ const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontm
 		inline-size: 2px;
 		border-radius: 8px;
 		background-color: var(--accent-primary);
-		box-shadow: 0 0 12px var(--accent-primary);
 	}
 
-	.docs-sidebar li.selected a::after {
+	.docs-sidebar-item.selected a::after {
 		block-size: 16px;
 	}
 
 	.docs-content {
+		overflow: hidden;
 		flex: 1 1 auto;
 		padding-block: 48px;
 		font-size: 18px;

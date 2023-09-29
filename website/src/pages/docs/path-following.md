@@ -1,8 +1,8 @@
 ---
-title: Pure Pursuit
+title: Path Following
 category: Explanations & Tutorials
 layout: ~/layouts/DocsLayout.astro
-page: 3
+page: 4
 ---
 
-# Pure Pursuit
+# Path Following

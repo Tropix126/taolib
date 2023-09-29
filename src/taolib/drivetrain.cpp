@@ -206,8 +206,8 @@ void Drivetrain::set_target(double distance, double heading) {
 int Drivetrain::tracking() {
 	logger.info("Tracking period started.");
 
-	// Store the wheel travel from the last loop cycle.
 	double previous_forward_travel = 0.0;
+	double previous_heading = 0.0;
 
 	// Counter representing the amount of cycles that each PID position has been within it's respective min error range.
 	// For example, if the counter reaches 10 then the drivetrain has been within drive_tolerance and turn_tolerance for ~100ms.
@@ -217,8 +217,10 @@ int Drivetrain::tracking() {
 	constexpr int32_t SAMPLE_RATE = 10;
 
 	while (tracking_active) {
-		// Measure the current absolute heading and calculate the change in heading from the last loop cycle
+		// Measure the current absolute heading and calculate the change in heading from the last loop sample
 		double heading = get_heading();
+		double delta_heading = heading - previous_heading;
+		previous_heading = heading;
 
 		// Measure the forward travel by taking the average value of all encoders.
 		double forward_travel = get_forward_travel();
@@ -234,7 +236,11 @@ int Drivetrain::tracking() {
 		// a right triangle rather than forming an arc. The loss in accuracy of this
 		// is generally negligible, because it's recalculated at a high sample rate (10ms).
 		// For more information: https://rossum.sourceforge.net/papers/DiffSteer/
-		global_position += Vector2(delta_forward_travel, 0.0).rotated(math::to_radians(heading));
+		global_position += Vector2(
+			2.0 * std::sin(math::to_radians(delta_heading / 2)) * (delta_forward_travel / math::to_radians(delta_heading + 0.001)),
+			0.0 // Assume no sideways motion for now.
+		).rotated(math::to_radians(previous_heading + delta_heading / 2.0));
+		// global_position += Vector2(delta_forward_travel, 0.0).rotated(heading);
 
 		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).
@@ -444,9 +450,9 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 			// lookahead distance and a line segment formed between our starting/ending points.
 			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, lookahead_distance, start, end);
 
-			Vector2 target_intersection;
 
 			// Choose the best intersection to go to, ensuring that we don't go backwards along the path.
+			Vector2 target_intersection;
 			if (intersections.size() == 2) {
 				// There are two intersections. Find the one closest to the end of the line segment.
 				if (intersections[0].distance(end) < intersections[1].distance(end)) {
@@ -457,12 +463,12 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 			} else if (intersections.size() == 1) {
 				// There is one intersection. Go to that intersection.
 				target_intersection = intersections[0];
+			} else {
+				// No intersections were found. Don't update the target.
+				return;
 			}
 
-			// Move to the target intersection
-			if (intersections.size() > 0) {
-				set_target(target_intersection);
-			}
+			set_target(target_intersection);
 
 			vex::wait(10, vex::msec);
 		}

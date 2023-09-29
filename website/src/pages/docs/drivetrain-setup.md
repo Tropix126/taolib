@@ -1,6 +1,6 @@
 ---
 title: Basic Drivetrain Movement
-category: Tutorials
+category: Library
 layout: ~/layouts/DocsLayout.astro
 page: 2
 ---

@@ -4,9 +4,7 @@ import BaseLayout from "./BaseLayout.astro";
 import Section from "~/components/Section";
 
 const categorize = (array, fn) => array.reduce((r, v, i, a, k = fn(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
-
-const pages = (await Astro.glob("../pages/docs/**.md")).sort((a, b) => (a.frontmatter.page - b.frontmatter.page));
-const categories = categorize(pages, page => page.frontmatter.category);
+const categories = categorize(await Astro.glob("../pages/docs/**.md"), page => page.frontmatter.category);
 ---
 
 <BaseLayout>
@@ -19,7 +17,7 @@ const categories = categorize(pages, page => page.frontmatter.category);
 							{category}
 							<svg data-hk="0-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="astro-XIML7APE "><path d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"></path></svg>
 						</summary>
-						{categories[category].map(page => {
+						{categories[category].sort((a, b) => (a.frontmatter.page - b.frontmatter.page)).map(page => {
 							const currentPage = "/" + (new URL(Astro.request.url).pathname.split("/docs/")[1] || "");
 							const path = page.url.split("/docs")[1] || "/";
 
@@ -73,11 +71,19 @@ const categories = categorize(pages, page => page.frontmatter.category);
 	.docs-sidebar {
 		position: sticky;
 		align-self: flex-start;
-		inset-block-start: 80px;
-		padding-block: 24px;
+		inset-block-start: 56px;
+		padding-block: 48px;
 		margin-inline-end: 48px;
 		flex: 0 0 auto;
 		inline-size: 240px;
+	}
+
+	.docs-sidebar-category:not(:last-of-type) {
+		margin-block-end: 12px;
+	}
+
+	.docs-sidebar-category:not(:last-of-type)[open] {
+		margin-block-end: 36px;
 	}
 
 	.docs-sidebar-category summary {

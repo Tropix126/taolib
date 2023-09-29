@@ -1,8 +1,8 @@
 ---
-title: Advanced Movement
+title: Additional Utilities
 category: Library
 layout: ~/layouts/DocsLayout.astro
-page: 4
+page: 6
 ---
 
-# Advanced Movement
+# Additional Utilities

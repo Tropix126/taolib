@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-category: Tutorials
+category: Library
 layout: ~/layouts/DocsLayout.astro
 page: 1
 ---

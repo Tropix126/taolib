@@ -1,10 +1,8 @@
 ---
 title: Telemetry & Logging
-category: Tutorials
+category: Library
 layout: ~/layouts/DocsLayout.astro
-page: 4
+page: 5
 ---
 
 # Telemetry & Logging
-
-taolib offers many methods of getting information about the drivetrain's current state.

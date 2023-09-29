@@ -1,6 +1,6 @@
 ---
 title: Moving The Robot
-category: Tutorials
+category: Library
 layout: ~/layouts/DocsLayout.astro
 page: 3
 ---

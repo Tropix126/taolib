@@ -108,7 +108,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 }
 
 Drivetrain::~Drivetrain() {
-	end_tracking();
+	stop_tracking();
 }
 
 Vector2 Drivetrain::get_position() const { return global_position; }
@@ -162,6 +162,7 @@ double Drivetrain::get_heading() {
 	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the imu if detected.
 	if (!imu_invalid && imu != nullptr && !imu->installed()) {
 		imu_invalid = true;
+		logger.error("IMU was unplugged. Switching to wheeled heading calculation (less accurate).");
 	}
 
 	if (imu != nullptr && !imu_invalid) {
@@ -250,20 +251,24 @@ int Drivetrain::tracking() {
 			drive_error = target_distance - forward_travel;
 		}
 
-		// Get output of PID controllers and convert to motor voltages
+		// Get output of PID controllers and cap to max power
 		double dt = SAMPLE_RATE / 1000.0;
-		double drive_voltage = 12 * drive_controller.update(drive_error, dt) / max_drive_power;
-		double turn_voltage =  12 * turn_controller.update(turn_error, dt) / max_turn_power;
+		double drive_power = math::clamp(drive_controller.update(drive_error, dt), -max_drive_power, max_drive_power);
+		double turn_power = math::clamp(turn_controller.update(turn_error, dt), -max_turn_power, max_turn_power);
 
 		// Scale drive power by the cosine of turn_error if moving to a point.
 		// This biases turn power over drive power at the start of the movement, which makes the
 		// arc shapes less dramatic when moving to a point.
 		if (error_mode == ErrorModes::Absolute) {
-			drive_voltage *= std::cos(math::to_radians(turn_error));
+			drive_power *= std::cos(math::to_radians(turn_error));
 		}
 
-		// Normalize the voltages to be within +-12v while preserving the ratio of left to right speed.
-		std::pair<double, double> normalized_voltages = math::normalize_speeds(drive_voltage, turn_voltage, 12);
+		// Convert drive and turn power to left and right motor voltages
+		std::pair<double, double> normalized_voltages = math::normalize_speeds(
+			12 * (drive_power + turn_power) / 100,
+			12 * (drive_power - turn_power) / 100,
+			12
+		);
 
 		// Spin motors at the output voltage.
 		left_motors.spin(vex::forward, normalized_voltages.first, vex::volt);
@@ -301,7 +306,7 @@ int Drivetrain::tracking() {
 int Drivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
-		logger.info("Position: (%f, %f) Heading: %f°", global_position.get_x(), global_position.get_y(), get_heading());
+		printf("Position: (%f, %f) Heading: %f\n", global_position.get_x(), global_position.get_y(), get_heading());
 
 		vex::this_thread::sleep_for(1000);
 	}
@@ -311,30 +316,37 @@ int Drivetrain::logging() {
 
 void Drivetrain::calibrate_imu() {
 	if (imu != nullptr) {
+		if (!imu->installed()) {
+			logger.error("IMU not plugged in. Skipping calibration");
+			return;
+		}
+		
 		// Prevent a possible race condition that can occur if the imu isn't detected as plugged in yet.
 		vex::wait(0.25, vex::seconds);
 		imu->calibrate();
+		vex::wait(0.1, vex::seconds);
 		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
+		vex::wait(0.25, vex::seconds);
 
-		imu_calibrated = false;
+		imu_calibrated = true;
 	}
 }
 
-void Drivetrain::begin_tracking(Vector2 origin, double heading) {
+void Drivetrain::start_tracking(Vector2 origin, double heading) {
 	// Reset motor encoders.
 	left_motors.resetPosition();
 	right_motors.resetPosition();
 
 	// Reset imu heading.
-	start_heading = heading;
 	if (imu != nullptr) {
+		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
 		if (!imu_calibrated) {
 			logger.warning("IMU has not been calibrated! Turns may be inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
 		}
 		imu->resetHeading();
 	}
 
-	// Set global position to supplied starting vector.
+	start_heading = heading;
 	global_position = origin;
 
 	// Start threads
@@ -347,10 +359,10 @@ void Drivetrain::begin_tracking(Vector2 origin, double heading) {
 		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
 	}
 
-	hold_position();
+	set_target(0.0, start_heading);
 }
 
-void Drivetrain::end_tracking() {
+void Drivetrain::stop_tracking() {
 	tracking_active = false;
 	logging_active = false;
 	
@@ -367,7 +379,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 	settled = false;
 
 	// Set the PID target distance to our desired distance plus our current wheel travel.
-	set_target(get_forward_travel() + distance, get_heading());
+	set_target(get_forward_travel() + distance, target_heading);
 
 	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }
@@ -376,7 +388,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 	settled = false;
 
 	// Set the PID target heading.
-	set_target(get_forward_travel(), heading);
+	set_target(target_distance, heading);
 	
 	while (!settled && blocking) { vex::wait(10, vex::msec); }
 }

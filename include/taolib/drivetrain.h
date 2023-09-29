@@ -302,10 +302,10 @@ public:
 	 * @param start_position A 2D vector representing the starting cartesian coordinates of the drivetrain.
 	 * @param start_heading An angle in degrees representing the starting orientation of the drivetrain.
 	 */
-	void begin_tracking(Vector2 origin = Vector2(0, 0), double heading = 90);
+	void start_tracking(Vector2 origin = Vector2(0.0, 0.0), double heading = 90.0);
 
 	/** Stops all threads used for tracking and movement, restoring manual control of the drivetrain. */
-	void end_tracking();
+	void stop_tracking();
 
 	void calibrate_imu();
 

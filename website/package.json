@@ -11,10 +11,10 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/solid-js": "^1.2.3",
-    "@babel/core": "^7.20.12",
-    "astro": "^1.9.2",
-    "solid-js": "^1.6.9"
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/solid-js": "^3.0.1",
+    "@babel/core": "^7.23.0",
+    "astro": "^3.2.0",
+    "solid-js": "^1.7.12"
   }
 }

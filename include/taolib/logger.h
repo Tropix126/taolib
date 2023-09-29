@@ -47,7 +47,7 @@ private:
 
 	static std::string colorize(const std::string& message, Level level);
 
-	static const std::string Logger::format(const char * const format, va_list args);
+	static const std::string format(const char * const format, va_list args);
 };
 
 }

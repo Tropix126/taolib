@@ -239,6 +239,8 @@ public:
 	 */
 	bool is_settled() const;
 
+	double get_wheel_diameter() const;
+
 
 
 	// Setters
@@ -292,6 +294,8 @@ public:
 	 * @param power A percentage of the new maximum velocity cap.
 	 */
 	void set_max_turn_power(double power);
+
+	void set_wheel_diameter(double diameter);
 
 
 
@@ -378,7 +382,7 @@ private:
 
 	double lookahead_distance;
 	double track_width;
-	double wheel_circumference;
+	double wheel_diameter;
 	double gearing;
 
 

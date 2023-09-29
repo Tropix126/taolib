@@ -37,7 +37,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
 	  track_width(config.track_width),
-	  wheel_circumference(config.wheel_diameter * math::PI),
+	  wheel_diameter(config.wheel_diameter),
 	  gearing(config.gearing),
 	  logger(logger) {
 	drive_controller.set_gains(config.drive_gains);
@@ -55,7 +55,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
 	  track_width(config.track_width),
-	  wheel_circumference(config.wheel_diameter * math::PI),
+	  wheel_diameter(config.wheel_diameter),
 	  gearing(config.gearing),
 	  logger(logger) {
 	drive_controller.set_gains(config.drive_gains);
@@ -78,7 +78,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
 	  track_width(config.track_width),
-	  wheel_circumference(config.wheel_diameter * math::PI),
+	  wheel_diameter(config.wheel_diameter),
 	  gearing(config.gearing),
 	  logger(logger) {
 	drive_controller.set_gains(config.drive_gains);
@@ -100,7 +100,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	  turn_tolerance(config.turn_tolerance),
 	  lookahead_distance(config.lookahead_distance),
 	  track_width(config.track_width),
-	  wheel_circumference(config.wheel_diameter * math::PI),
+	  wheel_diameter(config.wheel_diameter),
 	  gearing(config.gearing),
 	  logger(logger) {
   drive_controller.set_gains(config.drive_gains);
@@ -123,6 +123,7 @@ double Drivetrain::get_turn_tolerance() const { return turn_tolerance; }
 double Drivetrain::get_track_width() const { return track_width; }
 double Drivetrain::get_lookahead_distance() const { return lookahead_distance; }
 double Drivetrain::get_gearing() const { return gearing; }
+double Drivetrain::get_wheel_diameter() const { return wheel_diameter; }
 Drivetrain::Config Drivetrain::get_config() const {
 	return {
 		drive_controller.get_gains(),
@@ -131,13 +132,14 @@ Drivetrain::Config Drivetrain::get_config() const {
 		turn_tolerance,
 		track_width,
 		lookahead_distance,
-		wheel_circumference / 2 / math::PI,
+		wheel_diameter,
 		gearing
 	};
 }
 
 std::pair<double, double> Drivetrain::get_wheel_travel() const {
 	double left_travel, right_travel;
+	double wheel_circumference = wheel_diameter * math::PI;
 
 	if (left_encoder != nullptr && right_encoder != nullptr) {
 		left_travel = (left_encoder->position(vex::degrees) / 360.0) * wheel_circumference * gearing;
@@ -189,6 +191,7 @@ void Drivetrain::set_max_drive_power(double power) { max_drive_power = power; }
 void Drivetrain::set_max_turn_power(double power) { max_turn_power = power; }
 void Drivetrain::set_lookahead_distance(double distance) { lookahead_distance = distance; }
 void Drivetrain::set_gearing(double ratio) { gearing = ratio; }
+void Drivetrain::set_wheel_diameter(double diameter) { wheel_diameter = diameter; }
 
 void Drivetrain::set_target(Vector2 position) {
 	error_mode = ErrorModes::Absolute;

@@ -1,13 +1,13 @@
 ---
-title: Basic Drivetrain Movement
+title: Basic DifferentialDrivetrain Movement
 category: Library
 layout: ~/layouts/DocsLayout.astro
 page: 2
 ---
 
-# Drivetrain Setup
+# DifferentialDrivetrain Setup
 
-In this tutorial, we'll create and configure a Drivetrain object, tune the parameters of the drivetrain, and perform some basic movement.
+In this tutorial, we'll create and configure a DifferentialDrivetrain object, tune the parameters of the drivetrain, and perform some basic movement.
 
 # Setting Up Devices
 
@@ -25,26 +25,26 @@ First, create two [motor groups](https://kb.vex.com/hc/en-us/articles/3600585922
 
 If you wish to use an inertial sensor or external encoders, add those as devices with the appropriate ports as well.
 
-# Creating a Drivetrain Object
+# Creating a DifferentialDrivetrain Object
 
-After following the [getting started guide]() and setting up taolib, you're ready to create a `Drivetrain`` instace. This class is used for controlling all movement provided by taolib.
+After following the [getting started guide]() and setting up taolib, you're ready to create a `DifferentialDrivetrain`` instace. This class is used for controlling all movement provided by taolib.
 
 ## Setup with 2 `vex::motor_group`s
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, config);
+auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, IMU, config);
 ```
 
-This device configuration will initialize the `tao::Drivetrain` instance with two parallel motor groups and nothing else (the bare minimum configuration).
+This device configuration will initialize the `tao::DifferentialDrivetrain` instance with two parallel motor groups and nothing else (the bare minimum configuration).
 
 ## Setup with an IMU
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, imu, config);
+auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, imu, config);
 ```
 
 Similar to the previous configuration, we have two motor groups, but have additionally added in a V5 Inertial Sensor for accurate turns.
-> If you use an intertial sensor, you'll need to calibrate it before moving the robot using `Drivetrain::calibrate_imu`. **This is an important step if you want to use a gyro for turning.** Example code:
+> If you use an intertial sensor, you'll need to calibrate it before moving the robot using `DifferentialDrivetraincalibrate_imu`. **This is an important step if you want to use a gyro for turning.** Example code:
 > ```cpp
-> auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, profile);
+> auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, IMU, profile);
 >
 > void pre_auton() {
 > 	chassis.calibrate_imu();
@@ -61,22 +61,22 @@ The following device configurations can be used if you wish to use two parallel 
 
 ### With IMU
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, left_encoder, right_encoder, IMU, profile);
+auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, left_encoder, right_encoder, IMU, profile);
 ```
 
 ### Without IMU
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, left_encoder, right_encoder, profile);
+auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, left_encoder, right_encoder, profile);
 ```
 
-# Configuring the Drivetrain
+# Configuring the DifferentialDrivetrain
 
-We aren't done yet. `Drivetrain` objects need to be configured specifically for the physical aspects of a robot. Differences in size, weight, speed, and wheels typically means that no robot will behave exactly the same as another. This tuning process is extremely important, and an improperly tuned drivetrain will produce sub-optimal or unexpected movements.
+We aren't done yet. `DifferentialDrivetrain` objects need to be configured specifically for the physical aspects of a robot. Differences in size, weight, speed, and wheels typically means that no robot will behave exactly the same as another. This tuning process is extremely important, and an improperly tuned drivetrain will produce sub-optimal or unexpected movements.
 
-You might recall that in the last section, we passed in a `config` parameter to `tao::Drivetrain`. Lets fill that in with an example config for our drivetrain:
+You might recall that in the last section, we passed in a `config` parameter to `tao::DifferentialDrivetrain`. Lets fill that in with an example config for our drivetrain:
 
 ```cpp
-auto chassis = tao::Drivetrain(left_drive, right_drive, {
+auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, {
 	.drive_gains = { 0, 0, 0 },
 	.turn_gains = { 0, 0, 0 },
 	.drive_tolerance = 0.0,
@@ -92,7 +92,7 @@ All these values are set to 0, though, and need to be tuned for your specific dr
 
 ## Gearing
 
-The `gearing` parameter of `tao::DrivetrainProfile` describes the external gear ratio used by your drivetrain. The parameter accepts a fraction of `(DRIVE_TEETH / DRIVEN_TEETH)`. Let's say you have a drivetrain where your motors are attached to an 84 tooth gear that drives a 60 tooth gear attached to your wheels. Your gearing `(84.0 / 60.0)`.
+The `gearing` parameter of `tao::DifferentialDrivetrainProfile` describes the external gear ratio used by your drivetrain. The parameter accepts a fraction of `(DRIVE_TEETH / DRIVEN_TEETH)`. Let's say you have a drivetrain where your motors are attached to an 84 tooth gear that drives a 60 tooth gear attached to your wheels. Your gearing `(84.0 / 60.0)`.
 
 > Note: It's important that decimals (e.g. `84.0` rather than `84`) are used when passing in a gear ratio fraction to avoid unexpected behavior when dividing integers.
 
@@ -177,7 +177,7 @@ Here's an example of what a drivetrain profile *might* look like once properly t
 
 ```cpp
 // Create a drivetrain with two motor groups and an inertial sensor
-auto chassis = tao::Drivetrain(left_drive, right_drive, IMU, {
+auto chassis = tao::DifferentialDrivetrain(left_drive, right_drive, IMU, {
 
 	// PID Gains (no integral term, so technically a PD controller)
 	.drive_gains = { 4.24, 0, 0.06 },

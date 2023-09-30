@@ -1,7 +1,7 @@
-#include "drivetrain.h"
+#include "DifferentialDrivetrain.h"
 #include "math.h"
 #include "threading.h"
-#include "pid.h"
-#include "vector2.h"
+#include "PIDController.h"
+#include "Vector2.h"
 
 namespace tao {}

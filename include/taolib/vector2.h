@@ -1,5 +1,5 @@
 /**
- * @file src/taolib/vector2.h
+ * @file src/taolib/Vector2.h
  * @author Tropical
  *
  * Implementation for a 2-dimensional vector stored as cartesian coordinates.

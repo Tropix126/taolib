@@ -1,5 +1,5 @@
 /**
- * @file src/taolib/pid.h
+ * @file src/taolib/PIDController.h
  * @author Tropical
  *
  * Closed-loop PID Feedback Controller

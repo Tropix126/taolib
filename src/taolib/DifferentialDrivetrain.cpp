@@ -6,7 +6,7 @@
  * provide functions for controlling a physical drivetrain.
  * Given appropriate devices, and a model (called a "config") for
  * tuning physical aspects unique to each robot, the
- * tao::Drivetrain class can perform autonomous movement.
+ * tao::DifferentialDrivetrain class can perform autonomous movement.
  */
 
 #include <cmath>
@@ -17,15 +17,15 @@
 
 #include "v5_cpp.h"
 
-#include "taolib/drivetrain.h"
-#include "taolib/pid.h"
+#include "taolib/DifferentialDrivetrain.h"
+#include "taolib/PIDController.h"
+#include "taolib/Vector2.h"
 #include "taolib/math.h"
-#include "taolib/vector2.h"
 #include "taolib/threading.h"
 
 namespace tao {
 
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
+DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::inertial& imu,
 					   Config config,
@@ -44,7 +44,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(config.turn_gains);
 }
 
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
+DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   Config config,
 					   Logger logger)
@@ -62,7 +62,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(config.turn_gains);
 }
 
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
+DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
@@ -85,7 +85,7 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(config.turn_gains);
 }
 
-Drivetrain::Drivetrain(vex::motor_group& left_motors,
+DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::encoder& left_encoder,
 					   vex::encoder& right_encoder,
@@ -107,24 +107,24 @@ Drivetrain::Drivetrain(vex::motor_group& left_motors,
   turn_controller.set_gains(config.turn_gains);
 }
 
-Drivetrain::~Drivetrain() {
+DifferentialDrivetrain::~DifferentialDrivetrain() {
 	stop_tracking();
 }
 
-Vector2 Drivetrain::get_position() { mutex.lock(); return global_position; }
-PIDController::Gains Drivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
-PIDController::Gains Drivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
-double Drivetrain::get_drive_error() { mutex.lock(); return drive_error; }
-double Drivetrain::get_turn_error() { mutex.lock(); return turn_error; }
-double Drivetrain::get_max_drive_power() const { return max_drive_power; }
-double Drivetrain::get_max_turn_power() const { return max_turn_power; }
-double Drivetrain::get_drive_tolerance() const { return drive_tolerance; }
-double Drivetrain::get_turn_tolerance() const { return turn_tolerance; }
-double Drivetrain::get_track_width() const { return track_width; }
-double Drivetrain::get_lookahead_distance() const { return lookahead_distance; }
-double Drivetrain::get_gearing() const { return gearing; }
-double Drivetrain::get_wheel_diameter() const { return wheel_diameter; }
-Drivetrain::Config Drivetrain::get_config() const {
+Vector2 DifferentialDrivetrain::get_position() { mutex.lock(); return global_position; }
+PIDController::Gains DifferentialDrivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
+PIDController::Gains DifferentialDrivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
+double DifferentialDrivetrain::get_drive_error() { mutex.lock(); return drive_error; }
+double DifferentialDrivetrain::get_turn_error() { mutex.lock(); return turn_error; }
+double DifferentialDrivetrain::get_max_drive_power() const { return max_drive_power; }
+double DifferentialDrivetrain::get_max_turn_power() const { return max_turn_power; }
+double DifferentialDrivetrain::get_drive_tolerance() const { return drive_tolerance; }
+double DifferentialDrivetrain::get_turn_tolerance() const { return turn_tolerance; }
+double DifferentialDrivetrain::get_track_width() const { return track_width; }
+double DifferentialDrivetrain::get_lookahead_distance() const { return lookahead_distance; }
+double DifferentialDrivetrain::get_gearing() const { return gearing; }
+double DifferentialDrivetrain::get_wheel_diameter() const { return wheel_diameter; }
+DifferentialDrivetrain::Config DifferentialDrivetrain::get_config() const {
 	return {
 		drive_controller.get_gains(),
 		turn_controller.get_gains(),
@@ -137,7 +137,7 @@ Drivetrain::Config Drivetrain::get_config() const {
 	};
 }
 
-std::pair<double, double> Drivetrain::get_wheel_travel() const {
+std::pair<double, double> DifferentialDrivetrain::get_wheel_travel() const {
 	double left_travel, right_travel;
 	double wheel_circumference = wheel_diameter * math::PI;
 
@@ -152,14 +152,14 @@ std::pair<double, double> Drivetrain::get_wheel_travel() const {
 	return { left_travel, right_travel };
 }
 
-double Drivetrain::get_forward_travel() const {
+double DifferentialDrivetrain::get_forward_travel() const {
 	std::pair<double, double> wheel_travel = get_wheel_travel();
 	double average = (wheel_travel.first + wheel_travel.second) / 2;
 
 	return average;
 }
 
-double Drivetrain::get_heading() {
+double DifferentialDrivetrain::get_heading() {
 	// The imu has was passed in, but is not plugged in. Invalidate it's readings for the duration of the tracking routine.
 	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the imu if detected.
 	if (!imu_invalid && imu != nullptr && !imu->installed()) {
@@ -181,29 +181,29 @@ double Drivetrain::get_heading() {
 		return std::fmod(math::to_degrees(raw_heading) + start_heading, 360.0);
 	}
 }
-bool Drivetrain::is_settled() const { return settled; }
+bool DifferentialDrivetrain::is_settled() const { return settled; }
 
-void Drivetrain::set_turn_tolerance(double error) { turn_tolerance = error; }
-void Drivetrain::set_drive_tolerance(double error) { drive_tolerance = error; }
-void Drivetrain::set_drive_gains(const PIDController::Gains& gains) { drive_controller.set_gains(gains); }
-void Drivetrain::set_turn_gains(const PIDController::Gains& gains) { turn_controller.set_gains(gains); }
-void Drivetrain::set_max_drive_power(double power) { max_drive_power = power; }
-void Drivetrain::set_max_turn_power(double power) { max_turn_power = power; }
-void Drivetrain::set_lookahead_distance(double distance) { lookahead_distance = distance; }
-void Drivetrain::set_gearing(double ratio) { gearing = ratio; }
-void Drivetrain::set_wheel_diameter(double diameter) { wheel_diameter = diameter; }
+void DifferentialDrivetrain::set_turn_tolerance(double error) { turn_tolerance = error; }
+void DifferentialDrivetrain::set_drive_tolerance(double error) { drive_tolerance = error; }
+void DifferentialDrivetrain::set_drive_gains(const PIDController::Gains& gains) { drive_controller.set_gains(gains); }
+void DifferentialDrivetrain::set_turn_gains(const PIDController::Gains& gains) { turn_controller.set_gains(gains); }
+void DifferentialDrivetrain::set_max_drive_power(double power) { max_drive_power = power; }
+void DifferentialDrivetrain::set_max_turn_power(double power) { max_turn_power = power; }
+void DifferentialDrivetrain::set_lookahead_distance(double distance) { lookahead_distance = distance; }
+void DifferentialDrivetrain::set_gearing(double ratio) { gearing = ratio; }
+void DifferentialDrivetrain::set_wheel_diameter(double diameter) { wheel_diameter = diameter; }
 
-void Drivetrain::set_target(Vector2 position) {
+void DifferentialDrivetrain::set_target(Vector2 position) {
 	error_mode = ErrorModes::Absolute;
 	target_position = position;
 }
-void Drivetrain::set_target(double distance, double heading) {
+void DifferentialDrivetrain::set_target(double distance, double heading) {
 	error_mode = ErrorModes::Relative;
 	target_distance = distance;
 	target_heading = heading;
 }
 
-int Drivetrain::tracking() {
+int DifferentialDrivetrain::tracking() {
 	logger.info("Tracking period started.");
 
 	double previous_forward_travel = 0.0;
@@ -305,7 +305,7 @@ int Drivetrain::tracking() {
 		// Once the settle_counter reaches 5 (~50ms of wait time), the drivetrain is now considered "settled", and
 		// blocking movement functions will now complete.
 		if (settle_counter >= 5 && !settled) {
-			logger.debug("Drivetrain has settled. Drive error: %f, Turn error: %f", drive_error, turn_error);
+			logger.debug("DifferentialDrivetrain has settled. Drive error: %f, Turn error: %f", drive_error, turn_error);
 
 			if (error_mode == ErrorModes::Absolute) {
 				set_target(forward_travel, heading);
@@ -328,7 +328,7 @@ int Drivetrain::tracking() {
 	return 0;
 }
 
-int Drivetrain::logging() {
+int DifferentialDrivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
 		mutex.lock();
@@ -342,7 +342,7 @@ int Drivetrain::logging() {
 	return 0;
 }
 
-void Drivetrain::calibrate_imu() {
+void DifferentialDrivetrain::calibrate_imu() {
 	if (imu != nullptr) {
 		if (!imu->installed()) {
 			logger.error("IMU not plugged in. Skipping calibration.");
@@ -360,7 +360,7 @@ void Drivetrain::calibrate_imu() {
 	}
 }
 
-void Drivetrain::start_tracking(Vector2 origin, double heading) {
+void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
 	// Reset motor encoders.
 	left_motors.resetPosition();
 	right_motors.resetPosition();
@@ -380,17 +380,17 @@ void Drivetrain::start_tracking(Vector2 origin, double heading) {
 	// Start threads
 	if (!tracking_active) {
 		tracking_active = true;
-		tracking_thread = threading::make_member_thread(this, &Drivetrain::tracking);
+		tracking_thread = threading::make_member_thread(this, &DifferentialDrivetrain::tracking);
 	}
 	if (!logging_active) {
 		logging_active = true;
-		logging_thread = threading::make_member_thread(this, &Drivetrain::logging);
+		logging_thread = threading::make_member_thread(this, &DifferentialDrivetrain::logging);
 	}
 
 	set_target(0.0, start_heading);
 }
 
-void Drivetrain::stop_tracking() {
+void DifferentialDrivetrain::stop_tracking() {
 	mutex.lock();
 
 	tracking_active = false;
@@ -407,11 +407,11 @@ void Drivetrain::stop_tracking() {
 	}
 }
 
-void Drivetrain::wait_until_settled() {
+void DifferentialDrivetrain::wait_until_settled() {
 	while (!settled) { vex::wait(10, vex::msec); }
 }
 
-void Drivetrain::drive(double distance, bool blocking) {
+void DifferentialDrivetrain::drive(double distance, bool blocking) {
 	mutex.lock();
 	logger.debug("Driving for %f", distance);
 
@@ -422,7 +422,7 @@ void Drivetrain::drive(double distance, bool blocking) {
 	if (blocking) wait_until_settled();
 }
 
-void Drivetrain::turn_to(double heading, bool blocking) {
+void DifferentialDrivetrain::turn_to(double heading, bool blocking) {
 	mutex.lock();
 	logger.debug("Turning to %f\u00B0", heading);
 
@@ -433,7 +433,7 @@ void Drivetrain::turn_to(double heading, bool blocking) {
 	if (blocking) wait_until_settled();
 }
 
-void Drivetrain::turn_to(Vector2 point, bool blocking) {
+void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking) {
 	mutex.lock();
 	Vector2 local_target = point - global_position;
 
@@ -444,7 +444,7 @@ void Drivetrain::turn_to(Vector2 point, bool blocking) {
 	if (blocking) wait_until_settled();
 }
 
-void Drivetrain::move_to(Vector2 position, bool blocking) {
+void DifferentialDrivetrain::move_to(Vector2 position, bool blocking) {
 	mutex.lock();
 
 	logger.debug("Moving to (%f, %f). Distance: %f", position.get_x(), position.get_y(), global_position.distance(position));
@@ -455,7 +455,7 @@ void Drivetrain::move_to(Vector2 position, bool blocking) {
 	if (blocking) wait_until_settled();
 }
 
-void Drivetrain::follow_path(std::vector<Vector2> path) {
+void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
 	mutex.lock();
 	logger.debug("Following path.");
 	
@@ -504,7 +504,7 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 	wait_until_settled();
 }
 
-void Drivetrain::hold_position() {
+void DifferentialDrivetrain::hold_position() {
 	mutex.lock();
 	set_target(get_forward_travel(), get_heading());
 	mutex.unlock();

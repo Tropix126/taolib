@@ -31,7 +31,7 @@ const EXAMPLE_CODE = `#include "taolib/taolib.h"
 
 // Create a drivetrain instance with some motors and an inertial sensor.
 // You can also use external encoders if you wish!
-tao::Drivetrain chassis(left_drive, right_drive, IMU, {
+tao::DifferentialDrivetrain chassis(left_drive, right_drive, IMU, {
 	.drive_gains = { 4.24, 0, 0.06 },
 	.turn_gains = { 0.82, 0.003, 0.0875 },
 	.drive_tolerance = 0.7,

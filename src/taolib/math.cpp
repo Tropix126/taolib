@@ -12,7 +12,7 @@
 #include <algorithm>
 
 #include "taolib/math.h"
-#include "taolib/vector2.h"
+#include "taolib/Vector2.h"
 
 namespace tao {
 namespace math {

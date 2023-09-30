@@ -7,11 +7,11 @@ page: 3
 
 # Moving The Robot
 
-taolib's `Drivetrain` class provides several methods for controlling the movement of your robot's drivetrain. In this tutorial, we'll take a look at the different methods available, and provide examples of how to use them for autonomous routes.
+taolib's `DifferentialDrivetrain` class provides several methods for controlling the movement of your robot's drivetrain. In this tutorial, we'll take a look at the different methods available, and provide examples of how to use them for autonomous routes.
 
 ## Driving Straight
 
-The `Drivetrain::drive()` method is used to move the drivetrain directly forwards or backwards by a given distance while maintaining the current heading. The first parameter of this method is the distance that you wish to travel. A negative number denotes that the drivetrain should drive backwards.
+The `DifferentialDrivetraindrive()` method is used to move the drivetrain directly forwards or backwards by a given distance while maintaining the current heading. The first parameter of this method is the distance that you wish to travel. A negative number denotes that the drivetrain should drive backwards.
 
 ![Driving straight demo](https://i.imgur.com/htLZvB4.png)
 
@@ -30,7 +30,7 @@ waitUntil(chassis.is_settled()); // Wait until the movement is settled before do
 
 ## Turning to an angle
 
-The `Drivetrain::turn_to()` method is used to rotate the robot to a specific heading in place. The first parameter of this method is the absolute angle in degrees to rotate the drivetrain to.
+The `DifferentialDrivetrainturn_to()` method is used to rotate the robot to a specific heading in place. The first parameter of this method is the absolute angle in degrees to rotate the drivetrain to.
 
 ![Turning to angle demo](https://i.imgur.com/y2DoMeq.png)
 
@@ -49,7 +49,7 @@ waitUntil(chassis.is_settled()); // Wait until the movement is settled before do
 
 ## Turning to a point
 
-The `Drivetrain::turn_to()` method can also be used to rotate the robot to face towards a specific cartesian coordinate. Rather than passing in an angle, pass in a `tao::Vector2` instance.
+The `DifferentialDrivetrainturn_to()` method can also be used to rotate the robot to face towards a specific cartesian coordinate. Rather than passing in an angle, pass in a `tao::Vector2` instance.
 
 ![Turning to point demo](https://i.imgur.com/SOKilKl.png)
 
@@ -64,7 +64,7 @@ This is especially useful for cases where precision aiming is important, as the 
 
 ## Moving to a point
 
-The `Drivetrain::move_to()` method is used to move the drivetrain to a set of target coordinates. The first parameter is a 2D Vector representing the absolute target coordinates to move to.
+The `DifferentialDrivetrainmove_to()` method is used to move the drivetrain to a set of target coordinates. The first parameter is a 2D Vector representing the absolute target coordinates to move to.
 
 ![Moving to point demo](https://i.imgur.com/Qr1XP7D.png)
 
@@ -74,11 +74,11 @@ chassis.move_to(tao::Vector2(24, 24)); // Move to the point (24,24)
 
 ## Moving along a path
 
-The `Drivetrain::follow_path()` method is used to move the drivetrain along a set of waypoints using pure pursuit. This means that given a list of points, the drivetrain will smoothly follow a path without stopping in the middle to settle.
+The `DifferentialDrivetrainfollow_path()` method is used to move the drivetrain along a set of waypoints using pure pursuit. This means that given a list of points, the drivetrain will smoothly follow a path without stopping in the middle to settle.
 
 ![Moving along path demo](https://i.imgur.com/jfHyD7L.png)
 
-> Tuning lookahead distance (covered in [Drivetrain Setup]()) is an important optimization for ensuring your robot's drivetrain maintains a correct balance of speed and accuracy when following a path.
+> Tuning lookahead distance (covered in [DifferentialDrivetrain Setup]()) is an important optimization for ensuring your robot's drivetrain maintains a correct balance of speed and accuracy when following a path.
 
 The first parameter is a C++ vector of 2D Vectors representing waypoints forming a path.
 

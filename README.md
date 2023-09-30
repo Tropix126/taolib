@@ -32,12 +32,12 @@ These will link you to the latest builds found in the [releases](https://github.
 .
 └──taolib
     ├──taolib.h         // Entry point of the library.
-    ├──drivetrain.h     // Contains the Drivetrain class, which abstracts over position tracking, motion control, etc... to move a physical drivetrain.
+    ├──DifferentialDrivetrain.h     // Contains the DifferentialDrivetrain class, which abstracts over position tracking, motion control, etc... to move a physical drivetrain.
     ├──math.h        // Basic utilities for math operations.
-    ├──pid.h            // Basic closed-loop PID Controller.
+    ├──PIDController.h            // Basic closed-loop PID Controller.
     ├──threading.h      // Various helpers for dealing with vexcode's threading limitations.
     ├──logger.h         // Logger class for logging data to various places.
-    └──vector2.h        // 2D Vector abstraction.
+    └──Vector2.h        // 2D Vector abstraction.
 ```
 
 ---

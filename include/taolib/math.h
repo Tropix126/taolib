@@ -5,7 +5,7 @@
  * Various helper functions and variables used in mathematical operations.
  */
 
-#include "vector2.h"
+#include "Vector2.h"
 #include <vector>
 
 namespace tao {

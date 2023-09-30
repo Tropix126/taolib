@@ -34,6 +34,6 @@ taolib is an easy-to-use C++ library for creating accurate autonomous routines o
 
 # Next Steps
 
-* If you're not sure what to do next, check out the [Basic Drivetrain Movement](/docs/moving-the-robot) tutorial, which covers all the movement methods in taolib.
+* If you're not sure what to do next, check out the [Basic DifferentialDrivetrain Movement](/docs/moving-the-robot) tutorial, which covers all the movement methods in taolib.
 * If you've already done this sort of thing before, you can take a look at the [API documentation](), which provides some more in-depth and technical information on what's available to you in the library.
 * Want to learn more about how the library works? There are [writeups on that too]().

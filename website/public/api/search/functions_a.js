@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['turn_5fto_0',['turn_to',['../classtao_1_1_drivetrain.html#a1721f37994074aa47c7051a01c41b68c',1,'tao::Drivetrain::turn_to(double heading, bool blocking=true)'],['../classtao_1_1_drivetrain.html#a6cf09dd9309e2771d725d5f862b8928a',1,'tao::Drivetrain::turn_to(Vector2 point, bool blocking=true)']]]
+  ['turn_5fto_0',['turn_to',['../classtao_1_1_differential_drivetrain.html#aa9885cd2323fea467b72a7d4a6d0303d',1,'tao::DifferentialDrivetrain::turn_to(double heading, bool blocking=true)'],['../classtao_1_1_differential_drivetrain.html#a9a0bf474237383834d2ed11cb5a7c27b',1,'tao::DifferentialDrivetrain::turn_to(Vector2 point, bool blocking=true)']]]
 ];

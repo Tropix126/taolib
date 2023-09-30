@@ -10,7 +10,7 @@ vex::motor_group right_drive(back_right_drive);
 
 vex::inertial imu(vex::PORT9);
 
-tao::Drivetrain drivetrain(left_drive, right_drive, imu, {
+tao::DifferentialDrivetrain drivetrain(left_drive, right_drive, imu, {
 	.drive_gains = { 3.24, 0.05, 0.125 },
 	.turn_gains = { 2.75, 0, 0.32 },
 	.drive_tolerance = 1.0,

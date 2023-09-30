@@ -5,7 +5,7 @@
  * Closed-loop PID Feedback Controller
  */
 
-#include "taolib/pid.h"
+#include "taolib/PIDController.h"
 #include <iostream>
 #include <stdio.h>
 

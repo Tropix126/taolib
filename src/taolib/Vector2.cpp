@@ -1,5 +1,5 @@
 /**
- * @file src/taolib/pid.cpp
+ * @file src/taolib/Vector2.cpp
  * @author Tropical
  *
  * Implementation for a 2-dimensional vector stored as cartesian coordinates.

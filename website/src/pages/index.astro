@@ -39,7 +39,7 @@ tao::DifferentialDrivetrain chassis(left_drive, right_drive, IMU, {
 	.lookahead_distance = 8.5,
 	.track_width = 13.75,
 	.wheel_diameter = 2.02,
-	.gearing = ((double)84 / 60),
+	.gearing = (84.0 / 60.0),
 });
 
 void autonomous() {

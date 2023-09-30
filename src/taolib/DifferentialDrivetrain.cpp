@@ -111,11 +111,26 @@ DifferentialDrivetrain::~DifferentialDrivetrain() {
 	stop_tracking();
 }
 
-Vector2 DifferentialDrivetrain::get_position() { mutex.lock(); return global_position; }
+Vector2 DifferentialDrivetrain::get_position() {
+	mutex.lock();
+	Vector2 _global_position = global_position;
+	mutex.unlock();
+	return _global_position;
+}
 PIDController::Gains DifferentialDrivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
 PIDController::Gains DifferentialDrivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
-double DifferentialDrivetrain::get_drive_error() { mutex.lock(); return drive_error; }
-double DifferentialDrivetrain::get_turn_error() { mutex.lock(); return turn_error; }
+double DifferentialDrivetrain::get_drive_error() {
+	mutex.lock();
+	double _drive_error = drive_error;
+	mutex.unlock();
+	return _drive_error;
+}
+double DifferentialDrivetrain::get_turn_error() {
+	mutex.lock();
+	double _turn_error = turn_error;
+	mutex.unlock();
+	return _turn_error;
+}
 double DifferentialDrivetrain::get_max_drive_power() const { return max_drive_power; }
 double DifferentialDrivetrain::get_max_turn_power() const { return max_turn_power; }
 double DifferentialDrivetrain::get_drive_tolerance() const { return drive_tolerance; }
@@ -181,17 +196,58 @@ double DifferentialDrivetrain::get_heading() {
 		return std::fmod(math::to_degrees(raw_heading) + start_heading, 360.0);
 	}
 }
-bool DifferentialDrivetrain::is_settled() const { return settled; }
+bool DifferentialDrivetrain::is_settled() {
+	mutex.lock();
+	bool _settled = settled;
+	mutex.unlock();
+	return _settled;
+}
 
-void DifferentialDrivetrain::set_turn_tolerance(double error) { turn_tolerance = error; }
-void DifferentialDrivetrain::set_drive_tolerance(double error) { drive_tolerance = error; }
-void DifferentialDrivetrain::set_drive_gains(const PIDController::Gains& gains) { drive_controller.set_gains(gains); }
-void DifferentialDrivetrain::set_turn_gains(const PIDController::Gains& gains) { turn_controller.set_gains(gains); }
-void DifferentialDrivetrain::set_max_drive_power(double power) { max_drive_power = power; }
-void DifferentialDrivetrain::set_max_turn_power(double power) { max_turn_power = power; }
-void DifferentialDrivetrain::set_lookahead_distance(double distance) { lookahead_distance = distance; }
-void DifferentialDrivetrain::set_gearing(double ratio) { gearing = ratio; }
-void DifferentialDrivetrain::set_wheel_diameter(double diameter) { wheel_diameter = diameter; }
+void DifferentialDrivetrain::set_turn_tolerance(double error) {
+	mutex.lock();
+	turn_tolerance = error;
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_drive_tolerance(double error) {
+	mutex.lock();
+	drive_tolerance = error;
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_drive_gains(const PIDController::Gains& gains) {
+	mutex.lock();
+	drive_controller.set_gains(gains);
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_turn_gains(const PIDController::Gains& gains) {
+	mutex.lock();
+	turn_controller.set_gains(gains);
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_max_drive_power(double power) {
+	mutex.lock();
+	max_drive_power = power;
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_max_turn_power(double power) {
+	mutex.lock();
+	max_turn_power = power;
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_lookahead_distance(double distance) {
+	mutex.lock();
+	lookahead_distance = distance;
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_gearing(double ratio) {
+	mutex.lock();
+	gearing = ratio;
+	mutex.unlock();
+}
+void DifferentialDrivetrain::set_wheel_diameter(double diameter) {
+	mutex.lock();
+	wheel_diameter = diameter;
+	mutex.unlock();
+}
 
 void DifferentialDrivetrain::set_target(Vector2 position) {
 	error_mode = ErrorModes::Absolute;
@@ -332,10 +388,11 @@ int DifferentialDrivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
 		mutex.lock();
-		
-		logger.info("Position: (%f, %f) Heading: %f\u00B0", global_position.get_x(), global_position.get_y(), get_heading());
-
+		Vector2 position = global_position;
 		mutex.unlock();
+		
+		logger.info("Position: (%f, %f) Heading: %f\u00B0", position.get_x(), position.get_y(), get_heading());
+
 		vex::this_thread::sleep_for(1000);
 	}
 
@@ -408,57 +465,55 @@ void DifferentialDrivetrain::stop_tracking() {
 }
 
 void DifferentialDrivetrain::wait_until_settled() {
+	// Spinlock until settled
 	while (!settled) { vex::wait(10, vex::msec); }
 }
 
 void DifferentialDrivetrain::drive(double distance, bool blocking) {
 	mutex.lock();
-	logger.debug("Driving for %f", distance);
-
 	settled = false;
 	set_target(get_forward_travel() + distance, target_heading);
-
 	mutex.unlock();
+
+	logger.debug("Driving for %f", distance);
 	if (blocking) wait_until_settled();
 }
 
 void DifferentialDrivetrain::turn_to(double heading, bool blocking) {
 	mutex.lock();
-	logger.debug("Turning to %f\u00B0", heading);
-
 	settled = false;
 	set_target(target_distance, heading);
-	
 	mutex.unlock();
+
+	logger.debug("Turning to %f\u00B0", heading);
 	if (blocking) wait_until_settled();
 }
 
 void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking) {
 	mutex.lock();
 	Vector2 local_target = point - global_position;
+	set_target(target_distance, local_target.get_angle());
+	mutex.unlock();
 
 	logger.debug("Turning to (%f, %f). Calculated angle: %f\u00B0", point.get_x(), point.get_y());
-	set_target(target_distance, local_target.get_angle());
-
-	mutex.unlock();
 	if (blocking) wait_until_settled();
 }
 
 void DifferentialDrivetrain::move_to(Vector2 position, bool blocking) {
 	mutex.lock();
-
-	logger.debug("Moving to (%f, %f). Distance: %f", position.get_x(), position.get_y(), global_position.distance(position));
 	settled = false;
 	set_target(position);
-
+	Vector2 _global_position = global_position;
 	mutex.unlock();
+
+	logger.debug("Moving to (%f, %f). Distance: %f", position.get_x(), position.get_y(), _global_position.distance(position));
 	if (blocking) wait_until_settled();
 }
 
 void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
-	mutex.lock();
 	logger.debug("Following path.");
 	
+	mutex.lock();
 	settled = false;
 
 	// Add current position to the start of the path so that intersections can be found.
@@ -508,6 +563,8 @@ void DifferentialDrivetrain::hold_position() {
 	mutex.lock();
 	set_target(get_forward_travel(), get_heading());
 	mutex.unlock();
+
+	logger.debug("Holding position. Forward Travel: %f, Heading: %f", get_forward_travel(), get_heading());
 }
 
 } // namespace tao

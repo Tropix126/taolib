@@ -1,20 +1,20 @@
 ---
-title: Basic DifferentialDrivetrain Movement
+title: Drivetrain Setup
 category: Library
 layout: ~/layouts/DocsLayout.astro
 page: 2
 ---
 
-# DifferentialDrivetrain Setup
+# Drivetrain Setup
 
-In this tutorial, we'll create and configure a DifferentialDrivetrain object, tune the parameters of the drivetrain, and perform some basic movement.
+In this tutorial, we'll create and configure a `DifferentialDrivetrain`` object, tune the parameters of the drivetrain, and perform some basic movement.
 
 # Setting Up Devices
 
 First you'll need to provide your drivetrain's devices (motors, sensors, etc). taolib supports a few different device configurations:
 * At minimum, 2 parallel motors controlling wheels of the same size.
   * You can have as many motors as you wish on each side of the drivetrain (4, 6, 8, etc...)
-* You can optionally include a [VEX inertial sensor (IMU)]() for more accurate heading telemetry and turns.
+* You can optionally include a [VEX inertial sensor (IMU)](https://www.vexrobotics.com/276-4855.html) for more accurate heading telemetry and turns.
 * You can optionally use two parallel [3-Wire Optical Shaft Encoders](https://kb.vex.com/hc/en-us/articles/360039512851-Using-the-V5-3-Wire-Optical-Shaft-Encoder) attached to [tracking wheels](https://gm0.org/en/latest/docs/common-mechanisms/dead-wheels.html) to prevent wheel slipping from messing up tracking.
 
 > If you're on VEXcode Pro, you can add the required devices through the Robot Configuration button at the top right of the application window.
@@ -27,7 +27,7 @@ If you wish to use an inertial sensor or external encoders, add those as devices
 
 # Creating a DifferentialDrivetrain Object
 
-After following the [getting started guide]() and setting up taolib, you're ready to create a `DifferentialDrivetrain`` instace. This class is used for controlling all movement provided by taolib.
+After following the [getting started guide](/docs) and setting up taolib, you're ready to create a `DifferentialDrivetrain`` instace. This class is used for controlling all movement provided by taolib.
 
 ## Setup with 2 `vex::motor_group`s
 ```cpp
@@ -122,7 +122,7 @@ Tolerances that are too low will result in the drivetrain either never fully set
 
 ## PID Gains
 
-PID Gains are a set of three numbers (called `kP`, `kI`, and `kD`) that are used to tune how fast and how smoothly the drivetrain will move to reach its target. If you aren't familiar with what a PID controller is, you can read an introduction to that [here]().
+PID Gains are a set of three numbers (called `kP`, `kI`, and `kD`) that are used to tune how fast and how smoothly the drivetrain will move to reach its target. If you aren't familiar with what a PID controller is, you can read an introduction to that [here](pid-controllers).
 
 taolib utilizes two PID controllers to move the drivetrain. One outputs linear velocity (for driving straight) and the other outputs angular velocity (for turning). The gains of each PID controller must be tuned until both driving and turning actions come to a smooth and controlled stop in a reasonable amount of time.
 
@@ -140,7 +140,7 @@ From there, the general process for tuning is as follows:
 1. Increase `kP` (the first number AKA the proportional constant) until the robot reaches the target (for example, 180 degrees) in a reasonable amount of time and oscillates around it (bounces back/forth around the target). The oscillations should not be large enough to increase over time. Rather, you want to find a `kP` value that causes minor overshoot of the target and has oscillations that decrease and eventually reach the target.
 2. From there, increase `kD` (the third number AKA the derivative constant) until the oscillations stop. A `kD` value that is too high will cause unpredictable movements, so increase it in small increments each time you test the movement.
 3. If the robot *consistently undershoots the target every time*, you *might* want to increase `kI` (the second number AKA the integral constant) a very slight amount.
-	> Keep in mind that undershoots are often caused by `kP` being too low, and not the need for an integral term. For almost all cases, `kI` should stay at or near 0, because the integral term is susceptable to [integral windup](), which can cause unpredictable movements.
+	> Keep in mind that undershoots are often caused by `kP` being too low, and not the need for an integral term. For almost all cases, `kI` should stay at or near 0, because the integral term is susceptable to [integral windup](https://en.wikipedia.org/wiki/Integral_windup), which can cause unpredictable movements.
 
 A similar process will be used for tuning the drivetrain's `drive_gains`. We can run a test movement that drives forward 24 inches (1 VEX field tile) to tune linear movement:
 
@@ -152,7 +152,7 @@ void autonomous() {
 }
 ```
 
-From there, follow the steps above to tune `drive_gains`.
+From there, follow the same steps above to tune `drive_gains`.
 
 > If you're having trouble figuring out how to tune PID gains or understanding this step, then the following additional resources might helpful:
 > - https://georgegillard.com/documents/2-introduction-to-pid-controllers
@@ -161,7 +161,7 @@ From there, follow the steps above to tune `drive_gains`.
 
 ## Lookahead Distance
 
-> This is a value used when following curves with [Pure Pursuit](). If you don't plan to use the `move_path` method, you can safely ignore this property and move on.
+> This is a value used when following curves with [Pure Pursuit](path-following). If you don't plan to use the `move_path` method, you can safely ignore this property and move on.
 
 Lookahead distance is a value used by the [Pure Pursuit Algorithm]() for following a path smoothly. Pure pursuit works by finding the intersection between a circle centered around the drivetrain's current position (with the radius being the lookahead distance) and a line created by the provided path.
 

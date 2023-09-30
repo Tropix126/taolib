@@ -235,7 +235,7 @@ public:
 	 * Indicates if the drivetrain is currently settled (within the threshold of both minimum error ranges).
 	 * @return True if the drivetrain is settled, false otherwise.
 	 */
-	bool is_settled() const;
+	bool is_settled();
 
 	double get_wheel_diameter() const;
 

@@ -229,20 +229,27 @@ int Drivetrain::tracking() {
 		double delta_forward_travel = forward_travel - previous_forward_travel;
 		previous_forward_travel = forward_travel;
 
-		// Perform a basic odometry calculation that uses average wheel travel deltas
-		// and the current heading to approximate change in position using a straight
-		// line as the hypotenuse.
-		//
-		// This method is different from some more sophisticated odometry algorithms
-		// (such as the one used by The Pilons), in that it estimates arc length as
-		// a right triangle rather than forming an arc. The loss in accuracy of this
-		// is generally negligible, because it's recalculated at a high sample rate (10ms).
-		// For more information: https://rossum.sourceforge.net/papers/DiffSteer/
-		global_position += Vector2(
-			2.0 * std::sin(math::to_radians(delta_heading / 2)) * (delta_forward_travel / math::to_radians(delta_heading + 0.001)),
-			0.0 // Assume no sideways motion for now.
-		).rotated(math::to_radians(previous_heading + delta_heading / 2.0));
-		// global_position += Vector2(delta_forward_travel, 0.0).rotated(heading);
+		// assume no sideways travel for now.
+		constexpr double delta_sideways_travel = 0.0;
+
+		// Find the average between the current and previous headings
+		// This is useful to know when performing odometry calculations, since
+		// it provides a more accurate estimation of the robot's heading
+		// "during the movement". Simply rotating by the current heading after
+		// the movement would build up error faster.
+		double average_heading = previous_heading + delta_heading / 2.0;
+
+		// Estimate change in global position
+		if (delta_heading == 0.0) {
+			// Fallback estimation to avoid divide-by-zero errors
+			global_position += Vector2(delta_forward_travel, delta_sideways_travel).rotated(math::to_radians(average_heading));
+		} else {
+			// Using chord length formula
+			global_position += Vector2(
+				2.0 * (delta_forward_travel / math::to_radians(delta_heading)) * std::sin(math::to_radians(delta_heading / 2)),
+				0.0 // 2.0 * (delta_sideways_travel / math::to_radians(delta_heading)) * std::sin(math::to_radians(delta_heading / 2))
+			).rotated(math::to_radians(average_heading));
+		}
 
 		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).

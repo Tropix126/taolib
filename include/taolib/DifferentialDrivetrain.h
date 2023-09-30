@@ -353,9 +353,9 @@ public:
 	void hold_position();
 
 private:
-	enum class ErrorModes {
-		Relative,
-		Absolute
+	enum class TargetType {
+		DistanceAndHeading,
+		Point
 	};
 
 	vex::motor_group &left_motors, &right_motors;
@@ -368,7 +368,7 @@ private:
 	double target_distance, target_heading;
 	double start_heading;
 
-	ErrorModes error_mode;
+	TargetType target_type;
 	
 	double max_drive_power = 100, max_turn_power = 100;
 	double drive_tolerance, turn_tolerance;

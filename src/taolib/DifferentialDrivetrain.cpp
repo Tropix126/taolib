@@ -254,11 +254,11 @@ void DifferentialDrivetrain::set_wheel_diameter(double diameter) {
 }
 
 void DifferentialDrivetrain::set_target(Vector2 position) {
-	error_mode = ErrorModes::Absolute;
+	target_type = TargetType::Point;
 	target_position = position;
 }
 void DifferentialDrivetrain::set_target(double distance, double heading) {
-	error_mode = ErrorModes::Relative;
+	target_type = TargetType::DistanceAndHeading;
 	target_distance = distance;
 	target_heading = heading;
 }
@@ -316,7 +316,7 @@ int DifferentialDrivetrain::tracking() {
 		// Recalculate error for each PID controller.
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).
 		// - If in relative mode, the error is determined by a target encoder distance and heading (The target is heading and distance).
-		if (error_mode == ErrorModes::Absolute) {
+		if (target_type == TargetType::Point) {
 			Vector2 local_target = target_position - position;
 
 			turn_error = math::normalize_degrees(heading - math::to_degrees(local_target.get_angle()));
@@ -328,7 +328,7 @@ int DifferentialDrivetrain::tracking() {
 				turn_error = math::normalize_degrees(turn_error - 180.0);
 				drive_error *= -1.0;
 			}
-		} else if (error_mode == ErrorModes::Relative) {
+		} else if (target_type == TargetType::DistanceAndHeading) {
 			turn_error = math::normalize_degrees(heading - target_heading);
 			drive_error = target_distance - forward_travel;
 		}
@@ -341,7 +341,7 @@ int DifferentialDrivetrain::tracking() {
 		// Scale drive power by the cosine of turn_error if moving to a point.
 		// This biases turn power over drive power at the start of the movement, which makes the
 		// arc shapes less dramatic when moving to a point.
-		if (error_mode == ErrorModes::Absolute) {
+		if (target_type == TargetType::Point) {
 			drive_power *= std::cos(math::to_radians(turn_error));
 		}
 
@@ -358,7 +358,7 @@ int DifferentialDrivetrain::tracking() {
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, reset the counter.
-		if ((std::abs(drive_error) <= drive_tolerance) && ((std::abs(turn_error) <= turn_tolerance) || error_mode == ErrorModes::Absolute)) {
+		if ((std::abs(drive_error) <= drive_tolerance) && ((std::abs(turn_error) <= turn_tolerance) || target_type == TargetType::Point)) {
 			settle_counter++;
 		} else {
 			settle_counter = 0;
@@ -369,7 +369,7 @@ int DifferentialDrivetrain::tracking() {
 		if (settle_counter >= 5 && !settled) {
 			logger.debug("DifferentialDrivetrain has settled. Drive error: %f, Turn error: %f", drive_error, turn_error);
 
-			if (error_mode == ErrorModes::Absolute) {
+			if (target_type == TargetType::Point) {
 				set_target(forward_travel, heading);
 			}
 
@@ -513,7 +513,7 @@ void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking) {
 void DifferentialDrivetrain::move_to(Vector2 point, bool blocking) {
 	mutex.lock();
 	settled = false;
-	set_target(position);
+	set_target(point);
 	Vector2 position = this->position;
 	mutex.unlock();
 

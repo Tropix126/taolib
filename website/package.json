@@ -10,9 +10,10 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "devDependencies": {
+  "dependencies": {
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/solid-js": "^3.0.1",
+    "@astrojs/vercel": "^5.0.1",
     "@babel/core": "^7.23.0",
     "astro": "^3.2.0",
     "shiki": "^0.14.4",

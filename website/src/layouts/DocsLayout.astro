@@ -1,4 +1,6 @@
 ---
+// export const prerender = false;
+
 import BaseLayout from "./BaseLayout.astro";
 
 import Section from "~/components/Section";
@@ -23,6 +25,7 @@ const categories = categorize(await Astro.glob("../pages/docs/**.md"), page => p
 
 							return (
 								<li class="docs-sidebar-item" class:list={[{ selected: currentPage === path}]}>
+									{currentPage}
 									<a href={page.url}>
 										{page.frontmatter.title}
 									</a>

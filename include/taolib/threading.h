@@ -71,7 +71,7 @@ vex::thread make_thread(Ret (*fn)(Args...), Args... args) {
   vex::thread internal_thread = vex::thread(internal::wrap_func_<decltype(fn), Args...>, (void*)func_and_args);
   // Wait for thread initialization
   while (!fake_promise) {
-	vex::task::sleep(1);
+	vex::tihs_thread::sleep_for(1);
   }
   return internal_thread;
 }

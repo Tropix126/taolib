@@ -37,9 +37,9 @@ public:
 	void fatal(const char* format, ...) const;
 
 private:
-	std::ostream& output_stream_;
-	Level level_;
-	std::vector<std::function<void(Level, const std::string&)>> handles_;
+	std::ostream& output_stream;
+	Level level;
+	std::vector<std::function<void(Level, const std::string&)>> handles;
 	
 	void log(Level level, const char* format, va_list args) const;
 

@@ -25,6 +25,8 @@
 
 namespace tao {
 
+// Constructors/Destructors
+
 DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 					   vex::motor_group& right_motors,
 					   vex::inertial& imu,
@@ -107,29 +109,29 @@ DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
   turn_controller.set_gains(config.turn_gains);
 }
 
-DifferentialDrivetrain::~DifferentialDrivetrain() {
-	stop_tracking();
-}
+DifferentialDrivetrain::~DifferentialDrivetrain() { stop_tracking(); }
+
+// Getters
 
 Vector2 DifferentialDrivetrain::get_position() {
 	mutex.lock();
-	Vector2 _global_position = global_position;
+	Vector2 position = this->position;
 	mutex.unlock();
-	return _global_position;
+	return position;
 }
 PIDController::Gains DifferentialDrivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
 PIDController::Gains DifferentialDrivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
 double DifferentialDrivetrain::get_drive_error() {
 	mutex.lock();
-	double _drive_error = drive_error;
+	double drive_error = this->drive_error;
 	mutex.unlock();
-	return _drive_error;
+	return drive_error;
 }
 double DifferentialDrivetrain::get_turn_error() {
 	mutex.lock();
-	double _turn_error = turn_error;
+	double turn_error = this->turn_error;
 	mutex.unlock();
-	return _turn_error;
+	return turn_error;
 }
 double DifferentialDrivetrain::get_max_drive_power() const { return max_drive_power; }
 double DifferentialDrivetrain::get_max_turn_power() const { return max_turn_power; }
@@ -203,6 +205,8 @@ bool DifferentialDrivetrain::is_settled() {
 	return _settled;
 }
 
+// Setters
+
 void DifferentialDrivetrain::set_turn_tolerance(double error) {
 	mutex.lock();
 	turn_tolerance = error;
@@ -259,6 +263,8 @@ void DifferentialDrivetrain::set_target(double distance, double heading) {
 	target_heading = heading;
 }
 
+// Threading
+
 int DifferentialDrivetrain::tracking() {
 	logger.info("Tracking period started.");
 
@@ -298,10 +304,10 @@ int DifferentialDrivetrain::tracking() {
 		// Estimate change in global position
 		if (delta_heading == 0.0) {
 			// Fallback estimation to avoid divide-by-zero errors
-			global_position += Vector2(delta_forward_travel, delta_sideways_travel).rotated(math::to_radians(average_heading));
+			position += Vector2(delta_forward_travel, delta_sideways_travel).rotated(math::to_radians(average_heading));
 		} else {
 			// Using chord length formula
-			global_position += Vector2(
+			position += Vector2(
 				2.0 * (delta_forward_travel / math::to_radians(delta_heading)) * std::sin(math::to_radians(delta_heading / 2)),
 				0.0 // 2.0 * (delta_sideways_travel / math::to_radians(delta_heading)) * std::sin(math::to_radians(delta_heading / 2))
 			).rotated(math::to_radians(average_heading));
@@ -311,7 +317,7 @@ int DifferentialDrivetrain::tracking() {
 		// - If in absolute mode, the error is determined by the robot's distance from a point (the target is an absolute Vector2).
 		// - If in relative mode, the error is determined by a target encoder distance and heading (The target is heading and distance).
 		if (error_mode == ErrorModes::Absolute) {
-			Vector2 local_target = target_position - global_position;
+			Vector2 local_target = target_position - position;
 
 			turn_error = math::normalize_degrees(heading - math::to_degrees(local_target.get_angle()));
 			drive_error = local_target.get_magnitude();
@@ -388,16 +394,18 @@ int DifferentialDrivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
 		mutex.lock();
-		Vector2 position = global_position;
+		Vector2 position_ = position;
 		mutex.unlock();
 		
-		logger.info("Position: (%f, %f) Heading: %f\u00B0", position.get_x(), position.get_y(), get_heading());
+		logger.info("Position: (%f, %f) Heading: %f\u00B0", position_.get_x(), position_.get_y(), get_heading());
 
 		vex::this_thread::sleep_for(1000);
 	}
 
 	return 0;
 }
+
+// Lifecycle
 
 void DifferentialDrivetrain::calibrate_imu() {
 	if (imu != nullptr) {
@@ -432,7 +440,7 @@ void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
 	}
 
 	start_heading = heading;
-	global_position = origin;
+	position = origin;
 
 	// Start threads
 	if (!tracking_active) {
@@ -469,6 +477,8 @@ void DifferentialDrivetrain::wait_until_settled() {
 	while (!settled) { vex::wait(10, vex::msec); }
 }
 
+// Movement
+
 void DifferentialDrivetrain::drive(double distance, bool blocking) {
 	mutex.lock();
 	settled = false;
@@ -491,7 +501,8 @@ void DifferentialDrivetrain::turn_to(double heading, bool blocking) {
 
 void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking) {
 	mutex.lock();
-	Vector2 local_target = point - global_position;
+	settled = false;
+	Vector2 local_target = point - position;
 	set_target(target_distance, local_target.get_angle());
 	mutex.unlock();
 
@@ -499,14 +510,14 @@ void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking) {
 	if (blocking) wait_until_settled();
 }
 
-void DifferentialDrivetrain::move_to(Vector2 position, bool blocking) {
+void DifferentialDrivetrain::move_to(Vector2 point, bool blocking) {
 	mutex.lock();
 	settled = false;
 	set_target(position);
-	Vector2 _global_position = global_position;
+	Vector2 position = this->position;
 	mutex.unlock();
 
-	logger.debug("Moving to (%f, %f). Distance: %f", position.get_x(), position.get_y(), _global_position.distance(position));
+	logger.debug("Moving to (%f, %f). Distance: %f", point.get_x(), point.get_y(), point.distance(position));
 	if (blocking) wait_until_settled();
 }
 
@@ -517,7 +528,7 @@ void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
 	settled = false;
 
 	// Add current position to the start of the path so that intersections can be found.
-	path.insert(path.begin(), global_position);
+	path.insert(path.begin(), position);
 	mutex.unlock();
 
 	// Loop through all waypoints in the provided path.
@@ -525,11 +536,11 @@ void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
 		Vector2 start = path[i]; // The current waypoint
 		Vector2 end = path[i + 1]; // The next waypoint
 
-		while (global_position.distance(end) > lookahead_distance) {
+		while (position.distance(end) > lookahead_distance) {
 			mutex.lock();
 			// Find the point(s) of intersection between a circle centered around our global position with the radius of our
 			// lookahead distance and a line segment formed between our starting/ending points.
-			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, lookahead_distance, start, end);
+			std::vector<Vector2> intersections = math::line_circle_intersections(position, lookahead_distance, start, end);
 
 			// Choose the best intersection to go to, ensuring that we don't go backwards along the path.
 			Vector2 target_intersection;

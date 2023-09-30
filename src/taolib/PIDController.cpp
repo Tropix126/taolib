@@ -19,13 +19,13 @@ PIDController::Gains PIDController::get_gains() const { return gains; }
 
 double PIDController::update(double error, double delta_time) {
 	// Calculate the integral term
-	integral += error;
+	integral += error * delta_time;
 
 	// Calculate the derivative term
 	double derivative = (error - previous_error) / delta_time;
 
 	// Calculate the PID output
-	double output = (gains.kP * error) + (gains.kI * integral * delta_time) + (gains.kD * derivative);
+	double output = (gains.kP * error) + (gains.kI * integral) + (gains.kD * derivative);
 
 	// Update the previous error for the next iteration
 	previous_error = error;

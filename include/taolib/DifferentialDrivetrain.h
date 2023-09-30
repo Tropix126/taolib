@@ -334,11 +334,11 @@ public:
 
 	/**
 	 * Moves the drivetrain to a target point.
-	 * @param position A 2D vector representing the absolute target coordinates to move to.
+	 * @param point A 2D vector representing the absolute target coordinates to move to.
 	 * @param direction Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations).
 	*/
-	void move_to(Vector2 position, bool blocking = true);
+	void move_to(Vector2 point, bool blocking = true);
 	
 	/**
 	 * Moves the drivetrain along a set of path waypoints.
@@ -362,7 +362,7 @@ private:
 	vex::encoder *left_encoder, *right_encoder;
 	vex::inertial* imu;
 	
-	Vector2 global_position;
+	Vector2 position;
 
 	Vector2 target_position;
 	double target_distance, target_heading;

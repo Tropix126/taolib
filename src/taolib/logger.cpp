@@ -13,22 +13,22 @@
 namespace tao {
 
 Logger::Logger(std::ostream& output_stream, Level level)
-		: output_stream_(output_stream), level_(level) {}
+		: output_stream(output_stream), level(level) {}
 
-void Logger::set_level(Level level) { level_ = level; }
-void Logger::add_handle(const Handle& handle) { handles_.push_back(handle); }
+void Logger::set_level(Level level) { this->level = level; }
+void Logger::add_handle(const Handle& handle) { handles.push_back(handle); }
 
 void Logger::log(Level level, const char* format, va_list args) const {
-	if (level >= level_) {
+	if (level >= level) {
 		std::string message = this->format(format, args);
 		va_end(args);
 
-		output_stream_
+		output_stream
 			<< colorize("[" + level_to_string(level) + "] ", level)
 			<< message
 			<< colorize("\033[0m\n", level);
 
-		for (auto& handle : handles_) {
+		for (auto& handle : handles) {
 			handle(level, message);
 		}
 	}

@@ -111,11 +111,11 @@ Drivetrain::~Drivetrain() {
 	stop_tracking();
 }
 
-Vector2 Drivetrain::get_position() const { return global_position; }
+Vector2 Drivetrain::get_position() { mutex.lock(); return global_position; }
 PIDController::Gains Drivetrain::get_drive_gains() const { return drive_controller.get_gains(); }
 PIDController::Gains Drivetrain::get_turn_gains() const { return turn_controller.get_gains(); }
-double Drivetrain::get_drive_error() const { return drive_error; }
-double Drivetrain::get_turn_error() const { return turn_error; }
+double Drivetrain::get_drive_error() { mutex.lock(); return drive_error; }
+double Drivetrain::get_turn_error() { mutex.lock(); return turn_error; }
 double Drivetrain::get_max_drive_power() const { return max_drive_power; }
 double Drivetrain::get_max_turn_power() const { return max_turn_power; }
 double Drivetrain::get_drive_tolerance() const { return drive_tolerance; }
@@ -217,6 +217,8 @@ int Drivetrain::tracking() {
 	constexpr int32_t SAMPLE_RATE = 10;
 
 	while (tracking_active) {
+		mutex.lock();
+
 		// Measure the current absolute heading and calculate the change in heading from the last loop sample
 		double heading = get_heading();
 		double delta_heading = heading - previous_heading;
@@ -299,13 +301,14 @@ int Drivetrain::tracking() {
 			logger.debug("Drivetrain has settled. Drive error: %f, Turn error: %f", drive_error, turn_error);
 
 			if (error_mode == ErrorModes::Absolute) {
-				hold_position();
+				set_target(forward_travel, heading);
 			}
 
 			settled = true;
 			settle_counter = 0;
 		}
 
+		mutex.unlock();
 		vex::this_thread::sleep_for(SAMPLE_RATE);
 	}
 
@@ -321,8 +324,11 @@ int Drivetrain::tracking() {
 int Drivetrain::logging() {
 	// Print the current global position of the robot every second.
 	while (logging_active) {
+		mutex.lock();
+		
 		logger.info("Position: (%f, %f) Heading: %f\u00B0", global_position.get_x(), global_position.get_y(), get_heading());
 
+		mutex.unlock();
 		vex::this_thread::sleep_for(1000);
 	}
 
@@ -378,9 +384,13 @@ void Drivetrain::start_tracking(Vector2 origin, double heading) {
 }
 
 void Drivetrain::stop_tracking() {
+	mutex.lock();
+
 	tracking_active = false;
 	logging_active = false;
 	
+	mutex.unlock();
+
 	if (tracking_thread.joinable()) {
 		tracking_thread.join();
 	}
@@ -395,50 +405,58 @@ void Drivetrain::wait_until_settled() {
 }
 
 void Drivetrain::drive(double distance, bool blocking) {
+	mutex.lock();
 	logger.debug("Driving for %f", distance);
 
 	settled = false;
-
-	// Set the PID target distance to our desired distance plus our current wheel travel.
 	set_target(get_forward_travel() + distance, target_heading);
 
+	mutex.unlock();
 	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::turn_to(double heading, bool blocking) {
+	mutex.lock();
 	logger.debug("Turning to %f\u00B0", heading);
-	settled = false;
 
+	settled = false;
 	set_target(target_distance, heading);
 	
+	mutex.unlock();
 	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::turn_to(Vector2 point, bool blocking) {
+	mutex.lock();
 	Vector2 local_target = point - global_position;
 
 	logger.debug("Turning to (%f, %f). Calculated angle: %f\u00B0", point.get_x(), point.get_y());
-
 	set_target(target_distance, local_target.get_angle());
 
+	mutex.unlock();
 	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::move_to(Vector2 position, bool blocking) {
+	mutex.lock();
+
 	logger.debug("Moving to (%f, %f). Distance: %f", position.get_x(), position.get_y(), global_position.distance(position));
 	settled = false;
-
 	set_target(position);
 
+	mutex.unlock();
 	if (blocking) wait_until_settled();
 }
 
 void Drivetrain::follow_path(std::vector<Vector2> path) {
+	mutex.lock();
 	logger.debug("Following path.");
+	
 	settled = false;
 
 	// Add current position to the start of the path so that intersections can be found.
 	path.insert(path.begin(), global_position);
+	mutex.unlock();
 
 	// Loop through all waypoints in the provided path.
 	for (int i = 0; i < (path.size() - 1); i++) {
@@ -446,10 +464,10 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 		Vector2 end = path[i + 1]; // The next waypoint
 
 		while (global_position.distance(end) > lookahead_distance) {
+			mutex.lock();
 			// Find the point(s) of intersection between a circle centered around our global position with the radius of our
 			// lookahead distance and a line segment formed between our starting/ending points.
 			std::vector<Vector2> intersections = math::line_circle_intersections(global_position, lookahead_distance, start, end);
-
 
 			// Choose the best intersection to go to, ensuring that we don't go backwards along the path.
 			Vector2 target_intersection;
@@ -470,6 +488,8 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 
 			set_target(target_intersection);
 
+			mutex.unlock();
+			
 			vex::wait(10, vex::msec);
 		}
 	}
@@ -478,7 +498,9 @@ void Drivetrain::follow_path(std::vector<Vector2> path) {
 }
 
 void Drivetrain::hold_position() {
+	mutex.lock();
 	set_target(get_forward_travel(), get_heading());
+	mutex.unlock();
 }
 
 } // namespace tao

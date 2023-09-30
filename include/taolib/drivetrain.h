@@ -142,7 +142,7 @@ public:
 	 * Gets the current global position of the drivetrain as a Vector2 object.
 	 * @return The current global position of the drivetrain.
 	 */
-	Vector2 get_position() const;
+	Vector2 get_position();
 
 	/**
 	 * Gets the average wheel travel distance of each side of the drivetrain.
@@ -175,13 +175,13 @@ public:
 	 * Gets the current error of the drive PID controller.
 	 * @return The current drive error (distance between the desired position and the current position).
 	 */
-	double get_drive_error() const;
+	double get_drive_error();
 
 	/**
 	 * Gets the current error of the turn PID controller.
 	 * @return The current turn error (distance in degrees between the desired position and the current position).
 	 */
-	double get_turn_error() const;
+	double get_turn_error();
 
 	/**
 	 * Gets the minimum acceptable error threshold for the drive PID controller to consider its movements settled.
@@ -396,6 +396,7 @@ private:
 	bool logging_active = false;
 
 	vex::thread tracking_thread, logging_thread;
+	vex::mutex mutex;
 };
 
 } // namespace tao

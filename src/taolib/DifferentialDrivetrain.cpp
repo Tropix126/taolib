@@ -426,21 +426,8 @@ void DifferentialDrivetrain::calibrate_imu() {
 }
 
 void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
-	// Reset motor encoders.
-	left_motors.resetPosition();
-	right_motors.resetPosition();
-
-	// Reset imu heading.
-	if (imu != nullptr) {
-		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
-		if (!imu_calibrated) {
-			logger.warning("IMU has not been calibrated! Heading may report inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
-		}
-		imu->resetHeading();
-	}
-
-	start_heading = heading;
-	position = origin;
+	// Reset sensors
+	reset_tracking(origin, heading);
 
 	// Start threads
 	if (!tracking_active) {
@@ -451,6 +438,22 @@ void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
 		logging_active = true;
 		logging_thread = threading::make_member_thread(this, &DifferentialDrivetrain::logging);
 	}
+}
+
+void DifferentialDrivetrain::reset_tracking(Vector2 origin, double heading) {
+	left_motors.resetPosition();
+	right_motors.resetPosition();
+
+	if (imu != nullptr) {
+		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
+		if (!imu_calibrated) {
+			logger.warning("IMU has not been calibrated! Heading may report inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
+		}
+		imu->resetHeading();
+	}
+
+	start_heading = heading;
+	position = origin;
 
 	set_target(0.0, start_heading);
 }

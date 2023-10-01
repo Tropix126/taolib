@@ -296,14 +296,16 @@ public:
 	// Lifecycle functions
 
 	/**
-	 * Starts the tracking and PID threads for autonomous movement.
-	 * @param start_position A 2D vector representing the starting cartesian coordinates of the drivetrain.
-	 * @param start_heading An angle in degrees representing the starting orientation of the drivetrain.
+	 * Starts the tracking period for autonomous movement.
+	 * @param origin A 2D vector representing the starting cartesian coordinates of the drivetrain.
+	 * @param heading An angle in degrees representing the starting orientation of the drivetrain.
 	 */
 	void start_tracking(Vector2 origin = Vector2(0.0, 0.0), double heading = 90.0);
 
 	/** Stops all threads used for tracking and movement, restoring manual control of the drivetrain. */
 	void stop_tracking();
+
+	void reset_tracking(Vector2 origin, double heading);
 
 	void calibrate_imu();
 

@@ -82,17 +82,5 @@ std::vector<Vector2> line_circle_intersections(Vector2 center, double radius, Ve
 	return intersections;
 }
 
-double lookahead_curvature(Vector2 position, double heading, Vector2 lookahead) {
-	double heading_radians = to_radians(heading);
-    double side = sign(std::sin(heading_radians) * (lookahead.get_x() - position.get_x()) - std::cos(heading_radians) * (lookahead.get_y() - position.get_y()));
-
-    double a = -std::tan(heading);
-    double c = std::tan(heading) * position.get_x() - position.get_y();
-    double x = std::abs(a * lookahead.get_x() + lookahead.get_y() + c) / std::sqrt((a * a) + 1);
-    double d = std::hypot(lookahead.get_x() - position.get_x(), lookahead.get_y() - position.get_y());
-
-    return side * ((2 * x) / (d * d));
-}
-
 } // namespace math
 } // namespace tao

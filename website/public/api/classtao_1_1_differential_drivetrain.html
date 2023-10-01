@@ -172,9 +172,9 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>get_forward_travel<
 <tr class="memitem:af94edfde4a200199920c548bcd76da50" id="r_af94edfde4a200199920c548bcd76da50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtao_1_1_differential_drivetrain_1_1_config.html">Config</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#af94edfde4a200199920c548bcd76da50">get_config</a> () const</td></tr>
 <tr class="memdesc:af94edfde4a200199920c548bcd76da50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a <a class="el" href="structtao_1_1_differential_drivetrain_1_1_config.html" title="A structure describing values specific to the drivetrain&#39;s physical state.">DifferentialDrivetrain::Config</a> structure from the current drivetrain state.  <br /></td></tr>
 <tr class="separator:af94edfde4a200199920c548bcd76da50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b268456ca4e28717cc8b6212b99185" id="r_a80b268456ca4e28717cc8b6212b99185"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a80b268456ca4e28717cc8b6212b99185">is_settled</a> () const</td></tr>
-<tr class="memdesc:a80b268456ca4e28717cc8b6212b99185"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the drivetrain is currently settled (within the threshold of both minimum error ranges).  <br /></td></tr>
-<tr class="separator:a80b268456ca4e28717cc8b6212b99185"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5226930435bd353c17bd508cf1c0a5a4" id="r_a5226930435bd353c17bd508cf1c0a5a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a5226930435bd353c17bd508cf1c0a5a4">is_settled</a> ()</td></tr>
+<tr class="memdesc:a5226930435bd353c17bd508cf1c0a5a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the drivetrain is currently settled (within the threshold of both minimum error ranges).  <br /></td></tr>
+<tr class="separator:a5226930435bd353c17bd508cf1c0a5a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18b4403c60ab14722b7dd7dece287750" id="r_a18b4403c60ab14722b7dd7dece287750"><td class="memItemLeft" align="right" valign="top"><a id="a18b4403c60ab14722b7dd7dece287750" name="a18b4403c60ab14722b7dd7dece287750"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>get_wheel_diameter</b> () const</td></tr>
 <tr class="separator:a18b4403c60ab14722b7dd7dece287750"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,12 +206,15 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>get_wheel_diameter<
 void&#160;</td><td class="memItemRight" valign="bottom"><b>set_wheel_diameter</b> (double diameter)</td></tr>
 <tr class="separator:af1cf2ce66b0564cb447451fa7ae096e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ece20d2ebda5e391151c288b82979ee" id="r_a8ece20d2ebda5e391151c288b82979ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a8ece20d2ebda5e391151c288b82979ee">start_tracking</a> (<a class="el" href="classtao_1_1_vector2.html">Vector2</a> origin=<a class="el" href="classtao_1_1_vector2.html">Vector2</a>(0.0, 0.0), double heading=90.0)</td></tr>
-<tr class="memdesc:a8ece20d2ebda5e391151c288b82979ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the tracking and PID threads for autonomous movement.  <br /></td></tr>
+<tr class="memdesc:a8ece20d2ebda5e391151c288b82979ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the tracking period for autonomous movement.  <br /></td></tr>
 <tr class="separator:a8ece20d2ebda5e391151c288b82979ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6933a734e3b18eaa5bc446f71f981e25" id="r_a6933a734e3b18eaa5bc446f71f981e25"><td class="memItemLeft" align="right" valign="top"><a id="a6933a734e3b18eaa5bc446f71f981e25" name="a6933a734e3b18eaa5bc446f71f981e25"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stop_tracking</b> ()</td></tr>
 <tr class="memdesc:a6933a734e3b18eaa5bc446f71f981e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops all threads used for tracking and movement, restoring manual control of the drivetrain. <br /></td></tr>
 <tr class="separator:a6933a734e3b18eaa5bc446f71f981e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66e6bbc99fa699bfa8c3fceead4fea80" id="r_a66e6bbc99fa699bfa8c3fceead4fea80"><td class="memItemLeft" align="right" valign="top"><a id="a66e6bbc99fa699bfa8c3fceead4fea80" name="a66e6bbc99fa699bfa8c3fceead4fea80"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>reset_tracking</b> (<a class="el" href="classtao_1_1_vector2.html">Vector2</a> origin, double heading)</td></tr>
+<tr class="separator:a66e6bbc99fa699bfa8c3fceead4fea80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d76767c5c53e788fcde3ee0d3c8e1c6" id="r_a2d76767c5c53e788fcde3ee0d3c8e1c6"><td class="memItemLeft" align="right" valign="top"><a id="a2d76767c5c53e788fcde3ee0d3c8e1c6" name="a2d76767c5c53e788fcde3ee0d3c8e1c6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>calibrate_imu</b> ()</td></tr>
 <tr class="separator:a2d76767c5c53e788fcde3ee0d3c8e1c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -227,9 +230,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
 <tr class="memitem:a9a0bf474237383834d2ed11cb5a7c27b" id="r_a9a0bf474237383834d2ed11cb5a7c27b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a9a0bf474237383834d2ed11cb5a7c27b">turn_to</a> (<a class="el" href="classtao_1_1_vector2.html">Vector2</a> point, bool blocking=true)</td></tr>
 <tr class="memdesc:a9a0bf474237383834d2ed11cb5a7c27b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns the drivetrain face towards the direction of a point.  <br /></td></tr>
 <tr class="separator:a9a0bf474237383834d2ed11cb5a7c27b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56d9c012150d2eecbadd2a2a2902bea9" id="r_a56d9c012150d2eecbadd2a2a2902bea9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a56d9c012150d2eecbadd2a2a2902bea9">move_to</a> (<a class="el" href="classtao_1_1_vector2.html">Vector2</a> position, bool blocking=true)</td></tr>
-<tr class="memdesc:a56d9c012150d2eecbadd2a2a2902bea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the drivetrain to a target point.  <br /></td></tr>
-<tr class="separator:a56d9c012150d2eecbadd2a2a2902bea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4349322a027eff033efc8e8a10e6f590" id="r_a4349322a027eff033efc8e8a10e6f590"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a4349322a027eff033efc8e8a10e6f590">move_to</a> (<a class="el" href="classtao_1_1_vector2.html">Vector2</a> point, bool blocking=true)</td></tr>
+<tr class="memdesc:a4349322a027eff033efc8e8a10e6f590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the drivetrain to a target point.  <br /></td></tr>
+<tr class="separator:a4349322a027eff033efc8e8a10e6f590"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2356aadf6b87ba6cab57beabc5c85cab" id="r_a2356aadf6b87ba6cab57beabc5c85cab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtao_1_1_differential_drivetrain.html#a2356aadf6b87ba6cab57beabc5c85cab">follow_path</a> (std::vector&lt; <a class="el" href="classtao_1_1_vector2.html">Vector2</a> &gt; path)</td></tr>
 <tr class="memdesc:a2356aadf6b87ba6cab57beabc5c85cab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the drivetrain along a set of path waypoints.  <br /></td></tr>
 <tr class="separator:a2356aadf6b87ba6cab57beabc5c85cab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -872,8 +875,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
 
 </div>
 </div>
-<a id="a80b268456ca4e28717cc8b6212b99185" name="a80b268456ca4e28717cc8b6212b99185"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80b268456ca4e28717cc8b6212b99185">&#9670;&#160;</a></span>is_settled()</h2>
+<a id="a5226930435bd353c17bd508cf1c0a5a4" name="a5226930435bd353c17bd508cf1c0a5a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5226930435bd353c17bd508cf1c0a5a4">&#9670;&#160;</a></span>is_settled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -882,7 +885,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
           <td class="memname">bool tao::DifferentialDrivetrain::is_settled </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -892,8 +895,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
 
 </div>
 </div>
-<a id="a56d9c012150d2eecbadd2a2a2902bea9" name="a56d9c012150d2eecbadd2a2a2902bea9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56d9c012150d2eecbadd2a2a2902bea9">&#9670;&#160;</a></span>move_to()</h2>
+<a id="a4349322a027eff033efc8e8a10e6f590" name="a4349322a027eff033efc8e8a10e6f590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4349322a027eff033efc8e8a10e6f590">&#9670;&#160;</a></span>move_to()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -902,7 +905,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
           <td class="memname">void tao::DifferentialDrivetrain::move_to </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classtao_1_1_vector2.html">Vector2</a>&#160;</td>
-          <td class="paramname"><em>position</em>, </td>
+          <td class="paramname"><em>point</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -921,7 +924,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
 <p>Moves the drivetrain to a target point. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">position</td><td>A 2D vector representing the absolute target coordinates to move to. </td></tr>
+    <tr><td class="paramname">point</td><td>A 2D vector representing the absolute target coordinates to move to. </td></tr>
     <tr><td class="paramname">direction</td><td>Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn. </td></tr>
     <tr><td class="paramname">blocking</td><td>Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations). </td></tr>
   </table>
@@ -1165,11 +1168,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>wait_until_settled</b
       </table>
 </div><div class="memdoc">
 
-<p>Starts the tracking and PID threads for autonomous movement. </p>
+<p>Starts the tracking period for autonomous movement. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">start_position</td><td>A 2D vector representing the starting cartesian coordinates of the drivetrain. </td></tr>
-    <tr><td class="paramname">start_heading</td><td>An angle in degrees representing the starting orientation of the drivetrain. </td></tr>
+    <tr><td class="paramname">origin</td><td>A 2D vector representing the starting cartesian coordinates of the drivetrain. </td></tr>
+    <tr><td class="paramname">heading</td><td>An angle in degrees representing the starting orientation of the drivetrain. </td></tr>
   </table>
   </dd>
 </dl>

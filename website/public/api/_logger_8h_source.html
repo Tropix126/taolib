@@ -139,9 +139,9 @@ $(document).ready(function(){initNavTree('_logger_8h_source.html',''); initResiz
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> fatal(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::ostream&amp; output_stream_;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    Level level_;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::vector&lt;std::function&lt;void(Level, <span class="keyword">const</span> std::string&amp;)&gt;&gt; handles_;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::ostream&amp; output_stream;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    Level level;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::vector&lt;std::function&lt;void(Level, <span class="keyword">const</span> std::string&amp;)&gt;&gt; handles;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> log(Level level, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, va_list args) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>

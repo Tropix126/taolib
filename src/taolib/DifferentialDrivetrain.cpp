@@ -15,7 +15,7 @@
 #include <cstdint>
 #include <utility>
 
-#include "v5_cpp.h"
+#include "taolib/env.h"
 
 #include "taolib/DifferentialDrivetrain.h"
 #include "taolib/PIDController.h"
@@ -27,9 +27,9 @@ namespace tao {
 
 // Constructors/Destructors
 
-DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::inertial& imu,
+DifferentialDrivetrain::DifferentialDrivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
+					   env::IMU& imu,
 					   Config config,
 					   Logger logger)
 	: left_motors(left_motors),
@@ -46,8 +46,8 @@ DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(config.turn_gains);
 }
 
-DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
+DifferentialDrivetrain::DifferentialDrivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
 					   Config config,
 					   Logger logger)
 	: left_motors(left_motors),
@@ -64,11 +64,11 @@ DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(config.turn_gains);
 }
 
-DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::encoder& left_encoder,
-					   vex::encoder& right_encoder,
-					   vex::inertial& imu,
+DifferentialDrivetrain::DifferentialDrivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
+					   env::Encoder& left_encoder,
+					   env::Encoder& right_encoder,
+					   env::IMU& imu,
 					   Config config,
 					   Logger logger)
 	: left_motors(left_motors),
@@ -87,10 +87,10 @@ DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
 	turn_controller.set_gains(config.turn_gains);
 }
 
-DifferentialDrivetrain::DifferentialDrivetrain(vex::motor_group& left_motors,
-					   vex::motor_group& right_motors,
-					   vex::encoder& left_encoder,
-					   vex::encoder& right_encoder,
+DifferentialDrivetrain::DifferentialDrivetrain(env::MotorGroup& left_motors,
+					   env::MotorGroup& right_motors,
+					   env::Encoder& left_encoder,
+					   env::Encoder& right_encoder,
 					   Config config,
 					   Logger logger)
 	: left_motors(left_motors),
@@ -155,18 +155,21 @@ DifferentialDrivetrain::Config DifferentialDrivetrain::get_config() const {
 }
 
 std::pair<double, double> DifferentialDrivetrain::get_wheel_travel() const {
-	double left_travel, right_travel;
+	double left_revolutions, right_revolutions;
 	double wheel_circumference = wheel_diameter * math::PI;
 
 	if (left_encoder != nullptr && right_encoder != nullptr) {
-		left_travel = (left_encoder->position(vex::degrees) / 360.0) * wheel_circumference * gearing;
-		right_travel = (right_encoder->position(vex::degrees) / 360.0) * wheel_circumference * gearing;
+		left_revolutions = left_encoder->position(vex::rev);
+		right_revolutions = right_encoder->position(vex::rev);
 	} else {
-		left_travel = (left_motors.position(vex::degrees) / 360.0) * wheel_circumference * gearing;
-		right_travel = (right_motors.position(vex::degrees) / 360.0) * wheel_circumference * gearing;
+		left_revolutions = left_motors.position(vex::rev);
+		right_revolutions = right_motors.position(vex::rev);
 	}
 
-	return { left_travel, right_travel };
+	return {
+		left_revolutions * wheel_circumference * gearing,
+		right_revolutions * wheel_circumference * gearing
+	};
 }
 
 double DifferentialDrivetrain::get_forward_travel() const {
@@ -347,14 +350,14 @@ int DifferentialDrivetrain::tracking() {
 
 		// Convert drive and turn power to left and right motor voltages
 		std::pair<double, double> normalized_voltages = math::normalize_speeds(
-			12 * (drive_power + turn_power) / 100,
-			12 * (drive_power - turn_power) / 100,
-			12
+			12.0 * (drive_power + turn_power) / 100,
+			12.0 * (drive_power - turn_power) / 100,
+			12.0
 		);
 
 		// Spin motors at the output voltage.
-		left_motors.spin(vex::forward, normalized_voltages.first, vex::volt);
-		right_motors.spin(vex::forward, normalized_voltages.second, vex::volt);
+		env::motor_group_set_voltage(left_motors, normalized_voltages.first);
+		env::motor_group_set_voltage(right_motors, normalized_voltages.second);
 
 		// Check if the errors of both loops are under their tolerances.
 		// If they are, increment the settle_counter. If they aren't, reset the counter.
@@ -378,12 +381,12 @@ int DifferentialDrivetrain::tracking() {
 		}
 
 		mutex.unlock();
-		vex::this_thread::sleep_for(SAMPLE_RATE);
+		env::sleep_for(SAMPLE_RATE);
 	}
 
 	// Stop the motors before the thread joins to prevent them from running at whatever the last voltage command was.
-	left_motors.stop();
-	right_motors.stop();
+	env::motor_group_set_voltage(left_motors, 0.0);
+	env::motor_group_set_voltage(right_motors, 0.0);
 
 	logger.info("Tracking period stopped.");
 
@@ -399,7 +402,7 @@ int DifferentialDrivetrain::logging() {
 		
 		logger.info("Position: (%f, %f) Heading: %f\u00B0", position_.get_x(), position_.get_y(), get_heading());
 
-		vex::this_thread::sleep_for(1000);
+		env::sleep_for(1000);
 	}
 
 	return 0;
@@ -415,11 +418,11 @@ void DifferentialDrivetrain::calibrate_imu() {
 		}
 		
 		// Prevent a possible race condition that can occur if the imu isn't detected as plugged in yet.
-		vex::wait(0.25, vex::seconds);
+		env::sleep_for(250);
 		imu->calibrate();
-		vex::wait(0.1, vex::seconds);
-		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
-		vex::wait(0.25, vex::seconds);
+		env::sleep_for(100);
+		while (imu->isCalibrating()) { env::sleep_for(10); }
+		env::sleep_for(250);
 
 		imu_calibrated = true;
 	}
@@ -432,11 +435,11 @@ void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
 	// Start threads
 	if (!tracking_active) {
 		tracking_active = true;
-		tracking_thread = threading::make_member_thread(this, &DifferentialDrivetrain::tracking);
+		tracking_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::tracking));
 	}
 	if (!logging_active) {
 		logging_active = true;
-		logging_thread = threading::make_member_thread(this, &DifferentialDrivetrain::logging);
+		logging_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::logging));
 	}
 }
 
@@ -445,7 +448,7 @@ void DifferentialDrivetrain::reset_tracking(Vector2 origin, double heading) {
 	right_motors.resetPosition();
 
 	if (imu != nullptr) {
-		while (imu->isCalibrating()) { vex::wait(0.1, vex::seconds); }
+		while (env::imu_is_calibrating(imu)) { env::sleep_for(100); }
 		if (!imu_calibrated) {
 			logger.warning("IMU has not been calibrated! Heading may report inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
 		}
@@ -466,18 +469,18 @@ void DifferentialDrivetrain::stop_tracking() {
 	
 	mutex.unlock();
 
-	if (tracking_thread.joinable()) {
-		tracking_thread.join();
+	if (tracking_thread != nullptr) {
+		tracking_thread->join();
 	}
 
-	if (logging_thread.joinable()) {
-		logging_thread.join();
+	if (logging_thread != nullptr) {
+		logging_thread->join();
 	}
 }
 
 void DifferentialDrivetrain::wait_until_settled() {
 	// Spinlock until settled
-	while (!settled) { vex::wait(10, vex::msec); }
+	while (!settled) { env::sleep_for(10); }
 }
 
 // Movement
@@ -566,7 +569,7 @@ void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
 
 			mutex.unlock();
 			
-			vex::wait(10, vex::msec);
+			env::sleep_for(10);
 		}
 	}
 

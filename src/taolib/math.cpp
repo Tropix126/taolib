@@ -17,6 +17,10 @@
 namespace tao {
 namespace math {
 
+double vector_average(std::vector<double> const& v) {
+   return v.empty() ? 0.0 : std::accumulate(v.begin(), v.end(), 0.0) / v.size();
+}
+
 double normalize_degrees(double degrees) {
 	return std::remainder(degrees, 360.0);
 }

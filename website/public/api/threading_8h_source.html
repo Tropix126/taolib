@@ -147,13 +147,13 @@ $(document).ready(function(){initNavTree('threading_8h_source.html',''); initRes
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>} <span class="comment">// namespace internal</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Ret, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>vex::thread make_thread(Ret (*fn)(Args...), Args... args) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>env::Thread make_thread(Ret (*fn)(Args...), Args... args) {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="comment">// Create a boolean value that gets set to true by the thread so that the thread gets initialized before this function exits; vex STL is buggy</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">bool</span> fake_promise = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// Put the function pointer and all arguments into a tuple</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">auto</span>* func_and_args = <span class="keyword">new</span> std::tuple&lt;<span class="keyword">decltype</span>(fn), std::tuple&lt;Args...&gt;, <span class="keywordtype">bool</span>*&gt;(fn, std::forward_as_tuple(args...), &amp;fake_promise);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">// Create a thread that runs the function wrapper</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  vex::thread internal_thread = vex::thread(internal::wrap_func_&lt;<span class="keyword">decltype</span>(fn), Args...&gt;, (<span class="keywordtype">void</span>*)func_and_args);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  env::Thread internal_thread = env::Thread(internal::wrap_func_&lt;<span class="keyword">decltype</span>(fn), Args...&gt;, (<span class="keywordtype">void</span>*)func_and_args);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="comment">// Wait for thread initialization</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">while</span> (!fake_promise) {</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    vex::this_thread::sleep_for(1);</div>
@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('threading_8h_source.html',''); initRes
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>}</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Cls, <span class="keyword">typename</span> Ret, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>vex::thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>env::Thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordflow">return</span> make_thread(static_proxy&lt;Cls, Ret, Args...&gt;, cls_instance, cls_fn, std::forward&lt;Args&gt;(args)...);</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>

@@ -16,7 +16,7 @@
 #include <ratio>
 #include <memory>
 
-#include "v5_cpp.h"
+#include "env.h"
 
 #include "Vector2.h"
 #include "PIDController.h"
@@ -72,64 +72,64 @@ public:
 
 	/**
 	 * Constructs a new DifferentialDrivetrain object using two motor groups and an imu.
-	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
-	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
-	 * @param imu A reference to a vex::inertial object for tracking the drivetrain's orientation through a imu.
+	 * @param left_motors A reference to a env::MotorGroup object representing the left side of the drivetrain.
+	 * @param right_motors A reference to a env::MotorGroup object representing the right side of the drivetrain.
+	 * @param imu A reference to a env::IMU object for tracking the drivetrain's orientation through a imu.
 	 * @param config A DifferentialDrivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	DifferentialDrivetrain(
-		vex::motor_group& left_motors,
-		vex::motor_group& right_motors,
-		vex::inertial& imu,
+		env::MotorGroup& left_motors,
+		env::MotorGroup& right_motors,
+		env::IMU& imu,
 		Config config,
 		Logger logger = tao::Logger()
 	);
 
 	/**
 	 * Constructs a new DifferentialDrivetrain object using two motor groups.
-	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
-	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
+	 * @param left_motors A reference to a env::MotorGroup object representing the left side of the drivetrain.
+	 * @param right_motors A reference to a env::MotorGroup object representing the right side of the drivetrain.
 	 * @param config A DifferentialDrivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	DifferentialDrivetrain(
-		vex::motor_group& left_motors,
-		vex::motor_group& right_motors,
+		env::MotorGroup& left_motors,
+		env::MotorGroup& right_motors,
 		Config config,
 		Logger logger = tao::Logger()
 	);
 
 	/**
 	 * Constructs a new DifferentialDrivetrain object using two motor groups, an imu, and two tracking encoders.
-	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
-	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
-	 * @param left_encoder A reference to a vex::encoder object representing the left tracking encoder.
-	 * @param right_encoder A reference to a vex::encoder object representing the right tracking encoder.
-	 * @param imu A reference to a vex::inertial object for tracking the drivetrain's orientation through a imu.
+	 * @param left_motors A reference to a env::MotorGroup object representing the left side of the drivetrain.
+	 * @param right_motors A reference to a env::MotorGroup object representing the right side of the drivetrain.
+	 * @param left_encoder A reference to a env::Encoder object representing the left tracking encoder.
+	 * @param right_encoder A reference to a env::Encoder object representing the right tracking encoder.
+	 * @param imu A reference to a env::IMU object for tracking the drivetrain's orientation through a imu.
 	 * @param config A DifferentialDrivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	DifferentialDrivetrain(
-		vex::motor_group& left_motors,
-		vex::motor_group& right_motors,
-		vex::encoder& left_encoder,
-		vex::encoder& right_encoder,
-		vex::inertial& imu,
+		env::MotorGroup& left_motors,
+		env::MotorGroup& right_motors,
+		env::Encoder& left_encoder,
+		env::Encoder& right_encoder,
+		env::IMU& imu,
 		Config config,
 		Logger logger = tao::Logger()
 	);
 
 	/**
 	 * Constructs a new DifferentialDrivetrain object using two motor groups and two tracking encoders.
-	 * @param left_motors A reference to a vex::motor_group object representing the left side of the drivetrain.
-	 * @param right_motors A reference to a vex::motor_group object representing the right side of the drivetrain.
-	 * @param left_encoder A reference to a vex::encoder object representing the left tracking encoder.
-	 * @param right_encoder A reference to a vex::encoder object representing the right tracking encoder.
+	 * @param left_motors A reference to a env::MotorGroup object representing the left side of the drivetrain.
+	 * @param right_motors A reference to a env::MotorGroup object representing the right side of the drivetrain.
+	 * @param left_encoder A reference to a env::Encoder object representing the left tracking encoder.
+	 * @param right_encoder A reference to a env::Encoder object representing the right tracking encoder.
 	 * @param config A DifferentialDrivetrain::Config structure describing values related to the drivetrain for tuning.
 	 */
 	DifferentialDrivetrain(
-		vex::motor_group& left_motors,
-		vex::motor_group& right_motors,
-		vex::encoder& left_encoder,
-		vex::encoder& right_encoder,
+		env::MotorGroup& left_motors,
+		env::MotorGroup& right_motors,
+		env::Encoder& left_encoder,
+		env::Encoder& right_encoder,
 		Config config,
 		Logger logger = tao::Logger()
 	);
@@ -360,9 +360,9 @@ private:
 		Point
 	};
 
-	vex::motor_group &left_motors, &right_motors;
-	vex::encoder *left_encoder, *right_encoder;
-	vex::inertial* imu;
+	env::MotorGroup &left_motors, &right_motors;
+	env::Encoder *left_encoder, *right_encoder;
+	env::IMU* imu;
 	
 	Vector2 position;
 
@@ -397,8 +397,8 @@ private:
 	bool tracking_active = false;
 	bool logging_active = false;
 
-	vex::thread tracking_thread, logging_thread;
-	vex::mutex mutex;
+	std::unique_ptr<env::Thread> tracking_thread, logging_thread;
+	env::Mutex mutex;
 };
 
 } // namespace tao

@@ -5,7 +5,7 @@
  * Various various helpers for creating and working with multithreaded
  * applications on vexcode. These helpers assist in various tasks that
  * would normally be difficult to achieve with the vexcode-provided
- * vex::thread class, such as starting a thread from a non-static class
+ * env::Thread class, such as starting a thread from a non-static class
  * member, or passing arguments to threads.
  */
 
@@ -14,7 +14,7 @@
 #include <tuple>
 #include <utility>
 
-#include "v5_cpp.h"
+#include "env.h"
 
 namespace tao {
 namespace threading {
@@ -54,24 +54,24 @@ void wrap_func_(void* func_and_args_void) {
 } // namespace internal
 
 /**
- * Creates a vex::thread that runs a given function with arguments
+ * Creates a env::Thread that runs a given function with arguments
  * @param Ret return type of `fn`
  * @param Args types of arguments to `fn`
  * @param fn the target function
  * @param args the arguments to `fn`
- * @return vex::thread that is running `fn`
+ * @return env::Thread that is running `fn`
  */
 template <typename Ret, typename... Args>
-vex::thread make_thread(Ret (*fn)(Args...), Args... args) {
+env::Thread make_thread(Ret (*fn)(Args...), Args... args) {
   // Create a boolean value that gets set to true by the thread so that the thread gets initialized before this function exits; vex STL is buggy
   bool fake_promise = false;
   // Put the function pointer and all arguments into a tuple
   auto* func_and_args = new std::tuple<decltype(fn), std::tuple<Args...>, bool*>(fn, std::forward_as_tuple(args...), &fake_promise);
   // Create a thread that runs the function wrapper
-  vex::thread internal_thread = vex::thread(internal::wrap_func_<decltype(fn), Args...>, (void*)func_and_args);
+  env::Thread internal_thread = env::Thread(internal::wrap_func_<decltype(fn), Args...>, (void*)func_and_args);
   // Wait for thread initialization
   while (!fake_promise) {
-    vex::this_thread::sleep_for(1);
+    env::sleep_for(1);
   }
   return internal_thread;
 }
@@ -92,17 +92,17 @@ Ret static_proxy(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {
 }
 
 /**
- * Creates a vex::thread that runs a member function with arguments
+ * Creates a env::Thread that runs a member function with arguments
  * @tparam Cls type of `cls_instance`
  * @tparam Ret return type of `cls_fn`
  * @tparam Args types of arguments to `cls_fn`
  * @param cls_instance pointer to instance of class to run `cls_fn` on
  * @param cls_fn pointer to function callable from `cls_instance`; i.e., `&Cls::some_function`
  * @param args arguments to `cls_fn`
- * @return vex::thread that is running `cls_fn`
+ * @return env::Thread that is running `cls_fn`
  */
 template <typename Cls, typename Ret, typename... Args>
-vex::thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {
+env::Thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {
   return make_thread(static_proxy<Cls, Ret, Args...>, cls_instance, cls_fn, std::forward<Args>(args)...);
 }
 

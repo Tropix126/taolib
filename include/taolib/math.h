@@ -13,6 +13,8 @@ namespace math {
 
 constexpr double PI = 3.14159265358979323846;
 
+double vector_average(std::vector<double> const& v);
+
 /**
  * Converts a number representing an angle in degrees and to an equivalent angle between -179 and 180 degrees.
  *

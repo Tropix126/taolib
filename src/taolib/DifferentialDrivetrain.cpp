@@ -155,20 +155,20 @@ DifferentialDrivetrain::Config DifferentialDrivetrain::get_config() const {
 }
 
 std::pair<double, double> DifferentialDrivetrain::get_wheel_travel() const {
-	double left_revolutions, right_revolutions;
+	double left_rotation, right_rotation;
 	double wheel_circumference = wheel_diameter * math::PI;
 
 	if (left_encoder != nullptr && right_encoder != nullptr) {
-		left_revolutions = left_encoder->position(vex::rev);
-		right_revolutions = right_encoder->position(vex::rev);
+		left_rotation = env::encoder_get_rotation(*left_encoder);
+		right_rotation = env::encoder_get_rotation(*right_encoder);
 	} else {
-		left_revolutions = left_motors.position(vex::rev);
-		right_revolutions = right_motors.position(vex::rev);
+		left_rotation = env::motor_group_get_rotation(left_motors);
+		right_rotation = env::motor_group_get_rotation(right_motors);
 	}
 
 	return {
-		left_revolutions * wheel_circumference * gearing,
-		right_revolutions * wheel_circumference * gearing
+		(left_rotation / 360.0) * wheel_circumference * gearing,
+		(right_rotation / 360.0) * wheel_circumference * gearing
 	};
 }
 
@@ -182,14 +182,14 @@ double DifferentialDrivetrain::get_forward_travel() const {
 double DifferentialDrivetrain::get_heading() {
 	// The imu has was passed in, but is not plugged in. Invalidate it's readings for the duration of the tracking routine.
 	// IDEA: check for possible spikes in reported heading due to ESD, then invalidate the imu if detected.
-	if (!imu_invalid && imu != nullptr && !imu->installed()) {
+	if (!imu_invalid && imu != nullptr && !env::imu_is_installed(*imu)) {
 		imu_invalid = true;
 		logger.error("IMU was unplugged. Switching to wheeled heading calculation (less accurate).");
 	}
 
 	if (imu != nullptr && !imu_invalid) {
 		// Use the imu-reported imuscope heading if available.
-		return std::fmod((360.0 - imu->heading()) + start_heading, 360.0);
+		return std::fmod((360.0 - env::imu_get_heading(*imu)) + start_heading, 360.0);
 	} else {
 		// If the imu is not available, then find the heading based on only encoders.
 		std::pair<double, double> wheel_travel = get_wheel_travel();
@@ -419,9 +419,9 @@ void DifferentialDrivetrain::calibrate_imu() {
 		
 		// Prevent a possible race condition that can occur if the imu isn't detected as plugged in yet.
 		env::sleep_for(250);
-		imu->calibrate();
+		env::imu_calibrate(*imu);
 		env::sleep_for(100);
-		while (imu->isCalibrating()) { env::sleep_for(10); }
+		while (env::imu_is_calibrating(*imu)) { env::sleep_for(10); }
 		env::sleep_for(250);
 
 		imu_calibrated = true;
@@ -444,15 +444,18 @@ void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
 }
 
 void DifferentialDrivetrain::reset_tracking(Vector2 origin, double heading) {
-	left_motors.resetPosition();
-	right_motors.resetPosition();
+	env::motor_group_reset_rotation(left_motors);
+	env::motor_group_reset_rotation(right_motors);
+
+	if (left_encoder != nullptr) { env::encoder_reset_rotation(*left_encoder); }
+	if (right_encoder != nullptr) { env::encoder_reset_rotation(*right_encoder); }
 
 	if (imu != nullptr) {
-		while (env::imu_is_calibrating(imu)) { env::sleep_for(100); }
+		while (env::imu_is_calibrating(*imu)) { env::sleep_for(100); }
 		if (!imu_calibrated) {
 			logger.warning("IMU has not been calibrated! Heading may report inaccurate as a result. Call drivetrain.calibrate_imu() before the tracking period.");
 		}
-		imu->resetHeading();
+		env::imu_reset_heading(*imu);
 	}
 
 	start_heading = heading;

@@ -412,7 +412,7 @@ int DifferentialDrivetrain::logging() {
 
 void DifferentialDrivetrain::calibrate_imu() {
 	if (imu != nullptr) {
-		if (!imu->installed()) {
+		if (!env::imu_is_installed(*imu)) {
 			logger.error("IMU not plugged in. Skipping calibration.");
 			return;
 		}

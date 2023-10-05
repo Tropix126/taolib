@@ -66,5 +66,5 @@ void encoder_reset_rotation(pros::adi::Encoder& encoder) {
 
 #endif
 
-}
-}
+} // namespace env
+} // namespace tao

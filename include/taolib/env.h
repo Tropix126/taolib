@@ -64,5 +64,6 @@ void motor_group_reset_rotation(MotorGroup& motor_group);
 
 int32_t encoder_get_rotation(Encoder& encoder);
 void encoder_reset_rotation(Encoder& encoder);
-}
-}
+
+} // namespace env
+} // namespace tao

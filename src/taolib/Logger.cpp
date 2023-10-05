@@ -19,7 +19,7 @@ void Logger::set_level(Level level) { this->level = level; }
 void Logger::add_handle(const Handle& handle) { handles.push_back(handle); }
 
 void Logger::log(Level level, const char* format, va_list args) const {
-	if (level >= level) {
+	if (level >= this->level) {
 		std::string message = this->format(format, args);
 		va_end(args);
 

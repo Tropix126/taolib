@@ -1,5 +1,4 @@
 #include "taolib/taolib.h"
-#include "v5_cpp.h"
 #include <iostream>
 
 vex::motor front_left_drive(vex::PORT1, vex::ratio18_1, false);
@@ -30,6 +29,6 @@ int main() {
 	drivetrain.stop_tracking();
 
 	while (true) {
-		vex::this_thread::sleep_for(10);
+		tao::env::sleep_for(10);
 	}
 }

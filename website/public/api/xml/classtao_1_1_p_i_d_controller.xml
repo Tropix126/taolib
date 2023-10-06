@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classtao_1_1_p_i_d_controller" kind="class" language="C++" prot="public">
+    <compoundname>tao::PIDController</compoundname>
+    <innerclass refid="structtao_1_1_p_i_d_controller_1_1_gains" prot="public">tao::PIDController::Gains</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtao_1_1_p_i_d_controller_1a9383f686f319fa40a58ab00ce88d8f28" prot="private" static="no" mutable="no">
+        <type><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">Gains</ref></type>
+        <definition>Gains tao::PIDController::gains</definition>
+        <argsstring></argsstring>
+        <name>gains</name>
+        <qualifiedname>tao::PIDController::gains</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="44" column="7" bodyfile="include/taolib/PIDController.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_p_i_d_controller_1aa7b55c77c073fa16d9148829e0c23d9d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::PIDController::previous_error</definition>
+        <argsstring></argsstring>
+        <name>previous_error</name>
+        <qualifiedname>tao::PIDController::previous_error</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="47" column="8" bodyfile="include/taolib/PIDController.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_p_i_d_controller_1a37753603b27b22ff13e606c16ec9424e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::PIDController::integral</definition>
+        <argsstring></argsstring>
+        <name>integral</name>
+        <qualifiedname>tao::PIDController::integral</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="47" column="23" bodyfile="include/taolib/PIDController.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1a3ae96c9baf1644cb8ece6f26b22cbd51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::PIDController::PIDController</definition>
+        <argsstring>()</argsstring>
+        <name>PIDController</name>
+        <qualifiedname>tao::PIDController::PIDController</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="32" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1aade2f19e06d9133ef559a04166b97221" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::PIDController::PIDController</definition>
+        <argsstring>(Gains gains)</argsstring>
+        <name>PIDController</name>
+        <qualifiedname>tao::PIDController::PIDController</qualifiedname>
+        <param>
+          <type><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">Gains</ref></type>
+          <declname>gains</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="33" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1a673ddba69e6279cfa868d404a60abcff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::PIDController::update</definition>
+        <argsstring>(double error, double delta_time)</argsstring>
+        <name>update</name>
+        <qualifiedname>tao::PIDController::update</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="36" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1a72e6d7ccd246b4405f33d032e6f77b4b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">Gains</ref></type>
+        <definition>Gains tao::PIDController::get_gains</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gains</name>
+        <qualifiedname>tao::PIDController::get_gains</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="39" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_p_i_d_controller_1a50c4654e04704fe5439b890ac7495d94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::PIDController::set_gains</definition>
+        <argsstring>(const Gains &amp;gains)</argsstring>
+        <name>set_gains</name>
+        <qualifiedname>tao::PIDController::set_gains</qualifiedname>
+        <param>
+          <type>const <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">Gains</ref> &amp;</type>
+          <declname>gains</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/PIDController.h" line="40" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/PIDController.h" line="13" column="1" bodyfile="include/taolib/PIDController.h" bodystart="13" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classtao_1_1_p_i_d_controller_1a9383f686f319fa40a58ab00ce88d8f28" prot="private" virt="non-virtual"><scope>tao::PIDController</scope><name>gains</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1a72e6d7ccd246b4405f33d032e6f77b4b" prot="public" virt="non-virtual"><scope>tao::PIDController</scope><name>get_gains</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1a37753603b27b22ff13e606c16ec9424e" prot="private" virt="non-virtual"><scope>tao::PIDController</scope><name>integral</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1a3ae96c9baf1644cb8ece6f26b22cbd51" prot="public" virt="non-virtual"><scope>tao::PIDController</scope><name>PIDController</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1aade2f19e06d9133ef559a04166b97221" prot="public" virt="non-virtual"><scope>tao::PIDController</scope><name>PIDController</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1aa7b55c77c073fa16d9148829e0c23d9d" prot="private" virt="non-virtual"><scope>tao::PIDController</scope><name>previous_error</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1a50c4654e04704fe5439b890ac7495d94" prot="public" virt="non-virtual"><scope>tao::PIDController</scope><name>set_gains</name></member>
+      <member refid="classtao_1_1_p_i_d_controller_1a673ddba69e6279cfa868d404a60abcff" prot="public" virt="non-virtual"><scope>tao::PIDController</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

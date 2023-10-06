@@ -4,6 +4,7 @@
 import BaseLayout from "./BaseLayout.astro";
 
 import Section from "~/components/Section";
+import ListItem from "~/components/ListItem";
 
 const categorize = (array, fn) => array.reduce((r, v, i, a, k = fn(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
 const categories = categorize(await Astro.glob("../pages/docs/**.md"), page => page.frontmatter.category);
@@ -12,28 +13,26 @@ const categories = categorize(await Astro.glob("../pages/docs/**.md"), page => p
 <BaseLayout>
 	<Section class="docs-layout">
 		<aside class="docs-sidebar">
-			<ul>
-				{Object.keys(categories).map(category => (
-					<details class="docs-sidebar-category" open>
-						<summary>
-							{category}
-							<svg data-hk="0-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="astro-XIML7APE "><path d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"></path></svg>
+			{Object.keys(categories).map(category => (
+				<details class="docs-sidebar-category" open>
+					<summary>
+						{category}
+						<svg data-hk="0-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="astro-XIML7APE "><path d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z"></path></svg>
 						</summary>
-						{categories[category].sort((a, b) => (a.frontmatter.page - b.frontmatter.page)).map(page => {
-							const currentPage = "/" + (new URL(Astro.request.url).pathname.split("/docs/")[1] || "").split("/")[0];
-							const path = page.url.split("/docs")[1] || "/";
+						<ul>
+							{categories[category].sort((a, b) => (a.frontmatter.page - b.frontmatter.page)).map(page => {
+								const currentPage = "/" + (new URL(Astro.request.url).pathname.split("/docs/")[1] || "").split("/")[0];
+								const path = page.url.split("/docs")[1] || "/";
 
-							return (
-								<li class="docs-sidebar-item" class:list={[{ selected: currentPage === path}]}>
-									<a href={page.url}>
+								return (
+									<ListItem selected={currentPage === path} href={page.url}>
 										{page.frontmatter.title}
-									</a>
-								</li>
-							);
-						})}
+									</ListItem>
+								);
+							})}
+						</ul>
 					</details>
 				))}
-			</ul>
 		</aside>
 		<article class="docs-content">
 			<slot />
@@ -121,59 +120,13 @@ const categories = categorize(await Astro.glob("../pages/docs/**.md"), page => p
 	}
 
 	.docs-sidebar ul {
+		display: flex;
+		flex: 1 1 auto;
 		flex-direction: column;
+		gap: 4px;
 		list-style: none;
 		padding: 0;
 		margin: 0;
-	}
-
-	.docs-sidebar ul,
-	.docs-sidebar-item a,
-	.docs-sidebar-item {
-		display: flex;
-		flex: 1 1 auto;
-	}
-	
-	.docs-sidebar-item a {
-		outline: none;
-		position: relative;
-		display: flex;
-		align-items: center;
-		text-decoration: none;
-		padding: 6px 12px;
-		transition: 100ms ease;
-		color: var(--foreground-secondary);
-		border-radius: 3px;
-		font-size: 16px;
-		margin-block-end: 4px;
-	}
-
-	.docs-sidebar-item a:focus {
-		box-shadow: 0 0 0 3px var(--accent-faded);
-	}
-
-	.docs-sidebar-item a:hover {
-		background-color: var(--background-primary);
-	}
-
-	.docs-sidebar-item.selected a {
-		background-color: var(--interactive-primary);
-		color: var(--foreground-primary);
-		font-weight: 600;
-	}
-
-	.docs-sidebar-item a::after {
-		content: "";
-		position: absolute;
-		inset-inline-start: 0;
-		block-size: 0;
-		inline-size: 2px;
-		border-radius: 8px;
-		background-color: var(--accent-primary);
-	}
-
-	.docs-sidebar-item.selected a::after {
-		block-size: 16px;
 	}
 
 	.docs-content {

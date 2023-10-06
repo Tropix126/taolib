@@ -1,0 +1,117 @@
+{
+  "abstract": false,
+  "anchor": "#file-differentialdrivetrain.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/DifferentialDrivetrain.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "<cmath>",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/DifferentialDrivetrain.h",
+    "line": 0
+  },
+  "name": "include/taolib/DifferentialDrivetrain.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "\n#pragma once\n\n#include <cmath>\n#include <vector>\n#include <ratio>\n#include <memory>\n\n#include \"env.h\"\n\n#include \"Vector2.h\"\n#include \"PIDController.h\"\n#include \"threading.h\"\n#include \"logger.h\"\n\nnamespace tao {\n\nclass DifferentialDrivetrain {\npublic:\n    typedef struct {\n        PIDController::Gains drive_gains;\n\n        PIDController::Gains turn_gains;\n\n        double drive_tolerance;\n\n        double turn_tolerance;\n\n        double lookahead_distance;\n\n        double track_width;\n\n        double wheel_diameter;\n\n        double gearing;\n    } Config;\n\n    // Constructors\n\n    DifferentialDrivetrain(\n        env::MotorGroup& left_motors,\n        env::MotorGroup& right_motors,\n        env::IMU& imu,\n        Config config,\n        Logger logger = tao::Logger()\n    );\n\n    DifferentialDrivetrain(\n        env::MotorGroup& left_motors,\n        env::MotorGroup& right_motors,\n        Config config,\n        Logger logger = tao::Logger()\n    );\n\n    DifferentialDrivetrain(\n        env::MotorGroup& left_motors,\n        env::MotorGroup& right_motors,\n        env::Encoder& left_encoder,\n        env::Encoder& right_encoder,\n        env::IMU& imu,\n        Config config,\n        Logger logger = tao::Logger()\n    );\n\n    DifferentialDrivetrain(\n        env::MotorGroup& left_motors,\n        env::MotorGroup& right_motors,\n        env::Encoder& left_encoder,\n        env::Encoder& right_encoder,\n        Config config,\n        Logger logger = tao::Logger()\n    );\n\n    ~DifferentialDrivetrain();\n\n    // Getters\n\n    Vector2 get_position();\n\n    std::pair<double, double> get_wheel_travel() const;\n\n    double get_forward_travel() const;\n\n    double get_heading();\n\n    PIDController::Gains get_drive_gains() const;\n\n    PIDController::Gains get_turn_gains() const;\n\n    double get_drive_error();\n\n    double get_turn_error();\n\n    double get_drive_tolerance() const;\n\n    double get_turn_tolerance() const;\n\n    double get_lookahead_distance() const;\n\n    double get_track_width() const;\n\n    double get_gearing() const;\n\n    double get_max_drive_power() const;\n\n    double get_max_turn_power() const;\n\n    Config get_config() const;\n\n    bool is_settled();\n\n    double get_wheel_diameter() const;\n\n    // Setters\n\n    void set_drive_tolerance(double error);\n    \n    void set_turn_tolerance(double error);\n\n    void set_lookahead_distance(double distance);\n\n    void set_drive_gains(const PIDController::Gains& gains);\n    \n    void set_turn_gains(const PIDController::Gains& gains);\n    \n    void set_gearing(double ratio);\n    \n    void set_max_drive_power(double power);\n\n    void set_max_turn_power(double power);\n\n    void set_wheel_diameter(double diameter);\n\n    // Lifecycle functions\n\n    void start_tracking(Vector2 position = Vector2(0.0, 0.0), double heading = 90.0);\n\n    void stop_tracking();\n\n    void reset_tracking(Vector2 position, double heading);\n\n    void calibrate_imu();\n\n    void wait_until_settled();\n\n    // Movement functions\n\n    void drive(double distance, bool blocking = true);\n\n    void turn_to(double heading, bool blocking = true);\n\n    void turn_to(Vector2 point, bool blocking = true);\n\n    void move_to(Vector2 point, bool blocking = true);\n    \n    void follow_path(std::vector<Vector2> path);\n\n    void hold_position();\n\nprivate:\n    enum class TargetType {\n        DistanceAndHeading,\n        Point\n    };\n\n    env::MotorGroup &left_motors, &right_motors;\n    env::Encoder *left_encoder, *right_encoder;\n    env::IMU* imu;\n    \n    Vector2 position;\n\n    Vector2 target_position;\n    double target_distance, target_heading;\n    double start_heading;\n\n    TargetType target_type;\n    \n    double max_drive_power = 100, max_turn_power = 100;\n    double drive_tolerance, turn_tolerance;\n    double drive_error, turn_error;\n\n    double lookahead_distance;\n    double track_width;\n    double wheel_diameter;\n    double gearing;\n\n    bool settled = false;\n    bool imu_calibrated = false;\n    bool imu_invalid = false;\n\n    PIDController drive_controller, turn_controller;\n    Logger logger;\n\n    void set_target(Vector2 position);\n    void set_target(double distance, double heading);\n\n    int tracking();\n    int logging();\n    \n    bool tracking_active = false;\n    bool logging_active = false;\n\n    std::unique_ptr<env::Thread> tracking_thread, logging_thread;\n    env::Mutex mutex;\n};\n\n} // namespace tao",
+  "publicClasses": [
+    {
+      "anchor": "",
+      "brief": "A class representing a nonholonomic drivetrain using position tracking and PID motion control. ",
+      "category": "classes",
+      "fullname": "tao::DifferentialDrivetrain",
+      "kind": "class",
+      "language": "cpp",
+      "name": "tao::DifferentialDrivetrain",
+      "qualifiedname": "tao::DifferentialDrivetrain",
+      "refid": "classtao_1_1_differential_drivetrain",
+      "summary": "A class representing a nonholonomic drivetrain using position tracking and PID motion control. ",
+      "title": "tao::DifferentialDrivetrain",
+      "url": "classtao_1_1_differential_drivetrain.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "brief": "A structure describing values specific to the drivetrain's physical state. ",
+      "category": "classes",
+      "fullname": "tao::DifferentialDrivetrain::Config",
+      "kind": "struct",
+      "language": "cpp",
+      "name": "tao::DifferentialDrivetrain::Config",
+      "qualifiedname": "tao::DifferentialDrivetrain::Config",
+      "refid": "structtao_1_1_differential_drivetrain_1_1_config",
+      "summary": "A structure describing values specific to the drivetrain's physical state. ",
+      "title": "tao::DifferentialDrivetrain::Config",
+      "url": "structtao_1_1_differential_drivetrain_1_1_config.md",
+      "visibility": "public"
+    }
+  ],
+  "refid": "_differential_drivetrain_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/DifferentialDrivetrain.h",
+  "url": "_differential_drivetrain_8h.md#file-differentialdrivetrain.h",
+  "visibility": "public"
+}

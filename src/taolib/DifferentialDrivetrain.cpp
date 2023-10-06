@@ -428,9 +428,9 @@ void DifferentialDrivetrain::calibrate_imu() {
 	}
 }
 
-void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
+void DifferentialDrivetrain::start_tracking(Vector2 position, double heading) {
 	// Reset sensors
-	reset_tracking(origin, heading);
+	reset_tracking(position, heading);
 
 	// Start threads
 	if (!tracking_active) {
@@ -443,7 +443,7 @@ void DifferentialDrivetrain::start_tracking(Vector2 origin, double heading) {
 	}
 }
 
-void DifferentialDrivetrain::reset_tracking(Vector2 origin, double heading) {
+void DifferentialDrivetrain::reset_tracking(Vector2 position, double heading) {
 	env::motor_group_reset_rotation(left_motors);
 	env::motor_group_reset_rotation(right_motors);
 
@@ -459,7 +459,7 @@ void DifferentialDrivetrain::reset_tracking(Vector2 origin, double heading) {
 	}
 
 	start_heading = heading;
-	position = origin;
+	this->position = position;
 
 	set_target(0.0, start_heading);
 }

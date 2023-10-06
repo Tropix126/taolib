@@ -1,0 +1,50 @@
+.list-item {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	user-select: none;
+	position: relative;
+}
+
+.list-item::before {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	inset-inline-start: 0;
+	block-size: 0;
+	inline-size: 2px;
+	border-radius: 8px;
+	background-color: var(--accent-primary);
+}
+
+.list-item-inner {
+	outline: none;
+	position: relative;
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	text-decoration: none;
+	padding: 6px 12px;
+	transition: 100ms ease;
+	color: var(--foreground-secondary);
+	border-radius: 3px;
+	font-size: 16px;
+}
+
+.list-item-inner:focus {
+	box-shadow: 0 0 0 3px var(--accent-faded);
+}
+
+.list-item-inner:hover {
+	background-color: var(--background-primary);
+}
+
+.list-item.selected .list-item-inner {
+	background-color: var(--interactive-primary);
+	color: var(--foreground-primary);
+	font-weight: 600;
+}
+
+.list-item.selected::before {
+	block-size: 16px;
+}

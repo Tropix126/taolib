@@ -1,0 +1,98 @@
+{
+  "abstract": false,
+  "anchor": "#file-threading.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/threading.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "<tuple>",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/threading.h",
+    "line": 0
+  },
+  "name": "include/taolib/threading.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao::threading",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao::threading",
+      "qualifiedname": "tao::threading",
+      "refid": "namespacetao_1_1threading",
+      "title": "tao::threading",
+      "url": "namespacetao_1_1threading.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "\n#pragma once\n\n#include <tuple>\n#include <utility>\n\n#include \"env.h\"\n\nnamespace tao {\nnamespace threading {\n\n#ifndef DOXYGEN_IGNORE\nnamespace internal {\n\n// Implementation of several missing standard library clstructs and functions to allow for `apply_`\ntemplate <std::size_t...>\nstruct index_sequence_ {};\n\ntemplate <std::size_t N, std::size_t... Next>\nstruct index_sequence_helper_ : public index_sequence_helper_<N - 1U, N - 1U, Next...> {};\n\ntemplate <std::size_t... Next>\nstruct index_sequence_helper_<0U, Next...> {\n  using type = index_sequence_<Next...>;\n};\n\ntemplate <std::size_t N>\nusing make_index_sequence_ = typename index_sequence_helper_<N>::type;\n\ntemplate <typename Fn, typename Tuple, size_t... I>\nvoid apply_(Fn* fn, Tuple t, index_sequence_<I...>) {\n  (*fn)(std::get<I>(t)...);\n}\n\ntemplate <typename Fn, typename... Args>\nvoid wrap_func_(void* func_and_args_void) {\n  // Convert the void pointer to a pointer to the tuple of the function and arguments\n  auto* func_and_args = (std::tuple<Fn, std::tuple<Args...>, bool*>*)func_and_args_void;\n  // Mark the thread as initialized\n  *(std::get<2>(*func_and_args)) = true;\n  // Run the function with the arguments\n  apply_(std::get<0>(*func_and_args), std::get<1>(*func_and_args), make_index_sequence_<sizeof...(Args)>{});\n  delete func_and_args;\n}\n\n} // namespace internal\n#endif /* DOXYGEN_IGNORE */\n\ntemplate <typename Ret, typename... Args>\nenv::Thread make_thread(Ret (*fn)(Args...), Args... args) {\n  // Create a boolean value that gets set to true by the thread so that the thread gets initialized before this function exits; vex STL is buggy\n  bool fake_promise = false;\n  // Put the function pointer and all arguments into a tuple\n  auto* func_and_args = new std::tuple<decltype(fn), std::tuple<Args...>, bool*>(fn, std::forward_as_tuple(args...), &fake_promise);\n  // Create a thread that runs the function wrapper\n  env::Thread internal_thread = env::Thread(internal::wrap_func_<decltype(fn), Args...>, (void*)func_and_args);\n  // Wait for thread initialization\n  while (!fake_promise) {\n    env::sleep_for(1);\n  }\n  return internal_thread;\n}\n\ntemplate <typename Cls, typename Ret, typename... Args>\nRet static_proxy(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {\n  return (cls_instance->*cls_fn)(std::forward<Args>(args)...);\n}\n\ntemplate <typename Cls, typename Ret, typename... Args>\nenv::Thread make_member_thread(Cls* cls_instance, Ret (Cls::*cls_fn)(Args...), Args... args) {\n  return make_thread(static_proxy<Cls, Ret, Args...>, cls_instance, cls_fn, std::forward<Args>(args)...);\n}\n\n} // namespace threading\n} // namespace tao",
+  "refid": "threading_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/threading.h",
+  "url": "threading_8h.md#file-threading.h",
+  "visibility": "public"
+}

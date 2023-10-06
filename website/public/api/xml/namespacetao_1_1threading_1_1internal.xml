@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacetao_1_1threading_1_1internal" kind="namespace" language="C++">
+    <compoundname>tao::threading::internal</compoundname>
+    <innerclass refid="structtao_1_1threading_1_1internal_1_1index__sequence__" prot="public">tao::threading::internal::index_sequence_</innerclass>
+    <innerclass refid="structtao_1_1threading_1_1internal_1_1index__sequence__helper__" prot="public">tao::threading::internal::index_sequence_helper_</innerclass>
+    <innerclass refid="structtao_1_1threading_1_1internal_1_1index__sequence__helper___3_010_u_00_01_next_8_8_8_01_4" prot="public">tao::threading::internal::index_sequence_helper_&lt; 0U, Next... &gt;</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="threading_8h_1a8e5f6107c1fac8c585a9e5966c583143" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structtao_1_1threading_1_1internal_1_1index__sequence__helper__" kindref="compound">index_sequence_helper_</ref>&lt; N &gt;::type</type>
+        <definition>using tao::threading::internal::make_index_sequence_ = typedef typename index_sequence_helper_&lt;N&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>make_index_sequence_</name>
+        <qualifiedname>tao::threading::internal::make_index_sequence_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/threading.h" line="38" column="1" bodyfile="include/taolib/threading.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="threading_8h_1a195f1c6d9302fb9038a3a0a6934dd639" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Fn</type>
+          </param>
+          <param>
+            <type>typename Tuple</type>
+          </param>
+          <param>
+            <type>size_t...</type>
+            <declname>I</declname>
+            <defname>I</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tao::threading::internal::apply_</definition>
+        <argsstring>(Fn *fn, Tuple t, index_sequence_&lt; I... &gt;)</argsstring>
+        <name>apply_</name>
+        <qualifiedname>tao::threading::internal::apply_</qualifiedname>
+        <param>
+          <type>Fn *</type>
+          <declname>fn</declname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type><ref refid="structtao_1_1threading_1_1internal_1_1index__sequence__" kindref="compound">index_sequence_</ref>&lt; I... &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/threading.h" line="41" column="6" bodyfile="include/taolib/threading.h" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="threading_8h_1a1de2478f8c405137593241afd889351a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Fn</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tao::threading::internal::wrap_func_</definition>
+        <argsstring>(void *func_and_args_void)</argsstring>
+        <name>wrap_func_</name>
+        <qualifiedname>tao::threading::internal::wrap_func_</qualifiedname>
+        <param>
+          <type>void *</type>
+          <declname>func_and_args_void</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/threading.h" line="46" column="6" bodyfile="include/taolib/threading.h" bodystart="46" bodyend="54"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/threading.h" line="23" column="1"/>
+  </compounddef>
+</doxygen>

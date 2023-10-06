@@ -12,6 +12,7 @@ namespace tao {
 class Logger {
 public:
 	enum class Level {
+		TELEMETRY,
 		DEBUG,
 		INFO,
 		WARNING,
@@ -26,6 +27,8 @@ public:
 	void set_level(Level level);
 
 	void add_handle(const Handle& handle);
+
+	void telemetry(const char* format, ...) const;
 
 	void debug(const char* format, ...) const;
 

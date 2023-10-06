@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacetao" kind="namespace" language="C++">
+    <compoundname>tao</compoundname>
+    <innerclass refid="classtao_1_1_differential_drivetrain" prot="public">tao::DifferentialDrivetrain</innerclass>
+    <innerclass refid="classtao_1_1_logger" prot="public">tao::Logger</innerclass>
+    <innerclass refid="classtao_1_1_p_i_d_controller" prot="public">tao::PIDController</innerclass>
+    <innerclass refid="classtao_1_1_vector2" prot="public">tao::Vector2</innerclass>
+    <innernamespace refid="namespacetao_1_1env">tao::env</innernamespace>
+    <innernamespace refid="namespacetao_1_1math">tao::math</innernamespace>
+    <innernamespace refid="namespacetao_1_1threading">tao::threading</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/DifferentialDrivetrain.h" line="26" column="1"/>
+  </compounddef>
+</doxygen>

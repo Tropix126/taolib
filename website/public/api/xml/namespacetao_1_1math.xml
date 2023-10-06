@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacetao_1_1math" kind="namespace" language="C++">
+    <compoundname>tao::math</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="math_8h_1a904306e9fcf2e0dbab20011a89ef2c76" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::PI</definition>
+        <argsstring></argsstring>
+        <name>PI</name>
+        <qualifiedname>tao::math::PI</qualifiedname>
+        <initializer>= 3.14159265358979323846</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="14" column="18" bodyfile="include/taolib/math.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="math_8h_1a44b0dded047d3f950de7b292bc83d014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::math::vector_average</definition>
+        <argsstring>(std::vector&lt; double &gt; const &amp;v)</argsstring>
+        <name>vector_average</name>
+        <qualifiedname>tao::math::vector_average</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; const &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="16" column="8" declfile="include/taolib/math.h" declline="16" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1ac18a2780e7f143d609f000fcd8b1d140" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::math::normalize_degrees</definition>
+        <argsstring>(double degrees)</argsstring>
+        <name>normalize_degrees</name>
+        <qualifiedname>tao::math::normalize_degrees</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+<para>Converts a number representing an angle in degrees and to an equivalent angle between -179 and 180 degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The initial angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The equivalent normalized angle between -170 and 180 degrees. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="24" column="8" declfile="include/taolib/math.h" declline="24" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1ad983cebd164e1a084690578b5109aeac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; double, double &gt;</type>
+        <definition>std::pair&lt; double, double &gt; tao::math::normalize_speeds</definition>
+        <argsstring>(double left_speed, double right_speed, double max_speed)</argsstring>
+        <name>normalize_speeds</name>
+        <qualifiedname>tao::math::normalize_speeds</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>left_speed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>right_speed</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max_speed</declname>
+        </param>
+        <briefdescription>
+<para>Given a left, right, and maximum speed, calculate a new set of speed values that preserve the ratio between left and right if one of the two values is over the maximum threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left_speed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The uncapped left speed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_speed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The uncapped right speed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_speed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum speed that can be reached by a motor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pair of speed values {left_speed, right_speed} that is correctly scaled down if one of the two values exceeds max_speed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="37" column="11" declfile="include/taolib/math.h" declline="37" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1adc1a81a61e5f910b858b2389331b7ca3" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::to_radians</definition>
+        <argsstring>(double degrees)</argsstring>
+        <name>to_radians</name>
+        <qualifiedname>tao::math::to_radians</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>degrees</declname>
+        </param>
+        <briefdescription>
+<para>Converts an angle in degrees to an angle in radians. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>degrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The angle in radians. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="45" column="18" bodyfile="include/taolib/math.h" bodystart="45" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1ac172eac8525330502ce662c8b28f8861" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr double</type>
+        <definition>constexpr double tao::math::to_degrees</definition>
+        <argsstring>(double radians)</argsstring>
+        <name>to_degrees</name>
+        <qualifiedname>tao::math::to_degrees</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>radians</declname>
+        </param>
+        <briefdescription>
+<para>Converts an angle in radians to an angle in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>radians</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The angle in degrees. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="55" column="18" bodyfile="include/taolib/math.h" bodystart="55" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a12b8b8e2c9cab5cc23719cadf3d358e6" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr T</type>
+        <definition>constexpr T tao::math::clamp</definition>
+        <argsstring>(T value, T min, T max)</argsstring>
+        <name>clamp</name>
+        <qualifiedname>tao::math::clamp</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+<para>Restricts a number between a minimum and maximum value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number to restrict. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minimum value that the input will be restricted to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The maximum value that the input will be restricted to.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The input value restricted between [min, max]. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="69" column="13" bodyfile="include/taolib/math.h" bodystart="69" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a45d3693678b15657a25eba8d16223ab5" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr T</type>
+        <definition>constexpr T tao::math::sign</definition>
+        <argsstring>(T value)</argsstring>
+        <name>sign</name>
+        <qualifiedname>tao::math::sign</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Determines whether an input number is positive or negative. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input number to be checked.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>-1 if the number is negative, 1 if it is positive. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="81" column="13" bodyfile="include/taolib/math.h" bodystart="81" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="math_8h_1a6703bcfcdf062c26b9450553be54c1a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref> &gt;</type>
+        <definition>std::vector&lt; Vector2 &gt; tao::math::line_circle_intersections</definition>
+        <argsstring>(Vector2 center, double radius, Vector2 point_1, Vector2 point_2)</argsstring>
+        <name>line_circle_intersections</name>
+        <qualifiedname>tao::math::line_circle_intersections</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>center</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>point_1</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>point_2</declname>
+        </param>
+        <briefdescription>
+<para>Finds the point(s) of intersection between a line segment and a circle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The location of the circle&apos;s center point. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The radius of the circle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point_1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The starting point of the line segment. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point_2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The endpoint of the line segment.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0-2 <ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref> instances representing an intersection between the line segment and the circle. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/math.h" line="95" column="13" declfile="include/taolib/math.h" declline="95" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/math.h" line="12" column="1"/>
+  </compounddef>
+</doxygen>

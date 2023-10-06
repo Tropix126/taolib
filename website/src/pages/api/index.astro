@@ -1,0 +1,91 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Section from "~/components/Section";
+import ListItem from "~/components/ListItem";
+
+const namespaces = await Astro.glob("../../../public/api/json/namespace**.json");
+const classes = await Astro.glob("../../../public/api/json/class**.json");
+const structs = await Astro.glob("../../../public/api/json/struct**.json");
+---
+
+<BaseLayout>
+	<Section>
+		<aside class="api-sidebar">
+			<strong>Namespaces</strong>
+			<ul>
+				{namespaces.map(n => {
+					return <ListItem>
+						{n.title}
+					</ListItem>
+				})}
+			</ul>
+			<strong>Classes</strong>
+			<ul>
+				{classes.map(n => {
+					return <ListItem>
+						{n.title}
+					</ListItem>
+				})}
+			</ul>
+			<strong>Structs</strong>
+			<ul>
+				{structs.map(n => {
+					return <ListItem>
+						{n.title}
+					</ListItem>
+				})}
+			</ul>
+		</aside>
+		<article class="api-content"></article>
+	</Section>
+</BaseLayout>
+
+<style is:global>
+	.section .section-inner,
+	.navigation .navigation-inner {
+		max-inline-size: unset;
+	}
+
+	.section .section-inner {
+		display: flex;
+		padding: 0;
+		block-size: calc(100vh - 58px);
+	}
+
+	.api-sidebar {
+		overflow: auto;
+		display: flex;
+		flex-direction: column;
+		flex: 0 0 auto;
+		padding: 20px;
+		background: var(--background-tertiary);
+	}
+
+	.api-sidebar ul {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		margin-block-end: 32px;
+		padding-inline-start: 8px;
+		border-inline-start: 1px solid var(--interactive-secondary);
+	}
+
+	.api-sidebar .list-item-inner {
+		font-size: 12px !important;
+		font-family: monospace;
+	}
+
+	.api-sidebar strong {
+		font-weight: 500;
+		font-size: 16px;
+		margin-block-end: 8px;
+	}
+
+	.api-content {
+		background: var(--background-secondary);
+		flex: 1 1 auto;
+	}
+</style>

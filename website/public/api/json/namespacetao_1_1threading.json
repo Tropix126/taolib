@@ -1,0 +1,350 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "category": "namespaces",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "tao::threading",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "inline": false,
+  "kind": "namespace",
+  "language": "cpp",
+  "location": {
+    "column": 1,
+    "file": "include/taolib/threading.h",
+    "line": 20
+  },
+  "name": "tao::threading",
+  "override": false,
+  "parent": {
+    "anchor": "",
+    "category": "namespaces",
+    "fullname": "tao",
+    "kind": "namespace",
+    "language": "cpp",
+    "name": "tao",
+    "qualifiedname": "tao",
+    "refid": "namespacetao",
+    "title": "tao",
+    "url": "namespacetao.md",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-make-thread",
+      "argsString": "(Ret(*fn)(Args...), Args... args)",
+      "brief": "Creates a env::Thread that runs a given function with arguments. ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "env::Thread tao::threading::make_thread",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::threading::make_thread",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "bodyEnd": 80,
+        "bodyFile": "include/taolib/threading.h",
+        "bodyStart": 68,
+        "column": 13,
+        "file": "include/taolib/threading.h",
+        "line": 68
+      },
+      "name": "make_thread",
+      "override": false,
+      "paramList": [
+        {
+          "name": "Ret",
+          "text": "return type of `fn`"
+        },
+        {
+          "name": "Args",
+          "text": "types of arguments to `fn`"
+        },
+        {
+          "name": "fn",
+          "text": "the target function "
+        },
+        {
+          "name": "args",
+          "text": "the arguments to `fn`"
+        }
+      ],
+      "params": [
+        {
+          "name": "fn",
+          "type": "Ret(*)(Args...)",
+          "typePlain": "Ret(*)(Args...)"
+        },
+        {
+          "name": "args",
+          "type": "Args...",
+          "typePlain": "Args..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::threading::make_thread",
+      "refid": "threading_8h_1a4deb686635844bbd89ed77237bba5f02",
+      "returns": [
+        "env::Thread that is running `fn`"
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Creates a env::Thread that runs a given function with arguments. ",
+      "templateParams": [
+        {
+          "name": "",
+          "type": "typename Ret",
+          "typePlain": "typename Ret"
+        },
+        {
+          "name": "Args",
+          "type": "typename...",
+          "typePlain": "typename..."
+        }
+      ],
+      "title": "make_thread",
+      "type": "env::Thread",
+      "typePlain": "env::Thread",
+      "url": "namespacetao_1_1threading.md#function-make-thread",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-static-proxy",
+      "argsString": "(Cls *cls_instance, Ret(Cls::*cls_fn)(Args...), Args... args)",
+      "brief": "Wraps a member function to allow calling it like a static function. ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "Ret tao::threading::static_proxy",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::threading::static_proxy",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "bodyEnd": 95,
+        "bodyFile": "include/taolib/threading.h",
+        "bodyStart": 93,
+        "column": 5,
+        "file": "include/taolib/threading.h",
+        "line": 93
+      },
+      "name": "static_proxy",
+      "override": false,
+      "paramList": [
+        {
+          "name": "cls_instance",
+          "text": "pointer to instance of class to run `cls_fn` on "
+        },
+        {
+          "name": "cls_fn",
+          "text": "pointer to function callable from `cls_instance`; i.e., `&Cls::some_function`"
+        },
+        {
+          "name": "args",
+          "text": "arguments to `cls_fn`"
+        }
+      ],
+      "params": [
+        {
+          "name": "cls_instance",
+          "type": "Cls *",
+          "typePlain": "Cls *"
+        },
+        {
+          "name": "cls_fn",
+          "type": "Ret(Cls::*)(Args...)",
+          "typePlain": "Ret(Cls::*)(Args...)"
+        },
+        {
+          "name": "args",
+          "type": "Args...",
+          "typePlain": "Args..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::threading::static_proxy",
+      "refid": "threading_8h_1a772d793ab2ea50b3c0cb53890bb91bba",
+      "returns": [
+        "whatever value `cls_fn(args...)` returns "
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Wraps a member function to allow calling it like a static function. ",
+      "templateParams": [
+        {
+          "name": "",
+          "type": "typename Cls",
+          "typePlain": "typename Cls"
+        },
+        {
+          "name": "",
+          "type": "typename Ret",
+          "typePlain": "typename Ret"
+        },
+        {
+          "name": "Args",
+          "type": "typename...",
+          "typePlain": "typename..."
+        }
+      ],
+      "templateParamsList": [
+        {
+          "name": "Cls",
+          "text": "type of `cls_instance`"
+        },
+        {
+          "name": "Ret",
+          "text": "return type `cls_fn`"
+        },
+        {
+          "name": "Args",
+          "text": "types of arguments to `cls_fn`"
+        }
+      ],
+      "title": "static_proxy",
+      "type": "Ret",
+      "typePlain": "Ret",
+      "url": "namespacetao_1_1threading.md#function-static-proxy",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-make-member-thread",
+      "argsString": "(Cls *cls_instance, Ret(Cls::*cls_fn)(Args...), Args... args)",
+      "brief": "Creates a env::Thread that runs a member function with arguments. ",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "env::Thread tao::threading::make_member_thread",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::threading::make_member_thread",
+      "hasDetails": true,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "bodyEnd": 110,
+        "bodyFile": "include/taolib/threading.h",
+        "bodyStart": 108,
+        "column": 13,
+        "file": "include/taolib/threading.h",
+        "line": 108
+      },
+      "name": "make_member_thread",
+      "override": false,
+      "paramList": [
+        {
+          "name": "cls_instance",
+          "text": "pointer to instance of class to run `cls_fn` on "
+        },
+        {
+          "name": "cls_fn",
+          "text": "pointer to function callable from `cls_instance`; i.e., `&Cls::some_function`"
+        },
+        {
+          "name": "args",
+          "text": "arguments to `cls_fn`"
+        }
+      ],
+      "params": [
+        {
+          "name": "cls_instance",
+          "type": "Cls *",
+          "typePlain": "Cls *"
+        },
+        {
+          "name": "cls_fn",
+          "type": "Ret(Cls::*)(Args...)",
+          "typePlain": "Ret(Cls::*)(Args...)"
+        },
+        {
+          "name": "args",
+          "type": "Args...",
+          "typePlain": "Args..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::threading::make_member_thread",
+      "refid": "threading_8h_1a6b98ff1254c30d4b9ce432f33ffb971e",
+      "returns": [
+        "env::Thread that is running `cls_fn`"
+      ],
+      "static": false,
+      "strong": false,
+      "summary": "Creates a env::Thread that runs a member function with arguments. ",
+      "templateParams": [
+        {
+          "name": "",
+          "type": "typename Cls",
+          "typePlain": "typename Cls"
+        },
+        {
+          "name": "",
+          "type": "typename Ret",
+          "typePlain": "typename Ret"
+        },
+        {
+          "name": "Args",
+          "type": "typename...",
+          "typePlain": "typename..."
+        }
+      ],
+      "templateParamsList": [
+        {
+          "name": "Cls",
+          "text": "type of `cls_instance`"
+        },
+        {
+          "name": "Ret",
+          "text": "return type of `cls_fn`"
+        },
+        {
+          "name": "Args",
+          "text": "types of arguments to `cls_fn`"
+        }
+      ],
+      "title": "make_member_thread",
+      "type": "env::Thread",
+      "typePlain": "env::Thread",
+      "url": "namespacetao_1_1threading.md#function-make-member-thread",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "qualifiedname": "tao::threading",
+  "refid": "namespacetao_1_1threading",
+  "static": false,
+  "strong": false,
+  "title": "tao::threading",
+  "url": "namespacetao_1_1threading.md",
+  "visibility": "public"
+}

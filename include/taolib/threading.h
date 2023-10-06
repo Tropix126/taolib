@@ -18,6 +18,8 @@
 
 namespace tao {
 namespace threading {
+
+#ifndef DOXYGEN_IGNORE
 namespace internal {
 
 // Implementation of several missing standard library clstructs and functions to allow for `apply_`
@@ -52,6 +54,7 @@ void wrap_func_(void* func_and_args_void) {
 }
 
 } // namespace internal
+#endif /* DOXYGEN_IGNORE */
 
 /**
  * Creates a env::Thread that runs a given function with arguments

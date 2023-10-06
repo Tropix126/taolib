@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacetao_1_1env" kind="namespace" language="C++">
+    <compoundname>tao::env</compoundname>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="env_8h_1a5b228cf9715649138353b12614e9eeb0" prot="public" static="no">
+        <type>vex::thread</type>
+        <definition>using tao::env::Thread = typedef vex::thread</definition>
+        <argsstring></argsstring>
+        <name>Thread</name>
+        <qualifiedname>tao::env::Thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="36" column="1" bodyfile="include/taolib/env.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="env_8h_1a0ce6d883517cc533336dbdf6cbf95bc9" prot="public" static="no">
+        <type>vex::mutex</type>
+        <definition>using tao::env::Mutex = typedef vex::mutex</definition>
+        <argsstring></argsstring>
+        <name>Mutex</name>
+        <qualifiedname>tao::env::Mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="37" column="1" bodyfile="include/taolib/env.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="env_8h_1af078fbf5a42123a0433c5fb68e618fb0" prot="public" static="no">
+        <type>vex::motor_group</type>
+        <definition>using tao::env::MotorGroup = typedef vex::motor_group</definition>
+        <argsstring></argsstring>
+        <name>MotorGroup</name>
+        <qualifiedname>tao::env::MotorGroup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="38" column="1" bodyfile="include/taolib/env.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="env_8h_1a5c61ede423ae0a85a369bde896aa41e5" prot="public" static="no">
+        <type>vex::inertial</type>
+        <definition>using tao::env::IMU = typedef vex::inertial</definition>
+        <argsstring></argsstring>
+        <name>IMU</name>
+        <qualifiedname>tao::env::IMU</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="39" column="1" bodyfile="include/taolib/env.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="env_8h_1a0f80b1afc260ed36850fb599262076fc" prot="public" static="no">
+        <type>vex::encoder</type>
+        <definition>using tao::env::Encoder = typedef vex::encoder</definition>
+        <argsstring></argsstring>
+        <name>Encoder</name>
+        <qualifiedname>tao::env::Encoder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="40" column="1" bodyfile="include/taolib/env.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="env_8h_1ae77383aff667cf360891ca146c9ba062" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tao::env::sleep_for</definition>
+        <argsstring></argsstring>
+        <name>sleep_for</name>
+        <qualifiedname>tao::env::sleep_for</qualifiedname>
+        <initializer>= static_cast&lt;void(*)(uint32_t)&gt;(vex::this_thread::sleep_for)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="42" column="16" bodyfile="include/taolib/env.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="env_8h_1a5a5efa69cac1216af56a65f0f7344918" prot="public" static="no" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto tao::env::high_resolution_clock</definition>
+        <argsstring></argsstring>
+        <name>high_resolution_clock</name>
+        <qualifiedname>tao::env::high_resolution_clock</qualifiedname>
+        <initializer>= vex::timer::systemHighResolution</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="43" column="16" bodyfile="include/taolib/env.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="env_8h_1a75b56f28a2bff50c39468bd9d8dc5fbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>std::unique_ptr&lt; T &gt;</type>
+        <definition>std::unique_ptr&lt; T &gt; tao::env::make_unique</definition>
+        <argsstring>(Args &amp;&amp;... args)</argsstring>
+        <name>make_unique</name>
+        <qualifiedname>tao::env::make_unique</qualifiedname>
+        <param>
+          <type>Args &amp;&amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="30" column="17" bodyfile="include/taolib/env.h" bodystart="30" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a3700f5c06d9ae18f32d2b92765b4cb1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tao::env::imu_is_installed</definition>
+        <argsstring>(IMU &amp;imu)</argsstring>
+        <name>imu_is_installed</name>
+        <qualifiedname>tao::env::imu_is_installed</qualifiedname>
+        <param>
+          <type>IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="55" column="6" declfile="include/taolib/env.h" declline="55" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a8c8a9e7076007fd1268e7d561bdba45a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tao::env::imu_is_calibrating</definition>
+        <argsstring>(IMU &amp;imu)</argsstring>
+        <name>imu_is_calibrating</name>
+        <qualifiedname>tao::env::imu_is_calibrating</qualifiedname>
+        <param>
+          <type>IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="56" column="6" declfile="include/taolib/env.h" declline="56" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1ac7de016b076c08c92b6d56eb458b2828" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::env::imu_get_heading</definition>
+        <argsstring>(IMU &amp;imu)</argsstring>
+        <name>imu_get_heading</name>
+        <qualifiedname>tao::env::imu_get_heading</qualifiedname>
+        <param>
+          <type>IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="57" column="8" declfile="include/taolib/env.h" declline="57" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a618945b6198a37c0c7feed299bbbfe97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::env::imu_calibrate</definition>
+        <argsstring>(IMU &amp;imu)</argsstring>
+        <name>imu_calibrate</name>
+        <qualifiedname>tao::env::imu_calibrate</qualifiedname>
+        <param>
+          <type>IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="58" column="6" declfile="include/taolib/env.h" declline="58" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a72aeb1af3a63c5288cc58d58d22b0a60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::env::imu_reset_heading</definition>
+        <argsstring>(IMU &amp;imu)</argsstring>
+        <name>imu_reset_heading</name>
+        <qualifiedname>tao::env::imu_reset_heading</qualifiedname>
+        <param>
+          <type>IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="59" column="6" declfile="include/taolib/env.h" declline="59" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a37fb9a7b9e707d58d0bd3b7f06b5bd70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::env::motor_group_get_rotation</definition>
+        <argsstring>(MotorGroup &amp;encoder)</argsstring>
+        <name>motor_group_get_rotation</name>
+        <qualifiedname>tao::env::motor_group_get_rotation</qualifiedname>
+        <param>
+          <type>MotorGroup &amp;</type>
+          <declname>encoder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="61" column="8" declfile="include/taolib/env.h" declline="61" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a923f904da3ab2b076340c909f8dfe0cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::env::motor_group_set_voltage</definition>
+        <argsstring>(MotorGroup &amp;group, double voltage)</argsstring>
+        <name>motor_group_set_voltage</name>
+        <qualifiedname>tao::env::motor_group_set_voltage</qualifiedname>
+        <param>
+          <type>MotorGroup &amp;</type>
+          <declname>group</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>voltage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="62" column="6" declfile="include/taolib/env.h" declline="62" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1afba9c3a69d1f822ddcb3764d856be206" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::env::motor_group_reset_rotation</definition>
+        <argsstring>(MotorGroup &amp;motor_group)</argsstring>
+        <name>motor_group_reset_rotation</name>
+        <qualifiedname>tao::env::motor_group_reset_rotation</qualifiedname>
+        <param>
+          <type>MotorGroup &amp;</type>
+          <declname>motor_group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="63" column="6" declfile="include/taolib/env.h" declline="63" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1af44bd1c3f6e17ecbb76aa8c43ec5e085" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int32_t</type>
+        <definition>int32_t tao::env::encoder_get_rotation</definition>
+        <argsstring>(Encoder &amp;encoder)</argsstring>
+        <name>encoder_get_rotation</name>
+        <qualifiedname>tao::env::encoder_get_rotation</qualifiedname>
+        <param>
+          <type>Encoder &amp;</type>
+          <declname>encoder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="65" column="9" declfile="include/taolib/env.h" declline="65" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="env_8h_1a22ed283d7cc57b0853934a0bbfe2366a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::env::encoder_reset_rotation</definition>
+        <argsstring>(Encoder &amp;encoder)</argsstring>
+        <name>encoder_reset_rotation</name>
+        <qualifiedname>tao::env::encoder_reset_rotation</qualifiedname>
+        <param>
+          <type>Encoder &amp;</type>
+          <declname>encoder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/env.h" line="66" column="6" declfile="include/taolib/env.h" declline="66" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/env.h" line="26" column="1"/>
+  </compounddef>
+</doxygen>

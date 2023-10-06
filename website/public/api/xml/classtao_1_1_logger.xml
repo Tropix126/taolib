@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classtao_1_1_logger" kind="class" language="C++" prot="public">
+    <compoundname>tao::Logger</compoundname>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Level</name>
+        <qualifiedname>tao::Logger::Level</qualifiedname>
+        <enumvalue id="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9adc30ec20708ef7b0f641ef78b7880a15" prot="public">
+          <name>DEBUG</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9a551b723eafd6a31d444fcb2f5920fbd3" prot="public">
+          <name>INFO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9a059e9861e0400dfbe05c98a841f3f96b" prot="public">
+          <name>WARNING</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9abb1ca97ec761fc37101737ba0aa2e7c5" prot="public">
+          <name>ERROR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9a19da7170bea36556dde582519795f3fc" prot="public">
+          <name>FATAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="14" column="1" bodyfile="include/taolib/Logger.h" bodystart="14" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtao_1_1_logger_1aa372476866c871692d1470356cca232c" prot="public" static="no">
+        <type>std::function&lt; void(Level, const std::string &amp;)&gt;</type>
+        <definition>using tao::Logger::Handle =  std::function&lt;void(Level, const std::string&amp;)&gt;</definition>
+        <argsstring></argsstring>
+        <name>Handle</name>
+        <qualifiedname>tao::Logger::Handle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="22" column="1" bodyfile="include/taolib/Logger.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtao_1_1_logger_1a8ee6b6a385786d1bc0c7d3ee9b42c475" prot="private" static="no" mutable="no">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; tao::Logger::output_stream</definition>
+        <argsstring></argsstring>
+        <name>output_stream</name>
+        <qualifiedname>tao::Logger::output_stream</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="41" column="14" bodyfile="include/taolib/Logger.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_logger_1ac72cc06740846e04e1916ba5608a77ea" prot="private" static="no" mutable="no">
+        <type>Level</type>
+        <definition>Level tao::Logger::level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <qualifiedname>tao::Logger::level</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="42" column="7" bodyfile="include/taolib/Logger.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_logger_1aef6b673bfb6eaf01ca34a59ee7624ad4" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::function&lt; void(Level, const std::string &amp;)&gt; &gt;</type>
+        <definition>std::vector&lt;std::function&lt;void(Level, const std::string&amp;)&gt; &gt; tao::Logger::handles</definition>
+        <argsstring></argsstring>
+        <name>handles</name>
+        <qualifiedname>tao::Logger::handles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="43" column="13" bodyfile="include/taolib/Logger.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtao_1_1_logger_1ac08fbee7af6e891e53b5918e7fc8e18f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::Logger::Logger</definition>
+        <argsstring>(std::ostream &amp;output_stream=std::cout, Level level=Level::INFO)</argsstring>
+        <name>Logger</name>
+        <qualifiedname>tao::Logger::Logger</qualifiedname>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>output_stream</declname>
+          <defval>std::cout</defval>
+        </param>
+        <param>
+          <type>Level</type>
+          <declname>level</declname>
+          <defval>Level::INFO</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="24" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1af493694247bcd752cb585263663c9a31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::set_level</definition>
+        <argsstring>(Level level)</argsstring>
+        <name>set_level</name>
+        <qualifiedname>tao::Logger::set_level</qualifiedname>
+        <param>
+          <type>Level</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="26" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1a2c54a26e197ba1b7fac4147a9dca469c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::add_handle</definition>
+        <argsstring>(const Handle &amp;handle)</argsstring>
+        <name>add_handle</name>
+        <qualifiedname>tao::Logger::add_handle</qualifiedname>
+        <param>
+          <type>const Handle &amp;</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="28" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1ada7ff20e7d94adbe0ddb6ba40b16f49a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::debug</definition>
+        <argsstring>(const char *format,...) const</argsstring>
+        <name>debug</name>
+        <qualifiedname>tao::Logger::debug</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="30" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1ab13bd010b389878e18d8ea697dd2f701" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::info</definition>
+        <argsstring>(const char *format,...) const</argsstring>
+        <name>info</name>
+        <qualifiedname>tao::Logger::info</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="32" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1af21f5447540d8fa75fdb56ba3140caa5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::warning</definition>
+        <argsstring>(const char *format,...) const</argsstring>
+        <name>warning</name>
+        <qualifiedname>tao::Logger::warning</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="34" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1ab2be5465abbc39f53669c95453fa8876" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::error</definition>
+        <argsstring>(const char *format,...) const</argsstring>
+        <name>error</name>
+        <qualifiedname>tao::Logger::error</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="36" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1a0184721f5b6f3cd20525907fd85ad8ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::fatal</definition>
+        <argsstring>(const char *format,...) const</argsstring>
+        <name>fatal</name>
+        <qualifiedname>tao::Logger::fatal</qualifiedname>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="38" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtao_1_1_logger_1a8d1fffcf2db5543d82d3151d128c68ba" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::Logger::log</definition>
+        <argsstring>(Level level, const char *format, va_list args) const</argsstring>
+        <name>log</name>
+        <qualifiedname>tao::Logger::log</qualifiedname>
+        <param>
+          <type>Level</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="45" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classtao_1_1_logger_1ac5bb53a55002783d9b9d43834b5730ea" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string tao::Logger::level_to_string</definition>
+        <argsstring>(Level level)</argsstring>
+        <name>level_to_string</name>
+        <qualifiedname>tao::Logger::level_to_string</qualifiedname>
+        <param>
+          <type>Level</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="47" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1a5a125d632334da4edb11c8f1cb10316c" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string tao::Logger::colorize</definition>
+        <argsstring>(const std::string &amp;message, Level level)</argsstring>
+        <name>colorize</name>
+        <qualifiedname>tao::Logger::colorize</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Level</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="49" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_logger_1a0cb4b3901ecd052c18fc719b14818c82" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>static const std::string tao::Logger::format</definition>
+        <argsstring>(const char *const format, va_list args)</argsstring>
+        <name>format</name>
+        <qualifiedname>tao::Logger::format</qualifiedname>
+        <param>
+          <type>const char *const</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>va_list</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/Logger.h" line="51" column="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/Logger.h" line="12" column="1" bodyfile="include/taolib/Logger.h" bodystart="12" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classtao_1_1_logger_1a2c54a26e197ba1b7fac4147a9dca469c" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>add_handle</name></member>
+      <member refid="classtao_1_1_logger_1a5a125d632334da4edb11c8f1cb10316c" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>colorize</name></member>
+      <member refid="classtao_1_1_logger_1ada7ff20e7d94adbe0ddb6ba40b16f49a" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>debug</name></member>
+      <member refid="classtao_1_1_logger_1ab2be5465abbc39f53669c95453fa8876" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>error</name></member>
+      <member refid="classtao_1_1_logger_1a0184721f5b6f3cd20525907fd85ad8ee" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>fatal</name></member>
+      <member refid="classtao_1_1_logger_1a0cb4b3901ecd052c18fc719b14818c82" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>format</name></member>
+      <member refid="classtao_1_1_logger_1aa372476866c871692d1470356cca232c" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>Handle</name></member>
+      <member refid="classtao_1_1_logger_1aef6b673bfb6eaf01ca34a59ee7624ad4" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>handles</name></member>
+      <member refid="classtao_1_1_logger_1ab13bd010b389878e18d8ea697dd2f701" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>info</name></member>
+      <member refid="classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>Level</name></member>
+      <member refid="classtao_1_1_logger_1ac72cc06740846e04e1916ba5608a77ea" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>level</name></member>
+      <member refid="classtao_1_1_logger_1ac5bb53a55002783d9b9d43834b5730ea" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>level_to_string</name></member>
+      <member refid="classtao_1_1_logger_1a8d1fffcf2db5543d82d3151d128c68ba" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>log</name></member>
+      <member refid="classtao_1_1_logger_1ac08fbee7af6e891e53b5918e7fc8e18f" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>Logger</name></member>
+      <member refid="classtao_1_1_logger_1a8ee6b6a385786d1bc0c7d3ee9b42c475" prot="private" virt="non-virtual"><scope>tao::Logger</scope><name>output_stream</name></member>
+      <member refid="classtao_1_1_logger_1af493694247bcd752cb585263663c9a31" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>set_level</name></member>
+      <member refid="classtao_1_1_logger_1af21f5447540d8fa75fdb56ba3140caa5" prot="public" virt="non-virtual"><scope>tao::Logger</scope><name>warning</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

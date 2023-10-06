@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "docs": "cd .. && doxygen && doxybook2 --json --input ./website/public/api/xml --output ./website/public/api/json"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.0.0",

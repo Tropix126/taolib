@@ -1,0 +1,1879 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classtao_1_1_differential_drivetrain" kind="class" language="C++" prot="public">
+    <compoundname>tao::DifferentialDrivetrain</compoundname>
+    <includes refid="_differential_drivetrain_8h" local="no">DifferentialDrivetrain.h</includes>
+    <innerclass refid="structtao_1_1_differential_drivetrain_1_1_config" prot="public">tao::DifferentialDrivetrain::Config</innerclass>
+    <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classtao_1_1_differential_drivetrain_1ab607621c02338cce78725c30954ca6ad" prot="private" static="no" strong="yes">
+        <type></type>
+        <name>TargetType</name>
+        <qualifiedname>tao::DifferentialDrivetrain::TargetType</qualifiedname>
+        <enumvalue id="classtao_1_1_differential_drivetrain_1ab607621c02338cce78725c30954ca6ada5d055b83bb47601fe46ac3a7a9806a38" prot="private">
+          <name>DistanceAndHeading</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classtao_1_1_differential_drivetrain_1ab607621c02338cce78725c30954ca6ada2a3cd5946cfd317eb99c3d32e35e2d4c" prot="private">
+          <name>Point</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="358" column="1" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="358" bodyend="361"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a6e31c4dfaa94356a4a8b2161c6503e53" prot="private" static="no" mutable="no">
+        <type>env::MotorGroup &amp;</type>
+        <definition>env::MotorGroup&amp; tao::DifferentialDrivetrain::left_motors</definition>
+        <argsstring></argsstring>
+        <name>left_motors</name>
+        <qualifiedname>tao::DifferentialDrivetrain::left_motors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="363" column="17" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="363" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1aa93f940e1c748e5efe2ecc4ea4c000f8" prot="private" static="no" mutable="no">
+        <type>env::MotorGroup &amp;</type>
+        <definition>env::MotorGroup &amp; tao::DifferentialDrivetrain::right_motors</definition>
+        <argsstring></argsstring>
+        <name>right_motors</name>
+        <qualifiedname>tao::DifferentialDrivetrain::right_motors</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="363" column="29" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="363" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1af9ef89f11cc6bc8e7411bee92999cb1e" prot="private" static="no" mutable="no">
+        <type>env::Encoder *</type>
+        <definition>env::Encoder* tao::DifferentialDrivetrain::left_encoder</definition>
+        <argsstring></argsstring>
+        <name>left_encoder</name>
+        <qualifiedname>tao::DifferentialDrivetrain::left_encoder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="364" column="14" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="364" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a7eb5d01350d772c36de7699b1f1d9554" prot="private" static="no" mutable="no">
+        <type>env::Encoder *</type>
+        <definition>env::Encoder * tao::DifferentialDrivetrain::right_encoder</definition>
+        <argsstring></argsstring>
+        <name>right_encoder</name>
+        <qualifiedname>tao::DifferentialDrivetrain::right_encoder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="364" column="27" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="364" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a8e9c834e87a82943138ef91db36f36fe" prot="private" static="no" mutable="no">
+        <type>env::IMU *</type>
+        <definition>env::IMU* tao::DifferentialDrivetrain::imu</definition>
+        <argsstring></argsstring>
+        <name>imu</name>
+        <qualifiedname>tao::DifferentialDrivetrain::imu</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="365" column="10" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="365" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a893b0048d3178f4db77ff34d4642f365" prot="private" static="no" mutable="no">
+        <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+        <definition>Vector2 tao::DifferentialDrivetrain::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>tao::DifferentialDrivetrain::position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="367" column="9" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="367" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a1ec0f549db1641c68434008e5889be21" prot="private" static="no" mutable="no">
+        <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+        <definition>Vector2 tao::DifferentialDrivetrain::target_position</definition>
+        <argsstring></argsstring>
+        <name>target_position</name>
+        <qualifiedname>tao::DifferentialDrivetrain::target_position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="369" column="9" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="369" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a88ca0bd92ee42ceed7d1c95e93247a9e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::target_distance</definition>
+        <argsstring></argsstring>
+        <name>target_distance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::target_distance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="370" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="370" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1ad765ff64dd71e7d19ff94e305fc0e905" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::target_heading</definition>
+        <argsstring></argsstring>
+        <name>target_heading</name>
+        <qualifiedname>tao::DifferentialDrivetrain::target_heading</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="370" column="24" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="370" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a4a092682dc25367519dd48f419555fcf" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::start_heading</definition>
+        <argsstring></argsstring>
+        <name>start_heading</name>
+        <qualifiedname>tao::DifferentialDrivetrain::start_heading</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="371" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="371" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a9e2df9e64c2f5677b099f109f3edb763" prot="private" static="no" mutable="no">
+        <type>TargetType</type>
+        <definition>TargetType tao::DifferentialDrivetrain::target_type</definition>
+        <argsstring></argsstring>
+        <name>target_type</name>
+        <qualifiedname>tao::DifferentialDrivetrain::target_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="373" column="12" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="373" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a17631d9056d00b173275669bea66f057" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::max_drive_power</definition>
+        <argsstring></argsstring>
+        <name>max_drive_power</name>
+        <qualifiedname>tao::DifferentialDrivetrain::max_drive_power</qualifiedname>
+        <initializer>= 100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="375" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1aa3302f78fe57d0505d5a0dfd8e6d0415" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::max_turn_power</definition>
+        <argsstring></argsstring>
+        <name>max_turn_power</name>
+        <qualifiedname>tao::DifferentialDrivetrain::max_turn_power</qualifiedname>
+        <initializer>= 100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="375" column="25" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="375" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a53a2441c263c8977ffd65a867284e748" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::drive_tolerance</definition>
+        <argsstring></argsstring>
+        <name>drive_tolerance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::drive_tolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="376" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1ad8a6f0025c5d214b42dba637db76ddf2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::turn_tolerance</definition>
+        <argsstring></argsstring>
+        <name>turn_tolerance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::turn_tolerance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="376" column="24" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="376" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a45c8bea114b2de4006892254f47fc991" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::drive_error</definition>
+        <argsstring></argsstring>
+        <name>drive_error</name>
+        <qualifiedname>tao::DifferentialDrivetrain::drive_error</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="377" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a0709356ac8457f004b6224679d717bb9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::turn_error</definition>
+        <argsstring></argsstring>
+        <name>turn_error</name>
+        <qualifiedname>tao::DifferentialDrivetrain::turn_error</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="377" column="20" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a148a376f973b6d2d840178b6f9423536" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::lookahead_distance</definition>
+        <argsstring></argsstring>
+        <name>lookahead_distance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::lookahead_distance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="379" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a3c093c449206b69c6a00f3b8d22421d6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::track_width</definition>
+        <argsstring></argsstring>
+        <name>track_width</name>
+        <qualifiedname>tao::DifferentialDrivetrain::track_width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="380" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1ab92351187cd9c47a93690277aaf9e620" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::wheel_diameter</definition>
+        <argsstring></argsstring>
+        <name>wheel_diameter</name>
+        <qualifiedname>tao::DifferentialDrivetrain::wheel_diameter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="381" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a3f79c7a8059c129e1482828a78d903de" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::gearing</definition>
+        <argsstring></argsstring>
+        <name>gearing</name>
+        <qualifiedname>tao::DifferentialDrivetrain::gearing</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="382" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a4045bc78af8566fe554c8638c3a621a0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tao::DifferentialDrivetrain::settled</definition>
+        <argsstring></argsstring>
+        <name>settled</name>
+        <qualifiedname>tao::DifferentialDrivetrain::settled</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="384" column="6" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a7ad59dd0e7be2872863cf2f0861e960a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tao::DifferentialDrivetrain::imu_calibrated</definition>
+        <argsstring></argsstring>
+        <name>imu_calibrated</name>
+        <qualifiedname>tao::DifferentialDrivetrain::imu_calibrated</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="385" column="6" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a0462fde3849de9e039a7201c3edae918" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tao::DifferentialDrivetrain::imu_invalid</definition>
+        <argsstring></argsstring>
+        <name>imu_invalid</name>
+        <qualifiedname>tao::DifferentialDrivetrain::imu_invalid</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="386" column="6" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1aee94b80e65bd24846bd0848332522029" prot="private" static="no" mutable="no">
+        <type><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref></type>
+        <definition>PIDController tao::DifferentialDrivetrain::drive_controller</definition>
+        <argsstring></argsstring>
+        <name>drive_controller</name>
+        <qualifiedname>tao::DifferentialDrivetrain::drive_controller</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="388" column="15" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a2a07ae9c9e1caa32d0c649f7eb7210c9" prot="private" static="no" mutable="no">
+        <type><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref></type>
+        <definition>PIDController tao::DifferentialDrivetrain::turn_controller</definition>
+        <argsstring></argsstring>
+        <name>turn_controller</name>
+        <qualifiedname>tao::DifferentialDrivetrain::turn_controller</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="388" column="32" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1aec45d43a4a809eb1768d2dd05c6ca9db" prot="private" static="no" mutable="no">
+        <type><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref></type>
+        <definition>Logger tao::DifferentialDrivetrain::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>tao::DifferentialDrivetrain::logger</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="389" column="8" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1ae99f5f52d76f52bf7b9c9deab847471f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tao::DifferentialDrivetrain::tracking_active</definition>
+        <argsstring></argsstring>
+        <name>tracking_active</name>
+        <qualifiedname>tao::DifferentialDrivetrain::tracking_active</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="397" column="6" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="397" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a800747214f26ee8135f236b0b0b46bd4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tao::DifferentialDrivetrain::logging_active</definition>
+        <argsstring></argsstring>
+        <name>logging_active</name>
+        <qualifiedname>tao::DifferentialDrivetrain::logging_active</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="398" column="6" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="398" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a6226f305500b8261fce592509e8d70b6" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; env::Thread &gt;</type>
+        <definition>std::unique_ptr&lt;env::Thread&gt; tao::DifferentialDrivetrain::tracking_thread</definition>
+        <argsstring></argsstring>
+        <name>tracking_thread</name>
+        <qualifiedname>tao::DifferentialDrivetrain::tracking_thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="400" column="17" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="400" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a32d0810cfe9e2e6345d2fb2918eb5918" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; env::Thread &gt;</type>
+        <definition>std::unique_ptr&lt;env::Thread&gt; tao::DifferentialDrivetrain::logging_thread</definition>
+        <argsstring></argsstring>
+        <name>logging_thread</name>
+        <qualifiedname>tao::DifferentialDrivetrain::logging_thread</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="400" column="33" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="400" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtao_1_1_differential_drivetrain_1a976bc3f888b69900284a44f33f3f057f" prot="private" static="no" mutable="no">
+        <type>env::Mutex</type>
+        <definition>env::Mutex tao::DifferentialDrivetrain::mutex</definition>
+        <argsstring></argsstring>
+        <name>mutex</name>
+        <qualifiedname>tao::DifferentialDrivetrain::mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="401" column="12" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="401" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a92f8a2eac3cb4b84f627f22544a10708" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::DifferentialDrivetrain::DifferentialDrivetrain</definition>
+        <argsstring>(env::MotorGroup &amp;left_motors, env::MotorGroup &amp;right_motors, env::IMU &amp;imu, Config config, Logger logger=tao::Logger())</argsstring>
+        <name>DifferentialDrivetrain</name>
+        <qualifiedname>tao::DifferentialDrivetrain::DifferentialDrivetrain</qualifiedname>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>left_motors</declname>
+        </param>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>right_motors</declname>
+        </param>
+        <param>
+          <type>env::IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <param>
+          <type><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref></type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref></type>
+          <declname>logger</declname>
+          <defval><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classtao_1_1_differential_drivetrain" kindref="compound">DifferentialDrivetrain</ref> object using two motor groups and an imu. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the left side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the right side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::IMU object for tracking the drivetrain&apos;s orientation through a imu. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">DifferentialDrivetrain::Config</ref> structure describing values related to the drivetrain for tuning. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a11eb4d773765b01fcb535220366d51f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::DifferentialDrivetrain::DifferentialDrivetrain</definition>
+        <argsstring>(env::MotorGroup &amp;left_motors, env::MotorGroup &amp;right_motors, Config config, Logger logger=tao::Logger())</argsstring>
+        <name>DifferentialDrivetrain</name>
+        <qualifiedname>tao::DifferentialDrivetrain::DifferentialDrivetrain</qualifiedname>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>left_motors</declname>
+        </param>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>right_motors</declname>
+        </param>
+        <param>
+          <type><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref></type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref></type>
+          <declname>logger</declname>
+          <defval><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classtao_1_1_differential_drivetrain" kindref="compound">DifferentialDrivetrain</ref> object using two motor groups. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the left side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the right side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">DifferentialDrivetrain::Config</ref> structure describing values related to the drivetrain for tuning. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="94" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1aaefef0365e463fe754accb6f5d2cd91e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::DifferentialDrivetrain::DifferentialDrivetrain</definition>
+        <argsstring>(env::MotorGroup &amp;left_motors, env::MotorGroup &amp;right_motors, env::Encoder &amp;left_encoder, env::Encoder &amp;right_encoder, env::IMU &amp;imu, Config config, Logger logger=tao::Logger())</argsstring>
+        <name>DifferentialDrivetrain</name>
+        <qualifiedname>tao::DifferentialDrivetrain::DifferentialDrivetrain</qualifiedname>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>left_motors</declname>
+        </param>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>right_motors</declname>
+        </param>
+        <param>
+          <type>env::Encoder &amp;</type>
+          <declname>left_encoder</declname>
+        </param>
+        <param>
+          <type>env::Encoder &amp;</type>
+          <declname>right_encoder</declname>
+        </param>
+        <param>
+          <type>env::IMU &amp;</type>
+          <declname>imu</declname>
+        </param>
+        <param>
+          <type><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref></type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref></type>
+          <declname>logger</declname>
+          <defval><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classtao_1_1_differential_drivetrain" kindref="compound">DifferentialDrivetrain</ref> object using two motor groups, an imu, and two tracking encoders. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the left side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the right side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_encoder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::Encoder object representing the left tracking encoder. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_encoder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::Encoder object representing the right tracking encoder. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::IMU object for tracking the drivetrain&apos;s orientation through a imu. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">DifferentialDrivetrain::Config</ref> structure describing values related to the drivetrain for tuning. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="110" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a69533b8798fa8201b32e800d9b8a74b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::DifferentialDrivetrain::DifferentialDrivetrain</definition>
+        <argsstring>(env::MotorGroup &amp;left_motors, env::MotorGroup &amp;right_motors, env::Encoder &amp;left_encoder, env::Encoder &amp;right_encoder, Config config, Logger logger=tao::Logger())</argsstring>
+        <name>DifferentialDrivetrain</name>
+        <qualifiedname>tao::DifferentialDrivetrain::DifferentialDrivetrain</qualifiedname>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>left_motors</declname>
+        </param>
+        <param>
+          <type>env::MotorGroup &amp;</type>
+          <declname>right_motors</declname>
+        </param>
+        <param>
+          <type>env::Encoder &amp;</type>
+          <declname>left_encoder</declname>
+        </param>
+        <param>
+          <type>env::Encoder &amp;</type>
+          <declname>right_encoder</declname>
+        </param>
+        <param>
+          <type><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref></type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref></type>
+          <declname>logger</declname>
+          <defval><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classtao_1_1_differential_drivetrain" kindref="compound">DifferentialDrivetrain</ref> object using two motor groups and two tracking encoders. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>left_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the left side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::MotorGroup object representing the right side of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>left_encoder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::Encoder object representing the left tracking encoder. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>right_encoder</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a env::Encoder object representing the right tracking encoder. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>config</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">DifferentialDrivetrain::Config</ref> structure describing values related to the drivetrain for tuning. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="128" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a23c2949cf09d53fdcbf8c7626ea0d089" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tao::DifferentialDrivetrain::~DifferentialDrivetrain</definition>
+        <argsstring>()</argsstring>
+        <name>~DifferentialDrivetrain</name>
+        <qualifiedname>tao::DifferentialDrivetrain::~DifferentialDrivetrain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="137" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1aaabcb0a7917d074f9f96a59726da4f1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+        <definition>Vector2 tao::DifferentialDrivetrain::get_position</definition>
+        <argsstring>()</argsstring>
+        <name>get_position</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_position</qualifiedname>
+        <briefdescription>
+<para>Gets the current global position of the drivetrain as a <ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current global position of the drivetrain. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="145" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a8ece221c6091eb501f0165006428eac1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; double, double &gt;</type>
+        <definition>std::pair&lt; double, double &gt; tao::DifferentialDrivetrain::get_wheel_travel</definition>
+        <argsstring>() const</argsstring>
+        <name>get_wheel_travel</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_wheel_travel</qualifiedname>
+        <briefdescription>
+<para>Gets the average wheel travel distance of each side of the drivetrain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A pair representing the total distance traveled by the left and right wheels of the drivetrain. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="151" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a0e8f5a7cc56b44798be975cbdbc89621" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_forward_travel</definition>
+        <argsstring>() const</argsstring>
+        <name>get_forward_travel</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_forward_travel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="153" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1ad76cbb435302f718ce9248a78530f0d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_heading</definition>
+        <argsstring>()</argsstring>
+        <name>get_heading</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_heading</qualifiedname>
+        <briefdescription>
+<para>Gets the current counter-clockwise heading of the drivetrain in degrees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>If the imu is not configured or installed, the heading will be calculated based on encoders only, using the drivetrain&apos;s track width measurements. </para>
+</simplesect>
+<simplesect kind="return"><para>The current heading of the drivetrain in degrees. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="160" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a647947badb790ea9edb8845f115b3361" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref></type>
+        <definition>PIDController::Gains tao::DifferentialDrivetrain::get_drive_gains</definition>
+        <argsstring>() const</argsstring>
+        <name>get_drive_gains</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_drive_gains</qualifiedname>
+        <briefdescription>
+<para>Gets the current gain constants of the drive PID controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current gains as a <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref> struct. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="166" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a50412fcb2af365a6444ea26f6cd6690c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref></type>
+        <definition>PIDController::Gains tao::DifferentialDrivetrain::get_turn_gains</definition>
+        <argsstring>() const</argsstring>
+        <name>get_turn_gains</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_turn_gains</qualifiedname>
+        <briefdescription>
+<para>Gets the current gains of the turn PID controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current gains as a <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref> struct. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="172" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a0392b9cb165f0746a98fbda6e6e775ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_drive_error</definition>
+        <argsstring>()</argsstring>
+        <name>get_drive_error</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_drive_error</qualifiedname>
+        <briefdescription>
+<para>Gets the current error of the drive PID controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current drive error (distance between the desired position and the current position). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="178" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1af558a71ff9f27bf0648532442a9ceae0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_turn_error</definition>
+        <argsstring>()</argsstring>
+        <name>get_turn_error</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_turn_error</qualifiedname>
+        <briefdescription>
+<para>Gets the current error of the turn PID controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current turn error (distance in degrees between the desired position and the current position). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="184" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a7db198c09c533769978cafcc9577d4a1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_drive_tolerance</definition>
+        <argsstring>() const</argsstring>
+        <name>get_drive_tolerance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_drive_tolerance</qualifiedname>
+        <briefdescription>
+<para>Gets the minimum acceptable error threshold for the drive PID controller to consider its movements settled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current minimum drive error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="190" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a6fb7167313bb597aa809b5a0177276e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_turn_tolerance</definition>
+        <argsstring>() const</argsstring>
+        <name>get_turn_tolerance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_turn_tolerance</qualifiedname>
+        <briefdescription>
+<para>Gets the minimum acceptable error threshold in degrees for the drive PID controller to consider its movements settled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current minimum turn error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="196" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1aaa4fc8eb0e81db00e521ed09df5bc23c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_lookahead_distance</definition>
+        <argsstring>() const</argsstring>
+        <name>get_lookahead_distance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_lookahead_distance</qualifiedname>
+        <briefdescription>
+<para>Gets the lookahead distance used by the drivetrain&apos;s pure pursuit controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current lookahead radius </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="202" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1abdf7a2a26eed735123e41bfeeb2e5572" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_track_width</definition>
+        <argsstring>() const</argsstring>
+        <name>get_track_width</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_track_width</qualifiedname>
+        <briefdescription>
+<para>Gets the track width of the drivetrain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The distance between the left and right drivetrain wheels. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="208" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1acbd9c06e31289c6c1d5c02426e12abde" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_gearing</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gearing</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_gearing</qualifiedname>
+        <briefdescription>
+<para>Gets the current external gear ratio of the drivetrain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current external gear ratio as a quotient. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="214" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a6e4a4a750eb70db19564ba9bb1864e24" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_max_drive_power</definition>
+        <argsstring>() const</argsstring>
+        <name>get_max_drive_power</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_max_drive_power</qualifiedname>
+        <briefdescription>
+<para>Gets the current maximum velocity cap for forwards/backwards driving. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The maximum forward/backward driving velocity. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="220" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1afd664f6d9635cf5e05434379c01e56b4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_max_turn_power</definition>
+        <argsstring>() const</argsstring>
+        <name>get_max_turn_power</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_max_turn_power</qualifiedname>
+        <briefdescription>
+<para>Gets the current maximum velocity cap for turning. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The maximum forward/backward turingn velocity. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="226" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1af94edfde4a200199920c548bcd76da50" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref></type>
+        <definition>Config tao::DifferentialDrivetrain::get_config</definition>
+        <argsstring>() const</argsstring>
+        <name>get_config</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_config</qualifiedname>
+        <briefdescription>
+<para>Generates a <ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">DifferentialDrivetrain::Config</ref> structure from the current drivetrain state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current drivetrain config. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="232" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a5226930435bd353c17bd508cf1c0a5a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool tao::DifferentialDrivetrain::is_settled</definition>
+        <argsstring>()</argsstring>
+        <name>is_settled</name>
+        <qualifiedname>tao::DifferentialDrivetrain::is_settled</qualifiedname>
+        <briefdescription>
+<para>Indicates if the drivetrain is currently settled (within the threshold of both minimum error ranges). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the drivetrain is settled, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="238" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a18b4403c60ab14722b7dd7dece287750" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double tao::DifferentialDrivetrain::get_wheel_diameter</definition>
+        <argsstring>() const</argsstring>
+        <name>get_wheel_diameter</name>
+        <qualifiedname>tao::DifferentialDrivetrain::get_wheel_diameter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="240" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1aa2937378234823e18d5188c20107e104" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_drive_tolerance</definition>
+        <argsstring>(double error)</argsstring>
+        <name>set_drive_tolerance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_drive_tolerance</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+<para>Sets the minimum acceptable error threshold for the drive PID controller to consider its movements settled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new minimum error threhold. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="248" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1afdbc56e38943c8e2af7afe4124705754" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_turn_tolerance</definition>
+        <argsstring>(double error)</argsstring>
+        <name>set_turn_tolerance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_turn_tolerance</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+<para>Sets the minimum acceptable error threshold in degrees for the turn PID controller to consider its movements settled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new minimum error threhold in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="254" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1ab75d934aff2bd03873fc98bb00b0cfe6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_lookahead_distance</definition>
+        <argsstring>(double distance)</argsstring>
+        <name>set_lookahead_distance</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_lookahead_distance</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>distance</declname>
+        </param>
+        <briefdescription>
+<para>Sets the lookahead distance used by the drivetrain&apos;s pure pursuit controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new lookahead radius </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="260" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a34c21c406b42f4c45d316d923c07aaa8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_drive_gains</definition>
+        <argsstring>(const PIDController::Gains &amp;gains)</argsstring>
+        <name>set_drive_gains</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_drive_gains</qualifiedname>
+        <param>
+          <type>const <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref> &amp;</type>
+          <declname>gains</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gain constants for the drive PID controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gains</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref> structure containing the new proportional, integral and derivative gain constants. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="266" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a9ff6aab805315f2397ce7b3dd1c46ae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_turn_gains</definition>
+        <argsstring>(const PIDController::Gains &amp;gains)</argsstring>
+        <name>set_turn_gains</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_turn_gains</qualifiedname>
+        <param>
+          <type>const <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref> &amp;</type>
+          <declname>gains</declname>
+        </param>
+        <briefdescription>
+<para>Sets the gain constants for the turn PID controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gains</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref> structure containing the new proportional, integral and derivative gain constants. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="272" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1af8af47b5d4c70760095bed796a4092f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_gearing</definition>
+        <argsstring>(double ratio)</argsstring>
+        <name>set_gearing</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_gearing</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>ratio</declname>
+        </param>
+        <briefdescription>
+<para>Gets the current gear external ratio of the drivetrain. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This could be useful for robots with a variable gear ratio (PTO) system.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new external gear ratio as a quotient. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="280" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1ab42be427d7f06feda7c9b4533034675f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_max_drive_power</definition>
+        <argsstring>(double power)</argsstring>
+        <name>set_max_drive_power</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_max_drive_power</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>Sets the maximum velocity cap for forwards/backwards driving. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>power</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A percentage of the new maximum velocity cap. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="286" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a85e36aec7d0c55b47b411f43b662b5d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_max_turn_power</definition>
+        <argsstring>(double power)</argsstring>
+        <name>set_max_turn_power</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_max_turn_power</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+<para>Sets the maximum velocity cap for turning. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>power</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A percentage of the new maximum velocity cap. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="292" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1af1cf2ce66b0564cb447451fa7ae096e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_wheel_diameter</definition>
+        <argsstring>(double diameter)</argsstring>
+        <name>set_wheel_diameter</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_wheel_diameter</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>diameter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="294" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a03082a0aa736738e40e0cc9e5bc8fb2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::start_tracking</definition>
+        <argsstring>(Vector2 position=Vector2(0.0, 0.0), double heading=90.0)</argsstring>
+        <name>start_tracking</name>
+        <qualifiedname>tao::DifferentialDrivetrain::start_tracking</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>position</declname>
+          <defval><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref>(0.0, 0.0)</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>heading</declname>
+          <defval>90.0</defval>
+        </param>
+        <briefdescription>
+<para>Starts the tracking period for autonomous movement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A 2D vector representing the starting cartesian coordinates of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>heading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An angle in degrees representing the starting orientation of the drivetrain. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="303" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a6933a734e3b18eaa5bc446f71f981e25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::stop_tracking</definition>
+        <argsstring>()</argsstring>
+        <name>stop_tracking</name>
+        <qualifiedname>tao::DifferentialDrivetrain::stop_tracking</qualifiedname>
+        <briefdescription>
+<para>Stops all threads used for tracking and movement, restoring manual control of the drivetrain. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="306" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1ac9d105ab2a2c1864a3def2ba845715e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::reset_tracking</definition>
+        <argsstring>(Vector2 position, double heading)</argsstring>
+        <name>reset_tracking</name>
+        <qualifiedname>tao::DifferentialDrivetrain::reset_tracking</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>heading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="308" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a2d76767c5c53e788fcde3ee0d3c8e1c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::calibrate_imu</definition>
+        <argsstring>()</argsstring>
+        <name>calibrate_imu</name>
+        <qualifiedname>tao::DifferentialDrivetrain::calibrate_imu</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="310" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a7588a56cd89afd37a6f27124b1a92f83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::wait_until_settled</definition>
+        <argsstring>()</argsstring>
+        <name>wait_until_settled</name>
+        <qualifiedname>tao::DifferentialDrivetrain::wait_until_settled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="312" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a45e5b20deee2f68e71b7a761565b85f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::drive</definition>
+        <argsstring>(double distance, bool blocking=true)</argsstring>
+        <name>drive</name>
+        <qualifiedname>tao::DifferentialDrivetrain::drive</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>distance</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>blocking</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Moves the drivetrain directly forwards or backwards along the x-axis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>distance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The distance that the drivetrain will move relative to it&apos;s current position. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blocking</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines if the function should block the current thread until settled (within drive_tolerance for 10 iterations). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="321" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1aa9885cd2323fea467b72a7d4a6d0303d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::turn_to</definition>
+        <argsstring>(double heading, bool blocking=true)</argsstring>
+        <name>turn_to</name>
+        <qualifiedname>tao::DifferentialDrivetrain::turn_to</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>heading</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>blocking</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Turns the drivetrain to an absolute heading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>heading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The angle in degrees to rotate the drivetrain to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blocking</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="328" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a9a0bf474237383834d2ed11cb5a7c27b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::turn_to</definition>
+        <argsstring>(Vector2 point, bool blocking=true)</argsstring>
+        <name>turn_to</name>
+        <qualifiedname>tao::DifferentialDrivetrain::turn_to</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>blocking</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Turns the drivetrain face towards the direction of a point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A 2D vector representing the desired coordinates to face towards. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blocking</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="335" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a4349322a027eff033efc8e8a10e6f590" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::move_to</definition>
+        <argsstring>(Vector2 point, bool blocking=true)</argsstring>
+        <name>move_to</name>
+        <qualifiedname>tao::DifferentialDrivetrain::move_to</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>blocking</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Moves the drivetrain to a target point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A 2D vector representing the absolute target coordinates to move to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blocking</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="343" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a2356aadf6b87ba6cab57beabc5c85cab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::follow_path</definition>
+        <argsstring>(std::vector&lt; Vector2 &gt; path)</argsstring>
+        <name>follow_path</name>
+        <qualifiedname>tao::DifferentialDrivetrain::follow_path</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref> &gt;</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Moves the drivetrain along a set of path waypoints. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of 2D vectors representing waypoints forming a path.. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="349" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a92dbe8f289a1d75d8380ca5f57ace213" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::hold_position</definition>
+        <argsstring>()</argsstring>
+        <name>hold_position</name>
+        <qualifiedname>tao::DifferentialDrivetrain::hold_position</qualifiedname>
+        <briefdescription>
+<para>Stops and holds the drivetrain at its current position and heading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>blocking</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Determines if the function should block the current thread until settled (within tolerance for 10 iterations). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="355" column="6"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1ade992b9a90daae34f712cdd0c3cce128" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_target</definition>
+        <argsstring>(Vector2 position)</argsstring>
+        <name>set_target</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_target</qualifiedname>
+        <param>
+          <type><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref></type>
+          <declname>position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="391" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1af84e2746d2447f04ac7f1e1129d7b3e0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tao::DifferentialDrivetrain::set_target</definition>
+        <argsstring>(double distance, double heading)</argsstring>
+        <name>set_target</name>
+        <qualifiedname>tao::DifferentialDrivetrain::set_target</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>distance</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>heading</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="392" column="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1aad5ce7c137e4eba26a61d628bfd2576f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tao::DifferentialDrivetrain::tracking</definition>
+        <argsstring>()</argsstring>
+        <name>tracking</name>
+        <qualifiedname>tao::DifferentialDrivetrain::tracking</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="394" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classtao_1_1_differential_drivetrain_1a753a302b2773c74973dded8af6137560" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tao::DifferentialDrivetrain::logging</definition>
+        <argsstring>()</argsstring>
+        <name>logging</name>
+        <qualifiedname>tao::DifferentialDrivetrain::logging</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/taolib/DifferentialDrivetrain.h" line="395" column="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class representing a nonholonomic drivetrain using position tracking and PID motion control. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/taolib/DifferentialDrivetrain.h" line="31" column="1" bodyfile="include/taolib/DifferentialDrivetrain.h" bodystart="31" bodyend="402"/>
+    <listofallmembers>
+      <member refid="classtao_1_1_differential_drivetrain_1a2d76767c5c53e788fcde3ee0d3c8e1c6" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>calibrate_imu</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a92f8a2eac3cb4b84f627f22544a10708" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>DifferentialDrivetrain</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a11eb4d773765b01fcb535220366d51f7" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>DifferentialDrivetrain</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aaefef0365e463fe754accb6f5d2cd91e" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>DifferentialDrivetrain</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a69533b8798fa8201b32e800d9b8a74b6" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>DifferentialDrivetrain</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a45e5b20deee2f68e71b7a761565b85f9" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>drive</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aee94b80e65bd24846bd0848332522029" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>drive_controller</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a45c8bea114b2de4006892254f47fc991" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>drive_error</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a53a2441c263c8977ffd65a867284e748" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>drive_tolerance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a2356aadf6b87ba6cab57beabc5c85cab" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>follow_path</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a3f79c7a8059c129e1482828a78d903de" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>gearing</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1af94edfde4a200199920c548bcd76da50" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_config</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a0392b9cb165f0746a98fbda6e6e775ff" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_drive_error</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a647947badb790ea9edb8845f115b3361" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_drive_gains</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a7db198c09c533769978cafcc9577d4a1" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_drive_tolerance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a0e8f5a7cc56b44798be975cbdbc89621" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_forward_travel</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1acbd9c06e31289c6c1d5c02426e12abde" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_gearing</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ad76cbb435302f718ce9248a78530f0d1" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_heading</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aaa4fc8eb0e81db00e521ed09df5bc23c" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_lookahead_distance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a6e4a4a750eb70db19564ba9bb1864e24" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_max_drive_power</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1afd664f6d9635cf5e05434379c01e56b4" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_max_turn_power</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aaabcb0a7917d074f9f96a59726da4f1d" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_position</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1abdf7a2a26eed735123e41bfeeb2e5572" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_track_width</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1af558a71ff9f27bf0648532442a9ceae0" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_turn_error</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a50412fcb2af365a6444ea26f6cd6690c" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_turn_gains</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a6fb7167313bb597aa809b5a0177276e6" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_turn_tolerance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a18b4403c60ab14722b7dd7dece287750" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_wheel_diameter</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a8ece221c6091eb501f0165006428eac1" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>get_wheel_travel</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a92dbe8f289a1d75d8380ca5f57ace213" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>hold_position</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a8e9c834e87a82943138ef91db36f36fe" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>imu</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a7ad59dd0e7be2872863cf2f0861e960a" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>imu_calibrated</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a0462fde3849de9e039a7201c3edae918" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>imu_invalid</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a5226930435bd353c17bd508cf1c0a5a4" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>is_settled</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1af9ef89f11cc6bc8e7411bee92999cb1e" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>left_encoder</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a6e31c4dfaa94356a4a8b2161c6503e53" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>left_motors</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aec45d43a4a809eb1768d2dd05c6ca9db" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>logger</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a753a302b2773c74973dded8af6137560" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>logging</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a800747214f26ee8135f236b0b0b46bd4" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>logging_active</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a32d0810cfe9e2e6345d2fb2918eb5918" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>logging_thread</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a148a376f973b6d2d840178b6f9423536" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>lookahead_distance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a17631d9056d00b173275669bea66f057" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>max_drive_power</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aa3302f78fe57d0505d5a0dfd8e6d0415" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>max_turn_power</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a4349322a027eff033efc8e8a10e6f590" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>move_to</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a976bc3f888b69900284a44f33f3f057f" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>mutex</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a893b0048d3178f4db77ff34d4642f365" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>position</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ac9d105ab2a2c1864a3def2ba845715e0" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>reset_tracking</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a7eb5d01350d772c36de7699b1f1d9554" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>right_encoder</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aa93f940e1c748e5efe2ecc4ea4c000f8" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>right_motors</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a34c21c406b42f4c45d316d923c07aaa8" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_drive_gains</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aa2937378234823e18d5188c20107e104" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_drive_tolerance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1af8af47b5d4c70760095bed796a4092f5" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_gearing</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ab75d934aff2bd03873fc98bb00b0cfe6" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_lookahead_distance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ab42be427d7f06feda7c9b4533034675f" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_max_drive_power</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a85e36aec7d0c55b47b411f43b662b5d6" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_max_turn_power</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ade992b9a90daae34f712cdd0c3cce128" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_target</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1af84e2746d2447f04ac7f1e1129d7b3e0" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_target</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a9ff6aab805315f2397ce7b3dd1c46ae8" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_turn_gains</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1afdbc56e38943c8e2af7afe4124705754" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_turn_tolerance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1af1cf2ce66b0564cb447451fa7ae096e1" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>set_wheel_diameter</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a4045bc78af8566fe554c8638c3a621a0" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>settled</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a4a092682dc25367519dd48f419555fcf" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>start_heading</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a03082a0aa736738e40e0cc9e5bc8fb2c" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>start_tracking</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a6933a734e3b18eaa5bc446f71f981e25" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>stop_tracking</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a88ca0bd92ee42ceed7d1c95e93247a9e" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>target_distance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ad765ff64dd71e7d19ff94e305fc0e905" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>target_heading</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a1ec0f549db1641c68434008e5889be21" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>target_position</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a9e2df9e64c2f5677b099f109f3edb763" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>target_type</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ab607621c02338cce78725c30954ca6ad" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>TargetType</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a3c093c449206b69c6a00f3b8d22421d6" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>track_width</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aad5ce7c137e4eba26a61d628bfd2576f" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>tracking</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ae99f5f52d76f52bf7b9c9deab847471f" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>tracking_active</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a6226f305500b8261fce592509e8d70b6" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>tracking_thread</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a2a07ae9c9e1caa32d0c649f7eb7210c9" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>turn_controller</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a0709356ac8457f004b6224679d717bb9" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>turn_error</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1aa9885cd2323fea467b72a7d4a6d0303d" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>turn_to</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a9a0bf474237383834d2ed11cb5a7c27b" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>turn_to</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ad8a6f0025c5d214b42dba637db76ddf2" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>turn_tolerance</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a7588a56cd89afd37a6f27124b1a92f83" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>wait_until_settled</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1ab92351187cd9c47a93690277aaf9e620" prot="private" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>wheel_diameter</name></member>
+      <member refid="classtao_1_1_differential_drivetrain_1a23c2949cf09d53fdcbf8c7626ea0d089" prot="public" virt="non-virtual"><scope>tao::DifferentialDrivetrain</scope><name>~DifferentialDrivetrain</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

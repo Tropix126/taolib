@@ -9,6 +9,50 @@ page: 3
 
 taolib's `DifferentialDrivetrain` class provides several methods for controlling the movement of your robot's drivetrain. In this tutorial, we'll take a look at the different methods available, and provide examples of how to use them for autonomous routes.
 
+## The Tracking Period
+
+Before we move the robot, we need to start the drivetrain's tracking period. *Tracking* in this case refers to a task that runs in the background and continiously tracks the robot's position and sets its motor values. If this task is not running beforehand, taolib won't be able to move the drivetrain.
+
+To start tracking, we can call `DifferentialDrivetrain::start_tracking` at the start of our autonomous period:
+
+```cpp
+void autonomous() {
+	// Start with an assumed position of (0, 0) facing 90.0 degrees.
+	chassis.start_tracking();
+}
+```
+
+We can also change where the robot thinks it starts at and the angle that it think it initially faces.
+
+```cpp
+void autonomous() {
+	// The robot will start with its position at (20, 20) and its heading at 45.0 degrees.
+	chassis.start_tracking(tao::Vector2(20, 20), 45);
+}
+```
+
+During the tracking period, you won't be able to directly control the drive motors. For example, this **will not work**:
+```cpp
+chassis.start_tracking(tao::Vector2(20, 20), 45); // Start tracking!
+left_motors.spin(vex::forward, 100, vex::percent); // Spin our left drivetrain motors really fast!
+```
+
+Because of this, it is extremely important to stop tracking once the driver control period begins. If tracking is running during driver control, you won't be able to control the motors using joysticks.
+
+```cpp
+void autonomous() {
+	chassis.start_tracking(tao::Vector2(20, 20), 45);
+}
+
+void usercontrol() {
+	chassis.stop_tracking(); // First stop tracking!
+
+	while (true) {
+		...
+	}
+}
+```
+
 ## Driving Straight
 
 The `DifferentialDrivetrain::drive()` method is used to move the drivetrain directly forwards or backwards by a given distance while maintaining the current heading. The first parameter of this method is the distance that you wish to travel. A negative number denotes that the drivetrain should drive backwards.

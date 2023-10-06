@@ -23,15 +23,30 @@ void Logger::log(Level level, const char* format, va_list args) const {
 		std::string message = this->format(format, args);
 		va_end(args);
 
-		output_stream
-			<< colorize("[" + level_to_string(level) + "] ", level)
-			<< message
-			<< colorize("\033[0m\n", level);
+		if (level == Level::TELEMETRY) {
+			output_stream
+				<< "<BEGIN_TELEMETRY>",
+				<< message
+				<< "\n<END_TELEMETRY>"
+				<< "\033[2K\r"
+				<< std::flush;
+		} else {
+			output_stream
+				<< colorize("[" + level_to_string(level) + "] " + message, level)
+				<< std::endl;
+		}
 
 		for (auto& handle : handles) {
 			handle(level, message);
 		}
 	}
+}
+
+void Logger::telemetry(const char* format, ...) const {
+	va_list args;
+	va_start(args, format);
+	log(Level::TELEMETRY, format, args);
+	va_end(args);
 }
 
 void Logger::debug(const char* format, ...) const {
@@ -88,18 +103,18 @@ std::string Logger::level_to_string(Level level) {
 
 std::string Logger::colorize(const std::string& message, Level level) {
 	switch (level) {
-	case Level::DEBUG:
-		return "\033[37m" + message; // white
-	case Level::INFO:
-		return "\033[36m" + message; // cyan
-	case Level::WARNING:
-		return "\033[33m" + message; // yellow
-	case Level::ERROR:
-		return "\033[31m" + message; // red
-	case Level::FATAL:
-		return "\033[41m" + message; // red background
-	default:
-		return message;
+		case Level::DEBUG:
+			return "\033[37m" + message + "\033[0m"; // white
+		case Level::INFO:
+			return "\033[36m" + message  + "\033[0m"; // cyan
+		case Level::WARNING:
+			return "\033[33m" + message + "\033[0m"; // yellow
+		case Level::ERROR:
+			return "\033[31m" + message + "\033[0m"; // red
+		case Level::FATAL:
+			return "\033[41m" + message + "\033[0m"; // red background
+		default:
+			return message;
 	}
 }
 

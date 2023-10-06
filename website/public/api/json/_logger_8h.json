@@ -1,0 +1,100 @@
+{
+  "abstract": false,
+  "anchor": "#file-logger.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/Logger.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "<iostream>",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/Logger.h",
+    "line": 0
+  },
+  "name": "include/taolib/Logger.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "#pragma once\n\n#include <iostream>\n#include <fstream>\n#include <string>\n#include <cstdarg>\n#include <functional>\n#include <vector>\n\nnamespace tao {\n\nclass Logger {\npublic:\n    enum class Level {\n        DEBUG,\n        INFO,\n        WARNING,\n        ERROR,\n        FATAL\n    };\n\n    using Handle = std::function<void(Level, const std::string&)>;\n\n    Logger(std::ostream& output_stream = std::cout, Level level = Level::INFO);\n    \n    void set_level(Level level);\n\n    void add_handle(const Handle& handle);\n\n    void debug(const char* format, ...) const;\n\n    void info(const char* format, ...) const;\n\n    void warning(const char* format, ...) const;\n\n    void error(const char* format, ...) const;\n\n    void fatal(const char* format, ...) const;\n\nprivate:\n    std::ostream& output_stream;\n    Level level;\n    std::vector<std::function<void(Level, const std::string&)>> handles;\n    \n    void log(Level level, const char* format, va_list args) const;\n\n    static std::string level_to_string(Level level);\n\n    static std::string colorize(const std::string& message, Level level);\n\n    static const std::string format(const char * const format, va_list args);\n};\n\n} // namespace tao",
+  "publicClasses": [
+    {
+      "anchor": "",
+      "category": "classes",
+      "fullname": "tao::Logger",
+      "kind": "class",
+      "language": "cpp",
+      "name": "tao::Logger",
+      "qualifiedname": "tao::Logger",
+      "refid": "classtao_1_1_logger",
+      "title": "tao::Logger",
+      "url": "classtao_1_1_logger.md",
+      "visibility": "public"
+    }
+  ],
+  "refid": "_logger_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/Logger.h",
+  "url": "_logger_8h.md#file-logger.h",
+  "visibility": "public"
+}

@@ -1,0 +1,98 @@
+{
+  "abstract": false,
+  "anchor": "#file-math.h",
+  "category": "files",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/math.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "\"Vector2.h\"",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/math.h",
+    "line": 0
+  },
+  "name": "include/taolib/math.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao::math",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao::math",
+      "qualifiedname": "tao::math",
+      "refid": "namespacetao_1_1math",
+      "title": "tao::math",
+      "url": "namespacetao_1_1math.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "\n#include \"Vector2.h\"\n#include <vector>\n\nnamespace tao {\nnamespace math {\n\nconstexpr double PI = 3.14159265358979323846;\n\ndouble vector_average(std::vector<double> const& v);\n\ndouble normalize_degrees(double degrees);\n\nstd::pair<double, double> normalize_speeds(double left_speed, double right_speed, double max_speed);\n\nconstexpr double to_radians(double degrees) {\n    return degrees * (PI / 180.0);\n}\n\nconstexpr double to_degrees(double radians) {\n    return radians * (180.0 / PI);\n}\n\ntemplate <typename T>\nconstexpr T clamp(T value, T min, T max) {\n    return std::min(max, std::max(min, value));\n}\n\ntemplate <typename T>\nconstexpr T sign(T value) {\n    return value < 0 ? -1 : 1;\n}\n\nstd::vector<Vector2> line_circle_intersections(Vector2 center, double radius, Vector2 point_1, Vector2 point_2);\n\n} // namespace math\n} // namespace tao",
+  "refid": "math_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/math.h",
+  "url": "math_8h.md#file-math.h",
+  "visibility": "public"
+}

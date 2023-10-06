@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="_differential_drivetrain_8h" kind="file" language="C++">
+    <compoundname>DifferentialDrivetrain.h</compoundname>
+    <includes local="no">cmath</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">ratio</includes>
+    <includes local="no">memory</includes>
+    <includes refid="env_8h" local="yes">env.h</includes>
+    <includes refid="_vector2_8h" local="yes">Vector2.h</includes>
+    <includes refid="_p_i_d_controller_8h" local="yes">PIDController.h</includes>
+    <includes refid="threading_8h" local="yes">threading.h</includes>
+    <includes refid="_logger_8h" local="yes">logger.h</includes>
+    <includedby refid="taolib_8h" local="yes">include/taolib/taolib.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/taolib/DifferentialDrivetrain.h</label>
+        <link refid="_differential_drivetrain_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>logger.h</label>
+        <link refid="_logger_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>PIDController.h</label>
+        <link refid="_p_i_d_controller_8h_source"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Vector2.h</label>
+        <link refid="_vector2_8h_source"/>
+      </node>
+      <node id="6">
+        <label>env.h</label>
+        <link refid="env_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>threading.h</label>
+        <link refid="threading_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="19">
+        <label>cstdarg</label>
+      </node>
+      <node id="8">
+        <label>cstdint</label>
+      </node>
+      <node id="17">
+        <label>fstream</label>
+      </node>
+      <node id="9">
+        <label>functional</label>
+      </node>
+      <node id="12">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
+      <node id="4">
+        <label>ratio</label>
+      </node>
+      <node id="18">
+        <label>string</label>
+      </node>
+      <node id="14">
+        <label>tuple</label>
+      </node>
+      <node id="15">
+        <label>utility</label>
+      </node>
+      <node id="7">
+        <label>v5_cpp.h</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/taolib/DifferentialDrivetrain.h</label>
+        <link refid="_differential_drivetrain_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/taolib/taolib.h</label>
+        <link refid="taolib_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classtao_1_1_differential_drivetrain" prot="public">tao::DifferentialDrivetrain</innerclass>
+    <innerclass refid="structtao_1_1_differential_drivetrain_1_1_config" prot="public">tao::DifferentialDrivetrain::Config</innerclass>
+    <innernamespace refid="namespacetao">tao</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ratio&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;env.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Vector2.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;PIDController.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;threading.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;logger.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tao<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classtao_1_1_differential_drivetrain" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classtao_1_1_differential_drivetrain" kindref="compound">DifferentialDrivetrain</ref><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37" refid="structtao_1_1_differential_drivetrain_1_1_config" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="structtao_1_1_differential_drivetrain_1_1_config_1afbf97448667d9bb1edacdfe21c14a824" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1afbf97448667d9bb1edacdfe21c14a824" kindref="member">drive_gains</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structtao_1_1_differential_drivetrain_1_1_config_1abe9b27159f83c6ab39284e7cd0b8b242" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1abe9b27159f83c6ab39284e7cd0b8b242" kindref="member">turn_gains</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="structtao_1_1_differential_drivetrain_1_1_config_1a0fc42beeee1d45bb90be7f84fb4e6d05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1a0fc42beeee1d45bb90be7f84fb4e6d05" kindref="member">drive_tolerance</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structtao_1_1_differential_drivetrain_1_1_config_1aacca7581883a4bcad241fb5291c68d70" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1aacca7581883a4bcad241fb5291c68d70" kindref="member">turn_tolerance</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structtao_1_1_differential_drivetrain_1_1_config_1afd2634dad9336382c446deec6cff63d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1afd2634dad9336382c446deec6cff63d2" kindref="member">lookahead_distance</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="structtao_1_1_differential_drivetrain_1_1_config_1a2a32550be83876129518caf7b24c8212" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1a2a32550be83876129518caf7b24c8212" kindref="member">track_width</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="structtao_1_1_differential_drivetrain_1_1_config_1acc62726ce1ebb724c684a922b26032fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1acc62726ce1ebb724c684a922b26032fe" kindref="member">wheel_diameter</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structtao_1_1_differential_drivetrain_1_1_config_1a335149c7771d63d199a4a3b7de545503" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config_1a335149c7771d63d199a4a3b7de545503" kindref="member">gearing</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="classtao_1_1_differential_drivetrain_1a92f8a2eac3cb4b84f627f22544a10708" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_differential_drivetrain_1a92f8a2eac3cb4b84f627f22544a10708" kindref="member">DifferentialDrivetrain</ref>(</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>left_motors,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>right_motors,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::IMU&amp;<sp/>imu,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref><sp/>config,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref><sp/>logger<sp/>=<sp/><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classtao_1_1_differential_drivetrain_1a11eb4d773765b01fcb535220366d51f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_differential_drivetrain_1a11eb4d773765b01fcb535220366d51f7" kindref="member">DifferentialDrivetrain</ref>(</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>left_motors,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>right_motors,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref><sp/>config,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref><sp/>logger<sp/>=<sp/><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="classtao_1_1_differential_drivetrain_1aaefef0365e463fe754accb6f5d2cd91e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_differential_drivetrain_1aaefef0365e463fe754accb6f5d2cd91e" kindref="member">DifferentialDrivetrain</ref>(</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>left_motors,</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>right_motors,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::Encoder&amp;<sp/>left_encoder,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::Encoder&amp;<sp/>right_encoder,</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::IMU&amp;<sp/>imu,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref><sp/>config,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref><sp/>logger<sp/>=<sp/><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="classtao_1_1_differential_drivetrain_1a69533b8798fa8201b32e800d9b8a74b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_differential_drivetrain_1a69533b8798fa8201b32e800d9b8a74b6" kindref="member">DifferentialDrivetrain</ref>(</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>left_motors,</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::MotorGroup&amp;<sp/>right_motors,</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::Encoder&amp;<sp/>left_encoder,</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env::Encoder&amp;<sp/>right_encoder,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref><sp/>config,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref><sp/>logger<sp/>=<sp/><ref refid="classtao_1_1_logger" kindref="compound">tao::Logger</ref>()</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_differential_drivetrain" kindref="compound">~DifferentialDrivetrain</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Getters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="classtao_1_1_differential_drivetrain_1aaabcb0a7917d074f9f96a59726da4f1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/><ref refid="classtao_1_1_differential_drivetrain_1aaabcb0a7917d074f9f96a59726da4f1d" kindref="member">get_position</ref>();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="classtao_1_1_differential_drivetrain_1a8ece221c6091eb501f0165006428eac1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::pair&lt;double,<sp/>double&gt;<sp/><ref refid="classtao_1_1_differential_drivetrain_1a8ece221c6091eb501f0165006428eac1" kindref="member">get_wheel_travel</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>get_forward_travel()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="classtao_1_1_differential_drivetrain_1ad76cbb435302f718ce9248a78530f0d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1ad76cbb435302f718ce9248a78530f0d1" kindref="member">get_heading</ref>();</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="classtao_1_1_differential_drivetrain_1a647947badb790ea9edb8845f115b3361" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref><sp/><ref refid="classtao_1_1_differential_drivetrain_1a647947badb790ea9edb8845f115b3361" kindref="member">get_drive_gains</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="classtao_1_1_differential_drivetrain_1a50412fcb2af365a6444ea26f6cd6690c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref><sp/><ref refid="classtao_1_1_differential_drivetrain_1a50412fcb2af365a6444ea26f6cd6690c" kindref="member">get_turn_gains</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="classtao_1_1_differential_drivetrain_1a0392b9cb165f0746a98fbda6e6e775ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a0392b9cb165f0746a98fbda6e6e775ff" kindref="member">get_drive_error</ref>();</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="classtao_1_1_differential_drivetrain_1af558a71ff9f27bf0648532442a9ceae0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1af558a71ff9f27bf0648532442a9ceae0" kindref="member">get_turn_error</ref>();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190" refid="classtao_1_1_differential_drivetrain_1a7db198c09c533769978cafcc9577d4a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a7db198c09c533769978cafcc9577d4a1" kindref="member">get_drive_tolerance</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196" refid="classtao_1_1_differential_drivetrain_1a6fb7167313bb597aa809b5a0177276e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a6fb7167313bb597aa809b5a0177276e6" kindref="member">get_turn_tolerance</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202" refid="classtao_1_1_differential_drivetrain_1aaa4fc8eb0e81db00e521ed09df5bc23c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1aaa4fc8eb0e81db00e521ed09df5bc23c" kindref="member">get_lookahead_distance</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208" refid="classtao_1_1_differential_drivetrain_1abdf7a2a26eed735123e41bfeeb2e5572" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1abdf7a2a26eed735123e41bfeeb2e5572" kindref="member">get_track_width</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214" refid="classtao_1_1_differential_drivetrain_1acbd9c06e31289c6c1d5c02426e12abde" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1acbd9c06e31289c6c1d5c02426e12abde" kindref="member">get_gearing</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="classtao_1_1_differential_drivetrain_1a6e4a4a750eb70db19564ba9bb1864e24" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a6e4a4a750eb70db19564ba9bb1864e24" kindref="member">get_max_drive_power</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226" refid="classtao_1_1_differential_drivetrain_1afd664f6d9635cf5e05434379c01e56b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1afd664f6d9635cf5e05434379c01e56b4" kindref="member">get_max_turn_power</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="classtao_1_1_differential_drivetrain_1af94edfde4a200199920c548bcd76da50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtao_1_1_differential_drivetrain_1_1_config" kindref="compound">Config</ref><sp/><ref refid="classtao_1_1_differential_drivetrain_1af94edfde4a200199920c548bcd76da50" kindref="member">get_config</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238" refid="classtao_1_1_differential_drivetrain_1a5226930435bd353c17bd508cf1c0a5a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a5226930435bd353c17bd508cf1c0a5a4" kindref="member">is_settled</ref>();</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>get_wheel_diameter()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248" refid="classtao_1_1_differential_drivetrain_1aa2937378234823e18d5188c20107e104" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1aa2937378234823e18d5188c20107e104" kindref="member">set_drive_tolerance</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>error);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="254" refid="classtao_1_1_differential_drivetrain_1afdbc56e38943c8e2af7afe4124705754" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1afdbc56e38943c8e2af7afe4124705754" kindref="member">set_turn_tolerance</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>error);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260" refid="classtao_1_1_differential_drivetrain_1ab75d934aff2bd03873fc98bb00b0cfe6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1ab75d934aff2bd03873fc98bb00b0cfe6" kindref="member">set_lookahead_distance</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distance);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266" refid="classtao_1_1_differential_drivetrain_1a34c21c406b42f4c45d316d923c07aaa8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a34c21c406b42f4c45d316d923c07aaa8" kindref="member">set_drive_gains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref>&amp;<sp/>gains);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="272" refid="classtao_1_1_differential_drivetrain_1a9ff6aab805315f2397ce7b3dd1c46ae8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a9ff6aab805315f2397ce7b3dd1c46ae8" kindref="member">set_turn_gains</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structtao_1_1_p_i_d_controller_1_1_gains" kindref="compound">PIDController::Gains</ref>&amp;<sp/>gains);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="280" refid="classtao_1_1_differential_drivetrain_1af8af47b5d4c70760095bed796a4092f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1af8af47b5d4c70760095bed796a4092f5" kindref="member">set_gearing</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ratio);</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="286" refid="classtao_1_1_differential_drivetrain_1ab42be427d7f06feda7c9b4533034675f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1ab42be427d7f06feda7c9b4533034675f" kindref="member">set_max_drive_power</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>power);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292" refid="classtao_1_1_differential_drivetrain_1a85e36aec7d0c55b47b411f43b662b5d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a85e36aec7d0c55b47b411f43b662b5d6" kindref="member">set_max_turn_power</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>power);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_wheel_diameter(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>diameter);</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Lifecycle<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303" refid="classtao_1_1_differential_drivetrain_1a03082a0aa736738e40e0cc9e5bc8fb2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a03082a0aa736738e40e0cc9e5bc8fb2c" kindref="member">start_tracking</ref>(<ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>position<sp/>=<sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref>(0.0,<sp/>0.0),<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>heading<sp/>=<sp/>90.0);</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306" refid="classtao_1_1_differential_drivetrain_1a6933a734e3b18eaa5bc446f71f981e25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a6933a734e3b18eaa5bc446f71f981e25" kindref="member">stop_tracking</ref>();</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>reset_tracking(<ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>position,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>heading);</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>calibrate_imu();</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>wait_until_settled();</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Movement<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321" refid="classtao_1_1_differential_drivetrain_1a45e5b20deee2f68e71b7a761565b85f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a45e5b20deee2f68e71b7a761565b85f9" kindref="member">drive</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distance,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>blocking<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328" refid="classtao_1_1_differential_drivetrain_1aa9885cd2323fea467b72a7d4a6d0303d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1aa9885cd2323fea467b72a7d4a6d0303d" kindref="member">turn_to</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>heading,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>blocking<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335" refid="classtao_1_1_differential_drivetrain_1a9a0bf474237383834d2ed11cb5a7c27b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a9a0bf474237383834d2ed11cb5a7c27b" kindref="member">turn_to</ref>(<ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>point,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>blocking<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343" refid="classtao_1_1_differential_drivetrain_1a4349322a027eff033efc8e8a10e6f590" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a4349322a027eff033efc8e8a10e6f590" kindref="member">move_to</ref>(<ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>point,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>blocking<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="349" refid="classtao_1_1_differential_drivetrain_1a2356aadf6b87ba6cab57beabc5c85cab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a2356aadf6b87ba6cab57beabc5c85cab" kindref="member">follow_path</ref>(std::vector&lt;Vector2&gt;<sp/>path);</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"></highlight></codeline>
+<codeline lineno="355" refid="classtao_1_1_differential_drivetrain_1a92dbe8f289a1d75d8380ca5f57ace213" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classtao_1_1_differential_drivetrain_1a92dbe8f289a1d75d8380ca5f57ace213" kindref="member">hold_position</ref>();</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>TargetType<sp/>{</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DistanceAndHeading,</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Point</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/>env::MotorGroup<sp/>&amp;left_motors,<sp/>&amp;right_motors;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>env::Encoder<sp/>*left_encoder,<sp/>*right_encoder;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>env::IMU*<sp/>imu;</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>position;</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>target_position;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>target_distance,<sp/>target_heading;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>start_heading;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/>TargetType<sp/>target_type;</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>max_drive_power<sp/>=<sp/>100,<sp/>max_turn_power<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>drive_tolerance,<sp/>turn_tolerance;</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>drive_error,<sp/>turn_error;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lookahead_distance;</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>track_width;</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wheel_diameter;</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gearing;</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"></highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>settled<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>imu_calibrated<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>imu_invalid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_p_i_d_controller" kindref="compound">PIDController</ref><sp/>drive_controller,<sp/>turn_controller;</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtao_1_1_logger" kindref="compound">Logger</ref><sp/>logger;</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_target(<ref refid="classtao_1_1_vector2" kindref="compound">Vector2</ref><sp/>position);</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_target(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>distance,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>heading);</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tracking();</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>logging();</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>tracking_active<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>logging_active<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unique_ptr&lt;env::Thread&gt;<sp/>tracking_thread,<sp/>logging_thread;</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/>env::Mutex<sp/>mutex;</highlight></codeline>
+<codeline lineno="402"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"></highlight></codeline>
+<codeline lineno="404"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tao</highlight></codeline>
+    </programlisting>
+    <location file="include/taolib/DifferentialDrivetrain.h"/>
+  </compounddef>
+</doxygen>

@@ -131,7 +131,7 @@ To turn `turn_gains` you'll want to setup a basic autonomous routine that turns 
 ```cpp
 void autonomous() {
 	// chassis.calibrate_imu(); // Uncomment if you use an inertial sensor!
-	chassis.setup_tracking();
+	chassis.start_tracking();
 	chassis.turn_to(0);
 }
 ```
@@ -147,7 +147,7 @@ A similar process will be used for tuning the drivetrain's `drive_gains`. We can
 ```cpp
 void autonomous() {
 	// chassis.calibrate_imu(); // Uncomment if you use an inertial sensor!
-	chassis.setup_tracking();
+	chassis.start_tracking();
 	chassis.drive(24);
 }
 ```

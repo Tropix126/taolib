@@ -1,0 +1,842 @@
+{
+  "abstract": false,
+  "anchor": "",
+  "category": "classes",
+  "const": false,
+  "definition": "",
+  "explicit": false,
+  "fullname": "tao::Logger",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "inline": false,
+  "kind": "class",
+  "language": "cpp",
+  "location": {
+    "bodyEnd": 52,
+    "bodyFile": "include/taolib/Logger.h",
+    "bodyStart": 12,
+    "column": 1,
+    "file": "include/taolib/Logger.h",
+    "line": 12
+  },
+  "name": "tao::Logger",
+  "override": false,
+  "parent": {
+    "anchor": "",
+    "category": "namespaces",
+    "fullname": "tao",
+    "kind": "namespace",
+    "language": "cpp",
+    "name": "tao",
+    "qualifiedname": "tao",
+    "refid": "namespacetao",
+    "title": "tao",
+    "url": "namespacetao.md",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    }
+  ],
+  "privateAttributes": [
+    {
+      "abstract": false,
+      "anchor": "#variable-output-stream",
+      "category": "attributes",
+      "const": false,
+      "definition": "std::ostream& tao::Logger::output_stream",
+      "explicit": false,
+      "fullname": "tao::Logger::output_stream",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "variable",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/Logger.h",
+        "bodyStart": 41,
+        "column": 14,
+        "file": "include/taolib/Logger.h",
+        "line": 41
+      },
+      "name": "output_stream",
+      "override": false,
+      "qualifiedname": "tao::Logger::output_stream",
+      "refid": "classtao_1_1_logger_1a8ee6b6a385786d1bc0c7d3ee9b42c475",
+      "static": false,
+      "strong": false,
+      "title": "output_stream",
+      "type": "std::ostream &",
+      "typePlain": "std::ostream &",
+      "url": "classtao_1_1_logger.md#variable-output-stream",
+      "visibility": "private"
+    },
+    {
+      "abstract": false,
+      "anchor": "#variable-level",
+      "category": "attributes",
+      "const": false,
+      "definition": "Level tao::Logger::level",
+      "explicit": false,
+      "fullname": "tao::Logger::level",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "variable",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/Logger.h",
+        "bodyStart": 42,
+        "column": 7,
+        "file": "include/taolib/Logger.h",
+        "line": 42
+      },
+      "name": "level",
+      "override": false,
+      "qualifiedname": "tao::Logger::level",
+      "refid": "classtao_1_1_logger_1ac72cc06740846e04e1916ba5608a77ea",
+      "static": false,
+      "strong": false,
+      "title": "level",
+      "type": "Level",
+      "typePlain": "Level",
+      "url": "classtao_1_1_logger.md#variable-level",
+      "visibility": "private"
+    },
+    {
+      "abstract": false,
+      "anchor": "#variable-handles",
+      "category": "attributes",
+      "const": false,
+      "definition": "std::vector<std::function<void(Level, const std::string&)> > tao::Logger::handles",
+      "explicit": false,
+      "fullname": "tao::Logger::handles",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "variable",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/Logger.h",
+        "bodyStart": 43,
+        "column": 13,
+        "file": "include/taolib/Logger.h",
+        "line": 43
+      },
+      "name": "handles",
+      "override": false,
+      "qualifiedname": "tao::Logger::handles",
+      "refid": "classtao_1_1_logger_1aef6b673bfb6eaf01ca34a59ee7624ad4",
+      "static": false,
+      "strong": false,
+      "title": "handles",
+      "type": "std::vector< std::function< void(Level, const std::string &)> >",
+      "typePlain": "std::vector< std::function< void(Level, const std::string &)> >",
+      "url": "classtao_1_1_logger.md#variable-handles",
+      "visibility": "private"
+    }
+  ],
+  "privateFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-log",
+      "argsString": "(Level level, const char *format, va_list args) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void tao::Logger::log",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::log",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 45
+      },
+      "name": "log",
+      "override": false,
+      "params": [
+        {
+          "name": "level",
+          "type": "Level",
+          "typePlain": "Level"
+        },
+        {
+          "name": "format",
+          "type": "const char *",
+          "typePlain": "const char *"
+        },
+        {
+          "name": "args",
+          "type": "va_list",
+          "typePlain": "va_list"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::log",
+      "refid": "classtao_1_1_logger_1a8d1fffcf2db5543d82d3151d128c68ba",
+      "static": false,
+      "strong": false,
+      "title": "log",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-log",
+      "virtual": false,
+      "visibility": "private"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-level-to-string",
+      "argsString": "(Level level)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "static std::string tao::Logger::level_to_string",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::level_to_string",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 20,
+        "file": "include/taolib/Logger.h",
+        "line": 47
+      },
+      "name": "level_to_string",
+      "override": false,
+      "params": [
+        {
+          "name": "level",
+          "type": "Level",
+          "typePlain": "Level"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::level_to_string",
+      "refid": "classtao_1_1_logger_1ac5bb53a55002783d9b9d43834b5730ea",
+      "static": true,
+      "strong": false,
+      "title": "level_to_string",
+      "type": "std::string",
+      "typePlain": "std::string",
+      "url": "classtao_1_1_logger.md#function-level-to-string",
+      "virtual": false,
+      "visibility": "private"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-colorize",
+      "argsString": "(const std::string &message, Level level)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "static std::string tao::Logger::colorize",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::colorize",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 20,
+        "file": "include/taolib/Logger.h",
+        "line": 49
+      },
+      "name": "colorize",
+      "override": false,
+      "params": [
+        {
+          "name": "message",
+          "type": "const std::string &",
+          "typePlain": "const std::string &"
+        },
+        {
+          "name": "level",
+          "type": "Level",
+          "typePlain": "Level"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::colorize",
+      "refid": "classtao_1_1_logger_1a5a125d632334da4edb11c8f1cb10316c",
+      "static": true,
+      "strong": false,
+      "title": "colorize",
+      "type": "std::string",
+      "typePlain": "std::string",
+      "url": "classtao_1_1_logger.md#function-colorize",
+      "virtual": false,
+      "visibility": "private"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-format",
+      "argsString": "(const char *const format, va_list args)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "static const std::string tao::Logger::format",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::format",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 26,
+        "file": "include/taolib/Logger.h",
+        "line": 51
+      },
+      "name": "format",
+      "override": false,
+      "params": [
+        {
+          "name": "format",
+          "type": "const char *const",
+          "typePlain": "const char *const"
+        },
+        {
+          "name": "args",
+          "type": "va_list",
+          "typePlain": "va_list"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::format",
+      "refid": "classtao_1_1_logger_1a0cb4b3901ecd052c18fc719b14818c82",
+      "static": true,
+      "strong": false,
+      "title": "format",
+      "type": "const std::string",
+      "typePlain": "const std::string",
+      "url": "classtao_1_1_logger.md#function-format",
+      "virtual": false,
+      "visibility": "private"
+    }
+  ],
+  "publicFunctions": [
+    {
+      "abstract": false,
+      "anchor": "#function-logger",
+      "argsString": "(std::ostream &output_stream=std::cout, Level level=Level::INFO)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "tao::Logger::Logger",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::Logger",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 1,
+        "file": "include/taolib/Logger.h",
+        "line": 24
+      },
+      "name": "Logger",
+      "override": false,
+      "params": [
+        {
+          "defval": "std::cout",
+          "defvalPlain": "std::cout",
+          "name": "output_stream",
+          "type": "std::ostream &",
+          "typePlain": "std::ostream &"
+        },
+        {
+          "defval": "Level::INFO",
+          "defvalPlain": "Level::INFO",
+          "name": "level",
+          "type": "Level",
+          "typePlain": "Level"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::Logger",
+      "refid": "classtao_1_1_logger_1ac08fbee7af6e891e53b5918e7fc8e18f",
+      "static": false,
+      "strong": false,
+      "title": "Logger",
+      "url": "classtao_1_1_logger.md#function-logger",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-set-level",
+      "argsString": "(Level level)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "void tao::Logger::set_level",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::set_level",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 26
+      },
+      "name": "set_level",
+      "override": false,
+      "params": [
+        {
+          "name": "level",
+          "type": "Level",
+          "typePlain": "Level"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::set_level",
+      "refid": "classtao_1_1_logger_1af493694247bcd752cb585263663c9a31",
+      "static": false,
+      "strong": false,
+      "title": "set_level",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-set-level",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-add-handle",
+      "argsString": "(const Handle &handle)",
+      "category": "functions",
+      "const": false,
+      "default": false,
+      "definition": "void tao::Logger::add_handle",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::add_handle",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 28
+      },
+      "name": "add_handle",
+      "override": false,
+      "params": [
+        {
+          "name": "handle",
+          "type": "const Handle &",
+          "typePlain": "const Handle &"
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::add_handle",
+      "refid": "classtao_1_1_logger_1a2c54a26e197ba1b7fac4147a9dca469c",
+      "static": false,
+      "strong": false,
+      "title": "add_handle",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-add-handle",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-debug",
+      "argsString": "(const char *format,...) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void tao::Logger::debug",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::debug",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 30
+      },
+      "name": "debug",
+      "override": false,
+      "params": [
+        {
+          "name": "format",
+          "type": "const char *",
+          "typePlain": "const char *"
+        },
+        {
+          "name": "",
+          "type": "...",
+          "typePlain": "..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::debug",
+      "refid": "classtao_1_1_logger_1ada7ff20e7d94adbe0ddb6ba40b16f49a",
+      "static": false,
+      "strong": false,
+      "title": "debug",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-debug",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-info",
+      "argsString": "(const char *format,...) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void tao::Logger::info",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::info",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 32
+      },
+      "name": "info",
+      "override": false,
+      "params": [
+        {
+          "name": "format",
+          "type": "const char *",
+          "typePlain": "const char *"
+        },
+        {
+          "name": "",
+          "type": "...",
+          "typePlain": "..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::info",
+      "refid": "classtao_1_1_logger_1ab13bd010b389878e18d8ea697dd2f701",
+      "static": false,
+      "strong": false,
+      "title": "info",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-info",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-warning",
+      "argsString": "(const char *format,...) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void tao::Logger::warning",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::warning",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 34
+      },
+      "name": "warning",
+      "override": false,
+      "params": [
+        {
+          "name": "format",
+          "type": "const char *",
+          "typePlain": "const char *"
+        },
+        {
+          "name": "",
+          "type": "...",
+          "typePlain": "..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::warning",
+      "refid": "classtao_1_1_logger_1af21f5447540d8fa75fdb56ba3140caa5",
+      "static": false,
+      "strong": false,
+      "title": "warning",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-warning",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-error",
+      "argsString": "(const char *format,...) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void tao::Logger::error",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::error",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 36
+      },
+      "name": "error",
+      "override": false,
+      "params": [
+        {
+          "name": "format",
+          "type": "const char *",
+          "typePlain": "const char *"
+        },
+        {
+          "name": "",
+          "type": "...",
+          "typePlain": "..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::error",
+      "refid": "classtao_1_1_logger_1ab2be5465abbc39f53669c95453fa8876",
+      "static": false,
+      "strong": false,
+      "title": "error",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-error",
+      "virtual": false,
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#function-fatal",
+      "argsString": "(const char *format,...) const",
+      "category": "functions",
+      "const": true,
+      "default": false,
+      "definition": "void tao::Logger::fatal",
+      "deleted": false,
+      "explicit": false,
+      "fullname": "tao::Logger::fatal",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "function",
+      "language": "cpp",
+      "location": {
+        "column": 6,
+        "file": "include/taolib/Logger.h",
+        "line": 38
+      },
+      "name": "fatal",
+      "override": false,
+      "params": [
+        {
+          "name": "format",
+          "type": "const char *",
+          "typePlain": "const char *"
+        },
+        {
+          "name": "",
+          "type": "...",
+          "typePlain": "..."
+        }
+      ],
+      "pureVirtual": false,
+      "qualifiedname": "tao::Logger::fatal",
+      "refid": "classtao_1_1_logger_1a0184721f5b6f3cd20525907fd85ad8ee",
+      "static": false,
+      "strong": false,
+      "title": "fatal",
+      "type": "void",
+      "typePlain": "void",
+      "url": "classtao_1_1_logger.md#function-fatal",
+      "virtual": false,
+      "visibility": "public"
+    }
+  ],
+  "publicTypes": [
+    {
+      "abstract": false,
+      "anchor": "#enum-level",
+      "category": "types",
+      "const": false,
+      "definition": "",
+      "enumvalues": [
+        {
+          "anchor": "#enumvalue-debug",
+          "category": "types",
+          "definition": "",
+          "fullname": "Level::DEBUG",
+          "hasDetails": false,
+          "kind": "enumvalue",
+          "language": "",
+          "name": "DEBUG",
+          "qualifiedname": "DEBUG",
+          "refid": "classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9adc30ec20708ef7b0f641ef78b7880a15",
+          "title": "DEBUG",
+          "url": "classtao_1_1_logger.md#enumvalue-debug",
+          "visibility": "public"
+        },
+        {
+          "anchor": "#enumvalue-info",
+          "category": "types",
+          "definition": "",
+          "fullname": "Level::INFO",
+          "hasDetails": false,
+          "kind": "enumvalue",
+          "language": "",
+          "name": "INFO",
+          "qualifiedname": "INFO",
+          "refid": "classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9a551b723eafd6a31d444fcb2f5920fbd3",
+          "title": "INFO",
+          "url": "classtao_1_1_logger.md#enumvalue-info",
+          "visibility": "public"
+        },
+        {
+          "anchor": "#enumvalue-warning",
+          "category": "types",
+          "definition": "",
+          "fullname": "Level::WARNING",
+          "hasDetails": false,
+          "kind": "enumvalue",
+          "language": "",
+          "name": "WARNING",
+          "qualifiedname": "WARNING",
+          "refid": "classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9a059e9861e0400dfbe05c98a841f3f96b",
+          "title": "WARNING",
+          "url": "classtao_1_1_logger.md#enumvalue-warning",
+          "visibility": "public"
+        },
+        {
+          "anchor": "#enumvalue-error",
+          "category": "types",
+          "definition": "",
+          "fullname": "Level::ERROR",
+          "hasDetails": false,
+          "kind": "enumvalue",
+          "language": "",
+          "name": "ERROR",
+          "qualifiedname": "ERROR",
+          "refid": "classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9abb1ca97ec761fc37101737ba0aa2e7c5",
+          "title": "ERROR",
+          "url": "classtao_1_1_logger.md#enumvalue-error",
+          "visibility": "public"
+        },
+        {
+          "anchor": "#enumvalue-fatal",
+          "category": "types",
+          "definition": "",
+          "fullname": "Level::FATAL",
+          "hasDetails": false,
+          "kind": "enumvalue",
+          "language": "",
+          "name": "FATAL",
+          "qualifiedname": "FATAL",
+          "refid": "classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9a19da7170bea36556dde582519795f3fc",
+          "title": "FATAL",
+          "url": "classtao_1_1_logger.md#enumvalue-fatal",
+          "visibility": "public"
+        }
+      ],
+      "explicit": false,
+      "fullname": "tao::Logger::Level",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "enum",
+      "language": "cpp",
+      "location": {
+        "bodyEnd": 20,
+        "bodyFile": "include/taolib/Logger.h",
+        "bodyStart": 14,
+        "column": 1,
+        "file": "include/taolib/Logger.h",
+        "line": 14
+      },
+      "name": "Level",
+      "override": false,
+      "qualifiedname": "tao::Logger::Level",
+      "refid": "classtao_1_1_logger_1af065aed0771dbffc474e0ad202be8bf9",
+      "static": false,
+      "strong": true,
+      "title": "Level",
+      "url": "classtao_1_1_logger.md#enum-level",
+      "visibility": "public"
+    },
+    {
+      "abstract": false,
+      "anchor": "#using-handle",
+      "category": "types",
+      "const": false,
+      "definition": "using tao::Logger::Handle =  std::function<void(Level, const std::string&)>",
+      "explicit": false,
+      "fullname": "tao::Logger::Handle",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "using",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/Logger.h",
+        "bodyStart": 22,
+        "column": 1,
+        "file": "include/taolib/Logger.h",
+        "line": 22
+      },
+      "name": "Handle",
+      "override": false,
+      "qualifiedname": "tao::Logger::Handle",
+      "refid": "classtao_1_1_logger_1aa372476866c871692d1470356cca232c",
+      "static": false,
+      "strong": false,
+      "title": "Handle",
+      "type": "std::function< void(Level, const std::string &)>",
+      "typePlain": "std::function< void(Level, const std::string &)>",
+      "url": "classtao_1_1_logger.md#using-handle",
+      "visibility": "public"
+    }
+  ],
+  "qualifiedname": "tao::Logger",
+  "refid": "classtao_1_1_logger",
+  "static": false,
+  "strong": false,
+  "title": "tao::Logger",
+  "url": "classtao_1_1_logger.md",
+  "visibility": "public"
+}

@@ -68,7 +68,9 @@
 		"iomanip": "cpp",
 		"condition_variable": "cpp",
 		"complex": "cpp",
-		"cinttypes": "cpp"
+		"cinttypes": "cpp",
+		"typeindex": "cpp",
+		"valarray": "cpp"
 	},
 	"C_Cpp.default.systemIncludePath": [
 		"${config:vexrobotics.vexcode.Cpp.Sdk.Home}\\V5\\V5_20220726_10_00_00\\vexv5\\gcc\\include\\sys"

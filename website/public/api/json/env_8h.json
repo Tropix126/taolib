@@ -1,0 +1,129 @@
+{
+  "abstract": false,
+  "anchor": "#file-env.h",
+  "category": "files",
+  "const": false,
+  "defines": [
+    {
+      "abstract": false,
+      "anchor": "#define-tao-env-vexcode",
+      "category": "defines",
+      "const": false,
+      "definition": "",
+      "explicit": false,
+      "fullname": "TAO_ENV_VEXCODE",
+      "hasDetails": false,
+      "inline": false,
+      "kind": "define",
+      "language": "cpp",
+      "location": {
+        "bodyFile": "include/taolib/env.h",
+        "bodyStart": 11,
+        "column": 9,
+        "file": "include/taolib/env.h",
+        "line": 11
+      },
+      "name": "TAO_ENV_VEXCODE",
+      "override": false,
+      "qualifiedname": "TAO_ENV_VEXCODE",
+      "refid": "env_8h_1a39a48a291ad43245188745c71e5edcb2",
+      "static": false,
+      "strong": false,
+      "title": "TAO_ENV_VEXCODE",
+      "url": "env_8h.md#define-tao-env-vexcode",
+      "visibility": "public"
+    }
+  ],
+  "definition": "",
+  "explicit": false,
+  "fullname": "include/taolib/env.h",
+  "hasAdditionalMembers": false,
+  "hasDetails": false,
+  "includes": "\"v5_cpp.h\"",
+  "inline": false,
+  "kind": "file",
+  "language": "cpp",
+  "location": {
+    "column": 0,
+    "file": "include/taolib/env.h",
+    "line": 0
+  },
+  "name": "include/taolib/env.h",
+  "namespaces": [
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao",
+      "qualifiedname": "tao",
+      "refid": "namespacetao",
+      "title": "tao",
+      "url": "namespacetao.md",
+      "visibility": "public"
+    },
+    {
+      "anchor": "",
+      "category": "namespaces",
+      "fullname": "tao::env",
+      "kind": "namespace",
+      "language": "cpp",
+      "name": "tao::env",
+      "qualifiedname": "tao::env",
+      "refid": "namespacetao_1_1env",
+      "title": "tao::env",
+      "url": "namespacetao_1_1env.md",
+      "visibility": "public"
+    }
+  ],
+  "override": false,
+  "parent": {
+    "anchor": "#dir-include/taolib",
+    "category": "dirs",
+    "fullname": "include/taolib",
+    "kind": "dir",
+    "language": "",
+    "name": "include/taolib",
+    "qualifiedname": "include/taolib",
+    "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+    "title": "include/taolib",
+    "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+    "visibility": "public"
+  },
+  "parentBreadcrumbs": [
+    {
+      "anchor": "#dir-include",
+      "category": "dirs",
+      "fullname": "include",
+      "kind": "dir",
+      "language": "",
+      "name": "include",
+      "qualifiedname": "include",
+      "refid": "dir_d44c64559bbebec7f509842c48db8b23",
+      "title": "include",
+      "url": "dir_d44c64559bbebec7f509842c48db8b23.md#dir-include",
+      "visibility": "public"
+    },
+    {
+      "anchor": "#dir-include/taolib",
+      "category": "dirs",
+      "fullname": "include/taolib",
+      "kind": "dir",
+      "language": "",
+      "name": "include/taolib",
+      "qualifiedname": "include/taolib",
+      "refid": "dir_3d63a896b4741a572d2ddbc7ef8e03ff",
+      "title": "include/taolib",
+      "url": "dir_3d63a896b4741a572d2ddbc7ef8e03ff.md#dir-include/taolib",
+      "visibility": "public"
+    }
+  ],
+  "programlisting": "\n#pragma once\n\n// Determines the current enviornment\n#define TAO_ENV_VEXCODE\n// #define TAO_ENV_PROS\n\n// Include the required environment libraries\n#ifdef TAO_ENV_VEXCODE\n#include \"v5_cpp.h\"\n#elif defined(TAO_ENV_PROS)\n#include \"api.h\"\n#endif\n\n#include <memory>\n#include <cstdint>\n#include <functional>\n\nnamespace tao {\nnamespace env {\n\n// make_unique polyfill\ntemplate<class T, class... Args>\nstd::unique_ptr<T> make_unique(Args&&... args) {\n    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));\n}\n\n// Platform-specific aliases\n#ifdef TAO_ENV_VEXCODE\n    using Thread = vex::thread;\n    using Mutex = vex::mutex;\n    using MotorGroup = vex::motor_group;\n    using IMU = vex::inertial;\n    using Encoder = vex::encoder;\n\n    constexpr auto sleep_for = static_cast<void(*)(uint32_t)>(vex::this_thread::sleep_for);\n    constexpr auto high_resolution_clock = vex::timer::systemHighResolution;\n#elif defined(TAO_ENV_PROS)\n    using Thread = pros::Task;\n    using Mutex = pros::Mutex;\n    using MotorGroup = pros::MotorGroup;\n    using IMU = pros::IMU;\n    using Encoder = pros::ADIEncoder;\n\n    constexpr auto sleep_for = pros::delay;\n    constexpr auto high_resolution_clock = pros::micros;\n#endif\n\nbool imu_is_installed(IMU& imu);\nbool imu_is_calibrating(IMU& imu);\ndouble imu_get_heading(IMU& imu);\nvoid imu_calibrate(IMU& imu);\nvoid imu_reset_heading(IMU& imu);\n\ndouble motor_group_get_rotation(MotorGroup& encoder);\nvoid motor_group_set_voltage(MotorGroup& group, double voltage);\nvoid motor_group_reset_rotation(MotorGroup& motor_group);\n\nint32_t encoder_get_rotation(Encoder& encoder);\nvoid encoder_reset_rotation(Encoder& encoder);\n\n} // namespace env\n} // namespace tao",
+  "refid": "env_8h",
+  "static": false,
+  "strong": false,
+  "title": "include/taolib/env.h",
+  "url": "env_8h.md#file-env.h",
+  "visibility": "public"
+}

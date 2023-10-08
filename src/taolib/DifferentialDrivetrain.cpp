@@ -572,13 +572,11 @@ void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
 			} else if (intersections.size() == 1) {
 				// There is one intersection. Go to that intersection.
 				target_intersection = intersections[0];
-			} else {
-				// No intersections were found. Don't update the target.
-				mutex.unlock();
-				return;
 			}
 
-			set_target(target_intersection);
+			if (intersections.size() > 0) {
+				set_target(target_intersection);
+			}
 
 			mutex.unlock();
 			

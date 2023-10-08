@@ -394,15 +394,24 @@ int DifferentialDrivetrain::tracking() {
 }
 
 int DifferentialDrivetrain::logging() {
-	// Print the current global position of the robot every second.
+	int64_t time = 0;
+
+	// Log data periodically
 	while (logging_active) {
 		mutex.lock();
 		Vector2 position_ = position;
 		mutex.unlock();
 		
-		logger.info("Position: (%f, %f) Heading: %f\u00B0", position_.get_x(), position_.get_y(), get_heading());
+		// logger.telemetry("{type:\"TELEMETRY_UPDATE\",data:{position: {x: %f,y: %f},heading: %f,pid: {drive: {kP: %f,kI: %f,kD: %f,},turn: {kP: %f,kI: %f,kD: %f,}}}}");
 
-		env::sleep_for(1000);
+		// This is a gross way to do this, but I sure as hell don't feel like
+		// starting more threads right now.
+		if (time % 1000 == 0) {
+			logger.info("Position: (%f, %f) Heading: %f\u00B0", position_.get_x(), position_.get_y(), get_heading());
+		}
+
+		env::sleep_for(10);
+		time += 10;
 	}
 
 	return 0;
@@ -565,6 +574,7 @@ void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {
 				target_intersection = intersections[0];
 			} else {
 				// No intersections were found. Don't update the target.
+				mutex.unlock();
 				return;
 			}
 

@@ -25,15 +25,15 @@ void Logger::log(Level level, const char* format, va_list args) const {
 
 		if (level == Level::TELEMETRY) {
 			output_stream
-				<< "<BEGIN_TELEMETRY>",
+				<< "\033[s[TAOLIB_BEGIN_TELEMETRY]",
 				<< message
-				<< "\n<END_TELEMETRY>"
-				<< "\033[2K\r"
+				<< "[TAOLIB_END_TELEMETRY]"
+				<< "\033[u\033[0j"
 				<< std::flush;
 		} else {
 			output_stream
 				<< colorize("[" + level_to_string(level) + "] " + message, level)
-				<< std::endl;
+				<< "\n";
 		}
 
 		for (auto& handle : handles) {

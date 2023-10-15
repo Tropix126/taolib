@@ -22,10 +22,12 @@ tao::DifferentialDrivetrain drivetrain(left_drive, right_drive, imu, {
 
 int main() {
 	using tao::Vector2;
-	
+
 	drivetrain.calibrate_imu();
 	drivetrain.start_tracking();
+
 	drivetrain.move_to(Vector2(24, 24));
+
 	drivetrain.stop_tracking();
 
 	while (true) {

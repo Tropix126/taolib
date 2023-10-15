@@ -446,6 +446,7 @@ void DifferentialDrivetrain::start_tracking(Vector2 position, double heading) {
 		tracking_active = true;
 		tracking_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::tracking));
 	}
+	
 	if (!logging_active) {
 		logging_active = true;
 		logging_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::logging));

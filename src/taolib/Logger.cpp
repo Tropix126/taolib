@@ -25,7 +25,7 @@ void Logger::log(Level level, const char* format, va_list args) const {
 
 		if (level == Level::TELEMETRY) {
 			output_stream
-				<< "\033[s[TAOLIB_BEGIN_TELEMETRY]",
+				<< "\033[s[TAOLIB_BEGIN_TELEMETRY]"
 				<< message
 				<< "[TAOLIB_END_TELEMETRY]"
 				<< "\033[u\033[0j"

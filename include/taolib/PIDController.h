@@ -26,6 +26,9 @@ public:
 
 		/** The derivative gain constant. */
 		double kD;
+
+		/** The minimum error value required for the integral term to take effect. */
+		double i_threshold;
 	} Gains;
 
 	// Constructor(s)

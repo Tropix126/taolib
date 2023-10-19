@@ -493,7 +493,7 @@ void DifferentialDrivetrain::stop_tracking() {
 
 void DifferentialDrivetrain::wait_until_settled() {
 	// Spinlock until settled
-	while (!settled) { env::sleep_for(10); }
+	while (!is_settled()) { env::sleep_for(10); }
 }
 
 // Movement

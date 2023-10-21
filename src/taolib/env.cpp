@@ -23,7 +23,7 @@ void imu_calibrate(vex::inertial& imu) { imu.calibrate(); }
 void imu_reset_heading(vex::inertial& imu) { imu.resetHeading(); }
 
 void motor_group_set_voltage(vex::motor_group& group, double voltage) {
-	group.spin(vex::forward, voltage, vex::percent);
+	group.spin(vex::forward, voltage, vex::volt);
 }
 double motor_group_get_rotation(vex::motor_group& group) {
 	return group.position(vex::degrees);

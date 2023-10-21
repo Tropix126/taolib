@@ -5,6 +5,8 @@
  * Various helper functions and variables used in mathematical operations.
  */
 
+#pragma once
+
 #include "Vector2.h"
 #include <vector>
 

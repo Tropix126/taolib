@@ -42,7 +42,7 @@ void encoder_reset_rotation(vex::encoder& encoder) {
 #elif defined(TAO_ENV_PROS)
 
 bool imu_is_installed(pros::v5::Imu& imu) { return imu.is_installed(); }
-bool imu_is_calibrating(pros::v5::Imu& imu) { return imu.is_calibrating(); }
+bool imu_is_calibrating(pros::v5::Imu& imu) { return imu.is_installed() && imu.is_calibrating(); }
 double imu_get_heading(pros::v5::Imu& imu) { return imu.get_heading(); }
 void imu_calibrate(pros::v5::Imu& imu) { imu.reset(); }
 void imu_reset_heading(pros::v5::Imu& imu) { imu.tare_heading(); }

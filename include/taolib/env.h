@@ -46,7 +46,7 @@ std::unique_ptr<T> make_unique(Args&&... args) {
 	using Mutex = pros::Mutex;
 	using MotorGroup = pros::MotorGroup;
 	using IMU = pros::IMU;
-	using Encoder = pros::ADIEncoder;
+	using Encoder = pros::adi::Encoder;
 
 	constexpr auto sleep_for = pros::delay;
 	constexpr auto high_resolution_clock = pros::micros;

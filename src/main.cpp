@@ -20,13 +20,13 @@ tao::DifferentialDrivetrain drivetrain(left_drive, right_drive, imu, {
 	.gearing = (1.0 / 1.0)
 }, tao::Logger(std::cout, tao::Logger::Level::DEBUG));
 
-int main() {
+int main() {	
 	using tao::Vector2;
 
-	drivetrain.calibrate_imu();
+	// drivetrain.calibrate_imu();
 	drivetrain.start_tracking();
 
-	drivetrain.move_to(Vector2(24, 24));
+	// drivetrain.move_to(Vector2(24, 24));
 
 	drivetrain.stop_tracking();
 

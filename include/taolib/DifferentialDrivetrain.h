@@ -68,6 +68,15 @@ public:
 		double gearing;
 	} Config;
 
+	/**
+	 * Sample rate of the drivetrain
+	 * 
+	 * This constant represents the rate (in seconds) at which the drivetrain reads and writes to devices.
+	 * Motors report sensor data at of 10 milliseconds, meaning that 10ms is the fastest possible sample rate
+	 * that is practical.
+	 */
+	constexpr static int32_t SAMPLE_RATE = 10;
+
 	// Constructors
 
 	/**
@@ -237,7 +246,17 @@ public:
 	 */
 	bool is_settled();
 
+	/**
+	 * Gets the wheel diameter of the drivetrain
+	 * @return The wheel diameter of the drivetrain.
+	 */
 	double get_wheel_diameter() const;
+
+	/**
+	 * Gets the time that the robot must be in |tolerance| for to be considered settled.
+	 * @return The time in milliseconds.
+	 */
+	double get_tolerance_time() const;
 
 	// Setters
 
@@ -286,12 +305,22 @@ public:
 	void set_max_drive_power(double power);
 
 	/**
-	 * Sets the maximum velocity cap for turning..
+	 * Sets the maximum velocity cap for turning.
 	 * @param power A percentage of the new maximum velocity cap.
 	 */
 	void set_max_turn_power(double power);
 
+	/**
+	 * Sets the diameter of the drivetrain's wheels.
+	 * @param diameter The diameter of the wheeels.
+	 */
 	void set_wheel_diameter(double diameter);
+
+	/**
+	 * Sets the time that the robot must be in |tolerance| for to be considered settled.
+	 * @param time The time in milliseconds.
+	 */
+	void set_tolerance_time(double time);
 
 	// Lifecycle functions
 
@@ -305,11 +334,29 @@ public:
 	/** Stops all threads used for tracking and movement, restoring manual control of the drivetrain. */
 	void stop_tracking();
 
-	void reset_tracking(Vector2 position, double heading);
+	/**
+	 * Resets the tracking period's localization data (position/heading).
+	 * @param position A 2D vector representing the starting cartesian coordinates of the drivetrain.
+	 * @param heading An angle in degrees representing the starting orientation of the drivetrain.
+	 */
+	void reset_tracking(Vector2 position = Vector2(0.0, 0.0), double heading = 90.0);
 
+	/**
+	 * Calibrates the inertial sensor associated with this drivetrain, if available.
+	 * Assuming an imu is available and installed, this function will block for up to
+	 * 3600ms (3.6 seconds).
+	 * 
+	 * This function should be called while the robot is entirely stationary, ideally
+	 * before the autonomous period starts. Physical disturbances or vibration during
+	 * calibration may cause the sensor to drift. 
+	 */
 	void calibrate_imu();
 
-	void wait_until_settled();
+	/**
+	 * Blocks the current thread until the drivetrain is settled, or until a timeout is exceeded. 
+	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
+	 */
+	void wait_until_settled(double timeout = -1);
 
 	// Movement functions
 
@@ -317,30 +364,33 @@ public:
 	 * Moves the drivetrain directly forwards or backwards along the x-axis.
 	 * @param distance The distance that the drivetrain will move relative to it's current position.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive_tolerance for 10 iterations).
+	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void drive(double distance, bool blocking = true);
+	void drive(double distance, bool blocking = true, double timeout = -1);
 
 	/**
 	 * Turns the drivetrain to an absolute heading.
 	 * @param heading The angle in degrees to rotate the drivetrain to.
 	 * @param blocking Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations).
+	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void turn_to(double heading, bool blocking = true);
+	void turn_to(double heading, bool blocking = true, double timeout = -1);
 
 	/**
 	 * Turns the drivetrain face towards the direction of a point.
 	 * @param point A 2D vector representing the desired coordinates to face towards.
 	 * @param blocking Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations).
+	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void turn_to(Vector2 point, bool blocking = true);
+	void turn_to(Vector2 point, bool blocking = true, double timeout = -1);
 
 	/**
 	 * Moves the drivetrain to a target point.
 	 * @param point A 2D vector representing the absolute target coordinates to move to.
-	 * @param direction Determines the direction that the robot will face to move to the target. The auto direction will always take the most efficient turn.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations).
+	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	*/
-	void move_to(Vector2 point, bool blocking = true);
+	void move_to(Vector2 point, bool blocking = true, double timeout = -1);
 	
 	/**
 	 * Moves the drivetrain along a set of path waypoints.
@@ -375,6 +425,8 @@ private:
 	double max_drive_power = 100, max_turn_power = 100;
 	double drive_tolerance, turn_tolerance;
 	double drive_error, turn_error;
+
+	double tolerance_time = 50;
 
 	double lookahead_distance;
 	double track_width;

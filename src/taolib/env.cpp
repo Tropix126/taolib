@@ -66,5 +66,13 @@ void encoder_reset_rotation(pros::adi::Encoder& encoder) {
 
 #endif
 
+Timer::Timer(): timestamp(env::high_resolution_clock()) {}
+int64_t Timer::elapsed() const {
+	return env::high_resolution_clock() - timestamp;
+}
+void Timer::reset() {
+	timestamp = env::high_resolution_clock();
+}
+
 } // namespace env
 } // namespace tao

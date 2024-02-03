@@ -48,7 +48,7 @@ void imu_calibrate(pros::v5::Imu& imu) { imu.reset(); }
 void imu_reset_heading(pros::v5::Imu& imu) { imu.tare_heading(); }
 
 void motor_group_set_voltage(pros::v5::MotorGroup& group, double voltage) {
-	group.move((voltage / 12.0) * 127.0);
+	group.move_voltage(voltage * 1000);
 }
 double motor_group_get_rotation(pros::v5::MotorGroup& group) {
 	return math::vector_average(group.get_position_all());

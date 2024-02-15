@@ -25,12 +25,6 @@
 namespace tao {
 namespace env {
 
-// make_unique polyfill
-template<class T, class... Args>
-std::unique_ptr<T> make_unique(Args&&... args) {
-	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-}
-
 // Platform-specific aliases
 #ifdef TAO_ENV_VEXCODE
 	using Thread = vex::thread;
@@ -68,7 +62,6 @@ void encoder_reset_rotation(Encoder& encoder);
 class Timer {
 public:
 	Timer();
-	~Timer();
 
 	int64_t elapsed() const;
 	void reset();

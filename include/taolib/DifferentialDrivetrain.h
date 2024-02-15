@@ -472,7 +472,7 @@ private:
 	bool tracking_active = false;
 	bool logging_active = false;
 
-	std::unique_ptr<env::Thread> tracking_thread, logging_thread;
+	std::shared_ptr<env::Thread> tracking_thread, logging_thread;
 	env::Mutex mutex;
 };
 

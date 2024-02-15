@@ -446,12 +446,12 @@ void DifferentialDrivetrain::start_tracking(Vector2 position, double heading) {
 	// Start threads
 	if (!tracking_active) {
 		tracking_active = true;
-		tracking_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::tracking));
+		tracking_thread = std::make_shared<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::tracking));
 	}
 	
 	if (!logging_active) {
 		logging_active = true;
-		logging_thread = env::make_unique<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::logging));
+		logging_thread = std::make_shared<env::Thread>(threading::make_member_thread(this, &DifferentialDrivetrain::logging));
 	}
 }
 

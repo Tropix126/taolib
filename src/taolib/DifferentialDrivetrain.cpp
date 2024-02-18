@@ -342,8 +342,8 @@ int DifferentialDrivetrain::tracking() {
 		}
 
 		// Get output of PID controllers and cap to max power
-		double drive_power = math::clamp(drive_controller.update(drive_error, SAMPLE_RATE / 1000), -max_drive_power, max_drive_power);
-		double turn_power = math::clamp(turn_controller.update(turn_error, SAMPLE_RATE / 1000), -max_turn_power, max_turn_power);
+		double drive_power = math::clamp(drive_controller.update(drive_error, SAMPLE_RATE / 1000.0), -max_drive_power, max_drive_power);
+		double turn_power = math::clamp(turn_controller.update(turn_error, SAMPLE_RATE / 1000.0), -max_turn_power, max_turn_power);
 
 		// Scale drive power by the cosine of turn_error if moving to a point.
 		// This biases turn power over drive power at the start of the movement, which makes the

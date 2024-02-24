@@ -364,33 +364,57 @@ public:
 	 * Moves the drivetrain directly forwards or backwards along the x-axis.
 	 * @param distance The distance that the drivetrain will move relative to it's current position.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive_tolerance for 10 iterations).
+	 */
+	void drive(double distance, bool blocking = true);
+
+	/**
+	 * Moves the drivetrain directly forwards or backwards along the x-axis.
+	 * @param distance The distance that the drivetrain will move relative to it's current position.
 	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void drive(double distance, bool blocking = true, double timeout = -1);
+	void drive(double distance, double timeout);
 
 	/**
 	 * Turns the drivetrain to an absolute heading.
 	 * @param heading The angle in degrees to rotate the drivetrain to.
 	 * @param blocking Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations).
+	 */
+	void turn_to(double heading, bool blocking = true);
+
+	/**
+	 * Turns the drivetrain to an absolute heading.
+	 * @param heading The angle in degrees to rotate the drivetrain to.
 	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void turn_to(double heading, bool blocking = true, double timeout = -1);
+	void turn_to(double heading, double timeout);
 
 	/**
 	 * Turns the drivetrain face towards the direction of a point.
 	 * @param point A 2D vector representing the desired coordinates to face towards.
 	 * @param blocking Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations).
+	 */
+	void turn_to(Vector2 point, bool blocking = true);
+
+	/**
+	 * Turns the drivetrain face towards the direction of a point.
+	 * @param point A 2D vector representing the desired coordinates to face towards.
 	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void turn_to(Vector2 point, bool blocking = true, double timeout = -1);
+	void turn_to(Vector2 point, double timeout);
 
 	/**
 	 * Moves the drivetrain to a target point.
 	 * @param point A 2D vector representing the absolute target coordinates to move to.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations).
+	*/
+	void move_to(Vector2 point, bool blocking = true);
+
+	/**
+	 * Moves the drivetrain to a target point.
+	 * @param point A 2D vector representing the absolute target coordinates to move to.
 	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	*/
-	void move_to(Vector2 point, bool blocking = true, double timeout = -1);
+	void move_to(Vector2 point, double timeout);
 	
 	/**
 	 * Moves the drivetrain along a set of path waypoints.
@@ -400,7 +424,6 @@ public:
 
 	/**
 	 * Stops and holds the drivetrain at its current position and heading.
-	 * @param blocking Determines if the function should block the current thread until settled (within tolerance for 10 iterations).
 	 */
 	void hold_position();
 

@@ -342,8 +342,8 @@ int DifferentialDrivetrain::tracking() {
 		}
 
 		// Get output of PID controllers and cap to max power
-		double drive_power = math::clamp(drive_controller.update(drive_error, SAMPLE_RATE / 1000), -max_drive_power, max_drive_power);
-		double turn_power = math::clamp(turn_controller.update(turn_error, SAMPLE_RATE / 1000), -max_turn_power, max_turn_power);
+		double drive_power = math::clamp(drive_controller.update(drive_error, SAMPLE_RATE / 1000.0), -max_drive_power, max_drive_power);
+		double turn_power = math::clamp(turn_controller.update(turn_error, SAMPLE_RATE / 1000.0), -max_turn_power, max_turn_power);
 
 		// Scale drive power by the cosine of turn_error if moving to a point.
 		// This biases turn power over drive power at the start of the movement, which makes the
@@ -504,27 +504,35 @@ void DifferentialDrivetrain::wait_until_settled(double timeout) {
 
 // Movement
 
-void DifferentialDrivetrain::drive(double distance, bool blocking, double timeout) {
+void DifferentialDrivetrain::drive(double distance, bool blocking) {
 	mutex.lock();
 	settled = false;
 	set_target(get_forward_travel() + distance, target_heading);
 	mutex.unlock();
 
 	logger.debug("Driving for %f", distance);
-	if (blocking) wait_until_settled(timeout);
+	if (blocking) wait_until_settled();
+}
+void DifferentialDrivetrain::drive(double distance, double timeout) {
+	drive(distance, false);
+	wait_until_settled(timeout);
 }
 
-void DifferentialDrivetrain::turn_to(double heading, bool blocking, double timeout) {
+void DifferentialDrivetrain::turn_to(double heading, bool blocking) {
 	mutex.lock();
 	settled = false;
 	set_target(target_distance, heading);
 	mutex.unlock();
 
 	logger.debug("Turning to %f\u00B0", heading);
-	if (blocking) wait_until_settled(timeout);
+	if (blocking) wait_until_settled();
+}
+void DifferentialDrivetrain::turn_to(double heading, double timeout) {
+	turn_to(heading, false);
+	wait_until_settled(timeout);
 }
 
-void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking, double timeout) {
+void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking) {
 	mutex.lock();
 	settled = false;
 	Vector2 local_target = point - position;
@@ -532,10 +540,14 @@ void DifferentialDrivetrain::turn_to(Vector2 point, bool blocking, double timeou
 	mutex.unlock();
 
 	logger.debug("Turning to (%f, %f). Calculated angle: %f\u00B0", point.get_x(), point.get_y());
-	if (blocking) wait_until_settled(timeout);
+	if (blocking) wait_until_settled();
+}
+void DifferentialDrivetrain::turn_to(Vector2 point, double timeout) {
+	turn_to(point, false);
+	wait_until_settled(timeout);
 }
 
-void DifferentialDrivetrain::move_to(Vector2 point, bool blocking, double timeout) {
+void DifferentialDrivetrain::move_to(Vector2 point, bool blocking) {
 	mutex.lock();
 	settled = false;
 	set_target(point);
@@ -543,7 +555,11 @@ void DifferentialDrivetrain::move_to(Vector2 point, bool blocking, double timeou
 	mutex.unlock();
 
 	logger.debug("Moving to (%f, %f). Distance: %f", point.get_x(), point.get_y(), point.distance(position));
-	if (blocking) wait_until_settled(timeout);
+	if (blocking) wait_until_settled();
+}
+void DifferentialDrivetrain::move_to(Vector2 point, double timeout) {
+	move_to(point, false);
+	wait_until_settled(timeout);
 }
 
 void DifferentialDrivetrain::follow_path(std::vector<Vector2> path) {

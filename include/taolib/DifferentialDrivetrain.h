@@ -68,15 +68,6 @@ public:
 		double gearing;
 	} Config;
 
-	/**
-	 * Sample rate of the drivetrain
-	 * 
-	 * This constant represents the rate (in seconds) at which the drivetrain reads and writes to devices.
-	 * Motors report sensor data at of 10 milliseconds, meaning that 10ms is the fastest possible sample rate
-	 * that is practical.
-	 */
-	constexpr static int32_t SAMPLE_RATE = 10;
-
 	// Constructors
 
 	/**
@@ -252,12 +243,6 @@ public:
 	 */
 	double get_wheel_diameter() const;
 
-	/**
-	 * Gets the time that the robot must be in |tolerance| for to be considered settled.
-	 * @return The time in milliseconds.
-	 */
-	double get_tolerance_time() const;
-
 	// Setters
 
 	/**
@@ -305,22 +290,16 @@ public:
 	void set_max_drive_power(double power);
 
 	/**
-	 * Sets the maximum velocity cap for turning.
+	 * Sets the maximum velocity cap for turning..
 	 * @param power A percentage of the new maximum velocity cap.
 	 */
 	void set_max_turn_power(double power);
 
 	/**
-	 * Sets the diameter of the drivetrain's wheels.
-	 * @param diameter The diameter of the wheeels.
+	 * Gets the wheel diameter of the drivetrain
+	 * @return The wheel diameter of the drivetrain.
 	 */
 	void set_wheel_diameter(double diameter);
-
-	/**
-	 * Sets the time that the robot must be in |tolerance| for to be considered settled.
-	 * @param time The time in milliseconds.
-	 */
-	void set_tolerance_time(double time);
 
 	// Lifecycle functions
 
@@ -356,7 +335,7 @@ public:
 	 * Blocks the current thread until the drivetrain is settled, or until a timeout is exceeded. 
 	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
 	 */
-	void wait_until_settled(double timeout = -1);
+	void wait_until_settled();
 
 	// Movement functions
 
@@ -368,25 +347,11 @@ public:
 	void drive(double distance, bool blocking = true);
 
 	/**
-	 * Moves the drivetrain directly forwards or backwards along the x-axis.
-	 * @param distance The distance that the drivetrain will move relative to it's current position.
-	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
-	 */
-	void drive(double distance, double timeout);
-
-	/**
 	 * Turns the drivetrain to an absolute heading.
 	 * @param heading The angle in degrees to rotate the drivetrain to.
 	 * @param blocking Determines if the function should block the current thread until settled (within turn_tolerance for 10 iterations).
 	 */
 	void turn_to(double heading, bool blocking = true);
-
-	/**
-	 * Turns the drivetrain to an absolute heading.
-	 * @param heading The angle in degrees to rotate the drivetrain to.
-	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
-	 */
-	void turn_to(double heading, double timeout);
 
 	/**
 	 * Turns the drivetrain face towards the direction of a point.
@@ -396,25 +361,11 @@ public:
 	void turn_to(Vector2 point, bool blocking = true);
 
 	/**
-	 * Turns the drivetrain face towards the direction of a point.
-	 * @param point A 2D vector representing the desired coordinates to face towards.
-	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
-	 */
-	void turn_to(Vector2 point, double timeout);
-
-	/**
 	 * Moves the drivetrain to a target point.
 	 * @param point A 2D vector representing the absolute target coordinates to move to.
 	 * @param blocking Determines if the function should block the current thread until settled (within drive tolerance for 10 iterations).
 	*/
 	void move_to(Vector2 point, bool blocking = true);
-
-	/**
-	 * Moves the drivetrain to a target point.
-	 * @param point A 2D vector representing the absolute target coordinates to move to.
-	 * @param timeout The maximum amount of time to block the current thread in milliseconds, regardless of if the drivetrain settles or not.
-	*/
-	void move_to(Vector2 point, double timeout);
 	
 	/**
 	 * Moves the drivetrain along a set of path waypoints.
@@ -448,8 +399,6 @@ private:
 	double max_drive_power = 100, max_turn_power = 100;
 	double drive_tolerance, turn_tolerance;
 	double drive_error, turn_error;
-
-	double tolerance_time = 50;
 
 	double lookahead_distance;
 	double track_width;

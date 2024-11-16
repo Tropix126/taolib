@@ -21,7 +21,7 @@
 #include "Vector2.h"
 #include "PIDController.h"
 #include "threading.h"
-#include "logger.h"
+#include "Logger.h"
 
 namespace tao {
 
